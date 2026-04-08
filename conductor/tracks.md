@@ -5,7 +5,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 ---
 
 ## Active Track
-- [~] **Track: Implement unit tests for core Solution commands**
+- [x] **Track: Implement unit tests for core Solution commands**
   *Link: [./tracks/solution_tests_20260408/](./tracks/solution_tests_20260408/)*
 
 ## Future Tracks (Backlog)
