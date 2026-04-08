@@ -5,11 +5,11 @@
 - [x] Task: Set up shared test utilities or base classes for mocking `IOrganizationServiceRepository` and `IOutput`. [e4ea582]
 
 ## Phase 2: Implementation - ListCommand
-- [~] Task: Create `ListCommandTest.cs` to test the parser via `Utility.TestParseCommand<ListCommand>`.
-- [ ] Task: Create `ListCommandExecutorTest.cs`.
-- [ ] Task: Implement test for `ListCommandExecutor.ExecuteAsync` filtering logic.
-- [ ] Task: Implement test for `ListCommandExecutor.ExecuteAsync` sorting logic.
-- [ ] Task: Implement test for `ListCommandExecutor.ExecuteAsync` output formatting (Table vs TableCompact vs JSON) and error handling.
+- [x] Task: Create `ListCommandTest.cs` to test the parser via `Utility.TestParseCommand<ListCommand>`. [7a8dfd9]
+- [~] Task: Create `ListCommandExecutorTest.cs`.
+- [~] Task: Implement test for `ListCommandExecutor.ExecuteAsync` filtering logic.
+- [~] Task: Implement test for `ListCommandExecutor.ExecuteAsync` sorting logic.
+- [~] Task: Implement test for `ListCommandExecutor.ExecuteAsync` output formatting (Table vs TableCompact vs JSON) and error handling.
 
 ## Phase 3: Implementation - CreateCommand
 - [ ] Task: Create `CreateCommandTest.cs` to test the parser via `Utility.TestParseCommand<CreateCommand>`.
