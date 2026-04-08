@@ -5,7 +5,7 @@ This file tracks all major tracks for the project. Each track has its own detail
 ---
 
 ## Active Track
-- [ ] **Track: Implement unit tests for core Solution commands**
+- [~] **Track: Implement unit tests for core Solution commands**
   *Link: [./tracks/solution_tests_20260408/](./tracks/solution_tests_20260408/)*
 
 ## Future Tracks (Backlog)
@@ -25,7 +25,10 @@ This file tracks all major tracks for the project. Each track has its own detail
   *Description: Go through the open issues at https://github.com/neronotte/Greg.Xrm.Command/issues one by one and implement fixes or enhancements.*
 
 - [ ] **Track: Implement an MCP Server**
-  *Description: Add support for an MCP (Model Context Protocol) server to expose the CLI's capabilities to AI agents. Must be .NET 8 compatible and integrate with the existing hybrid Autofac/Microsoft DI setup.*
+  *Description: Add support for an MCP (Model Context Protocol) server to expose the CLI's capabilities to AI agents. (Requires creating a GitHub issue first, then submitting a PR against it).*
+
+- [ ] **Track: Conduct Gap Analysis (Power Platform vs PAC CLI vs PACX)**
+  *Description: Perform a comprehensive gap analysis... (Requires creating a GitHub issue first, then submitting a PR against it).*
 
 - [ ] **Track: Extend Automation Capabilities (as Plugin)**
-  *Description: Expand tool functions to cover advanced platform automation, implementing them as a first-class PACX Plugin utilizing `McMaster.NETCore.Plugins` and Autofac `Module` registrations.*
+  *Description: Expand tool functions to cover advanced platform automation... (Requires creating a GitHub issue first, then submitting a PR against it).*

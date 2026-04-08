@@ -4,18 +4,18 @@
 - [x] Task: Review existing tests in `Greg.Xrm.Command.Core.TestSuite/Commands/Solution` for `GetPublisherListCommand` as a template for MSTest/Moq structure. [05994e8]
 - [x] Task: Set up shared test utilities or base classes for mocking `IOrganizationServiceRepository` and `IOutput`. [e4ea582]
 
-## Phase 2: Implementation - ListCommand
+## Phase 2: Implementation - ListCommand [checkpoint: 958bc29]
 - [x] Task: Create `ListCommandTest.cs` to test the parser via `Utility.TestParseCommand<ListCommand>`. [7a8dfd9]
-- [~] Task: Create `ListCommandExecutorTest.cs`.
-- [~] Task: Implement test for `ListCommandExecutor.ExecuteAsync` filtering logic.
-- [~] Task: Implement test for `ListCommandExecutor.ExecuteAsync` sorting logic.
-- [~] Task: Implement test for `ListCommandExecutor.ExecuteAsync` output formatting (Table vs TableCompact vs JSON) and error handling.
+- [x] Task: Create `ListCommandExecutorTest.cs`. [24ecfd8]
+- [x] Task: Implement test for `ListCommandExecutor.ExecuteAsync` filtering logic. [24ecfd8]
+- [x] Task: Implement test for `ListCommandExecutor.ExecuteAsync` sorting logic. [24ecfd8]
+- [x] Task: Implement test for `ListCommandExecutor.ExecuteAsync` output formatting (Table vs TableCompact vs JSON) and error handling. [24ecfd8]
 
 ## Phase 3: Implementation - CreateCommand
-- [ ] Task: Create `CreateCommandTest.cs` to test the parser via `Utility.TestParseCommand<CreateCommand>`.
-- [ ] Task: Create `CreateCommandExecutorTest.cs`.
-- [ ] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` parameter mapping to `Entity`.
-- [ ] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` success and failure scenarios.
+- [~] Task: Create `CreateCommandTest.cs` to test the parser via `Utility.TestParseCommand<CreateCommand>`.
+- [~] Task: Create `CreateCommandExecutorTest.cs`.
+- [~] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` parameter mapping to `Entity`.
+- [~] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` success and failure scenarios.
 
 ## Phase 4: Implementation - DeleteCommand
 - [ ] Task: Create `DeleteCommandTest.cs` to test the parser via `Utility.TestParseCommand<DeleteCommand>`.
