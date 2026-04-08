@@ -17,12 +17,12 @@
 - [x] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` parameter mapping to `Entity`. [3cd347b]
 - [x] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` success and failure scenarios. [3cd347b]
 
-## Phase 4: Implementation - DeleteCommand
-- [~] Task: Create `DeleteCommandTest.cs` to test the parser via `Utility.TestParseCommand<DeleteCommand>`.
-- [~] Task: Create `DeleteCommandExecutorTest.cs`.
-- [~] Task: Implement test for `DeleteCommandExecutor.ExecuteAsync` solution identification and deletion logic.
+## Phase 4: Implementation - DeleteCommand [checkpoint: d0aa8f7]
+- [x] Task: Create `DeleteCommandTest.cs` to test the parser via `Utility.TestParseCommand<DeleteCommand>`. [19a1273]
+- [x] Task: Create `DeleteCommandExecutorTest.cs`. [19a1273]
+- [x] Task: Implement test for `DeleteCommandExecutor.ExecuteAsync` solution identification and deletion logic. [19a1273]
 
 ## Phase 5: Verification
-- [ ] Task: Run all new tests via `dotnet test` and verify they pass.
-- [ ] Task: Verify overall code coverage for the `Solution` command executors.
-- [ ] Task: Conductor - User Manual Verification 'Phase 5: Verification' (Protocol in workflow.md)
+- [~] Task: Run all new tests via `dotnet test` and verify they pass.
+- [~] Task: Verify overall code coverage for the `Solution` command executors.
+- [~] Task: Conductor - User Manual Verification 'Phase 5: Verification' (Protocol in workflow.md)
