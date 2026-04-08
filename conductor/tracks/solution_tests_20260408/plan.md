@@ -11,16 +11,16 @@
 - [x] Task: Implement test for `ListCommandExecutor.ExecuteAsync` sorting logic. [24ecfd8]
 - [x] Task: Implement test for `ListCommandExecutor.ExecuteAsync` output formatting (Table vs TableCompact vs JSON) and error handling. [24ecfd8]
 
-## Phase 3: Implementation - CreateCommand
-- [~] Task: Create `CreateCommandTest.cs` to test the parser via `Utility.TestParseCommand<CreateCommand>`.
-- [~] Task: Create `CreateCommandExecutorTest.cs`.
-- [~] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` parameter mapping to `Entity`.
-- [~] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` success and failure scenarios.
+## Phase 3: Implementation - CreateCommand [checkpoint: 63e344e]
+- [x] Task: Create `CreateCommandTest.cs` to test the parser via `Utility.TestParseCommand<CreateCommand>`. [3cd347b]
+- [x] Task: Create `CreateCommandExecutorTest.cs`. [3cd347b]
+- [x] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` parameter mapping to `Entity`. [3cd347b]
+- [x] Task: Implement test for `CreateCommandExecutor.ExecuteAsync` success and failure scenarios. [3cd347b]
 
 ## Phase 4: Implementation - DeleteCommand
-- [ ] Task: Create `DeleteCommandTest.cs` to test the parser via `Utility.TestParseCommand<DeleteCommand>`.
-- [ ] Task: Create `DeleteCommandExecutorTest.cs`.
-- [ ] Task: Implement test for `DeleteCommandExecutor.ExecuteAsync` solution identification and deletion logic.
+- [~] Task: Create `DeleteCommandTest.cs` to test the parser via `Utility.TestParseCommand<DeleteCommand>`.
+- [~] Task: Create `DeleteCommandExecutorTest.cs`.
+- [~] Task: Implement test for `DeleteCommandExecutor.ExecuteAsync` solution identification and deletion logic.
 
 ## Phase 5: Verification
 - [ ] Task: Run all new tests via `dotnet test` and verify they pass.
