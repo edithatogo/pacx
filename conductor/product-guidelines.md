@@ -14,5 +14,7 @@ Professional, concise, and helpful. Use technical terminology appropriate for Po
 # Documentation Style
 Clear, example-driven documentation using Markdown. All commands should have usage examples.
 
-# Contribution Guidelines
-Maintain a modular, plugin-based architecture. All new commands should follow the established pattern of implementing ICommand and ICommandExecutor.
+# Core Contribution Rules
+- **No Console Output:** All CLI writing MUST go through the injected `IOutput` interface to support formatting, colors, and structured outputs via Spectre.Console. Never use `Console.WriteLine`.
+- **Command Separation:** Every CLI command must be split into a `[Command]` class (for argument parsing and validation) and an `ICommandExecutor<T>` class (for business logic).
+- **Return Values:** Always return a structured `CommandResult` containing the operation's outcome data.

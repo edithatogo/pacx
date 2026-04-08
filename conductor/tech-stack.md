@@ -13,4 +13,4 @@
 - Modular, Plugin-based Architecture with Dependency Injection.
 - Core logic separated into `Greg.Xrm.Command.Core`.
 - Interfaces defined in `Greg.Xrm.Command.Interfaces`.
-- Unit tests using xUnit in `Greg.Xrm.Command.Core.TestSuite`.
+- Unit tests using MSTest and Moq in `Greg.Xrm.Command.Core.TestSuite`.
