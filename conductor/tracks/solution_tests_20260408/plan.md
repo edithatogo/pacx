@@ -1,8 +1,8 @@
 # Implementation Plan: Unit tests for core Solution commands
 
 ## Phase 1: Preparation
-- [ ] Task: Review existing tests in `Greg.Xrm.Command.Core.TestSuite/Commands/Solution` for `GetPublisherListCommand` as a template for MSTest/Moq structure.
-- [ ] Task: Set up shared test utilities or base classes for mocking `IOrganizationServiceRepository` and `IOutput`.
+- [x] Task: Review existing tests in `Greg.Xrm.Command.Core.TestSuite/Commands/Solution` for `GetPublisherListCommand` as a template for MSTest/Moq structure. [05994e8]
+- [~] Task: Set up shared test utilities or base classes for mocking `IOrganizationServiceRepository` and `IOutput`.
 
 ## Phase 2: Implementation - ListCommand
 - [ ] Task: Create `ListCommandTest.cs` to test the parser via `Utility.TestParseCommand<ListCommand>`.
