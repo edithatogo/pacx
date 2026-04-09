@@ -33,7 +33,41 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 # Roadmap
 
 ## Quick Reference — Comma-Delimited Suggestion List
-`data init-schema-from-solution, data seed-mock, webresource watch, plugin register-attributes, plugin step-scan, admin user-onboard, admin settings-bulk-update, log stream-trace, solution diff, solution component-move, connection-ref map-interactive, custom-api create, virtual-table scaffold, security-role clone, catalog publish-item, elastic-table manage, quality gate, plugin trace-viewer, bulk-data count, bulk-data delete, workflow run list, workflow run get, workflow run resubmit, workflow run cancel, workflow get, workflow set-state, connection list, tabular deploy, tabular diff, tabular validate, tabular translate, tabular role-add-measures, tabular perspective-manage, bim compare, bim deploy`
+`data init-schema-from-solution, data seed-mock, webresource watch, webresource map, plugin register-attributes, plugin step-scan, plugin watch, plugin debug-session, admin user-onboard, admin settings-bulk-update, log stream-trace, solution diff, solution component-move, solution layer, connection-ref map-interactive, custom-api create, virtual-table scaffold, security-role clone, security audit-user, security sharing-report, catalog publish-item, elastic-table manage, quality gate, plugin trace-viewer, bulk-data count, bulk-data delete, workflow run list, workflow run get, workflow run resubmit, workflow run cancel, workflow get, workflow set-state, workflow trigger, connection list, connection validate, alm pipeline create, alm pipeline run, alm env-var sync, alm env diff, env create, env clone, env backup, env restore, env capacity report, env reset, pages site publish, pages webtemplate sync, pages site config export, pages site config import, pages liquid lint, ai model list, ai model train, ai model publish, ai form-processor configure, dlp policy audit, storage analytics, api ratelimit monitor, pcf test, pcf publish, pcf version bump, pcf dependency-check, connector import, connector export, connector test, connector validate, servicebus endpoint register, azure-function trigger configure, virtual-entity datasource manage, tabular deploy, tabular diff, tabular validate, tabular translate, tabular role-add-measures, tabular perspective-manage, bim compare, bim deploy`
+
+---
+
+## API Readiness Matrix
+
+**Every proposed command maps to an existing, usable API.** No green-field server-side work is needed. The value is in CLI ergonomics, composition, and automation logic.
+
+| Capability Area | Primary API | SDK / Library | Notes |
+| :--- | :--- | :--- | :--- |
+| **Plugin Registration** | Dataverse Web API (pluginassembly, plugintype, sdkmessageprocessingstep) | `Microsoft.PowerPlatform.Dataverse.ServiceClient` | CRUD on all plugin metadata tables. Well-documented. |
+| **Web Resource Mapping** | Dataverse Web API (webresource) | `ServiceClient` | Upload, publish, map local files. Existing. |
+| **Plugin Traces / Logs** | Dataverse Web API (plugintype, plugintrace, plugintracelog) + Application Insights API | `ServiceClient` + Azure SDK | Trace logs stored in Dataverse; App Insights for deeper telemetry. |
+| **Flow / Power Automate** | Power Automate Management REST API (`api.bap.microsoft.com`) | `Microsoft.PowerPlatform.Cli` (internal) or direct HTTP | List runs, get details, resubmit, cancel, start/stop — all supported. |
+| **Solution Management** | Dataverse Web API (solution, solutioncomponent) | `ServiceClient` | Query, compare, move components. Export/import via existing endpoints. |
+| **Custom APIs** | Dataverse Web API (customapi, customapirequestparameter, customapiresponseproperty) | `ServiceClient` | Full CRUD — currently only GUI/solution manipulation exposes these. |
+| **Security Roles & Privileges** | Dataverse Web API (role, systemuserroles, privilege, roleprivileges) + `RetrievePrincipalAccess` | `ServiceClient` | Role cloning, privilege auditing, user access analysis all feasible. |
+| **Record Sharing** | Dataverse Web API (`RetrieveSharedPrincipalsAndAccess`, `GrantAccess`, `RevokeAccess`) | `ServiceClient` | PrincipalObjectAccess table for direct queries. |
+| **Connections** | Dataverse Web API (connection, connectionreference) | `ServiceClient` | List, validate, map. Existing. |
+| **Environment Management** | Power Platform Admin API (`api.bap.microsoft.com`) + Dataverse Management API | `Microsoft.PowerPlatform.Admin` | Create, clone, backup, reset, capacity — all available via BAP API. |
+| **ALM / Pipelines** | Power Platform Admin API (pipelines) + Azure DevOps REST API / GitHub API | `ServiceClient` + Azure DevOps SDK | Pipeline creation, triggering, env var sync. |
+| **Environment Variables** | Dataverse Web API (environmentvariabledefinition, environmentvariablevalue) | `ServiceClient` | Full CRUD across environments. |
+| **Power Pages** | Dataverse Web API (adx_* tables — adx_website, adx_webtemplate, adx_page, adx_contentsnippet) | `ServiceClient` | All Power Pages config stored as Dataverse records. Publish via `adx_website` activation. |
+| **AI Builder** | Power Platform Admin API + Dataverse Web API (aimodel, aibuilder_formprocessing) | `ServiceClient` | Model list, train, publish, configure. |
+| **DLP Policies** | Power Platform Admin API (DlpPolicy) | `Microsoft.PowerPlatform.Admin` | List, audit, report on DLP policies. |
+| **Storage Analytics** | Dataverse Web API (organization entity, storage API) + Power Platform Admin API | `ServiceClient` | Table-level storage via entity stats; file storage via environment API. |
+| **PCF** | Dataverse Web API (solutioncomponent, webresource for PCF) | `ServiceClient` | Test via hosted test harness; publish via solution import. |
+| **Custom Connectors** | Dataverse Web API (connector) + Power Platform Admin API | `ServiceClient` | Import/export as solution components; test via HTTP. |
+| **Service Bus / Azure** | Azure Service Bus SDK + Dataverse Web API (serviceendpoint) | `Azure.Messaging.ServiceBus` | Register endpoints, configure triggers. |
+| **Power BI (Tabular)** | Power BI REST API (`api.powerbi.com`) + XMLA Endpoint | `Microsoft.PowerBI.Api` | Deploy, diff, validate, translate — all available. Premium: XMLA; Pro: REST API. |
+| **Catalog / Business Events** | Dataverse Web API (catalog, catalogitem) | `ServiceClient` | New feature; API exists but is less documented. |
+| **Elastic Tables** | Dataverse Web API (table metadata with changefeed) | `ServiceClient` | Retention via table metadata; change feed configuration. |
+| **Virtual Tables** | Dataverse Web API (externaldatasource, entitymap) | `ServiceClient` | Scaffold from data source metadata. |
+| **API Rate Limits** | Dataverse Web API (organization settings) + HTTP response headers | `ServiceClient` | Throttle info in `x-ratelimit` headers; org settings for limits. |
+| **Liquid / Power Pages Linting** | N/A (client-side processing) | Custom parser / Roslyn-style analyzer | Parse Liquid templates, check against known functions/objects. |
 
 ---
 
@@ -155,3 +189,77 @@ Tabular Editor 3 is the de facto standard for Power BI semantic model (dataset) 
 | `tabular perspective-manage` | Create, update, and manage model perspectives via CLI. | **Low** |
 | `bim compare` | Compare two `.bim` files and output structural differences. | **Medium** |
 | `bim deploy` | Deploy `.bim` via XMLA endpoint (Premium/Embedded workspaces). | **High** |
+
+### Phase 7: ALM Center Automation
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `alm pipeline create` | Create a deployment pipeline stage from template. | **High** | Power Platform Admin API |
+| `alm pipeline run` | Trigger a pipeline stage (Validate → Deploy → Configure). | **High** | Power Platform Admin API |
+| `alm env-var sync` | Sync environment variables across environments with value mapping. | **High** | Dataverse Web API |
+| `alm env diff` | Compare two environments: tables, columns, solutions, env vars, connections. | **High** | Dataverse Web API + Admin API |
+| `solution layer` | Manage solution layers — version pinning, dependency resolution. | **Medium** | Dataverse Web API |
+
+### Phase 8: Power Pages CLI
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `pages site publish` | Publish a Power Pages site from local source. | **High** | Dataverse Web API (adx_website) |
+| `pages webtemplate sync` | Sync web templates, page templates, content snippets between environments. | **High** | Dataverse Web API (adx_webtemplate, adx_contentsnippet) |
+| `pages site config export` | Export portal configuration (auth, navigation, themes). | **Medium** | Dataverse Web API |
+| `pages site config import` | Import portal configuration with conflict resolution. | **Medium** | Dataverse Web API |
+| `pages liquid lint` | Validate Liquid templates for errors before deployment. | **Medium** | Client-side analyzer |
+
+### Phase 9: Environment Lifecycle Management
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `env create` | Create environment (Developer, Sandbox, Production) with settings. | **High** | Power Platform Admin API (BAP) |
+| `env clone` | Clone environment — schema only, schema + data, or selective tables. | **High** | BAP API + Dataverse API |
+| `env backup` | Trigger database backup and monitor progress. | **Medium** | BAP API |
+| `env restore` | Restore from a specific backup point. | **Medium** | BAP API |
+| `env capacity report` | Report database/file storage capacity across all environments. | **Medium** | BAP Admin API |
+| `env reset` | Reset sandbox to factory state. | **Low** | BAP API |
+
+### Phase 10: Governance, Security & Monitoring
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `security audit-user` | Full privilege audit: what can a user actually do? (field, record, hierarchy) | **High** | Dataverse Web API |
+| `security sharing-report` | Who has access to a record, and why? (share, team, BU, role) | **High** | PrincipalObjectAccess table |
+| `dlp policy audit` | Review and report DLP policy coverage across connectors/environments. | **Medium** | Power Platform Admin API |
+| `storage analytics` | Table-by-table storage analysis with cleanup recommendations. | **Medium** | Dataverse Web API + Admin API |
+| `api ratelimit monitor` | Monitor and alert on API rate limit proximity. | **Low** | HTTP response headers |
+
+### Phase 11: PCF Enhancement
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `pcf test` | Run PCF component tests in headless mode for CI/CD. | **High** | PCF test harness |
+| `pcf publish` | Publish a PCF component without full solution import. | **High** | Dataverse Web API |
+| `pcf version bump` | Semantic version management for PCF components. | **Medium** | Local file + manifest |
+| `pcf dependency-check` | Validate PCF dependencies are satisfied in target environment. | **Medium** | Dataverse Web API |
+
+### Phase 12: AI Builder & Custom Connectors
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `ai model list` | List AI Builder models with training status and accuracy. | **Medium** | Dataverse Web API (aimodel) |
+| `ai model train` | Trigger model training from labeled data. | **Medium** | AI Builder API |
+| `ai model publish` | Publish a trained model to an environment. | **Medium** | AI Builder API |
+| `ai form-processor configure` | Configure form processing models (document type, fields, tables). | **Low** | AI Builder API |
+| `connector import` | Import a custom connector from definition file. | **Medium** | Dataverse Web API (connector) |
+| `connector export` | Export a custom connector to a definition file. | **Medium** | Dataverse Web API |
+| `connector test` | Test custom connector operations with sample payloads. | **Low** | HTTP + connector definition |
+| `connector validate` | Validate connector definition against OpenAPI schema. | **Low** | Schema validation |
+
+---
+
+## Appendix: Cross-Cutting Capabilities
+
+### Azure Integration Layer
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `servicebus endpoint register` | Register Azure Service Bus endpoint for Dataverse service endpoints. | **Medium** | Dataverse Web API (serviceendpoint) |
+| `azure-function trigger configure` | Configure Azure Function triggers for Dataverse events. | **Medium** | Dataverse Web API + Azure Function Admin API |
+| `virtual-entity datasource manage` | Create and manage virtual entity data sources. | **Low** | Dataverse Web API (externaldatasource) |
+
+### Developer Experience (Hot Reload)
+| Command | Description | Priority | API |
+| :--- | :--- | :--- | :--- |
+| `plugin watch` | Watch compiled DLL for changes and hot-update the assembly in Dataverse. | **High** | Dataverse Web API (pluginassembly upsert) |
+| `plugin debug-session` | Start a debug session with Profiler integration. | **Medium** | Plugin Profiler API |
