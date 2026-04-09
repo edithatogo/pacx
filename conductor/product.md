@@ -33,7 +33,7 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 # Roadmap
 
 ## Quick Reference — Comma-Delimited Suggestion List
-`data init-schema-from-solution, data seed-mock, webresource watch, webresource map, plugin register-attributes, plugin step-scan, plugin watch, plugin debug-session, admin user-onboard, admin settings-bulk-update, log stream-trace, solution diff, solution component-move, solution layer, connection-ref map-interactive, custom-api create, virtual-table scaffold, security-role clone, security audit-user, security sharing-report, catalog publish-item, elastic-table manage, quality gate, plugin trace-viewer, bulk-data count, bulk-data delete, workflow run list, workflow run get, workflow run resubmit, workflow run cancel, workflow get, workflow set-state, workflow trigger, connection list, connection validate, alm pipeline create, alm pipeline run, alm env-var sync, alm env diff, env create, env clone, env backup, env restore, env capacity report, env reset, pages site publish, pages webtemplate sync, pages site config export, pages site config import, pages liquid lint, ai model list, ai model train, ai model publish, ai form-processor configure, dlp policy audit, storage analytics, api ratelimit monitor, pcf test, pcf publish, pcf version bump, pcf dependency-check, connector import, connector export, connector test, connector validate, servicebus endpoint register, azure-function trigger configure, virtual-entity datasource manage, tabular deploy, tabular diff, tabular validate, tabular translate, tabular role-add-measures, tabular perspective-manage, bim compare, bim deploy`
+`data init-schema-from-solution, data seed-mock, webresource watch, webresource map, plugin register-attributes, plugin step-scan, plugin watch, plugin debug-session, admin user-onboard, admin settings-bulk-update, log stream-trace, solution diff, solution component-move, solution layer, connection-ref map-interactive, custom-api create, virtual-table scaffold, security-role clone, security audit-user, security sharing-report, catalog publish-item, elastic-table manage, quality gate, plugin trace-viewer, bulk-data count, bulk-data delete, workflow run list, workflow run get, workflow run resubmit, workflow run cancel, workflow get, workflow set-state, workflow trigger, connection list, connection validate, alm pipeline create, alm pipeline run, alm env-var sync, alm env diff, env create, env clone, env backup, env restore, env capacity report, env reset, pages site publish, pages webtemplate sync, pages site config export, pages site config import, pages liquid lint, ai model list, ai model train, ai model publish, ai form-processor configure, dlp policy audit, storage analytics, api ratelimit monitor, pcf test, pcf publish, pcf version bump, pcf dependency-check, connector import, connector export, connector test, connector validate, servicebus endpoint register, azure-function trigger configure, virtual-entity datasource manage, tabular deploy, tabular diff, tabular validate, tabular translate, tabular role-add-measures, tabular perspective-manage, bim compare, bim deploy, forms list, forms responses export, forms response count, pr open, pr track, pr merge, pr review-auto`
 
 ---
 
@@ -68,6 +68,8 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 | **Virtual Tables** | Dataverse Web API (externaldatasource, entitymap) | `ServiceClient` | Scaffold from data source metadata. |
 | **API Rate Limits** | Dataverse Web API (organization settings) + HTTP response headers | `ServiceClient` | Throttle info in `x-ratelimit` headers; org settings for limits. |
 | **Liquid / Power Pages Linting** | N/A (client-side processing) | Custom parser / Roslyn-style analyzer | Parse Liquid templates, check against known functions/objects. |
+| **MS Forms** | Forms internal API (`forms.office.com/formapi/api/{tenantId}/{users|groups}/{ownerId}/`) | Direct HTTP + OAuth2 (Client Credentials for user forms, ROPC for group forms) | List forms, get responses (paged), response count, export to CSV/SQL. **Undocumented API** — group forms require ROPC (no MFA). Read-only for now; create/update deferred. |
+| **GitHub PR Lifecycle** | GitHub REST API (`api.github.com`) | Octokit.NET | Open issues, create PRs, track review status, auto-apply conductor:review, detect merge conflicts, monitor PR acceptance. |
 
 ---
 
@@ -132,6 +134,104 @@ Tabular Editor 3 is the de facto standard for Power BI semantic model (dataset) 
 - Parse and manipulate `.bim` files (JSON-based TOM serialization) using `Microsoft.AnalysisServices.Core` or the open-source TOM wrapper libraries.
 - Implement idempotent deploy operations that only push changes (not full model overwrites).
 - Support both XMLA endpoint (Premium/Embedded) and REST API (Pro) connectivity modes.
+
+### 7. Microsoft Forms API — **Yes, Medium Priority**
+The Forms API at `forms.office.com/formapi/api/` is undocumented but fully functional. It enables reading forms, exporting responses, and monitoring response counts — all without GUI interaction.
+
+**Rationale:** Organizations with thousands of Forms need programmatic access for compliance, reporting, and data archival. Currently, the only options are manual Excel export or the maker portal.
+
+**Core Capabilities:**
+- `forms list` — List all forms with metadata (ID, title, status, response count, owner).
+- `forms responses export` — Export responses to CSV, JSON, or SQL (paged, with `$skip` for incremental sync).
+- `forms response count` — Quick count of responses for monitoring/alerting.
+
+**Limitations:**
+- **Undocumented API** — not part of Microsoft Graph; could change without notice.
+- **Group forms** require ROPC flow (no MFA) — requires a dedicated service account.
+- **User forms** work with Application permissions (Client Credentials) — cleaner for automation.
+- Create/update/delete not yet available — read-only for now.
+
+**Technical Approach:**
+- Direct HTTP calls with OAuth2 token management (auto-refresh, 401 retry).
+- `Microsoft.Identity.Client` (MSAL) for token acquisition.
+- Paged response handling with `$skip`/`$top` for large datasets.
+
+---
+
+## Repository & Engineering Improvements
+
+### Current State Assessment
+
+| Area | Current State | Recommendation |
+| :--- | :--- | :--- |
+| **CI runs tests** | **No** — `dotnet test` not in pipeline | **Critical** — add test execution immediately |
+| **Code coverage** | coverlet referenced, never invoked | Configure with `.runsettings`, enforce 80%+ |
+| **`.editorconfig`** | Absent | Create — enforces C# style automatically |
+| **`.runsettings`** | Absent | Create — configures coverage collection |
+| **`Directory.Build.props`** | Absent | Create — centralize common MSBuild properties |
+| **Static analysis** | `EnforceCodeStyleInBuild` set but no `.editorconfig` | Add SonarQube or CodeQL |
+| **Mutation testing** | None | Add Stryker.NET for test quality |
+| **Property-based testing** | None | Add FsCheck for edge-case discovery |
+| **Integration tests** | None — all mocked | Add against real test environment |
+| **E2E/smoke tests** | None | Add post-deploy smoke test in CI |
+| **Typing/validation** | C# (strongly typed) | Add nullable reference types, analyzers |
+| **Profiling** | None | Add BenchmarkDotNet for hot paths |
+
+### Recommended CI/CD Pipeline (SOTA)
+
+**Phase 1: Immediate (Must-Have)**
+1. **Add `dotnet test` to CI** — non-negotiable baseline
+2. **Add `.editorconfig`** — Google C# style guide compliance
+3. **Add `.runsettings`** — cobertura coverage collection
+4. **Add coverage threshold** — fail CI if <80%
+5. **Add `dotnet format --verify-no-changes`** — style enforcement
+6. **Upload coverage to Codecov or Coveralls** — trend tracking
+
+**Phase 2: Quality Gates (Should-Have)**
+7. **GitHub CodeQL analysis** — security vulnerability scanning
+8. **Stryker.NET mutation testing** — measures test effectiveness (not just coverage)
+9. **Nullable reference types** — enable `<Nullable>enable</Nullable>` across all projects
+10. **Roslyn analyzers** — `Microsoft.CodeAnalysis.NetAnalyzers` + `SonarAnalyzer.CSharp`
+
+**Phase 3: Advanced (Nice-to-Have)**
+11. **FsCheck property-based testing** — discover edge cases in parsing/validation logic
+12. **BenchmarkDotNet** — profile command execution time, memory allocation
+13. **E2E smoke tests** — run against a test Dataverse environment after every PR merge
+14. **Dependabot/Renovate** — automated dependency updates
+15. **PR size labels** — auto-label PRs by lines changed for review routing
+
+### PR Lifecycle Automation Protocol
+
+**Problem:** Currently, after each feature track is completed, opening an issue, creating a PR, and monitoring for merge conflicts is manual. PRs can sit unreviewed indefinitely. Review-fix cycles require multiple manual passes.
+
+**Solution:** Add a standardized **PR Lifecycle (Ralph Loop) Phase** to every track's plan. The Ralph loop self-drives the review-fix cycle until the PR is actually ready.
+
+**Standard Phase Template (added to every track):**
+```markdown
+## Phase N: PR Lifecycle (Ralph Loop)
+- [ ] Task: Open a GitHub issue describing the feature/fix.
+- [ ] Task: Create a PR against the upstream repo with implementation.
+- [ ] Task: Run `/ralph-loop` on the PR with completion promise:
+          "All Critical and High review issues resolved, PR ready for merge"
+- [ ] Task: Confirm PR is merged or document blockers.
+```
+
+**How the Ralph Loop Works:**
+1. Enters the loop with the PR URL and completion promise.
+2. Runs `/conductor:review` on the PR.
+3. Applies all suggested fixes automatically.
+4. Commits the fixes.
+5. Re-runs `/conductor:review`.
+6. Checks the completion promise — are there still Critical/High issues? If yes → repeat. If no → promise fires, loop exits.
+7. Reports the final state: merged, or blockers documented.
+
+**Why Ralph Loop Over Manual Steps:**
+| Manual Approach | Ralph Loop |
+|----------------|-----------|
+| Assumes one review pass is enough | Iterates until the PR actually passes |
+| Reviewer fatigue — easy to forget re-review | Automatic enforcement |
+| Arbitrary "max 2 fix attempts" limit | Continues until the promise is genuinely true |
+| Manual monitoring for conflicts | Self-driving until completion |
 
 ---
 

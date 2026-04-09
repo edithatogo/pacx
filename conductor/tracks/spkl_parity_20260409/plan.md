@@ -26,5 +26,10 @@
 - [ ] Task: Add end-to-end integration test against a real/test Dataverse environment.
 - [ ] Task: Document usage examples in markdown (command help text + README).
 - [ ] Task: Verify code coverage >80% for all new code.
-- [ ] Task: Open PR against upstream repo.
 - [ ] Task: Run automated /conductor:review
+
+## Phase 5: PR Lifecycle (Ralph Loop)
+- [ ] Task: Open a GitHub issue describing the spkl parity feature.
+- [ ] Task: Create a PR against the upstream repo with implementation.
+- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
+- [ ] Task: Confirm PR is merged or document blockers.

@@ -27,5 +27,10 @@
 - [ ] Task: End-to-end test: export config from dev, import to test, publish site.
 - [ ] Task: Document all commands with usage examples.
 - [ ] Task: Verify code coverage >80%.
-- [ ] Task: Open PR against upstream repo.
 - [ ] Task: Run automated /conductor:review
+
+## Phase 5: PR Lifecycle (Ralph Loop)
+- [ ] Task: Open a GitHub issue describing the Power Pages CLI feature.
+- [ ] Task: Create a PR against the upstream repo with implementation.
+- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
+- [ ] Task: Confirm PR is merged or document blockers.

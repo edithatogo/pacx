@@ -19,5 +19,10 @@
 - [ ] Task: End-to-end test: test → version bump → publish → dependency check.
 - [ ] Task: Document all commands with usage examples.
 - [ ] Task: Verify code coverage >80%.
-- [ ] Task: Open PR against upstream repo.
 - [ ] Task: Run automated /conductor:review
+
+## Phase 4: PR Lifecycle (Ralph Loop)
+- [ ] Task: Open a GitHub issue describing the PCF Enhancement feature.
+- [ ] Task: Create a PR against the upstream repo with implementation.
+- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
+- [ ] Task: Confirm PR is merged or document blockers.
