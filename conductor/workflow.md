@@ -196,41 +196,45 @@ Before marking any task complete, verify:
 
 ## Code Review Process
 
-### Self-Review Checklist
-Before requesting review:
+### MANDATORY: `/conductor:review` on Every PR
 
-1. **Functionality**
-   - Feature works as specified
-   - Edge cases handled
-   - Error messages are user-friendly
+**No PR may be merged without a passing `/conductor:review`.** This is a blocking quality gate.
 
-2. **Code Quality**
-   - Follows style guide
-   - DRY principle applied
-   - Clear variable/function names
-   - Appropriate comments
+#### Protocol
+1. **Before opening a PR:** Run `/conductor:review` locally and address all Critical and High findings.
+2. **After opening a PR:** The track's PR Lifecycle phase runs `/ralph-loop` with the completion promise:
+   > "All Critical and High review issues resolved, PR ready for merge"
+3. **The Ralph Loop automates:**
+   - Runs `/conductor:review` on the PR diff
+   - Applies all suggested fixes automatically
+   - Commits the fixes
+   - Re-runs `/conductor:review`
+   - Repeats until no Critical or High issues remain
+4. **After the loop exits:** The PR may be merged (or blockers are documented).
 
-3. **Testing**
-   - Unit tests comprehensive
-   - Integration tests pass
-   - Coverage adequate (>80%)
+#### What `/conductor:review` Checks
+| Check | Severity if Failed | Source |
+|-------|-------------------|--------|
+| Plan compliance (does code match spec?) | High | `plan.md` + `spec.md` |
+| Style compliance | High | `conductor/code_styleguides/*.md` |
+| `.editorconfig` violations | Medium | `.editorconfig` |
+| Test coverage for new code | High | Workflow quality gate (>80%) |
+| Security (secrets, input validation) | Critical | Self-Review checklist |
+| Null safety, exception handling | Critical | Code analysis |
+| Correct API usage (mocks, overloads) | High | Code analysis |
+| Test quality (assertions present, named correctly) | Medium | Test analysis |
+| PR scope matches description | Low | PR title/description vs. diff |
 
-4. **Security**
-   - No hardcoded secrets
-   - Input validation present
-   - SQL injection prevented
-   - XSS protection in place
+#### Self-Review Checklist (run before `/conductor:review`)
+1. **Functionality** — Feature works as specified, edge cases handled, error messages are user-friendly
+2. **Code Quality** — Follows style guide, DRY principle applied, clear variable/function names, appropriate comments
+3. **Testing** — Unit tests comprehensive, tests assert actual values (no empty tests), test names match behavior
+4. **Security** — No hardcoded secrets, input validation present, SQL injection prevented
+5. **Performance** — Database queries optimized, no unnecessary joins, no N+1 queries
+6. **Mock correctness** — All async methods return non-null tasks, both overloads mocked where needed
 
-5. **Performance**
-   - Database queries optimized
-   - Images optimized
-   - Caching implemented where needed
-
-6. **Mobile Experience**
-   - Touch targets adequate (44x44px)
-   - Text readable without zooming
-   - Performance acceptable on mobile
-   - Interactions feel native
+#### Exceptions
+If a PR cannot pass review (e.g., blocked by external dependency), it must be documented in the track's `plan.md` with a `BLOCKED:` note explaining why.
 
 ## Commit Guidelines
 
