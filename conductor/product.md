@@ -8,11 +8,14 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 - Power Platform Developers
 - Solution Architects
 - DevOps Engineers working with Dataverse
+- AI Agents (via MCP)
 
 # Key Features
 - Automation of repetitive Dataverse tasks.
 - Access to platform features only available via API.
 - Plugin-based extensibility for custom tools.
+- **Model Context Protocol (MCP) Server:** Exposes CLI commands as tools for AI agents.
+- **Advanced Automation Extensions:** Deep Flow management, run inspection, and connection visibility.
 - Interactive mode for command discovery and execution.
 - Command tree navigation and search.
 - Colorized CLI output.
@@ -21,3 +24,4 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 - Reduction in development time for Dataverse tasks.
 - Broad adoption among Power Platform developers.
 - A growing ecosystem of community-contributed plugins.
+- Seamless integration with AI-assisted development workflows.

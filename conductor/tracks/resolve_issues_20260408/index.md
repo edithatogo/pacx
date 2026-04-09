@@ -1,0 +1,5 @@
+# Track resolve_issues_20260408 Context
+
+- [Specification](./spec.md)
+- [Implementation Plan](./plan.md)
+- [Metadata](./metadata.json)
