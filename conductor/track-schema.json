@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PACX Track Metadata",
+  "description": "Machine-readable metadata for conductor tracks. Enables validation, querying, and tooling.",
+  "type": "object",
+  "required": ["track_id", "type", "status", "phase", "priority", "created_at", "updated_at", "description", "dependencies", "api_sources"],
+  "properties": {
+    "track_id": {
+      "type": "string",
+      "description": "Unique identifier for the track. Format: <short_name>_<YYYYMMDD>",
+      "pattern": "^[a-z_]+_\\d{8}$",
+      "examples": ["spkl_parity_20260409", "alm_center_20260409"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Category of work this track represents.",
+      "enum": ["feature", "infrastructure", "bugfix", "refactor", "documentation"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle state of the track.",
+      "enum": ["pending", "in_progress", "blocked", "complete", "archived"]
+    },
+    "phase": {
+      "type": "integer",
+      "description": "Roadmap phase number. 0 = cross-cutting infrastructure. 1-13 = roadmap phases.",
+      "minimum": 0,
+      "maximum": 99
+    },
+    "priority": {
+      "type": "string",
+      "description": "Implementation priority level.",
+      "enum": ["Critical", "High", "Medium", "Low"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the track was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last track update."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable summary of what the track delivers.",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "List of track_ids this track depends on. Empty array = no dependencies.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z_]+_\\d{8}$"
+      },
+      "uniqueItems": true
+    },
+    "api_sources": {
+      "type": "array",
+      "description": "External APIs, SDKs, or services this track integrates with.",
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 200
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}
