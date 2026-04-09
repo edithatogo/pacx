@@ -33,10 +33,6 @@ This file tracks all major tracks for the project. Each track has its own detail
   *Link: [./tracks/mcp_server_20260408/](./tracks/mcp_server_20260408/)*
   *Description: Add support for an MCP (Model Context Protocol) server to expose the CLI's capabilities to AI agents. (Requires creating a GitHub issue first, then submitting a PR against it).*
 
-- [x] **Track: Conduct Gap Analysis (Power Platform vs PAC CLI vs PACX)**
-  *Link: [./tracks/gap_analysis_20260408/](./tracks/gap_analysis_20260408/)*
-  *Description: Perform a comprehensive gap analysis to identify missing capabilities and feature parity between native Power Platform functions, standard PAC CLI, and PACX. This will inform the roadmap for the automation extension plugin. (Requires creating a GitHub issue first, then submitting a PR against it).*
-
 - [x] **Track: Extend Automation Capabilities (as Plugin)**
   *Link: [./tracks/automation_plugin_20260408/](./tracks/automation_plugin_20260408/)*
   *Description: Expand tool functions to cover advanced platform automation, implementing them as a first-class PACX Plugin utilizing `McMaster.NETCore.Plugins` and Autofac `Module` registrations. (Requires creating a GitHub issue first, then submitting a PR against it).*
