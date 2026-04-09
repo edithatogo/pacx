@@ -16,6 +16,8 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 - Plugin-based extensibility for custom tools.
 - **Model Context Protocol (MCP) Server:** Exposes CLI commands as tools for AI agents.
 - **Advanced Automation Extensions:** Deep Flow management, run inspection, and connection visibility.
+- **spkl Parity:** Attribute-based plugin registration and flexible web resource mapping.
+- **Power BI Semantic Model CLI:** Tabular Editor 3 capabilities via CLI — BIM deploy, diff, validate, and translation management.
 - Interactive mode for command discovery and execution.
 - Command tree navigation and search.
 - Colorized CLI output.
