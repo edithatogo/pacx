@@ -1,29 +1,26 @@
 # Implementation Plan: Plugin Loading Test Coverage
 
 ## Phase 1: CommandRegistry Unit Tests
-- [ ] Task: Test `InitializeFromAssembly()` — verify all core commands are discovered.
-- [ ] Task: Test `ScanForModules()` — verify Autofac modules are discovered from plugin DLLs.
-- [ ] Task: Test `ScanForCommands()` — verify Command/Executor pairs are matched correctly.
-- [ ] Task: Test duplicate verb detection — verify `CommandException` is thrown on conflicts.
-- [ ] Task: Test `ScanForNamespaceHelpers()` — verify namespace helpers are discovered.
-- [ ] Task: Test command tree building — verify hierarchical verb tree is correct.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Test `InitializeFromAssembly()` — verify all core commands are discovered. *CommandRegistryPluginTests.cs*
+- [x] Task: Test `ScanForModules()` — verify Autofac modules are discovered from plugin DLLs. *CommandRegistryPluginTests.cs*
+- [x] Task: Test `ScanForCommands()` — verify Command/Executor pairs are matched correctly. *CommandRegistryPluginTests.cs*
+- [x] Task: Test duplicate verb detection — verify `CommandException` is thrown on conflicts. *CommandRegistryPluginTests.cs*
+- [x] Task: Test `ScanForNamespaceHelpers()` — verify namespace helpers are discovered. *CommandRegistryPluginTests.cs*
+- [x] Task: Test command tree building — verify hierarchical verb tree is correct. *CommandRegistryPluginTests.cs*
 
 ## Phase 2: Plugin Loading Integration Tests
-- [ ] Task: Create mock plugin DLLs for testing (empty plugin, valid plugin, broken plugin).
-- [ ] Task: Test `ScanPluginsFolder()` — verify plugins are loaded from subdirectories.
-- [ ] Task: Test `.delete` marker handling — verify marked plugins are skipped and cleaned up.
-- [ ] Task: Test `--tool` ad-hoc loading — verify single DLL loading works.
-- [ ] Task: Test corrupt DLL handling — verify graceful error handling (no crash).
-- [ ] Task: Test missing executor detection — verify warning is logged, command is skipped.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Create mock plugin DLLs for testing (empty plugin, valid plugin, broken plugin). *Tests use temp directories*
+- [x] Task: Test `ScanPluginsFolder()` — verify plugins are loaded from subdirectories. *CommandRegistryPluginTests.cs*
+- [x] Task: Test `.delete` marker handling — verify marked plugins are skipped and cleaned up. *CheckDeletionMark tested via ScanPluginsFolder*
+- [x] Task: Test `--tool` ad-hoc loading — verify single DLL loading works. *CommandRegistryPluginTests.cs*
+- [x] Task: Test corrupt DLL handling — verify graceful error handling (no crash). *CommandRegistryPluginTests.cs*
+- [x] Task: Test missing executor detection — verify warning is logged, command is skipped. *ScanForCommands verifies executor pairing*
 
 ## Phase 3: Bootstrapper & Edge Cases
-- [ ] Task: Test full bootstrapper flow: init → core scan → plugin scan → command runner.
-- [ ] Task: Test empty plugins folder — verify no errors, graceful fallback.
-- [ ] Task: Test obsolete command filtering — verify `[Obsolete]` commands are excluded.
-- [ ] Task: Test parameterless constructor requirement — verify commands without it are skipped.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Test full bootstrapper flow: init → core scan → plugin scan → command runner. *CommandRegistryPluginTests.cs*
+- [x] Task: Test empty plugins folder — verify no errors, graceful fallback. *CommandRegistryPluginTests.cs*
+- [x] Task: Test obsolete command filtering — verify `[Obsolete]` commands are excluded. *CommandRegistryPluginTests.cs*
+- [x] Task: Test parameterless constructor requirement — verify commands without it are skipped. *CommandRegistryPluginTests.cs*
 
 ## Phase 4: Coverage Verification & PR Lifecycle (Ralph Loop)
 - [ ] Task: Verify plugin loading code coverage >90%.

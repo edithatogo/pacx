@@ -1,36 +1,36 @@
 # Implementation Plan: PR Lifecycle Automation & CI/CD Improvements
 
 ## Phase 1: CI/CD Pipeline Upgrade
-- [ ] Task: Add `dotnet test` step to `.github/workflows/build-pipeline-01.yml`.
-- [ ] Task: Create `.editorconfig` at repository root (Google C# style guide).
-- [ ] Task: Create `.runsettings` for cobertura coverage collection.
-- [ ] Task: Add coverage threshold (80%) — fail CI if below.
-- [ ] Task: Add `dotnet format --verify-no-changes` to CI.
-- [ ] Task: Enable nullable reference types across all projects.
+- [x] Task: Add `dotnet test` step to `.github/workflows/build-pipeline-01.yml`. *(Already existed)*
+- [x] Task: Create `.editorconfig` at repository root (Google C# style guide). *(Already existed)*
+- [x] Task: Create `.runsettings` for cobertura coverage collection. *(Already existed)*
+- [x] Task: Add coverage threshold (80%) — fail CI if below. *(Added Check Code Coverage Threshold step)*
+- [x] Task: Add `dotnet format --verify-no-changes` to CI. *(Already existed)*
+- [x] Task: Enable nullable reference types across all projects. *(Already in Directory.Build.props)*
 - [ ] Task: Run automated /conductor:review
 
 ## Phase 2: PR Automation Tooling
-- [ ] Task: Research Octokit.NET for GitHub API integration.
-- [ ] Task: Implement `pr open` command — create issue + PR from local branch.
-- [ ] Task: Implement `pr track` command — monitor PR status, detect conflicts.
-- [ ] Task: Implement `pr review-auto` — trigger /conductor:review programmatically.
-- [ ] Task: Implement `pr merge` command — auto-merge when approved and CI passes.
-- [ ] Task: Write unit tests with mocked Octokit client.
+- [x] Task: Research Octokit.NET for GitHub API integration. *(Already referenced in Core.csproj)*
+- [x] Task: Implement `pr open` command — create issue + PR from local branch. *(PrOpenCommand.cs + Executor)*
+- [x] Task: Implement `pr track` command — monitor PR status, detect conflicts. *(PrTrackCommand.cs + Executor with watch mode)*
+- [ ] Task: Implement `pr review-auto` — trigger /conductor:review programmatically. *(Deferred — /conductor:review is a CLI extension, not a pacx command)*
+- [x] Task: Implement `pr merge` command — auto-merge when approved and CI passes. *(PrMergeCommand.cs + Executor with wait-for-checks)*
+- [x] Task: Write unit tests with mocked Octokit client. *(PrCommandsTest.cs with parsing + executor tests)*
 - [ ] Task: Run automated /conductor:review
 
 ## Phase 3: Static Analysis & Mutation Testing
-- [ ] Task: Add GitHub CodeQL analysis to CI workflow.
-- [ ] Task: Add Stryker.NET mutation testing for core parsing logic.
-- [ ] Task: Add SonarAnalyzer.CSharp to all projects.
-- [ ] Task: Configure mutation testing threshold (minimum 60% mutation score).
-- [ ] Task: Write unit tests.
+- [x] Task: Add GitHub CodeQL analysis to CI workflow. *(codeql job added to build-pipeline-01.yml)*
+- [x] Task: Add Stryker.NET mutation testing for core parsing logic. *(stryker-config.json + CI step)*
+- [x] Task: Add SonarAnalyzer.CSharp to all projects. *(Added to Directory.Build.props)*
+- [x] Task: Configure mutation testing threshold (minimum 60% mutation score). *(break: 60 in stryker-config.json)*
+- [x] Task: Write unit tests. *(PrCommandsTest.cs)*
 - [ ] Task: Run automated /conductor:review
 
 ## Phase 4: Advanced Quality (Optional)
-- [ ] Task: Add FsCheck property-based tests for command-line parser.
-- [ ] Task: Add BenchmarkDotNet for hot paths (command parsing, output formatting).
-- [ ] Task: Add E2E smoke test workflow (runs against test Dataverse environment).
-- [ ] Task: Add Dependabot configuration for automated dependency updates.
+- [x] Task: Add FsCheck property-based tests for command-line parser. *(CommandLineParserPropertyTests.cs)*
+- [x] Task: Add BenchmarkDotNet for hot paths (command parsing, output formatting). *(Greg.Xrm.Command.Core.Benchmarks/)*
+- [x] Task: Add E2E smoke test workflow (runs against test Dataverse environment). *(e2e-smoke-tests.yml already existed)*
+- [x] Task: Add Dependabot configuration for automated dependency updates. *(.github/dependabot.yml)*
 - [ ] Task: Run automated /conductor:review
 
 ## Phase 5: Self-Validation (Ralph Loop)

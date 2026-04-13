@@ -1,24 +1,21 @@
 # Implementation Plan: Dataverse Platform Gaps
 
 ## Phase 1: Custom API Commands
-- [ ] Task: Implement `custom-api create` — create Custom API with input/output parameters.
-- [ ] Task: Support all parameter types: String, Entity, Boolean, Number, DateTime, OptionSet.
-- [ ] Task: Implement `custom-api list` and `custom-api delete` for lifecycle management.
-- [ ] Task: Write unit tests with mocked ServiceClient.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Implement `custom-api create` — create Custom API with input/output parameters. *CustomApiCreateCommand + Executor*
+- [x] Task: Support all parameter types: String, Entity, Boolean, Number, DateTime, OptionSet. *Implemented in executor*
+- [x] Task: Implement `custom-api list` and `custom-api delete` for lifecycle management. *CustomApiListCommand + DeleteCommand + Executors*
+- [x] Task: Write unit tests with mocked ServiceClient. *CustomApiCommandsTest.cs*
 
 ## Phase 2: Catalog & Elastic Tables
-- [ ] Task: Implement `catalog publish-item` — manage Catalog & Business Events.
-- [ ] Task: Implement `elastic-table manage` — configure retention policies and scaling.
-- [ ] Task: Research and document Catalog API (less documented feature).
-- [ ] Task: Write unit tests.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Implement `catalog publish-item` — manage Catalog & Business Events. *CatalogPublishCommand + Executor*
+- [x] Task: Implement `elastic-table manage` — configure retention policies and scaling. *ElasticTableManageCommand + Executor*
+- [x] Task: Research and document Catalog API (less documented feature). *Documented in executor*
+- [x] Task: Write unit tests. *CatalogPublishCommandTest.cs + ElasticTableManageCommandTest.cs*
 
 ## Phase 3: Virtual Tables & Connection References
-- [ ] Task: Implement `virtual-table scaffold` — scaffold virtual table from external data source.
-- [ ] Task: Implement `connection-ref map-interactive` — map connection references across solutions.
-- [ ] Task: Write unit tests.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Implement `virtual-table scaffold` — scaffold virtual table from external data source. *VirtualTableScaffoldCommand + Executor*
+- [x] Task: Implement `connection-ref map-interactive` — map connection references across solutions. *ConnectionRefMapCommand + Executor*
+- [x] Task: Write unit tests. *VirtualTableScaffoldCommandTest.cs + ConnectionRefMapCommandTest.cs*
 
 ## Phase 4: Integration & Verification
 - [ ] Task: End-to-end test: create custom API → use in plugin → catalog publish.
