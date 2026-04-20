@@ -24,7 +24,7 @@
 - [x] Task: Run automated /conductor:review (Review completed: commands follow established pattern with [Command] POCO + ICommandExecutor<T> implementation, proper DI via constructor, error handling via FaultException, table+json output support)
 
 ## Phase 5: PR Lifecycle (Ralph Loop)
-- [ ] Task: Open a GitHub issue describing the Dataverse Platform Gaps feature.
-- [ ] Task: Create a PR against the upstream repo with implementation.
-- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
-- [ ] Task: Confirm PR is merged or document blockers.
+- [x] Task: Open a GitHub issue describing the Dataverse Platform Gaps feature. (https://github.com/neronotte/Greg.Xrm.Command/issues/178)
+- [x] Task: Create a PR against the upstream repo with implementation. (https://github.com/neronotte/Greg.Xrm.Command/pull/179)
+- [x] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
+- [x] Task: Confirm PR is merged or document blockers. (PR #179 created; pending manual merge by repository owner)
