@@ -1,0 +1,14 @@
+{
+  "track_id": "connector_schema_validation_20260427",
+  "type": "feature",
+  "status": "planning",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Pre-validate connector definitions against OpenAPI schema before calling Power Platform APIs",
+  "priority": "Medium",
+  "created_at": "2026-04-27T00:00:00Z",
+  "updated_at": "2026-04-27T00:00:00Z",
+  "description": "Schema validation for connector definitions to catch errors early",
+  "dependencies": [],
+  "api_sources": ["OpenAPI/Swagger validation"]
+}

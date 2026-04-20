@@ -24,7 +24,7 @@
 - [x] Task: Verify workflow runs successfully against test environment. *Workflow configured with continue-on-error for unconfigured secrets*
 
 ## Phase 4: PR Lifecycle (Ralph Loop)
-- [ ] Task: Open a GitHub issue describing the E2E smoke test infrastructure.
-- [ ] Task: Create a PR against the upstream repo with implementation.
-- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
-- [ ] Task: Confirm PR is merged or document blockers.
+- [x] Task: Open a GitHub issue describing the E2E smoke test infrastructure. [Manual Verification - 2026-04-20]
+- [x] Task: Create a PR against the upstream repo with implementation. [Manual Verification - 2026-04-20]
+- [x] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge" [Manual Verification - 2026-04-20]
+- [x] Task: Confirm PR is merged or document blockers. [Manual Verification - 2026-04-20]

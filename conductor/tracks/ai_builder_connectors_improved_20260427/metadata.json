@@ -1,0 +1,14 @@
+{
+  "track_id": "ai_builder_connectors_improved_20260427",
+  "type": "feature",
+  "status": "planning",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Improved track: adds retry/backoff, polling controls, telemetry IDs, schema validation, and better UX for AI Builder and connector operations",
+  "priority": "Medium",
+  "created_at": "2026-04-27T00:00:00Z",
+  "updated_at": "2026-04-27T00:00:00Z",
+  "description": "Enhanced AI Builder & Custom Connectors with resilience, observability, and usability improvements",
+  "dependencies": [],
+  "api_sources": ["Dataverse Web API (aimodel, connector)", "AI Builder API", "HTTP"]
+}

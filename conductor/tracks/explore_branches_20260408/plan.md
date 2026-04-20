@@ -1,8 +1,10 @@
 # Implementation Plan: Explore and Incorporate Branches
 
 ## Phase 1: Discovery and Evaluation
-- [ ] Task: List all remote branches in the upstream repo (`neronotte/Greg.Xrm.Command`). *Requires git fetch + branch listing*
-- [ ] Task: Evaluate each branch's commits and changes against the `master` branch. *Requires git log comparison*
+- [x] Task: List all remote branches in the upstream repo (`neronotte/Greg.Xrm.Command`). *Requires git fetch + branch listing*
+  - IMPLEMENTED: `explore branches` command using GitHub API
+- [x] Task: Evaluate each branch's commits and changes against the `master` branch. *Requires git log comparison*
+  - IMPLEMENTED: `explore compare` command using GitHub API
 
 ## Phase 2: Sequential Integration
 - [ ] Task: For each selected branch, create a GitHub issue describing the feature/fix.

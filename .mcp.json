@@ -1,36 +1,4 @@
 {
   "mcpServers": {
-    "powerbi-modeling": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@microsoft/powerbi-modeling-mcp@latest",
-        "--start"
-      ],
-      "disabled": false,
-      "_comment": "Power BI Modeling MCP - Uses interactive Azure AD auth by default. For service principal auth, set AZURE_CLIENT_ID, AZURE_TENANT_ID, and AZURE_CLIENT_SECRET env vars."
-    },
-    "powerbi-remote": {
-      "type": "http",
-      "url": "https://api.powerbi.com/mcp",
-      "disabled": true,
-      "_comment": "Remote Power BI MCP Server (Preview). Requires tenant admin to enable 'Users can use the Power BI MCP server endpoint'. Users need Build permissions on semantic models. A Copilot license is required for generate_query tool."
-    },
-    "powerplatform-pac": {
-      "command": "pac",
-      "args": [
-        "copilot",
-        "mcp",
-        "--run"
-      ],
-      "disabled": false,
-      "_comment": "Power Platform MCP via PAC CLI. Authenticated as Dylan.Mordaunt@health.nsw.gov.au (Illawarra Shoalhaven LHD)."
-    },
-    "powerplatform-pacx": {
-      "command": "C:\\Users\\60217257\\.dotnet\\tools\\pacx.exe",
-      "args": [],
-      "disabled": false,
-      "_comment": "Greg.Xrm.Command (PACX) - Enhanced Dataverse CLI. Authentication pending - run 'pacx auth' to setup."
-    }
   }
 }

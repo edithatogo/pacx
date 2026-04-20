@@ -5,11 +5,11 @@ This document describes the MCP servers and tools configured for Power BI and Po
 ## ✅ Installed & Ready
 
 ### 1. Power BI Modeling MCP (`powerbi-modeling`)
-**Status:** ✅ Configured (enabled)
+**Status:** ✅ Installed locally, not configured in this repo
 
 **What it does:** Enables AI-powered Power BI semantic model manipulation and DAX query generation.
 
-**Location:** `.mcp.json` → `powerbi-modeling`
+**Location:** `npx @microsoft/powerbi-modeling-mcp@latest --start`
 
 **Authentication:** 
 - Default: Interactive Azure AD login (will prompt when first used)
@@ -25,8 +25,8 @@ This document describes the MCP servers and tools configured for Power BI and Po
 
 ---
 
-### 2. Greg.Xrm.Command (PACX) (`powerplatform-pacx`)
-**Status:** ✅ Installed (disabled by default)
+### 2. Greg.Xrm.Command (PACX)
+**Status:** ✅ Installed (CLI only)
 
 **What it does:** Enhanced CLI for Dataverse and Power Platform with extensive schema management capabilities.
 
@@ -49,9 +49,9 @@ This document describes the MCP servers and tools configured for Power BI and Po
 - And many more...
 
 **Setup Steps:**
-1. Enable in `.mcp.json` by setting `"disabled": false`
-2. Run `pacx auth` to configure authentication
-3. Connect to your Dataverse environment
+1. Run `pacx auth` to configure authentication
+2. Connect to your Dataverse environment
+3. Use `pacx ...` commands directly; PACX is not an MCP server
 
 **Documentation:** https://github.com/neronotte/Greg.Xrm.Command/wiki
 
@@ -79,16 +79,12 @@ This document describes the MCP servers and tools configured for Power BI and Po
 - `pac pcf` - Power Apps Component Framework
 - `pac copilot mcp --run` - Start MCP server
 
-**To Enable MCP Server:**
-1. Set `"disabled": false` in `.mcp.json` for `powerplatform-pac`
-2. Requires .NET 10.0+ (✅ Already installed: 10.0.201)
-
 ---
 
 ## 🔧 Requires Configuration
 
 ### 4. Remote Power BI MCP Server (`powerbi-remote`)
-**Status:** ⚠️ Disabled (requires tenant admin setup)
+**Status:** ⚠️ Not enabled in this repo
 
 **What it does:** Remote MCP endpoint for querying Power BI semantic models via AI.
 
@@ -99,7 +95,7 @@ This document describes the MCP servers and tools configured for Power BI and Po
 
 **Setup Steps:**
 1. Ask your tenant admin to enable the MCP endpoint
-2. Enable in `.mcp.json` by setting `"disabled": false`
+2. Add it back to `.mcp.json` if you want to use it here
 3. No additional configuration needed (uses your Microsoft account)
 
 **Note:** Row-Level Security (RLS) is enforced for users, but NOT for service principals.

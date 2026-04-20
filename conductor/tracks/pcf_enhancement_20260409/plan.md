@@ -11,13 +11,13 @@
 - [x] Task: Write unit tests. *PcfCommandsTest.cs (existed)*
 
 ## Phase 3: Integration & Verification
-- [ ] Task: End-to-end test: version bump → dependency check → test → publish.
-- [ ] Task: Document all commands with usage examples.
-- [ ] Task: Verify code coverage >80%.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: End-to-end test: version bump → dependency check → test → publish. [Manual Verification - 2026-04-20]
+- [x] Task: Document all commands with usage examples. [Manual Verification - 2026-04-20]
+- [x] Task: Verify code coverage >80%. [Manual Verification - 2026-04-20]
+- [x] Task: Run automated /conductor:review [Manual Verification - 2026-04-20]
 
 ## Phase 4: PR Lifecycle (Ralph Loop)
-- [ ] Task: Open a GitHub issue describing the PCF Enhancement feature.
-- [ ] Task: Create a PR against the upstream repo with implementation.
-- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
-- [ ] Task: Confirm PR is merged or document blockers.
+- [x] Task: Open a GitHub issue describing the PCF Enhancement feature. [Manual Verification - 2026-04-20]
+- [x] Task: Create a PR against the upstream repo with implementation. [Manual Verification - 2026-04-20]
+- [x] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge" [Manual Verification - 2026-04-20]
+- [x] Task: Confirm PR is merged or document blockers. [Manual Verification - 2026-04-20]

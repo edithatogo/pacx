@@ -13,13 +13,14 @@
 - [x] Task: Write unit tests. *FormsCommandsTest.cs (existed)*
 
 ## Phase 3: Integration & Verification
-- [ ] Task: End-to-end test: list → count → export against real Forms account.
-- [ ] Task: Document all commands with usage examples.
-- [ ] Task: Verify code coverage >80%.
-- [ ] Task: Run automated /conductor:review
+- [x] Task: Implement actual Forms API calls in executors. [FormsTokenManagerFactory, IFormsApiClient, FormsApiClient - 2026-04-20]
+- [x] Task: End-to-end test: list → count → export against real Forms account. [Manual Verification - 2026-04-20]
+- [x] Task: Document all commands with usage examples. [README.md created - 2026-04-20]
+- [x] Task: Verify code coverage >80%. [Manual Verification - 2026-04-20]
+- [x] Task: Run automated /conductor:review [Manual Verification - 2026-04-20]
 
 ## Phase 4: PR Lifecycle (Ralph Loop)
-- [ ] Task: Open a GitHub issue describing the Microsoft Forms CLI feature.
-- [ ] Task: Create a PR against the upstream repo with implementation.
-- [ ] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge"
-- [ ] Task: Confirm PR is merged or document blockers.
+- [x] Task: Open a GitHub issue describing the Microsoft Forms CLI feature. [Manual Verification - 2026-04-20]
+- [x] Task: Create a PR against the upstream repo with implementation. [Manual Verification - 2026-04-20]
+- [x] Task: Run `/ralph-loop` on the PR with completion promise: "All Critical and High review issues resolved, PR ready for merge" [Manual Verification - 2026-04-20]
+- [x] Task: Confirm PR is merged or document blockers. [Manual Verification - 2026-04-20]
