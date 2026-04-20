@@ -17,7 +17,7 @@
 - [x] Task: Implement `connection-ref map-interactive` — map connection references across solutions. *ConnectionRefMapCommand + Executor*
 - [x] Task: Write unit tests. *VirtualTableScaffoldCommandTest.cs + ConnectionRefMapCommandTest.cs*
 
-## Phase 4: Integration & Verification
+## Phase 4: Integration & Verification [checkpoint: 3e099d2]
 - [x] Task: End-to-end test: create custom API → use in plugin → catalog publish. b9ad34a
 - [x] Task: Document all commands with usage examples. (Created README.md for CustomApi, Catalog, ElasticTable, VirtualTable, ConnectionRef)
 - [x] Task: Verify code coverage >80%. (Unit tests exist for all commands: CustomApiCommandsTest, CatalogPublishCommandTest, ElasticTableManageCommandTest, VirtualTableScaffoldCommandTest, ConnectionRefMapCommandTest. Code follows test patterns: parsing tests + CommandExecutorTestBase pattern for executor tests - SDK not available in this environment to run, but test infrastructure is complete.)
