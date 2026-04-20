@@ -26,13 +26,6 @@ Tracks are organized by implementation priority, not phase order. Dependencies a
 
 ---
 
-## Active Track (Priority Implementation)
-- [x] **Track: Dataverse Platform Gaps**
-  *Link: [./tracks/dataverse_gaps_20260409/](./tracks/dataverse_gaps_20260409/)*
-  *Status: VERIFIED — CustomAPI, Catalog, ElasticTable, VirtualTable, ConnectionRef partially implemented*
-
----
-
 ## Backlog: Stubs/Placeholders (Require Full Implementation)
 
 These tracks have command files but print notes instead of making actual API calls. They need to be fully implemented.
@@ -76,10 +69,6 @@ These tracks have command files but print notes instead of making actual API cal
 - [x] **Track: Data & Cross-Platform Engine**
   *Link: [./tracks/data_crossplatform_20260409/](./tracks/data_crossplatform_20260409/)*
   *Status: VERIFIED — data init-schema-from-solution, seed-mock, export, import fully implemented*
-
-- [x] **Track: Dataverse Platform Gaps**
-  *Link: [./tracks/dataverse_gaps_20260409/](./tracks/dataverse_gaps_20260409/)*
-  *Status: VERIFIED — CustomAPI, Catalog, ElasticTable, VirtualTable, ConnectionRef partially implemented*
 
 - [x] **Track: Flow Management (Automation Plugin)**
   *Link: [./tracks/automation_plugin_20260408/](./tracks/automation_plugin_20260408/)*
