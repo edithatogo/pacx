@@ -107,7 +107,7 @@ Created in response to the 2026-04-21 audit covering "fake implementation" feedb
 ### Priority 1: Credibility & Library Quality (High)
 - [~] **Track: Library Hygiene**
   *Link: [./tracks/library_hygiene_20260421/](./tracks/library_hygiene_20260421/)*
-  *Status: IN PROGRESS — phase 1 and phase 2 hygiene fixes are normalized; phase 3 ConfigureAwait audit and phase 4 CancellationToken plumbing remain open.*
+  *Status: IN PROGRESS — phases 1-3 hygiene fixes are normalized; phase 4 CancellationToken plumbing remains open.*
 
 ### Priority 2: Build Infrastructure & Security (High)
 - [ ] **Track: CI/CD Hardening**
