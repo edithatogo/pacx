@@ -5,7 +5,7 @@ namespace Greg.Xrm.Command.Updates
 		string CurrentVersion { get; }
 		string? NextVersion { get; }
 		bool UpdateRequired { get; }
-		Task<bool> CheckForUpdatesAsync();
-		Task LaunchUpdateAsync();
+		Task<bool> CheckForUpdatesAsync(CancellationToken cancellationToken = default);
+		Task LaunchUpdateAsync(CancellationToken cancellationToken = default);
 	}
 }

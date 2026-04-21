@@ -16,24 +16,26 @@ namespace Greg.Xrm.Command.Updates
 
 		public string? NextVersion { get; protected set; }
 
-		public bool UpdateRequired { get; protected set; } = false;
+		public bool UpdateRequired { get; protected set; }
 
 
-		public async Task<bool> CheckForUpdatesAsync()
+		public async Task<bool> CheckForUpdatesAsync(CancellationToken cancellationToken = default)
 		{
+			cancellationToken.ThrowIfCancellationRequested();
 			this.NextVersion = null;
 			this.UpdateRequired = false;
 
 #if RELEASE
-			var isEnabled = await settings.GetAsync<bool>(EnableAutoUpdateSettingKey);
+			var isEnabled = await settings.GetAsync<bool>(EnableAutoUpdateSettingKey).ConfigureAwait(false);
 			if (!isEnabled) return false;
 			
 			try
             {
+				cancellationToken.ThrowIfCancellationRequested();
 				var nugetUrl = $"https://api.nuget.org/v3-flatcontainer/{ToolName.ToLowerInvariant()}/index.json";
 
 				using var client = new HttpClient();
-				var response = await client.GetStringAsync(nugetUrl);
+				var response = await client.GetStringAsync(nugetUrl, cancellationToken).ConfigureAwait(false);
 				using var doc = System.Text.Json.JsonDocument.Parse(response);
 				var versions = doc.RootElement.GetProperty("versions").EnumerateArray();
 				var latestVersion = versions.Last().GetString();
@@ -62,11 +64,12 @@ namespace Greg.Xrm.Command.Updates
 		}
 
 
-		public async Task LaunchUpdateAsync()
+		public async Task LaunchUpdateAsync(CancellationToken cancellationToken = default)
 		{
+			cancellationToken.ThrowIfCancellationRequested();
 			if (!this.UpdateRequired) return;
 
-			var isEnabled = await settings.GetAsync<bool>(EnableAutoUpdateSettingKey);
+			var isEnabled = await settings.GetAsync<bool>(EnableAutoUpdateSettingKey).ConfigureAwait(false);
 			if (!isEnabled) return;
 
 			try

@@ -12,13 +12,16 @@ namespace Greg.Xrm.Command
 		ICommandRegistry registry,
 		ICommandRunnerFactory commandRunnerFactory,
 		ICommandLineArguments args,
-		IAutoUpdater updater)
+		IAutoUpdater updater,
+		Greg.Xrm.Command.Diagnostics.ICorrelationIdProvider correlationIdProvider)
 	{
 		private readonly ILogger log = logger;
 
 		public async Task<int> StartAsync(CancellationToken cancellationToken)
 		{
-			await updater.CheckForUpdatesAsync();
+			cancellationToken.ThrowIfCancellationRequested();
+			await updater.CheckForUpdatesAsync(cancellationToken);
+			cancellationToken.ThrowIfCancellationRequested();
 			ShowTitleBanner();
 
 			log.LogTrace("1. StartAsync has been called.");
@@ -29,7 +32,7 @@ namespace Greg.Xrm.Command
 			var commandRunner = commandRunnerFactory.CreateCommandRunner();
 			var result = await commandRunner.RunCommandAsync(cancellationToken);
 
-			await updater.LaunchUpdateAsync();
+			await updater.LaunchUpdateAsync(cancellationToken);
 			return result;
 		}
 
@@ -60,8 +63,10 @@ namespace Greg.Xrm.Command
 			}
 
 			output.WriteLine();
-			output.Write("Online documentation: ").WriteLine("https://github.com/neronotte/Greg.Xrm.Command/wiki");
-			output.Write("Feedback, Suggestions, Issues: ").WriteLine("https://github.com/neronotte/Greg.Xrm.Command/discussions");
+			output.Write("Online documentation: ").WriteLine("https://github.com/edithatogo/Greg.Xrm.Command");
+			output.Write("Package format: ").WriteLine("conductor/pacx-package-format.md");
+			output.Write("Feedback, Suggestions, Issues: ").WriteLine("fork-local issues or discussions");
+			output.WriteCorrelationHeader(correlationIdProvider.Current);
 			output.WriteLine();
 		}
 	}
