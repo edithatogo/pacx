@@ -105,9 +105,9 @@ Created in response to the 2026-04-21 audit covering "fake implementation" feedb
   *Status: BLOCKED — branch inventory is complete and the selected branch heads are already contained in the local baseline, but PR lifecycle is blocked by missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.*
 
 ### Priority 1: Credibility & Library Quality (High)
-- [ ] **Track: Library Hygiene**
+- [~] **Track: Library Hygiene**
   *Link: [./tracks/library_hygiene_20260421/](./tracks/library_hygiene_20260421/)*
-  *Fix Task.Result blocking, DateTime.Now → DateTimeOffset.UtcNow, add ConfigureAwait(false), thread CancellationToken through executors.*
+  *Status: IN PROGRESS — phase 1 and phase 2 hygiene fixes are normalized; phase 3 ConfigureAwait audit and phase 4 CancellationToken plumbing remain open.*
 
 ### Priority 2: Build Infrastructure & Security (High)
 - [ ] **Track: CI/CD Hardening**
