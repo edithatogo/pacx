@@ -1,13 +1,13 @@
 {
   "track_id": "defake_stubs_20260421",
   "type": "feature",
-  "status": "planning",
+  "status": "in_progress",
   "phase": 1,
   "completed_at": null,
   "note": "Convert stub executors (ALM pipeline, Connector, Catalog, Data import) to real API calls; address upstream 'fake' review feedback",
   "priority": "High",
   "created_at": "2026-04-21T00:00:00Z",
-  "updated_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-22T05:40:28.1886374+10:00",
   "description": "Replace placeholder executors that print [DRY RUN] output with real Power Platform API implementations",
   "dependencies": [],
   "api_sources": ["Power Platform BAP API (pipelines)", "Dataverse Web API (connector, catalog)", "AI Builder", "HTTP"]

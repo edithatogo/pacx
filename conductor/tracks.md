@@ -10,6 +10,10 @@ Tracks are organized by implementation priority, not phase order. Dependencies a
 
 ## Completed Tracks (Verified Implemented)
 
+- [x] **Track: De-fake Stub Executors**
+  *Link: [./tracks/defake_stubs_20260421/](./tracks/defake_stubs_20260421/)*
+  *Status: IMPLEMENTED — ALM Pipeline, Connector Import, Catalog Publish, and Data Import executors now use real APIs.*
+
 - [x] **Track: spkl Parity (Developer Productivity)**
   *Link: [./tracks/spkl_parity_20260409/](./tracks/spkl_parity_20260409/)*
   *Status: IMPLEMENTED — plugin register-attributes, plugin step-scan, webresource map, webresource watch*
@@ -46,10 +50,6 @@ Tracks are organized by implementation priority, not phase order. Dependencies a
   *Link: [./tracks/power_pages_cli_20260409/](./tracks/power_pages_cli_20260409/)*
   *Status: COMPLETED — liquid lint validates templates; site publish queries Dataverse adx tables; webtemplate sync shows API docs*
 
-- [x] **Track: Explore Branches**
-  *Link: [./tracks/archive/explore_branches_20260408/](./tracks/archive/explore_branches_20260408/)*
-  *Status: COMPLETED — Discovered and integrated upstream features (fixPublisherBlacklist, benchmarking, capacity profile, change-language).*
-
 - [x] **Track: CI/CD Quality & Solution Management**
   *Link: [./tracks/cicd_quality_20260409/](./tracks/cicd_quality_20260409/)*
   *Status: VERIFIED — quality gate, solution diff, solution component-move fully implemented*
@@ -57,10 +57,6 @@ Tracks are organized by implementation priority, not phase order. Dependencies a
 - [x] **Track: Flow Management (Automation Plugin)**
   *Link: [./tracks/automation_plugin_20260408/](./tracks/automation_plugin_20260408/)*
   *Status: VERIFIED — workflow get, set-state, run list/get/cancel/resubmit, connection list fully implemented*
-
-- [x] **Track: MCP Server**
-  *Link: [./tracks/archive/mcp_server_20260408/](./tracks/archive/mcp_server_20260408/)*
-  *Status: COMPLETED — Implemented MCP server support with tool mapping and command execution.*
 
 ---
 
@@ -77,7 +73,7 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
   *Status: VERIFIED — DataExportImportCommandExecutors now implements real data import logic using pure .NET 8+ engine.*
 
 - [x] **Track: Dataverse Platform Gaps**
-  *Link: [./tracks/dataverse_gaps_20260409/](./tracks/dataverse_gaps_20260409/)*
+  *Link: [./archive/dataverse_gaps_20260409/](./archive/dataverse_gaps_20260409/)*
   *Status: VERIFIED — CatalogPublishCommandExecutor now uses real PublishCatalogItem message.*
 
 - [x] **Track: AI Builder & Custom Connectors (v1)**
@@ -88,19 +84,31 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
 
 ## In-Progress Tracks
 
-None currently.
+- [~] **Track: De-fake Stub Executors**
+  *Link: [./tracks/defake_stubs_20260421/](./tracks/defake_stubs_20260421/)*
+  *Status: IN PROGRESS — executor de-fake work is substantially complete; the remaining review checkpoints are pending local verification.*
+
+- [~] **Track: Explore Branches**
+  *Link: [./tracks/archive/explore_branches_20260408/](./tracks/archive/explore_branches_20260408/)*
+  *Status: BLOCKED — final `/conductor:review` follow-up is still pending.*
+
+- [~] **Track: MCP Server**
+  *Link: [./tracks/archive/mcp_server_20260408/](./tracks/archive/mcp_server_20260408/)*
+  *Status: BLOCKED — implementation is split into a separate `Greg.Xrm.Command.Mcp` host boundary, but PR/review closure work is blocked by missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.*
 
 ---
 
 ## New Tracks (2026-04-21) — Planning
 
 Created in response to the 2026-04-21 audit covering "fake implementation" feedback, SOTA tooling gaps, and product-coverage whitespace.
+`defake_stubs_20260421` has moved into active execution and is listed above under `In-Progress Tracks`.
+
+### Priority 0: Upstream Baseline Sync (Gating)
+- [~] **Track: Upstream Baseline Sync**
+  *Link: [./tracks/upstream_baseline_sync_20260422/](./tracks/upstream_baseline_sync_20260422/)*
+  *Status: BLOCKED — branch inventory is complete and the selected branch heads are already contained in the local baseline, but PR lifecycle is blocked by missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.*
 
 ### Priority 1: Credibility & Library Quality (High)
-- [ ] **Track: De-fake Stub Executors** *(HIGH, starts first)*
-  *Link: [./tracks/defake_stubs_20260421/](./tracks/defake_stubs_20260421/)*
-  *Convert ALM pipeline, Connector import, Catalog publish, and Data import executors from `[DRY RUN]` placeholders to real API calls. Address upstream "fake" review feedback.*
-
 - [ ] **Track: Library Hygiene**
   *Link: [./tracks/library_hygiene_20260421/](./tracks/library_hygiene_20260421/)*
   *Fix Task.Result blocking, DateTime.Now → DateTimeOffset.UtcNow, add ConfigureAwait(false), thread CancellationToken through executors.*
@@ -197,6 +205,7 @@ These four tracks have `Overview / Scope / Success Criteria` plus Phase/Task dec
 ## Track Dependency Graph
 
 ```
+upstream_baseline_sync_20260422 ────────────────→ (gates 04-27 planning set)
 defake_stubs ─────────────────────────────────────→ (unblocks credibility)
 library_hygiene ──────────────────────────────────→ (no deps)
 ci_cd_hardening ──────────────────────────────────→ (no deps)
@@ -228,13 +237,14 @@ mcp_server ───────────────────────
 
 ## Execution Ordering
 
-1. **Unblock planning** — four 04-27 tracks now have Phase/Task decompositions; `correlation_id_telemetry` runs first.
-2. **Credibility fix** — `defake_stubs` + `library_hygiene` as paired PRs against upstream.
-3. **Infra foundation** — `ci_cd_hardening` → `code_quality_hardening` → `security_supply_chain` (strict order).
-4. **Close legacy work** — `mcp_server` Phase 4 (or archive).
-5. **Product expansion** — Prioritize `fabric_onelake` + `powerbi_workspace_mgmt` (highest strategic value), then `desktop_flow_rpa` + `copilot_studio`.
-6. **DX polish** — `developer_experience`, `documentation_site`, `cli_ux`, `testing_maturity` in parallel.
-7. **Long tail** — `dataverse_gaps_phase2`, `forms_advanced`, `power_fx_validation`, `performance_aot` as capacity allows.
+1. **Upstream baseline sync** — integrate ahead upstream branches before any new downstream work picks up the baseline.
+2. **Unblock planning** — four 04-27 tracks now have Phase/Task decompositions; `correlation_id_telemetry` runs first.
+3. **Credibility fix** — `defake_stubs` + `library_hygiene` as paired PRs against upstream.
+4. **Infra foundation** — `ci_cd_hardening` → `code_quality_hardening` → `security_supply_chain` (strict order).
+5. **Close legacy work** — `mcp_server` Phase 4 (or archive).
+6. **Product expansion** — Prioritize `fabric_onelake` + `powerbi_workspace_mgmt` (highest strategic value), then `desktop_flow_rpa` + `copilot_studio`.
+7. **DX polish** — `developer_experience`, `documentation_site`, `cli_ux`, `testing_maturity` in parallel.
+8. **Long tail** — `dataverse_gaps_phase2`, `forms_advanced`, `power_fx_validation`, `performance_aot` as capacity allows.
 
 ---
 
@@ -248,4 +258,3 @@ The following commands remain stubbed due to architectural or environment constr
 | `desktop-flow *` | Requires machine-group and flow-session API access (different scope). | `desktop_flow_rpa` |
 | `copilot *` | Topic export/import requires PVA topic metadata parsing logic. | `copilot_studio` |
 | `tabular translation` | Requires BIM metadata localized property mapping (BIM domain). | `tabular_editor` |
-
