@@ -84,10 +84,6 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
 
 ## In-Progress Tracks
 
-- [~] **Track: De-fake Stub Executors**
-  *Link: [./tracks/defake_stubs_20260421/](./tracks/defake_stubs_20260421/)*
-  *Status: IN PROGRESS — executor de-fake work is substantially complete; the remaining review checkpoints are pending local verification.*
-
 - [~] **Track: Explore Branches**
   *Link: [./tracks/archive/explore_branches_20260408/](./tracks/archive/explore_branches_20260408/)*
   *Status: BLOCKED — final `/conductor:review` follow-up is still pending.*
