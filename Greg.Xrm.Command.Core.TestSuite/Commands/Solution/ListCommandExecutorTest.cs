@@ -87,7 +87,7 @@ namespace Greg.Xrm.Command.Commands.Solution
 		[TestMethod]
 		public async Task ExecuteAsync_FilteringManaged_ShouldQueryCorrectly()
 		{
-			SetupMockData(CreateSolution("A", true, true, DateTime.Now, DateTime.Now));
+			SetupMockData(CreateSolution("A", true, true, DateTimeOffset.UtcNow.UtcDateTime, DateTimeOffset.UtcNow.UtcDateTime));
 
 			var command = new ListCommand { Type = ListCommand.SolutionType.Managed };
 			var result = await executor.ExecuteAsync(command, CancellationToken.None);
@@ -102,7 +102,7 @@ namespace Greg.Xrm.Command.Commands.Solution
 		[TestMethod]
 		public async Task ExecuteAsync_FilteringUnmanaged_ShouldQueryCorrectly()
 		{
-			SetupMockData(CreateSolution("A", false, true, DateTime.Now, DateTime.Now));
+			SetupMockData(CreateSolution("A", false, true, DateTimeOffset.UtcNow.UtcDateTime, DateTimeOffset.UtcNow.UtcDateTime));
 
 			var command = new ListCommand { Type = ListCommand.SolutionType.Unmanaged };
 			var result = await executor.ExecuteAsync(command, CancellationToken.None);
@@ -117,7 +117,7 @@ namespace Greg.Xrm.Command.Commands.Solution
 		[TestMethod]
 		public async Task ExecuteAsync_FilteringVisible_ShouldQueryCorrectly()
 		{
-			SetupMockData(CreateSolution("A", false, true, DateTime.Now, DateTime.Now));
+			SetupMockData(CreateSolution("A", false, true, DateTimeOffset.UtcNow.UtcDateTime, DateTimeOffset.UtcNow.UtcDateTime));
 
 			// Default is Hidden = false, which means isvisible = true
 			var command = new ListCommand { Hidden = false };
@@ -153,7 +153,7 @@ namespace Greg.Xrm.Command.Commands.Solution
 
 			Assert.IsTrue(managedIndex >= 0, "Expected JSON output to contain solution 'Z_Managed'.");
 			Assert.IsTrue(unmanagedIndex >= 0, "Expected JSON output to contain solution 'A_Unmanaged'.");
-			Assert.IsTrue(managedIndex < unmanagedIndex, "Expected solutions to be ordered by CreatedOn in the JSON output.");
+			Assert.IsTrue(unmanagedIndex < managedIndex, "Expected solutions to be ordered by CreatedOn descending in the JSON output.");
 		}
 	}
 }

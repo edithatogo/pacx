@@ -42,8 +42,8 @@ namespace Greg.Xrm.Command.Commands.AiBuilder
 		{
 			var models = new List<AiModelInfo>
 			{
-				new() { Id = "guid-1", Name = "Invoice Model", Status = "Published", CreatedOn = DateTime.Now },
-				new() { Id = "guid-2", Name = "Receipt Model", Status = "Training", CreatedOn = DateTime.Now.AddDays(-1) }
+				new() { Id = "guid-1", Name = "Invoice Model", Status = "Published", CreatedOn = DateTimeOffset.UtcNow.UtcDateTime },
+				new() { Id = "guid-2", Name = "Receipt Model", Status = "Training", CreatedOn = DateTimeOffset.UtcNow.AddDays(-1).UtcDateTime }
 			};
 
 			clientMock!
@@ -174,7 +174,7 @@ namespace Greg.Xrm.Command.Commands.AiBuilder
 
 			Assert.IsTrue(result.IsSuccess, result.ErrorMessage);
 			clientMock.Verify(c => c.TrainModelAsync("test-model-id", true, It.IsAny<CancellationToken>()), Times.Once);
-			outputMock.Verify(o => o.WriteLine("Training completed successfully!", ConsoleColor.Green), Times.Once);
+			outputMock.Verify(o => o.WriteLine("Model training triggered successfully and completed!", ConsoleColor.Green), Times.Once);
 		}
 	}
 
@@ -223,7 +223,7 @@ namespace Greg.Xrm.Command.Commands.AiBuilder
 
 			Assert.IsTrue(result.IsSuccess, result.ErrorMessage);
 			clientMock.Verify(c => c.PublishModelAsync("test-model-id", It.IsAny<CancellationToken>()), Times.Once);
-			outputMock.Verify(o => o.WriteLine("AI model published successfully!", ConsoleColor.Green), Times.Once);
+			outputMock.Verify(o => o.WriteLine("Model published successfully!", ConsoleColor.Green), Times.Once);
 		}
 
 		[TestMethod]

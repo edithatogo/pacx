@@ -4,13 +4,11 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 	{
 		public static string CreateTempFolder()
 		{
-			var temp = Path.Combine(Path.GetTempPath(), "PACX-" + DateTime.Now.Ticks);
-			CreateFolder(temp);
-			return temp;
+			return CreateLocalTempFolder();
 		}
 		public static string CreateLocalTempFolder()
 		{
-			var temp = Path.Combine(Environment.CurrentDirectory, "PACX-" + DateTime.Now.Ticks);
+			var temp = Path.Combine(Environment.CurrentDirectory, "PACX-" + DateTimeOffset.UtcNow.Ticks);
 			CreateFolder(temp);
 			return temp;
 		}
