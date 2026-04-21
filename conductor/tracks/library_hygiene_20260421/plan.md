@@ -4,7 +4,7 @@
 Static audit identified three async/threading antipatterns: blocking `Task.Result` on awaited tasks, `DateTime.Now` instead of `DateTimeOffset.UtcNow`, and zero `ConfigureAwait(false)` across the Core library. CancellationTokens are also not threaded through command execution. These are minor but widely visible library-quality signals.
 
 ## Current Status
-Phase 1, Phase 2, and Phase 3 are now satisfied in the repository. The remaining open work is cancellation-token plumbing.
+Phase 1, Phase 2, and Phase 3 are now satisfied in the repository. Startup cancellation is now wired through `Program`, `Bootstrapper`, and `AutoUpdater`; the remaining open work is the broader cancellation-token plumbing.
 
 ## Phase 1: Blocking-call fixes
 - [x] Task: Fix `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/ListCommandExecutor.cs:58-61` — replace triple `Task.Result` after `Task.WhenAll` with awaited tuple destructuring. *Repository scan confirmed the executor already uses `await`/`Task.WhenAll`; no blocking `Result` call remains in core.*
@@ -23,6 +23,7 @@ Phase 1, Phase 2, and Phase 3 are now satisfied in the repository. The remaining
 - [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. *Phase 3 normalized after the codemod and scan.*
 
 ## Phase 4: CancellationToken plumbing
+- [x] Task: Wire startup cancellation through `Program` / `Bootstrapper` / `AutoUpdater` so `Console.CancelKeyPress` can abort the run cleanly. *Implemented with a linked `CancellationTokenSource` and cancellation-aware update checks.*
 - [ ] Task: Extend `ICommandExecutor<T>` with a `CancellationToken ct` parameter (additive — existing impls adopt via default parameter during migration).
 - [ ] Task: `CommandRunner` forwards `Console.CancelKeyPress` → linked cancellation source.
 - [ ] Task: Thread `ct` through every `*Async` call down to `IOrganizationService` and `HttpClient.SendAsync`.
