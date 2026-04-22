@@ -1,13 +1,13 @@
 {
   "track_id": "library_hygiene_20260421",
   "type": "infrastructure",
-  "status": "in_progress",
-  "phase": 4,
-  "completed_at": null,
-  "note": "Fix async/threading antipatterns: Task.Result, DateTime.Now, missing ConfigureAwait, and CancellationToken threading; shared helper, option-set, and broader token plumbing were added, and a gated MCP cancellation integration test now covers the stdio loop",
+  "status": "completed",
+  "phase": 5,
+  "completed_at": "2026-04-22T19:44:17.5106163+10:00",
+  "note": "Local library hygiene sweep completed on the fork: cancellation-token plumbing was threaded through the remaining async helpers and executors, the package/command tests were aligned, and the full Greg.Xrm.Command solution test suite now passes without upstream issues or pull requests",
   "priority": "High",
   "created_at": "2026-04-21T00:00:00Z",
-  "updated_at": "2026-04-22T19:44:17.5106163+10:00",
+  "updated_at": "2026-04-22T20:10:00.0000000+10:00",
   "description": "Library-grade async and clock hygiene across Greg.Xrm.Command.Core",
   "dependencies": [],
   "api_sources": []

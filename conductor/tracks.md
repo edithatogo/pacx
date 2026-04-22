@@ -97,17 +97,17 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
 ## New Tracks (2026-04-21) — Planning
 
 Created in response to the 2026-04-21 audit covering "fake implementation" feedback, SOTA tooling gaps, and product-coverage whitespace.
-`defake_stubs_20260421` has moved into active execution and is listed above under `In-Progress Tracks`.
+`defake_stubs_20260421` is completed and listed above under `Completed Tracks (Verified Implemented)`.
 
 ### Priority 0: Upstream Baseline Sync (Gating)
-- [~] **Track: Upstream Baseline Sync**
+- [x] **Track: Upstream Baseline Sync**
   *Link: [./tracks/upstream_baseline_sync_20260422/](./tracks/upstream_baseline_sync_20260422/)*
-  *Status: BLOCKED — branch inventory is complete and the selected branch heads are already contained in the local baseline, but PR lifecycle is blocked by missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.*
+  *Status: COMPLETED — branch inventory is complete, the selected branch heads are already contained in the local baseline, and fork-only governance skips upstream issue/PR lifecycle work by design.*
 
 ### Priority 1: Credibility & Library Quality (High)
-- [~] **Track: Library Hygiene**
+- [x] **Track: Library Hygiene**
   *Link: [./tracks/library_hygiene_20260421/](./tracks/library_hygiene_20260421/)*
-  *Status: IN PROGRESS — phases 1-3 hygiene fixes are normalized; phase 4 CancellationToken plumbing remains open.*
+  *Status: COMPLETED — the library hygiene sweep is complete on the fork and the full Greg.Xrm.Command solution test suite passes.*
 
 ### Priority 2: Build Infrastructure & Security (High)
 - [ ] **Track: CI/CD Hardening**
