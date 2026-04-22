@@ -4,10 +4,10 @@
   "status": "in_progress",
   "phase": 4,
   "completed_at": null,
-  "note": "Fix async/threading antipatterns: Task.Result, DateTime.Now, missing ConfigureAwait, and CancellationToken threading",
+  "note": "Fix async/threading antipatterns: Task.Result, DateTime.Now, missing ConfigureAwait, and CancellationToken threading; shared helper, option-set, and broader token plumbing were added, and a gated MCP cancellation integration test now covers the stdio loop",
   "priority": "High",
   "created_at": "2026-04-21T00:00:00Z",
-  "updated_at": "2026-04-22T07:22:00+10:00",
+  "updated_at": "2026-04-22T19:44:17.5106163+10:00",
   "description": "Library-grade async and clock hygiene across Greg.Xrm.Command.Core",
   "dependencies": [],
   "api_sources": []
