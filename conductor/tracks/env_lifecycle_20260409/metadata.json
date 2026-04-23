@@ -1,7 +1,7 @@
 {
   "track_id": "env_lifecycle_20260409",
   "type": "feature",
-  "status": "completed",
+  "status": "complete",
   "phase": 3,
   "completed_at": "2026-04-20T02:50:00Z",
   "note": "Enhanced commands: show API examples, validation, capacity report now shows local table stats",

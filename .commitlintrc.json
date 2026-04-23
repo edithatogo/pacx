@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "@commitlint/config-conventional"
+  ],
+  "rules": {
+    "scope-enum": [
+      2,
+      "always",
+      [
+        "alm",
+        "auth",
+        "ci",
+        "column",
+        "dataverse",
+        "docs",
+        "forms",
+        "help",
+        "mcp",
+        "package",
+        "plugin",
+        "settings",
+        "solution",
+        "table",
+        "test",
+        "tool",
+        "view",
+        "workflow"
+      ]
+    ]
+  }
+}

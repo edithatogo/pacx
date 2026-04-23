@@ -1,7 +1,7 @@
 {
   "track_id": "pcf_enhancement_20260409",
   "type": "feature",
-  "status": "completed",
+  "status": "complete",
   "phase": 3,
   "completed_at": "2026-04-20T02:59:00Z",
   "note": "Enhanced: version bump updates manifest+changelog; dependency-check parses local manifest for CSS/JS/API requirements; publish shows component info",

@@ -12,3 +12,6 @@
 ## Management
 - [Tracks Registry](./tracks.md)
 - [Tracks Directory](./tracks/)
+- [Distribution Plan](./distribution-plan.md)
+- [PACX Package Format](./pacx-package-format.md)
+- [PACX Package Template](./package-template/README.md)

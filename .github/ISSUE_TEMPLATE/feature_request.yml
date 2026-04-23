@@ -1,0 +1,35 @@
+name: Feature request
+description: Suggest an improvement for PACX or the repo tooling
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feature requests are best discussed in GitHub Discussions first if the idea is still broad or exploratory.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: What should PACX do?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What pain point does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior or UX you want.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches did you evaluate?

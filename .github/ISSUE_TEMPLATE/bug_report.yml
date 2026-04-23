@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a bug in PACX or the repo tooling
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for issues in the fork. For security-sensitive disclosures, use the private security reporting flow instead.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: What is broken?
+      placeholder: Describe the bug briefly.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Minimal steps to reproduce the issue.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Environment / context
+      description: OS, SDK version, PACX command, repo branch, or any relevant details.

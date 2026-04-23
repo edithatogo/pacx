@@ -110,9 +110,9 @@ Created in response to the 2026-04-21 audit covering "fake implementation" feedb
   *Status: COMPLETED — the library hygiene sweep is complete on the fork and the full Greg.Xrm.Command solution test suite passes.*
 
 ### Priority 2: Build Infrastructure & Security (High)
-- [ ] **Track: CI/CD Hardening**
-  *Link: [./tracks/ci_cd_hardening_20260421/](./tracks/ci_cd_hardening_20260421/)*
-  *Matrix testing (OS × .NET), CodeQL, OpenSSF Scorecard, reusable workflows, concurrency cancel, SHA-pinned actions, OIDC trusted publishing to NuGet.org, coverage gate.*
+- [~] **Track: Code Quality Hardening**
+  *Link: [./tracks/code_quality_hardening_20260421/](./tracks/code_quality_hardening_20260421/)*
+  *Status: IN PROGRESS — Phase 1 (Central Package Management) COMPLETED. Moving to Phase 2 (Warnings-as-Errors).*
 
 - [ ] **Track: Code Quality Hardening**
   *Link: [./tracks/code_quality_hardening_20260421/](./tracks/code_quality_hardening_20260421/)*

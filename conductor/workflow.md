@@ -8,6 +8,7 @@
 4. **High Code Coverage:** Aim for >80% code coverage for all modules
 5. **User Experience First:** Every decision should prioritize user experience
 6. **Non-Interactive & CI-Aware:** Prefer non-interactive commands. Use `CI=true` for watch-mode tools (tests, linters) to ensure single execution.
+7. **Respect Gating Tracks:** If a prerequisite gating track such as `upstream_baseline_sync_20260422` is pending, complete it before starting downstream planning work.
 
 ## Task Workflow
 
@@ -202,7 +203,7 @@ Before marking any task complete, verify:
 
 #### Protocol
 1. **Before opening a PR:** Run `/conductor:review` locally and address all Critical and High findings.
-2. **After opening a PR:** The track's PR Lifecycle phase runs `/ralph-loop` with the completion promise:
+2. **After opening a PR in the fork:** The track's Fork PR Lifecycle phase runs `/ralph-loop` with the completion promise:
    > "All Critical and High review issues resolved, PR ready for merge"
 3. **The Ralph Loop automates:**
    - Runs `/conductor:review` on the PR diff
@@ -210,7 +211,7 @@ Before marking any task complete, verify:
    - Commits the fixes
    - Re-runs `/conductor:review`
    - Repeats until no Critical or High issues remain
-4. **After the loop exits:** The PR may be merged (or blockers are documented).
+4. **After the loop exits:** The fork PR may be merged (or blockers are documented).
 
 #### What `/conductor:review` Checks
 | Check | Severity if Failed | Source |
@@ -234,7 +235,7 @@ Before marking any task complete, verify:
 6. **Mock correctness** — All async methods return non-null tasks, both overloads mocked where needed
 
 #### Exceptions
-If a PR cannot pass review (e.g., blocked by external dependency), it must be documented in the track's `plan.md` with a `BLOCKED:` note explaining why.
+If a fork PR cannot pass review (e.g., blocked by external dependency), it must be documented in the track's `plan.md` with a `BLOCKED:` note explaining why. Do not create upstream issues to work around that blocker.
 
 ## Commit Guidelines
 

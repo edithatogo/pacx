@@ -1,7 +1,7 @@
 {
   "track_id": "plugin_test_coverage_20260409",
   "type": "infrastructure",
-  "status": "completed",
+  "status": "complete",
   "phase": 4,
   "completed_at": "2026-04-20T01:58:00Z",
   "priority": "High",

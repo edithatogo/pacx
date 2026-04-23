@@ -1,0 +1,26 @@
+name: Ideas
+description: Propose and discuss a new direction or enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this space for exploratory discussion before opening a feature request.
+  - type: input
+    id: summary
+    attributes:
+      label: Idea summary
+      description: What would you like to explore?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What problem or opportunity does this idea address?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should happen if this idea moves forward?

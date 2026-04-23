@@ -52,3 +52,40 @@ Provide CLI management for AI Builder models and custom connectors with enhanced
 4. Add correlation ID handling across all commands.
 5. Write unit tests for new/error paths.
 6. Update documentation and help text.
+
+---
+
+## Phases (task decomposition, added 2026-04-21)
+
+### Phase 1: Shared resilience helper
+- [ ] Task: Depends on `correlation_id_telemetry_20260427` — wait for `ICorrelationIdProvider` to land, OR land a minimal inline `CorrelationIdSource` here and migrate later.
+- [ ] Task: Add `ResiliencePolicy` helper using `Microsoft.Extensions.Http.Resilience` (or Polly v8) — exponential backoff with jitter, max attempts, per-status-code handling.
+- [ ] Task: Unit tests for retry behavior with simulated 429/503 responses.
+- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+
+### Phase 2: `ai model train` — polling & retry
+- [ ] Task: Add `--poll-interval <seconds>` (default 5) and `--timeout <seconds>` (default 600) flags.
+- [ ] Task: Wrap existing `TrainModelAsync` call in resilience policy.
+- [ ] Task: Surface correlation ID on both stdout preamble and final summary.
+- [ ] Task: Tests including timeout path.
+- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+
+### Phase 3: `ai model publish`
+- [ ] Task: Add correlation ID plumbing + retry policy.
+- [ ] Task: Emit next-step guidance (`Use 'ai model list' to confirm publication status`).
+- [ ] Task: Tests.
+- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+
+### Phase 4: `connector validate` — schema pre-validation
+- [ ] Task: Depends on `connector_schema_validation_20260427` — use its `ConnectorSchemaValidator`.
+- [ ] Task: Bind `--schema-file` flag.
+- [ ] Task: Tests for valid/invalid connector definitions.
+- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+
+### Phase 5: Form Processor configuration
+- [ ] Task: Extend `ConfigureFormProcessorAsync` with schema-validated field + table options.
+- [ ] Task: Tests.
+- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+
+### Phase 6: PR Lifecycle
+- [ ] Task: Open upstream issue; PR per 2-3 phases; `/ralph-loop`; merge.

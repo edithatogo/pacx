@@ -1,7 +1,7 @@
 {
   "track_id": "solution_tests_20260408",
   "type": "feature",
-  "status": "new",
+  "status": "pending",
   "created_at": "2026-04-08T23:15:00Z",
   "updated_at": "2026-04-08T23:15:00Z",
   "description": "Implement unit tests for core Solution commands (List, Create, Delete)"

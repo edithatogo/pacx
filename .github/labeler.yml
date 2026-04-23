@@ -1,0 +1,27 @@
+area/alm:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Greg.Xrm.Command/**"
+          - "Greg.Xrm.Command.Interfaces/**"
+          - "Greg.Xrm.Command.Core/**"
+
+area/ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - "conductor/**"
+
+area/docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "*.md"
+          - "docs/**"
+
+area/tooling:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".config/**"
+          - ".devcontainer/**"
+          - ".husky/**"
+          - "Dockerfile"
+

@@ -1,0 +1,14 @@
+{
+  "track_id": "testing_maturity_20260421",
+  "type": "infrastructure",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Verify snapshots, Stryker mutation testing, NetArchTest architecture rules, Pact/schema contract tests vs Dataverse, expanded FsCheck property-based testing",
+  "priority": "Medium",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-21T00:00:00Z",
+  "description": "Raise testing maturity from unit+integration to snapshot+mutation+contract+architecture",
+  "dependencies": ["code_quality_hardening_20260421"],
+  "api_sources": ["Dataverse Web API (contract)"]
+}

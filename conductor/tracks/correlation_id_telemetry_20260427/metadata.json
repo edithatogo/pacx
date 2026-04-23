@@ -1,7 +1,7 @@
 {
   "track_id": "correlation_id_telemetry_20260427",
   "type": "infrastructure",
-  "status": "planning",
+  "status": "pending",
   "phase": 1,
   "completed_at": null,
   "note": "Add correlation ID generation and propagation across all commands for tracing and logging",
@@ -9,6 +9,6 @@
   "created_at": "2026-04-27T00:00:00Z",
   "updated_at": "2026-04-27T00:00:00Z",
   "description": "Correlation ID and telemetry across AI Builder and connector commands",
-  "dependencies": [],
+  "dependencies": ["upstream_baseline_sync_20260422"],
   "api_sources": ["CLI telemetry"]
 }

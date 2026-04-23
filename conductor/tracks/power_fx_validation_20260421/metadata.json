@@ -1,0 +1,14 @@
+{
+  "track_id": "power_fx_validation_20260421",
+  "type": "feature",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "power-fx validate/format/repl using Microsoft.PowerFx.Core; enables CI checks on calculated columns, business rules, canvas expressions",
+  "priority": "Medium",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-21T00:00:00Z",
+  "description": "Power FX expression validation and formatting (pac parity)",
+  "dependencies": [],
+  "api_sources": ["Microsoft.PowerFx.Core NuGet"]
+}

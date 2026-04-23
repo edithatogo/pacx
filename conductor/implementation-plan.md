@@ -5,6 +5,8 @@
 ## Overview
 Implement all 16 tracks for PACX (Greg.Xrm.Command) — a .NET 8 CLI tool for Dataverse. This includes infrastructure improvements (CI/CD, testing, code quality) and ~80+ new CLI commands across 12 feature domains. Each command follows the established pattern: `[Command]` POCO class + `ICommandExecutor<T>` implementation + parsing test + executor test.
 
+> Note: `upstream_baseline_sync_20260422` is a gating track that must complete before the downstream planning waves begin. Treat it as a prerequisite sync step, not part of the feature waves below.
+
 ## Prerequisites
 - .NET 8 SDK installed
 - Git remote configured (currently blocked by firewall — PR creation will wait)
@@ -15,6 +17,7 @@ Implement all 16 tracks for PACX (Greg.Xrm.Command) — a .NET 8 CLI tool for Da
 ## Dependency Graph
 
 ```
+T0 (Upstream baseline sync gate) ─────────────────────────────────────────→ [T2-T58]
 T1 (Directory.Build.props fix) ────────────────────────────────────────────→ []
 T2 (.editorconfig + mass-format) ──────────────────────────────────────────→ [T1]
 T3 (.runsettings) ─────────────────────────────────────────────────────────→ [T1]
@@ -301,12 +304,12 @@ T58 (pr open/track/merge) ──────────────────
 - **log**: 
 - **files edited/created**: 
 
-### T57-T58: PR Lifecycle Tooling
+### T57-T58: Fork PR Lifecycle Tooling
 - **depends_on**: [T4] (T57), [T57] (T58)
 - **location**: New directory: `Commands/Pr/`, new NuGet: Octokit.NET
 - **description**:
   - T57: Add `Octokit` NuGet. Implement GitHub API client wrapper with token-based auth. Rate limit handling.
-  - T58: `pr open` — create issue + PR from local branch. `pr track` — monitor PR status, detect conflicts. `pr merge` — auto-merge when approved and CI passes.
+  - T58: `pr open` — create a PR from the local branch in this fork. `pr track` — monitor PR status, detect conflicts. `pr merge` — auto-merge when approved and CI passes.
 - **validation**: Each command has parsing test + executor test (mocked Octokit client).
 - **status**: Not Completed
 - **log**: 

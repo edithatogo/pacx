@@ -1,0 +1,14 @@
+{
+  "track_id": "desktop_flow_rpa_20260421",
+  "type": "feature",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Desktop Flows (RPA): list/trigger/runs, machines and machine-groups, scaffold, approvals",
+  "priority": "Medium",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-21T00:00:00Z",
+  "description": "CLI coverage for Power Automate Desktop (RPA) — currently zero",
+  "dependencies": [],
+  "api_sources": ["Power Automate REST", "Dataverse Web API (workflow entity)"]
+}

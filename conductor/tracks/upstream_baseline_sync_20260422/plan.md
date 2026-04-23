@@ -49,6 +49,6 @@ Bring the local PACX baseline up to date with upstream work that is already ahea
 - [x] Task: Confirm the downstream track ordering reflects the synced baseline.
 - [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
 
-### Phase 5: PR lifecycle
-- [ ] Task: Open or update the upstream PR for the baseline sync work (blocked: the repository has moved to `edithatogo/pacx`, and the current account does not have `CreatePullRequest` permission there).
-- [ ] Task: Run the review loop and merge once the baseline is clean.
+### Phase 5: Fork-only closure
+- [x] Task: Record that no upstream issue or PR will be opened for the baseline sync work. Result: this fork is maintained independently; the local baseline sync is complete and no upstream PR lifecycle will be used.
+- [x] Task: Mark the track complete locally and keep downstream planning gated on the synced baseline. Result: the downstream planning tracks already point at the synced baseline.

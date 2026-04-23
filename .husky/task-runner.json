@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "name": "trufflehog-pre-commit",
+      "group": "pre-commit-operations",
+      "command": "trufflehog",
+      "args": [
+        "filesystem",
+        ".",
+        "--results=verified,unknown",
+        "--fail"
+      ]
+    },
+    {
+      "name": "commit-message-linter",
+      "group": "commit-msg",
+      "command": "commitlint",
+      "args": [
+        "lint",
+        "--edit",
+        "${1}"
+      ]
+    }
+  ]
+}

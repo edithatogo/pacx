@@ -1,0 +1,14 @@
+{
+  "track_id": "performance_aot_20260421",
+  "type": "infrastructure",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "BenchmarkDotNet suite, regression gates, Native AOT feasibility study, trim-safe pacx-lite, hot-path optimizations via source generators",
+  "priority": "Low",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-21T00:00:00Z",
+  "description": "Performance measurement, regression prevention, Native AOT evaluation for CLI cold-start",
+  "dependencies": [],
+  "api_sources": []
+}

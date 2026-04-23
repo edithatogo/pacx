@@ -1,0 +1,11 @@
+C:\Users\60217257\AppData\Local\Microsoft\dotnet\sdk\10.0.202\Extensions\Microsoft.VisualStudio.TestPlatform.Fakes.deps.json
+C:\Users\60217257\AppData\Local\Microsoft\dotnet\sdk\10.0.202\Extensions\Microsoft.VisualStudio.TestPlatform.Fakes.dll
+C:\Users\60217257\AppData\Local\Microsoft\dotnet\sdk\10.0.202\Extensions\Microsoft.VisualStudio.TestPlatform.Fakes.pdb
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\Microsoft.VisualStudio.TestPlatform.Fakes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\Microsoft.VisualStudio.TestPlatform.Fakes.csproj.CoreCompileInputs.cache
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\Microsoft.VisualStudio.TestPlatform.Fakes.sourcelink.json
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\Microsoft.VisualStudio.TestPlatform.Fakes.dll
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\refint\Microsoft.VisualStudio.TestPlatform.Fakes.dll
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\Microsoft.VisualStudio.TestPlatform.Fakes.pdb
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\ref\Microsoft.VisualStudio.TestPlatform.Fakes.dll
+C:\Users\60217257\repos\pac_pacx\tmp\fakesbuild\obj\Release\net8.0\Microsoft.VisualStudio.TestPlatform.Fakes.csproj.AssemblyReference.cache

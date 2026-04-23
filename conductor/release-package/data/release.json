@@ -1,0 +1,13 @@
+{
+  "tool": "PACX",
+  "package": "pacx.release.bundle",
+  "version": "0.1.0",
+  "purpose": "staged release bundle",
+  "source": "repository",
+  "tagName": "",
+  "commitSha": "",
+  "repository": "",
+  "runId": "",
+  "runNumber": "",
+  "generatedAtUtc": ""
+}

@@ -69,6 +69,7 @@
 | `pacx org` | ✅ Available | Organization settings |
 | `pacx plugin` | ✅ Available | Plugin registration & step management |
 | `pacx project` | ✅ Available | PACX project lifecycle |
+| `pacx package` | ✅ Available | PACX-native package authoring and deployment bundles |
 | `pacx publish` | ✅ Available | Manual customization publishing |
 | `pacx rel` | ✅ Available | Dataverse relationship operations |
 | `pacx ribbon` | ✅ Available | Ribbon (command bar) manipulation |

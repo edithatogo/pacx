@@ -1,0 +1,27 @@
+{
+  "name": "swarm-mission",
+  "created_at": 1776915084.2055237,
+  "leader": "leader",
+  "members": [
+    {
+      "agent_id": "junior@swarm-mission",
+      "name": "Junior",
+      "color": "yellow",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "quality_validator@swarm-mission",
+      "name": "Quality_Validator",
+      "color": "green",
+      "model": "auto-gemini-3",
+      "mode": "validator",
+      "status": "pending"
+    }
+  ],
+  "settings": {
+    "backend": "thread",
+    "poll_interval_ms": 1000
+  }
+}

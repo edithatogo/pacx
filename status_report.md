@@ -1,6 +1,6 @@
 ---
 
-**🕐 Timestamp:** `2026-04-21 06:41:12`
+**🕐 Timestamp:** `2026-04-22 02:45:41`
 **📦 Project:** `PACX (Greg.Xrm.Command)`
 **📊 Project Status:** `On Track`
 
@@ -20,9 +20,9 @@
 | `data_crossplatform_20260409` | `Completed` | 19 | 0 | 0 | 19 |
 | `e2e_smoke_tests_20260409` | `Completed` | 21 | 0 | 0 | 21 |
 | `env_lifecycle_20260409` | `Completed` | 11 | 0 | 0 | 11 |
-| `explore_branches_20260408` | `Completed` | 7 | 0 | 0 | 7 |
+| `explore_branches_20260408` | `Blocked` | 7 | 0 | 0 | 7 |
 | `governance_security_20260409` | `Completed` | 11 | 0 | 0 | 11 |
-| `mcp_server_20260408` | `Completed` | 12 | 0 | 0 | 12 |
+| `mcp_server_20260408` | `Blocked` | 12 | 0 | 0 | 12 |
 | `ms_forms_20260409` | `Completed` | 17 | 0 | 0 | 17 |
 | `pcf_enhancement_20260409` | `Completed` | 14 | 0 | 0 | 14 |
 | `plugin_test_coverage_20260409` | `Completed` | 21 | 0 | 0 | 21 |
@@ -33,6 +33,7 @@
 | `solution_tests_20260408` | `Completed` | 17 | 0 | 0 | 17 |
 | `spkl_parity_20260409` | `Completed` | 21 | 0 | 0 | 21 |
 | `tabular_editor_20260409` | `Completed` | 22 | 0 | 0 | 22 |
+| `upstream_baseline_sync_20260422` | `Blocked` | 0 | 0 | 17 | 17 |
 
 ---
 
@@ -99,10 +100,10 @@
 - **Blockers:** None
 
 **Track: `explore_branches_20260408`**
-- **Status:** `Completed`
+- **Status:** `Blocked`
 - **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+- **Next Action (PENDING):** Run `/conductor:review` once the missing .NET SDK blocker is cleared.
+- **Blockers:** Missing .NET SDK for the final review pass.
 
 **Track: `governance_security_20260409`**
 - **Status:** `Completed`
@@ -111,10 +112,10 @@
 - **Blockers:** None
 
 **Track: `mcp_server_20260408`**
-- **Status:** `Completed`
+- **Status:** `Blocked`
 - **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+- **Next Action (PENDING):** Open the fork PR / complete review closure once `CreatePullRequest` permission is available.
+- **Blockers:** Missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.
 
 **Track: `ms_forms_20260409`**
 - **Status:** `Completed`
@@ -176,16 +177,22 @@
 - **Next Action (PENDING):** None
 - **Blockers:** None
 
+**Track: `upstream_baseline_sync_20260422`**
+- **Status:** `Blocked`
+- **Current Task (IN PROGRESS):** None
+- **Next Action (PENDING):** Task: Reconfirm the upstream branches ahead of master and capture their current divergence once the PR lifecycle blocker is cleared.
+- **Blockers:** Missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.
+
 ---
 
 #### Overall Progress
 
 | Metric | Value |
 |--------|-------|
-| Tracks | 23 total (0 in-progress, 0 pending, 23 completed) |
-| Tasks | 332 / 332 completed (100.0%) |
+| Tracks | 24 total (0 in-progress, 0 pending, 21 completed, 3 blocked) |
+| Tasks | 332 / 349 completed (95.1%) |
 | In Progress | None |
-| Next Action | None |
+| Next Action | `Task: Reconfirm the upstream branches ahead of master and capture their current divergence once the PR lifecycle blocker is cleared.` in `upstream_baseline_sync_20260422` |
 
 ---
 

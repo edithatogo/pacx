@@ -1,0 +1,12 @@
+{
+  "name": "PACX",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-10.0-jammy",
+  "features": {
+    "ghcr.io/devcontainers/features/powershell:1": {},
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "dotnet tool restore && dotnet husky install && dotnet restore Greg.Xrm.Command/Greg.Xrm.Command.sln",
+  "remoteUser": "vscode"
+}

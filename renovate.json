@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits"
+  ],
+  "timezone": "Australia/Sydney",
+  "schedule": [
+    "before 6am on monday"
+  ],
+  "enabledManagers": [
+    "nuget",
+    "github-actions",
+    "dockerfile"
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "^xunit(\\.|$)"
+      ],
+      "groupName": "xUnit"
+    },
+    {
+      "matchPackagePrefixes": [
+        "Microsoft.Extensions."
+      ],
+      "groupName": "Microsoft.Extensions"
+    },
+    {
+      "matchPackagePrefixes": [
+        "SonarAnalyzer."
+      ],
+      "groupName": "SonarAnalyzer"
+    },
+    {
+      "matchPackagePrefixes": [
+        "Spectre.Console."
+      ],
+      "groupName": "Spectre.Console"
+    },
+    {
+      "matchManagers": [
+        "github-actions",
+        "dockerfile"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true
+    },
+    {
+      "matchManagers": [
+        "nuget"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

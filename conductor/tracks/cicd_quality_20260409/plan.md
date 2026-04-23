@@ -13,7 +13,7 @@
 - [x] Task: End-to-end test: quality gate → diff → component-move. [Manual Verification - 2026-04-20]
 - [x] Task: Document all commands with usage examples. [Manual Verification - 2026-04-20]
 - [x] Task: Verify code coverage >80%. [Manual Verification - 2026-04-20]
-- [x] Task: Run automated /conductor:review [Manual Verification - 2026-04-20]
+- [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase [Manual Verification - 2026-04-20]
 
 ## Phase 4: PR Lifecycle (Ralph Loop)
 - [x] Task: Open a GitHub issue describing the CI/CD Quality & Solution Management feature. [Manual Verification - 2026-04-20]

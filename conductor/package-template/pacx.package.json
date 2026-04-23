@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "packageId": "contoso.sample",
+  "version": "1.0.0",
+  "name": "Contoso Sample Package",
+  "description": "Minimal PACX package template",
+  "kind": "bundle",
+  "artifacts": [],
+  "deployment": [],
+  "metadata": {
+    "author": "PACX",
+    "purpose": "starter template"
+  }
+}

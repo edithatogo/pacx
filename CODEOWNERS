@@ -1,0 +1,12 @@
+# Default owner for the repository.
+* @edithatogo
+
+# Core command areas.
+/Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Data/ @edithatogo
+/Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Package/ @edithatogo
+/Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/ @edithatogo
+/Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ @edithatogo
+
+# Governance and release process.
+/conductor/ @edithatogo
+/.github/ @edithatogo

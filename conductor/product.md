@@ -14,7 +14,7 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 - Automation of repetitive Dataverse tasks.
 - Access to platform features only available via API.
 - Plugin-based extensibility for custom tools.
-- **Model Context Protocol (MCP) Server:** Exposes CLI commands as tools for AI agents.
+- **Model Context Protocol (MCP) Server:** Exposes CLI commands as tools for AI agents via a separate MCP host boundary.
 - **Advanced Automation Extensions:** Deep Flow management, run inspection, and connection visibility.
 - **spkl Parity:** Attribute-based plugin registration and flexible web resource mapping.
 - **Dataverse Platform Gaps:** CLI management for Custom APIs (Custom Actions), Catalog items, Elastic/Virtual tables, and Connection References.
@@ -70,7 +70,7 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 | **API Rate Limits** | Dataverse Web API (organization settings) + HTTP response headers | `ServiceClient` | Throttle info in `x-ratelimit` headers; org settings for limits. |
 | **Liquid / Power Pages Linting** | N/A (client-side processing) | Custom parser / Roslyn-style analyzer | Parse Liquid templates, check against known functions/objects. |
 | **MS Forms** | Forms internal API (`forms.office.com/formapi/api/{tenantId}/{users|groups}/{ownerId}/`) | Direct HTTP + OAuth2 (Client Credentials for user forms, ROPC for group forms) | List forms, get responses (paged), response count, export to CSV/SQL. **Undocumented API** — group forms require ROPC (no MFA). Read-only for now; create/update deferred. |
-| **GitHub PR Lifecycle** | GitHub REST API (`api.github.com`) | Octokit.NET | Open issues, create PRs, track review status, auto-apply conductor:review, detect merge conflicts, monitor PR acceptance. |
+| **GitHub Fork PR Lifecycle** | GitHub REST API (`api.github.com`) | Octokit.NET | Open PRs against the fork, track review status, auto-apply conductor:review, detect merge conflicts, and monitor merge readiness without creating upstream issues. |
 
 ---
 
@@ -207,24 +207,23 @@ The Forms API at `forms.office.com/formapi/api/` is undocumented but fully funct
 18. **E2E smoke test infrastructure** — Dedicated integration test project + CI workflow against real Dataverse environment.
 19. **Plugin loading test coverage** — Currently 0%. Add tests for CommandRegistry, PluginLoader, Bootstrapper with mock plugin DLLs. Target: >90% coverage.
 
-### PR Lifecycle Automation Protocol
+### Fork PR Lifecycle Automation Protocol
 
-**Problem:** Currently, after each feature track is completed, opening an issue, creating a PR, and monitoring for merge conflicts is manual. PRs can sit unreviewed indefinitely. Review-fix cycles require multiple manual passes.
+**Problem:** Currently, after each feature track is completed, opening issues and routing work through upstream PRs is the wrong delivery model for a maintained fork. Review-fix cycles can still take multiple manual passes.
 
-**Solution:** Add a standardized **PR Lifecycle (Ralph Loop) Phase** to every track's plan. The Ralph loop self-drives the review-fix cycle until the PR is actually ready.
+**Solution:** Add a standardized **Fork PR Lifecycle (Ralph Loop) Phase** to every track's plan. The Ralph loop self-drives the review-fix cycle until the fork PR is actually ready.
 
 **Standard Phase Template (added to every track):**
 ```markdown
-## Phase N: PR Lifecycle (Ralph Loop)
-- [ ] Task: Open a GitHub issue describing the feature/fix.
-- [ ] Task: Create a PR against the upstream repo with implementation.
+## Phase N: Fork PR Lifecycle (Ralph Loop)
+- [ ] Task: Create a PR against this fork with implementation.
 - [ ] Task: Run `/ralph-loop` on the PR with completion promise:
           "All Critical and High review issues resolved, PR ready for merge"
 - [ ] Task: Confirm PR is merged or document blockers.
 ```
 
 **How the Ralph Loop Works:**
-1. Enters the loop with the PR URL and completion promise.
+1. Enters the loop with the fork PR URL and completion promise.
 2. Runs `/conductor:review` on the PR.
 3. Applies all suggested fixes automatically.
 4. Commits the fixes.

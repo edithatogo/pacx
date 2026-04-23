@@ -1,0 +1,23 @@
+name: Welcome First-Time Contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            Thanks for opening your first issue in PACX. Please use the issue templates where possible and include repro steps or context.
+          pr-message: |
+            Thanks for opening your first pull request in PACX. Please use the PR template and include test evidence and upstream impact where relevant.

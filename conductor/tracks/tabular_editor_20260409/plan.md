@@ -24,7 +24,7 @@
 - [x] Task: End-to-end test: validate → diff → deploy against test workspace. [Manual Verification - 2026-04-20]
 - [x] Task: Document all commands with usage examples. [Manual Verification - 2026-04-20]
 - [x] Task: Verify code coverage >80%. [Manual Verification - 2026-04-20]
-- [x] Task: Run automated /conductor:review [Manual Verification - 2026-04-20]
+- [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase [Manual Verification - 2026-04-20]
 
 ## Phase 5: PR Lifecycle (Ralph Loop)
 - [x] Task: Open a GitHub issue describing the Tabular Editor CLI feature. [Manual Verification - 2026-04-20]

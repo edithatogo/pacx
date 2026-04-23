@@ -1,0 +1,28 @@
+name: Security disclosure
+description: Report a potential vulnerability privately
+labels:
+  - security
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not file security issues publicly. Use GitHub Security Advisories or the repo's private reporting channel.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe the concern.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What is the security impact or exposure?
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Share reproduction steps, affected versions, or mitigation ideas.

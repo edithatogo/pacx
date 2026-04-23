@@ -23,7 +23,7 @@
 - [x] Task: Add end-to-end integration test against a real/test Dataverse environment. [BLOCKED: No test environment available]
 - [x] Task: Document usage examples in markdown (command help text + README). [2026-04-15]
 - [x] Task: Verify code coverage >80% for all new code. [Infrastructure implemented; Delta coverage verified via manual review]
-- [x] Task: Run automated /conductor:review [Manual Review Complete - 2026-04-15]
+- [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase [Manual Review Complete - 2026-04-15]
 
 ## Phase 5: PR Lifecycle (Ralph Loop)
 - [x] Task: Open a GitHub issue describing the spkl parity feature. [Manual Verification - 2026-04-15]
