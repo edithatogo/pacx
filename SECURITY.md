@@ -27,6 +27,7 @@ We aim to acknowledge reports within 2 business days and work toward a coordinat
 - Renovate is the primary version-update bot for this repository.
 - Dependabot alerts and security updates are handled at the GitHub repository level only.
 - There is intentionally no `.github/dependabot.yml` in this repository, so Dependabot does not create routine version-bump pull requests.
+- Keep Dependabot notifications on security alerts only so routine version bumps stay out of your inbox.
 
 ## Supported releases
 
