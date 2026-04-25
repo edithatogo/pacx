@@ -12,7 +12,7 @@ These items are intentionally left for GitHub repository settings because they c
 
 ## Branch protection
 
-- Require CI checks on `main`.
+- Require CI checks on `master`.
 - Require at least one review before merge.
 - Disallow force pushes.
 - Disallow direct pushes.

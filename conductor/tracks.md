@@ -34,6 +34,10 @@ Tracks are organized by implementation priority, not phase order. Dependencies a
   *Link: [./tracks/governance_security_20260409/](./tracks/governance_security_20260409/)*
   *Status: COMPLETED — security audit-user, security sharing-report, dlp policy-audit, storage analytics, api ratelimit monitor*
 
+- [x] **Track: Security & Supply Chain**
+  *Link: [./tracks/security_supply_chain_20260421/](./tracks/security_supply_chain_20260421/)*
+  *Status: COMPLETED — disclosure policy, branch protection, Renovate + Dependabot security-only, SBOM, signed releases, signed release tags, SLSA provenance, and fork-only PR lifecycle closure.*
+
 - [x] **Track: Environment Lifecycle Management**
   *Link: [./tracks/env_lifecycle_20260409/](./tracks/env_lifecycle_20260409/)*
   *Status: COMPLETED — env create/clone/reset/backup/restore/capacity with API docs and validation*
@@ -117,10 +121,6 @@ Created in response to the 2026-04-21 audit covering "fake implementation" feedb
 - [ ] **Track: Code Quality Hardening**
   *Link: [./tracks/code_quality_hardening_20260421/](./tracks/code_quality_hardening_20260421/)*
   *Central Package Management, TreatWarningsAsErrors=true, Meziantou/Roslynator/Threading/BannedApi analyzers, deterministic builds, SourceLink, lockfiles, NuGetAudit, NetArchTest.*
-
-- [ ] **Track: Security & Supply Chain**
-  *Link: [./tracks/security_supply_chain_20260421/](./tracks/security_supply_chain_20260421/)*
-  *SECURITY.md, CODEOWNERS, branch protection, Renovate (primary updater) + Dependabot security-only (no email noise), CycloneDX SBOM, signed releases (Sigstore), SLSA provenance.*
 
 ### Priority 3: Developer & Contributor Experience (Medium)
 - [ ] **Track: Developer Experience**

@@ -47,4 +47,4 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 - [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. [a8ac32b]
 
 ## Phase 7: PR Lifecycle
-- [ ] Task: Open one PR per phase; `/ralph-loop`; merge.
+- [x] Task: Open one PR per phase; `/ralph-loop`; merge. Fork-only closure: this repository is maintained independently, so no upstream PR lifecycle will be used for this track.
