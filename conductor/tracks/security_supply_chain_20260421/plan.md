@@ -32,7 +32,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 - [x] Task: Release workflow emits a CycloneDX SBOM via `CycloneDX/cyclonedx-dotnet-bin` — attached to the GitHub Release.
 - [ ] Task: Sign NuGet packages with NuGet.org trusted publishing (already in ci_cd_hardening) + optional Authenticode via Azure Trusted Signing.
 - [ ] Task: Sign Git tags + releases with Sigstore (`sigstore/gh-action-sigstore-python`) or SSH signing. Release assets are now signed; tag signing remains open.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [~] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
 
 ## Phase 5: Scorecard & Badges
 - [x] Task: OpenSSF Scorecard workflow (already under ci_cd_hardening) → README badge.
