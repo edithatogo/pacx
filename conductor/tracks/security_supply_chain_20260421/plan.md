@@ -18,7 +18,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 - [ ] Task: Enable managers: `nuget`, `dotnet-sdk` (updates `global.json`), `github-actions` (SHA-pinned), `dockerfile` (devcontainer). BLOCKED: Renovate 43.125.1 rejects `dotnet-sdk` as an unsupported enabled manager; `nuget` already covers `global.json`.
 - [x] Task: Package rules: group all `xunit.*`, `Microsoft.Extensions.*`, `SonarAnalyzer.*`, `Spectre.Console.*`; auto-merge patch-level devDependencies; require review for major bumps. [84f30ea]
 - [x] Task: Schedule: "before 6am on Monday" to avoid weekend noise. [f0b0a6d]
-- [ ] Task: Validate via `renovate-config-validator`.
+- [x] Task: Validate via `renovate-config-validator`. [e896e77]
 - [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
 
 ## Phase 3: Dependabot Security-Only Mode
