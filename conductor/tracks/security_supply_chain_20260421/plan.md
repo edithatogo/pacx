@@ -22,7 +22,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 - [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. [4787992]
 
 ## Phase 3: Dependabot Security-Only Mode
-- [ ] Task: Add **no** `.github/dependabot.yml` (absence == no version updates).
+- [x] Task: Add **no** `.github/dependabot.yml` (absence == no version updates).
 - [ ] Task: In repo settings, enable: Dependabot alerts, Dependabot security updates (auto-PRs only when a CVE lands), **disable** version updates.
 - [ ] Task: Set notification preference to "Security alerts only" — no email noise from routine bumps.
 - [ ] Task: Document this policy in `SECURITY.md` so contributors understand.
