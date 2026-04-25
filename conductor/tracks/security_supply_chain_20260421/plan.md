@@ -30,7 +30,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 
 ## Phase 4: SBOM & Signing
 - [x] Task: Release workflow emits a CycloneDX SBOM via `CycloneDX/cyclonedx-dotnet-bin` — attached to the GitHub Release.
-- [ ] Task: Sign NuGet packages with NuGet.org trusted publishing (already in ci_cd_hardening) + optional Authenticode via Azure Trusted Signing.
+- [x] Task: Sign NuGet packages with NuGet.org trusted publishing (already in ci_cd_hardening) + optional Authenticode via Azure Trusted Signing. [5f3bcf1]
 - [x] Task: Sign Git tags + releases with Sigstore (`sigstore/gh-action-sigstore-python`) or SSH signing. Release assets are now signed; tag signing now has a dedicated `release-tag.yml` signer. [5c7c7c8]
 - [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. [61bcb04]
 
