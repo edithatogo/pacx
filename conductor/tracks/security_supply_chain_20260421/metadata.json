@@ -4,10 +4,10 @@
   "status": "in_progress",
   "phase": 7,
   "completed_at": null,
-  "note": "SECURITY.md, CODE_OF_CONDUCT.md, CODEOWNERS, Renovate (primary) + Dependabot security-only (no email noise), SBOM attached to release assets, Sigstore-signed release assets, SLSA provenance, package signing, OpenSSF Scorecard badge, OpenSSF Best Practices badge in progress, memory-only token cache, bearer-token redaction, trufflehog pre-commit hook, branch protection, repo-settings note; private vulnerability reporting and master branch protection are enabled",
+  "note": "SECURITY.md, CODE_OF_CONDUCT.md, CODEOWNERS, Renovate (primary) + Dependabot security-only (no email noise), SBOM attached to release assets, Sigstore-signed release assets, SLSA provenance, package signing, OpenSSF Scorecard badge, OpenSSF Best Practices badge in progress, memory-only token cache, bearer-token redaction, trufflehog pre-commit hook, branch protection, repo-settings note; private vulnerability reporting and master branch protection are enabled; Renovate dotnet-sdk manager enabled",
   "priority": "High",
   "created_at": "2026-04-21T00:00:00Z",
-  "updated_at": "2026-04-25T22:37:06+10:00",
+  "updated_at": "2026-04-25T23:10:00+10:00",
   "description": "Supply-chain security hardening: disclosure policy, signed releases, SBOM, OpenSSF compliance",
   "dependencies": ["ci_cd_hardening_20260421"],
   "api_sources": ["GitHub", "NuGet.org", "Sigstore", "OpenSSF Scorecard", "SLSA"]

@@ -15,7 +15,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 
 ## Phase 2: Renovate Setup
 - [x] Task: Add `renovate.json` at repo root with presets: `config:recommended`, `:dependencyDashboard`, `:semanticCommits`.
-- [ ] Task: Enable managers: `nuget`, `dotnet-sdk` (updates `global.json`), `github-actions` (SHA-pinned), `dockerfile` (devcontainer).
+- [x] Task: Enable managers: `nuget`, `dotnet-sdk` (updates `global.json`), `github-actions` (SHA-pinned), `dockerfile` (devcontainer). [a5592d8]
 - [ ] Task: Package rules: group all `xunit.*`, `Microsoft.Extensions.*`, `SonarAnalyzer.*`, `Spectre.Console.*`; auto-merge patch-level devDependencies; require review for major bumps.
 - [ ] Task: Schedule: "before 6am on Monday" to avoid weekend noise.
 - [ ] Task: Validate via `renovate-config-validator`.
