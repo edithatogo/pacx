@@ -11,6 +11,7 @@
   ],
   "enabledManagers": [
     "nuget",
+    "dotnet-sdk",
     "github-actions",
     "dockerfile"
   ],
