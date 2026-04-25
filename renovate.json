@@ -11,32 +11,31 @@
   ],
   "enabledManagers": [
     "nuget",
-    "dotnet-sdk",
     "github-actions",
     "dockerfile"
   ],
   "packageRules": [
     {
-      "matchPackagePatterns": [
-        "^xunit(\\.|$)"
+      "matchPackageNames": [
+        "/^xunit(\\.|$)/"
       ],
       "groupName": "xUnit"
     },
     {
-      "matchPackagePrefixes": [
-        "Microsoft.Extensions."
+      "matchPackageNames": [
+        "Microsoft.Extensions.{/,}**"
       ],
       "groupName": "Microsoft.Extensions"
     },
     {
-      "matchPackagePrefixes": [
-        "SonarAnalyzer."
+      "matchPackageNames": [
+        "SonarAnalyzer.{/,}**"
       ],
       "groupName": "SonarAnalyzer"
     },
     {
-      "matchPackagePrefixes": [
-        "Spectre.Console."
+      "matchPackageNames": [
+        "Spectre.Console.{/,}**"
       ],
       "groupName": "Spectre.Console"
     },
