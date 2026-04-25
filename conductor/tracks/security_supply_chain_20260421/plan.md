@@ -36,7 +36,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 
 ## Phase 5: Scorecard & Badges
 - [x] Task: OpenSSF Scorecard workflow (already under ci_cd_hardening) → README badge.
-- [ ] Task: Apply for OpenSSF Best Practices badge; put in-progress URL in README.
+- [x] Task: Apply for OpenSSF Best Practices badge; put in-progress URL in README.
 - [x] Task: Add SLSA provenance generation via `slsa-framework/slsa-github-generator` at release.
 - [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
 
