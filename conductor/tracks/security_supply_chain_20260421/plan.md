@@ -26,7 +26,7 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 - [x] Task: In repo settings, enable: Dependabot alerts, Dependabot security updates (auto-PRs only when a CVE lands), **disable** version updates. [92260ac]
 - [ ] Task: Set notification preference to "Security alerts only" — no email noise from routine bumps. BLOCKED: this is a user-level GitHub notifications setting; no repository API is available to change it from the working tree.
 - [x] Task: Document this policy in `SECURITY.md` so contributors understand. [33a5325]
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. [61bcb04]
 
 ## Phase 4: SBOM & Signing
 - [x] Task: Release workflow emits a CycloneDX SBOM via `CycloneDX/cyclonedx-dotnet-bin` — attached to the GitHub Release.
