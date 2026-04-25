@@ -51,9 +51,15 @@
       "automerge": true
     },
     {
-      "matchManagers": [
-        "nuget"
+      "matchDepTypes": [
+        "devDependencies"
       ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true
+    },
+    {
       "matchUpdateTypes": [
         "major"
       ],
