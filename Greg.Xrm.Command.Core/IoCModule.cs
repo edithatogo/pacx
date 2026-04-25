@@ -11,6 +11,7 @@ using Greg.Xrm.Command.Commands.WebResources.Templates;
 using Greg.Xrm.Command.Model;
 using Greg.Xrm.Command.Services.AttributeDeletion;
 using Greg.Xrm.Command.Services.OptionSet;
+using Greg.Xrm.Command.Services.Package;
 using Greg.Xrm.Command.Services.Plugin;
 using Greg.Xrm.Command.Commands.Solution.Service;
 
@@ -37,6 +38,7 @@ namespace Greg.Xrm.Command
 			builder.RegisterType<ScriptExtractionService>().As<IScriptExtractionService>();
 			builder.RegisterType<ScriptMetadataExtractor>().As<IScriptMetadataExtractor>();
 			builder.RegisterType<ScriptBuilder>().As<IScriptBuilder>();
+			builder.RegisterType<Services.Explore.ExploreApiClient>().As<Services.Explore.IExploreApiClient>();
 			builder.RegisterType<ConstantsGeneratorService>().As<IConstantsGeneratorService>();
 			builder.RegisterType<Commands.Settings.Model.SettingDefinition.Repository>().As<Commands.Settings.Model.ISettingDefinitionRepository>();
 			builder.RegisterType<Commands.Settings.Model.OrganizationSetting.Repository>().As<Commands.Settings.Model.IOrganizationSettingRepository>();
@@ -69,11 +71,20 @@ namespace Greg.Xrm.Command
 			builder.RegisterType<PluginPackage.Repository>().As<IPluginPackageRepository>();
 			builder.RegisterType<PluginAssembly.Repository>().As<IPluginAssemblyRepository>();
 			builder.RegisterType<PluginType.Repository>().As<IPluginTypeRepository>();
+			builder.RegisterType<PacxPackageReader>().As<IPacxPackageReader>();
+			builder.RegisterType<PacxPackageBuilder>().As<IPacxPackageBuilder>();
+			builder.RegisterType<PacxPackageInitializer>().As<IPacxPackageInitializer>();
+			builder.RegisterType<PacxPackageAuthoringService>().As<IPacxPackageAuthoringService>();
+			builder.RegisterType<PacxPackagePublisher>().As<IPacxPackagePublisher>();
+			builder.RegisterType<PacxPackageReleaser>().As<IPacxPackageReleaser>();
+			builder.RegisterType<PacxPackageDeployer>().As<IPacxPackageDeployer>();
 			builder.RegisterType<SdkMessage.Repository>().As<ISdkMessageRepository>();
 			builder.RegisterType<SdkMessageProcessingStep.Repository>().As<ISdkMessageProcessingStepRepository>();
 			builder.RegisterType<SdkMessageProcessingStepImage.Repository>().As<ISdkMessageProcessingStepImageRepository>();
 
 			builder.RegisterType<Form.Repository>().As<IFormRepository>();
+			
+			builder.RegisterType<Services.AiBuilder.AiBuilderApiClientFactory>().As<Services.AiBuilder.IAiBuilderApiClientFactory>();
 		}
 	}
 }

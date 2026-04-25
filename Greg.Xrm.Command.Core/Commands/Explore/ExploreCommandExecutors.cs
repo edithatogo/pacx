@@ -1,8 +1,9 @@
 using Greg.Xrm.Command.Services.Output;
+using Greg.Xrm.Command.Services.Explore;
+using Greg.Xrm.Command.Commands.Pr;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,33 +13,34 @@ namespace Greg.Xrm.Command.Commands.Explore
 	public class ExploreBranchesCommandExecutor : ICommandExecutor<ExploreBranchesCommand>
 	{
 		private readonly IOutput output;
-		private readonly HttpClient httpClient;
+		private readonly IExploreApiClient exploreApiClient;
 
-		public ExploreBranchesCommandExecutor(IOutput output) : this(output, CreateHttpClient())
-		{
-		}
-
-		public ExploreBranchesCommandExecutor(IOutput output, HttpClient httpClient)
+		public ExploreBranchesCommandExecutor(IOutput output, IExploreApiClient exploreApiClient)
 		{
 			this.output = output;
-			this.httpClient = httpClient;
-		}
-
-		private static HttpClient CreateHttpClient()
-		{
-			var client = new HttpClient();
-			client.DefaultRequestHeaders.Add("User-Agent", "pacx-explore-branches");
-			client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-			return client;
+			this.exploreApiClient = exploreApiClient;
 		}
 
 		public async Task<CommandResult> ExecuteAsync(ExploreBranchesCommand command, CancellationToken cancellationToken)
 		{
 			try
 			{
-				output.WriteLine($"Fetching branches from {command.Owner}/{command.Repo}...", ConsoleColor.Cyan);
+				var repo = ResolveRepository(command.Owner, command.Repo);
+				if (string.IsNullOrEmpty(repo))
+				{
+					return CommandResult.Fail("Unable to determine repository. Specify --owner and --repo or configure git remote.");
+				}
 
-				var branches = await GetBranchesAsync(command.Owner, command.Repo, cancellationToken);
+				var parts = repo!.Split('/');
+				if (parts.Length != 2)
+				{
+					return CommandResult.Fail($"Invalid repository '{repo}'. Expected 'owner/repo'.");
+				}
+				var (owner, name) = (parts[0], parts[1]);
+
+				output.WriteLine($"Fetching branches from {repo}...", ConsoleColor.Cyan);
+
+				var branches = await exploreApiClient.GetBranchesAsync(owner, name, cancellationToken).ConfigureAwait(false);
 
 				if (branches.Count == 0)
 				{
@@ -73,75 +75,62 @@ namespace Greg.Xrm.Command.Commands.Explore
 			}
 		}
 
-		private async Task<List<BranchInfo>> GetBranchesAsync(string owner, string repo, CancellationToken ct)
+		private static string? ResolveRepository(string? owner, string? repo)
 		{
-			var url = $"https://api.github.com/repos/{owner}/{repo}/branches";
-			var response = await httpClient.GetAsync(url, ct);
-			response.EnsureSuccessStatusCode();
-
-			var json = await response.Content.ReadAsStringAsync(ct);
-			var branches = JsonSerializer.Deserialize<List<GitHubBranch>>(json) ?? new();
-
-			return branches.Select(b => new BranchInfo
+			if (!string.IsNullOrWhiteSpace(owner) && !string.IsNullOrWhiteSpace(repo))
 			{
-				Name = b.Name,
-				Protected = b.Protected,
-				LastCommit = b.Commit?.Date
-			}).ToList();
+				return $"{owner.Trim()}/{repo.Trim()}";
+			}
+
+			if (!string.IsNullOrWhiteSpace(owner) || !string.IsNullOrWhiteSpace(repo))
+			{
+				return null;
+			}
+
+			return GitRepositoryResolver.ResolveFromRemote();
 		}
 
-		private class GitHubBranch
-		{
-			public string Name { get; set; } = "";
-			public bool Protected { get; set; }
-			public GitHubCommit? Commit { get; set; }
-		}
-
-		private class GitHubCommit
-		{
-			public string Sha { get; set; } = "";
-			public DateTime? Date { get; set; }
-		}
 	}
 
 	public class BranchInfo
 	{
-		public string Name { get; set; } = "";
-		public bool Protected { get; set; }
-		public DateTime? LastCommit { get; set; }
+		public string Name { get; init; } = "";
+		public bool Protected { get; init; }
+		public DateTime? LastCommit { get; init; }
 	}
 
 	public class ExploreCompareCommandExecutor : ICommandExecutor<ExploreCompareCommand>
 	{
 		private readonly IOutput output;
-		private readonly HttpClient httpClient;
+		private readonly IExploreApiClient exploreApiClient;
 
-		public ExploreCompareCommandExecutor(IOutput output) : this(output, CreateHttpClient())
-		{
-		}
-
-		public ExploreCompareCommandExecutor(IOutput output, HttpClient httpClient)
+		public ExploreCompareCommandExecutor(IOutput output, IExploreApiClient exploreApiClient)
 		{
 			this.output = output;
-			this.httpClient = httpClient;
-		}
-
-		private static HttpClient CreateHttpClient()
-		{
-			var client = new HttpClient();
-			client.DefaultRequestHeaders.Add("User-Agent", "pacx-explore-compare");
-			client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-			return client;
+			this.exploreApiClient = exploreApiClient;
 		}
 
 		public async Task<CommandResult> ExecuteAsync(ExploreCompareCommand command, CancellationToken cancellationToken)
 		{
 			try
 			{
-				output.WriteLine($"Comparing {command.Base}...{command.Head} in {command.Owner}/{command.Repo}...", ConsoleColor.Cyan);
+				var repo = ResolveRepository(command.Owner, command.Repo);
+				if (string.IsNullOrEmpty(repo))
+				{
+					return CommandResult.Fail("Unable to determine repository. Specify --owner and --repo or configure git remote.");
+				}
 
-				var comparison = await CompareBranchesAsync(
-					command.Owner, command.Repo, command.Base, command.Head, cancellationToken);
+				var parts = repo!.Split('/');
+				if (parts.Length != 2)
+				{
+					return CommandResult.Fail($"Invalid repository '{repo}'. Expected 'owner/repo'.");
+				}
+				var (owner, name) = (parts[0], parts[1]);
+
+				output.WriteLine($"Comparing {command.Base}...{command.Head} in {repo}...", ConsoleColor.Cyan);
+
+				var comparison = await exploreApiClient.CompareBranchesAsync(
+					owner, name, command.Base, command.Head, cancellationToken).ConfigureAwait(false);
 
 				output.WriteLine();
 				output.WriteLine($"Base: {command.Base}", ConsoleColor.Gray);
@@ -182,51 +171,19 @@ namespace Greg.Xrm.Command.Commands.Explore
 			}
 		}
 
-		private async Task<ComparisonResult> CompareBranchesAsync(
-			string owner, string repo, string @base, string head, CancellationToken ct)
+		private static string? ResolveRepository(string? owner, string? repo)
 		{
-			var url = $"https://api.github.com/repos/{owner}/{repo}/compare/{@base}...{head}";
-			var response = await httpClient.GetAsync(url, ct);
-			response.EnsureSuccessStatusCode();
-
-			var json = await response.Content.ReadAsStringAsync(ct);
-			var comparison = JsonSerializer.Deserialize<GitHubComparison>(json) ?? new();
-
-			return new ComparisonResult
+			if (!string.IsNullOrWhiteSpace(owner) && !string.IsNullOrWhiteSpace(repo))
 			{
-				AheadBy = comparison.AheadBy,
-				BehindBy = comparison.BehindBy,
-				Commits = comparison.Commits?.Select(c => new CommitInfo
-				{
-					Sha = c.Sha,
-					Message = c.Commit?.Message ?? "",
-					Author = c.Commit?.Author?.Name ?? ""
-				}).ToList() ?? new()
-			};
-		}
+				return $"{owner.Trim()}/{repo.Trim()}";
+			}
 
-		private class GitHubComparison
-		{
-			public int AheadBy { get; set; }
-			public int BehindBy { get; set; }
-			public List<GitHubCommit>? Commits { get; set; }
-		}
+			if (!string.IsNullOrWhiteSpace(owner) || !string.IsNullOrWhiteSpace(repo))
+			{
+				return null;
+			}
 
-		private class GitHubCommit
-		{
-			public string Sha { get; set; } = "";
-			public GitHubCommitDetail? Commit { get; set; }
-		}
-
-		private class GitHubCommitDetail
-		{
-			public string Message { get; set; } = "";
-			public GitHubAuthor? Author { get; set; }
-		}
-
-		private class GitHubAuthor
-		{
-			public string Name { get; set; } = "";
+			return GitRepositoryResolver.ResolveFromRemote();
 		}
 	}
 
