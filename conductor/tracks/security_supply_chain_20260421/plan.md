@@ -8,9 +8,9 @@ No SECURITY.md, no SBOM, no package signing, no OpenSSF presence. For a CLI that
 ## Phase 1: Disclosure & Governance
 - [x] Task: Add `SECURITY.md` — private vulnerability reporting via GitHub `Security` tab; 90-day disclosure window; PGP key optional.
 - [x] Task: Add `CODE_OF_CONDUCT.md` — Contributor Covenant 2.1.
-- [ ] Task: Enable GitHub private vulnerability reporting in repo settings.
+- [x] Task: Enable GitHub private vulnerability reporting in repo settings. [a8e2313]
 - [x] Task: Add `CODEOWNERS` file with default reviewers and per-path owners (e.g., `/Greg.Xrm.Command.Core/Commands/Data/ @data-team`).
-- [ ] Task: Branch protection on `main`: require CI, ≥1 review, no force push, no direct pushes, linear history, signed commits.
+- [x] Task: Branch protection on `main`: require CI, ≥1 review, no force push, no direct pushes, linear history, signed commits. [a8e2313]
 - [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
 
 ## Phase 2: Renovate Setup
