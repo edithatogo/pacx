@@ -57,7 +57,7 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [x] Task: `pacx flow disable <id>` — deactivate a flow. [a6eec86]
 - [x] Task: `pacx flow remove <id>` — delete a flow. [a6eec86]
 - [x] Task: Tests for all flow CRUD commands. [a6eec86]
-- [ ] Task: Documentation.
+- [x] Task: Documentation. [97ed6f0]
 
 ### Phase 2: Flow management surfaces
 - [x] Task: `pacx flow owner list/get/set/remove` — ownership commands. [fb1b1d9]
