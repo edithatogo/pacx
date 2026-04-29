@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>Greg.Xrm.Command.ArchitectureTests</RootNamespace>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="MSTest.TestAdapter" />
+    <PackageReference Include="MSTest.TestFramework" />
+    <PackageReference Include="ModelContextProtocol" />
+    <PackageReference Include="NetArchTest.Rules" />
+    <PackageReference Include="NuGet.Protocol" />
+    <PackageReference Include="Octokit" />
+    <PackageReference Include="Spectre.Console" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Greg.Xrm.Command.Core">
+      <HintPath>..\Greg.Xrm.Command.Core\bin\Debug\net11.0\Greg.Xrm.Command.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Greg.Xrm.Command.Interfaces">
+      <HintPath>..\Greg.Xrm.Command.Interfaces\bin\Debug\net11.0\Greg.Xrm.Command.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Greg.Xrm.Command.Plugin.Automation">
+      <HintPath>..\Greg.Xrm.Command.Plugin.Automation\bin\Debug\net11.0\Greg.Xrm.Command.Plugin.Automation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

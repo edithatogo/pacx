@@ -1,0 +1,33 @@
+{
+  "$schema": "https://dotnet.github.io/docfx/schemas/docfx.schema.json",
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_build/**",
+          "templates/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "assets/**"
+        ]
+      }
+    ],
+    "globalMetadata": {
+      "_appName": "PACX",
+      "_appTitle": "PACX Documentation",
+      "_appFooter": "PACX Power Platform CLI documentation"
+    },
+    "template": [
+      "default",
+      "templates/pacx"
+    ],
+    "dest": "_build"
+  }
+}

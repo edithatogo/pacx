@@ -1,0 +1,37 @@
+{
+  "track_id": "repo_hardening_capability_expansion_20260428",
+  "type": "feature",
+  "status": "planned",
+  "phase": 0,
+  "priority": "High",
+  "created_at": "2026-04-28T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "description": "Umbrella backlog for repo hardening, validation, observability, capability expansion, and adjacent ecosystem intake",
+  "dependencies": [
+    "release_supply_chain_hardening_20260428",
+    "validation_parity_coverage_20260428",
+    "adjacent_ecosystem_intake_20260428",
+    "security_supply_chain_20260421",
+    "ci_cd_hardening_20260421",
+    "cli_ux_20260421",
+    "testing_maturity_20260421",
+    "documentation_site_20260421",
+    "correlation_id_telemetry_20260427",
+    "connector_schema_validation_20260427"
+  ],
+  "api_sources": [
+    "GitHub REST API",
+    "GitHub Actions",
+    "Dataverse Web API",
+    "Power BI REST API",
+    "Fabric REST API",
+    "HTTP",
+    "MCP host",
+    "XrmToolBox",
+    "Flow Studio capability surfaces",
+    "Dataverse skills",
+    "Power Platform CLI",
+    "NuGet",
+    "PowerShell Gallery"
+  ]
+}

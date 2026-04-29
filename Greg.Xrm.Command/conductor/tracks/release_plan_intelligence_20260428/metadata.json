@@ -1,0 +1,24 @@
+{
+  "track_id": "release_plan_intelligence_20260428",
+  "type": "feature",
+  "status": "planned",
+  "phase": 13,
+  "priority": "Medium",
+  "created_at": "2026-04-28T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "description": "PACX-native release-plan intelligence for Microsoft Power Platform roadmap families",
+  "dependencies": [
+    "documentation_site_20260421",
+    "cli_ux_20260421",
+    "validation_parity_coverage_20260428"
+  ],
+  "api_sources": [
+    "releaseplans.microsoft.com",
+    "Microsoft Dataverse",
+    "Power Apps",
+    "Power Pages",
+    "Power Automate",
+    "AI Builder",
+    "Governance and administration"
+  ]
+}

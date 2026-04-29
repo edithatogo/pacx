@@ -1,0 +1,137 @@
+using System.Diagnostics;
+using System.IO.Packaging;
+using System.Text;
+using Autofac.Core;
+using Greg.Xrm.Command.Services.Connection;
+using Greg.Xrm.Command.Services.Output;
+using Microsoft.Crm.Sdk.Messages;
+using Microsoft.PowerPlatform.Dataverse.Client;
+
+namespace Greg.Xrm.Command.Commands.Ribbon
+{
+	public class GetRibbonCommandExecutor(
+		IOutput output,
+		IOrganizationServiceRepository organizationServiceRepository)
+
+	: ICommandExecutor<GetRibbonCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(GetRibbonCommand command, CancellationToken cancellationToken)
+		{
+			output.Write($"Connecting to the current dataverse environment...");
+			var crm = await organizationServiceRepository.GetCurrentConnectionAsync(cancellationToken).ConfigureAwait(false);
+			output.WriteLine("Done", ConsoleColor.Green);
+
+			string text;
+			try
+			{
+				byte[] compressedXml;
+				if (string.IsNullOrEmpty(command.EntityName))
+				{
+					output.Write("Downloading application ribbon...");
+					compressedXml = await DownloadApplicationRibbon(crm, cancellationToken).ConfigureAwait(false);
+				}
+				else
+				{
+					output.Write($"Downloading ribbon for entity: {command.EntityName}...");
+					compressedXml = await DownloadEntityRibbon(crm, command.EntityName, cancellationToken).ConfigureAwait(false);
+				}
+
+				var decompressedXml = UnzipRibbonXml(compressedXml);
+
+
+				text = Encoding.UTF8.GetString(decompressedXml);
+				output.WriteLine("Done", ConsoleColor.Green);
+
+				output.WriteLine(text);
+			}
+			catch (Exception ex)
+			{
+				output.WriteLine("Failed", ConsoleColor.Red);
+				return CommandResult.Fail(ex.Message, ex);
+			}
+
+
+			if (!string.IsNullOrWhiteSpace(command.FileName))
+			{
+				try
+				{
+					output.Write($"Saving ribbon XML to file: {command.FileName}...");
+					await File.WriteAllTextAsync(command.FileName, text).ConfigureAwait(false);
+					output.WriteLine("Done", ConsoleColor.Green);
+
+					if (command.AutoRun)
+					{
+						Process.Start(new ProcessStartInfo
+						{
+							FileName = command.FileName,
+							UseShellExecute = true,
+							CreateNoWindow = true
+						});
+					}
+				}
+				catch (Exception ex)
+				{
+					output.WriteLine("Failed", ConsoleColor.Red);
+					return CommandResult.Fail(ex.Message, ex);
+				}
+
+			}
+
+			return CommandResult.Success();
+		}
+
+
+		public static async Task<byte[]> DownloadApplicationRibbon(IOrganizationServiceAsync2 crm, CancellationToken cancellationToken = default)
+		{
+
+			// Create the request to retrieve application ribbon
+			var request = new RetrieveApplicationRibbonRequest();
+
+			// Execute the request
+			var response = (RetrieveApplicationRibbonResponse)await crm.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+
+			// Return the ribbon XML
+			return response.CompressedApplicationRibbonXml;
+		}
+
+		public async Task<byte[]> DownloadEntityRibbon(IOrganizationServiceAsync2 crm, string entityName, CancellationToken cancellationToken = default)
+		{
+			// Create the request to retrieve entity ribbon
+			var request = new RetrieveEntityRibbonRequest
+			{
+				EntityName = entityName
+			};
+
+			// Execute the request
+			var response = (RetrieveEntityRibbonResponse)await crm.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+
+			// Return the ribbon XML
+			return response.CompressedEntityXml;
+		}
+
+		private byte[] UnzipRibbonXml(byte[] data)
+		{
+
+			var memStream = new MemoryStream();
+			memStream.Write(data, 0, data.Length);
+			var package = (ZipPackage)ZipPackage.Open(memStream, FileMode.Open);
+
+			var part = (ZipPackagePart)package.GetPart(new Uri("/RibbonXml.xml", UriKind.Relative));
+			using (Stream strm = part.GetStream())
+			{
+				long len = strm.Length;
+				byte[] buff = new byte[len];
+				var totalRead = 0;
+				while (totalRead < buff.Length)
+				{
+					var read = strm.Read(buff, totalRead, buff.Length - totalRead);
+					if (read == 0)
+						throw new EndOfStreamException("Unexpected end of stream while reading ribbon XML.");
+
+					totalRead += read;
+				}
+				return buff;
+			}
+		}
+	}
+}

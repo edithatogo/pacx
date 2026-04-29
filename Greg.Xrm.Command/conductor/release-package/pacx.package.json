@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "packageId": "pacx.release.bundle",
+  "version": "0.1.0",
+  "name": "PACX Release Bundle",
+  "description": "Repository-owned release bundle used by CI to stage PACX package releases.",
+  "kind": "bundle",
+  "artifacts": [
+    {
+      "path": "README.md",
+      "role": "docs",
+      "required": true,
+      "contentType": "text/markdown"
+    },
+    {
+      "path": "data/release.json",
+      "role": "release-metadata",
+      "required": true,
+      "contentType": "application/json"
+    }
+  ],
+  "deployment": [],
+  "metadata": {
+    "createdBy": "PACX CI",
+    "purpose": "staged release bundle"
+  }
+}

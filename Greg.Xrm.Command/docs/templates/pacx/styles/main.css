@@ -1,0 +1,7 @@
+:root {
+  --pacx-accent: #2f6f5f;
+}
+
+.navbar-brand > span {
+  font-weight: 700;
+}

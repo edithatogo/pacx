@@ -1,0 +1,13 @@
+{
+  "required": [
+    "value"
+  ],
+  "properties": {
+    "@odata.context": {
+      "type": "string"
+    },
+    "value": {
+      "type": "array"
+    }
+  }
+}

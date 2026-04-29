@@ -1,0 +1,26 @@
+{
+  "stryker-config": {
+    "solution": "Greg.Xrm.Command/Greg.Xrm.Command.sln",
+    "project": "Greg.Xrm.Command/Greg.Xrm.Command.Core/Greg.Xrm.Command.Core.csproj",
+    "test-projects": [
+      "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/Greg.Xrm.Command.Core.TestSuite.csproj"
+    ],
+    "target-framework": "net11.0",
+    "reporters": [
+      "progress",
+      "cleartext",
+      "html"
+    ],
+    "thresholds": {
+      "high": 80,
+      "low": 60,
+      "break": 60
+    },
+    "mutate": [
+      "Greg.Xrm.Command/Greg.Xrm.Command.Core/**/*.cs"
+    ],
+    "ignore-mutations": [
+      "string"
+    ]
+  }
+}

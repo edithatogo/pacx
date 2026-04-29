@@ -1,0 +1,28 @@
+- name: Getting Started
+  href: index.md
+- name: Authentication
+  href: guides/authentication.md
+- name: Shell Completions
+  href: guides/shell-completions.md
+- name: Exit Codes
+  href: guides/exit-codes.md
+- name: Telemetry
+  href: guides/telemetry.md
+- name: Release Supply Chain
+  href: guides/release-supply-chain.md
+- name: Ecosystem Intake
+  href: guides/ecosystem-intake.md
+- name: Dataverse Skill Pack
+  href: guides/dataverse-skill-pack.md
+- name: Flow Studio Capability Surfaces
+  href: guides/flow-mcp-surfaces.md
+- name: Commands
+  href: reference/commands/index.md
+- name: Recipes
+  href: recipes/toc.yml
+- name: ADRs
+  href: adr/toc.yml
+- name: Contributing
+  href: contributing.md
+- name: Upgrade Guide
+  href: guides/migration-from-pac.md

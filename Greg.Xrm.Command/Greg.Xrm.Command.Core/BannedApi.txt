@@ -1,0 +1,2 @@
+P:System.DateTime.Now;Use DateTimeOffset.UtcNow or IClock instead.
+P:System.DateTime.Today;Use DateTimeOffset.UtcNow.Date or IClock instead.

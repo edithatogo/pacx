@@ -1,0 +1,78 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ "master", "main" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "master", "main" ]
+  workflow_dispatch:
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore Greg.Xrm.Command.sln --locked-mode
+
+      - name: Build
+        run: dotnet build Greg.Xrm.Command.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test Greg.Xrm.Command.sln --configuration Release --no-build --verbosity normal
+
+      - name: Format
+        run: dotnet format Greg.Xrm.Command.sln --verify-no-changes
+
+  package:
+    needs: validate
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Derive version
+        shell: pwsh
+        run: |
+          $version = $env:GITHUB_REF_NAME.TrimStart('v')
+          "VersionNumber=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Pack tool
+        run: |
+          dotnet pack Greg.Xrm.Command\Greg.Xrm.Command.csproj --configuration Release -p:VersionNumber=${{ env.VersionNumber }} --output ./artifacts
+          dotnet pack Greg.Xrm.Command.Interfaces\Greg.Xrm.Command.Interfaces.csproj --configuration Release -p:VersionNumber=${{ env.VersionNumber }} --output ./artifacts
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacx-packages
+          if-no-files-found: error
+          retention-days: 30
+          path: ./artifacts/*.nupkg
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./artifacts/*.nupkg
+          generate_release_notes: true

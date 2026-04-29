@@ -1,0 +1,14 @@
+{
+  "track_id": "dataverse_gaps_phase2_20260421",
+  "type": "feature",
+  "status": "completed",
+  "phase": 1,
+  "completed_at": "2026-04-28T00:00:00Z",
+  "note": "Business Rules, Business Process Flows, Duplicate Detection, Audit export, Field Security Profiles, Service Endpoints (webhooks), alternate keys, file columns, rollup recalc",
+  "priority": "Medium",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "description": "Second wave of Dataverse platform feature gaps identified post dataverse_gaps_20260409",
+  "dependencies": ["dataverse_gaps_20260409"],
+  "api_sources": ["Dataverse Web API"]
+}

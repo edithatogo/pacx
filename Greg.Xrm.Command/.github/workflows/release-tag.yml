@@ -1,0 +1,76 @@
+name: PACX Release Tag Signing
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Git tag to create and sign
+        required: true
+        type: string
+      target_ref:
+        description: Git ref to tag
+        required: false
+        default: master
+        type: string
+      message:
+        description: Optional annotated tag message
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  sign_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.target_ref }}
+
+      - name: Install gitsign
+        shell: bash
+        run: |
+          go install github.com/sigstore/gitsign@v0.13.0
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+
+      - name: Configure Git tag signing
+        shell: bash
+        env:
+          GITSIGN_TOKEN_PROVIDER: github-actions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config gpg.format x509
+          git config gpg.x509.program gitsign
+          git config tag.gpgsign true
+
+      - name: Create signed tag
+        shell: bash
+        env:
+          TAG_NAME: ${{ inputs.tag_name }}
+          TARGET_REF: ${{ inputs.target_ref }}
+          TAG_MESSAGE: ${{ inputs.message }}
+        run: |
+          if git rev-parse -q --verify "refs/tags/${TAG_NAME}" >/dev/null; then
+            echo "Tag ${TAG_NAME} already exists locally." >&2
+            exit 1
+          fi
+
+          if [ -z "${TAG_MESSAGE}" ]; then
+            TAG_MESSAGE="PACX ${TAG_NAME}"
+          fi
+
+          git tag -s "${TAG_NAME}" -m "${TAG_MESSAGE}" "${TARGET_REF}"
+          git tag -v "${TAG_NAME}"
+
+      - name: Push signed tag
+        shell: bash
+        env:
+          TAG_NAME: ${{ inputs.tag_name }}
+        run: git push origin "refs/tags/${TAG_NAME}"

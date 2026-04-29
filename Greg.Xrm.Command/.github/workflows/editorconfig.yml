@@ -1,0 +1,30 @@
+name: EditorConfig Check
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  editorconfig:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
+
+      - name: Download editorconfig-checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="v3.4.1"
+          curl -fsSL -o ec.tar.gz "https://github.com/editorconfig-checker/editorconfig-checker/releases/download/${version}/ec-linux-amd64.tar.gz"
+          tar -xzf ec.tar.gz
+
+      - name: Run editorconfig-checker
+        shell: bash
+        run: ./bin/ec-linux-amd64 -format github-actions

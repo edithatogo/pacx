@@ -1,0 +1,14 @@
+{
+  "track_id": "ai_builder_connectors_20260409",
+  "type": "feature",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": "2026-04-21T06:33:43.994+10:00",
+  "note": "Implemented: ai model list/train/publish/form-processor/connector import/export/test/validate via AI Builder & Power Platform APIs; unit tests implemented",
+  "priority": "Medium",
+  "created_at": "2026-04-09T01:00:00Z",
+  "updated_at": "2026-04-21T06:33:43.994+10:00",
+  "description": "AI Builder & Custom Connectors — Model management, form processor, connector import/export/test/validate",
+  "dependencies": [],
+  "api_sources": ["Dataverse Web API (aimodel, connector)", "AI Builder API", "HTTP"]
+}

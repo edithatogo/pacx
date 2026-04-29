@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Force Roslyn out of shared-compilation mode.
+    The .NET 11 preview compiler server is attempting to use a named pipe that is not available in this environment.
+  -->
+  <PropertyGroup>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+  </PropertyGroup>
+</Project>

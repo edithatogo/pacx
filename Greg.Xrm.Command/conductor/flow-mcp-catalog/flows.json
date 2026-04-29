@@ -1,0 +1,56 @@
+{
+  "flows": [
+    {
+      "name": "Flow Studio Authoring",
+      "provider": "Flow Studio",
+      "category": "Authoring",
+      "kind": "mcp tool",
+      "summary": "Packaged authoring operations for composing flow assets and commands.",
+      "homePage": "https://flowstudio.app/welcome/about",
+      "operations": [
+        "compose",
+        "package",
+        "preview"
+      ]
+    },
+    {
+      "name": "Flow Studio Debug",
+      "provider": "Flow Studio",
+      "category": "Debug",
+      "kind": "mcp tool",
+      "summary": "Inspect flow runs and failures.",
+      "homePage": "https://mcp.flowstudio.app/",
+      "operations": [
+        "debug",
+        "inspect run history",
+        "trace failure"
+      ]
+    },
+    {
+      "name": "Flow Studio Monitor",
+      "provider": "Flow Studio",
+      "category": "Monitoring",
+      "kind": "mcp tool",
+      "summary": "Run history and health monitoring for flow operations.",
+      "homePage": "https://mcp.flowstudio.app/",
+      "operations": [
+        "monitor",
+        "audit",
+        "alert"
+      ]
+    },
+    {
+      "name": "Flow Studio Govern",
+      "provider": "Flow Studio",
+      "category": "Governance",
+      "kind": "mcp tool",
+      "summary": "Approvals and environment controls for managed flow operations.",
+      "homePage": "https://flowstudio.app/welcome/about",
+      "operations": [
+        "govern",
+        "approve",
+        "audit"
+      ]
+    }
+  ]
+}

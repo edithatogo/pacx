@@ -1,0 +1,74 @@
+{
+  "tools": [
+    {
+      "id": "xrmtoolbox",
+      "name": "XrmToolBox",
+      "provider": "MscrmTools",
+      "category": "Dataverse",
+      "kind": "desktop app",
+      "summary": "Plugin host and tool library for Dataverse admins.",
+      "homePage": "https://www.xrmtoolbox.com/plugins/",
+      "capabilities": [
+        "discover plugins",
+        "browse extensions",
+        "launch utilities"
+      ]
+    },
+    {
+      "id": "flowstudio",
+      "name": "Flow Studio",
+      "provider": "EffortlessMetrics",
+      "category": "Power Automate",
+      "kind": "mcp service",
+      "summary": "MCP workflows for flow authoring and operations.",
+      "homePage": "https://flowstudio.app/welcome/about",
+      "capabilities": [
+        "build flows",
+        "debug flows",
+        "govern flows"
+      ]
+    },
+    {
+      "id": "dataverse-mcp",
+      "name": "Dataverse MCP",
+      "provider": "Microsoft",
+      "category": "Dataverse",
+      "kind": "mcp server",
+      "summary": "MCP surface for Dataverse tasks and skills.",
+      "homePage": "https://github.com/microsoft/Dataverse-MCP",
+      "capabilities": [
+        "dataverse actions",
+        "guided operations",
+        "skill packaging"
+      ]
+    },
+    {
+      "id": "pac-cli",
+      "name": "Power Platform CLI",
+      "provider": "Microsoft",
+      "category": "Power Platform",
+      "kind": "cli",
+      "summary": "Command-line tooling for Power Platform developer tasks.",
+      "homePage": "https://learn.microsoft.com/en-us/power-platform/developer/cli/introduction?tabs=windows",
+      "capabilities": [
+        "package",
+        "solution",
+        "environment"
+      ]
+    },
+    {
+      "id": "powerbi-api",
+      "name": "Power BI API",
+      "provider": "Microsoft",
+      "category": "Power BI",
+      "kind": "sdk",
+      "summary": "SDK and package discovery surface for Power BI development.",
+      "homePage": "https://www.nuget.org/packages/Microsoft.PowerBI.Api",
+      "capabilities": [
+        "browse packages",
+        "inspect SDKs",
+        "report authoring"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "track_id": "ci_cd_hardening_20260421",
+  "type": "infrastructure",
+  "status": "completed",
+  "phase": 6,
+  "completed_at": "2026-04-28T14:45:00+10:00",
+  "note": "Completed on the .NET 11 preview target: CI uses a reusable build workflow with OS matrix, concurrency, docs-only skips, package caching, coverage gate, Codecov OIDC, CodeQL, OpenSSF Scorecard, pinned actions, trusted-publishing release wiring, Release Drafter notes, production-nuget environment, smoke workflows, and release checklist. Local build validation remains gated by installing the .NET 11 preview SDK.",
+  "priority": "High",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T14:45:00+10:00",
+  "description": "Modernize GitHub Actions to 2026 SOTA for a .NET dotnet-tool OSS project",
+  "dependencies": [],
+  "api_sources": ["GitHub Actions", "NuGet.org Trusted Publishing", "Codecov OIDC"]
+}

@@ -1,0 +1,14 @@
+{
+  "track_id": "code_quality_hardening_20260421",
+  "type": "infrastructure",
+  "status": "completed",
+  "phase": 7,
+  "completed_at": "2026-04-25T21:53:48.9239145+10:00",
+  "note": "CPM, lockfiles for most projects, deterministic builds, SDK-backed SourceLink, TreatWarningsAsErrors, analyzer stack (Meziantou, Roslynator, Threading, BannedApi), NuGetAudit, NetArchTest",
+  "priority": "High",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-25T21:53:48.9239145+10:00",
+  "description": "Tighten build quality: warnings-as-errors, centralized package versions, comprehensive analyzers, architecture tests",
+  "dependencies": [],
+  "api_sources": []
+}

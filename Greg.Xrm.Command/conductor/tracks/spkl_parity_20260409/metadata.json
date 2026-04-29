@@ -1,0 +1,13 @@
+{
+  "track_id": "spkl_parity_20260409",
+  "type": "feature",
+  "status": "complete",
+  "phase": 5,
+  "completed_at": "2026-04-20T01:58:00Z",
+  "priority": "High",
+  "created_at": "2026-04-09T01:00:00Z",
+  "updated_at": "2026-04-09T01:00:00Z",
+  "description": "spkl Parity — Attribute-based plugin registration and web resource mapping",
+  "dependencies": [],
+  "api_sources": ["Dataverse Web API", "Mono.Cecil or System.Reflection.Metadata"]
+}

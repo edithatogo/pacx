@@ -1,0 +1,14 @@
+{
+  "parsed": true,
+  "verbs": [
+    "auth",
+    "whoami"
+  ],
+  "options": {
+    "--format": "json",
+    "--no-color": "",
+    "--profile": "sandbox",
+    "--verbose": ""
+  },
+  "output": ""
+}

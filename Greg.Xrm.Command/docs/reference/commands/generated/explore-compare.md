@@ -1,0 +1,22 @@
+# explore compare
+
+Compare branches and show commit differences.
+
+## Usage
+
+```powershell
+pacx explore compare
+```
+
+## Options
+
+| Option | Short | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| `--owner` | o | string? | False | Repository owner. Defaults to the current git remote if omitted. |
+| `--repo` | r | string? | False | Repository name. Defaults to the current git remote if omitted. |
+| `--base` | b | string | False | Base branch (default: master). |
+| `--format` | f | string | False | Output format: table, json. |
+
+## Source
+
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Explore/ExploreCommands.cs`

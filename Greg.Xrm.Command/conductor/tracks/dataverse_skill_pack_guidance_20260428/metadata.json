@@ -1,0 +1,22 @@
+{
+  "track_id": "dataverse_skill_pack_guidance_20260428",
+  "type": "tooling",
+  "status": "completed",
+  "phase": 2,
+  "priority": "Medium",
+  "created_at": "2026-04-28T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "description": "Reusable Dataverse skill-pack guidance surfaces inspired by Dataverse MCP and Dataverse-skills",
+  "dependencies": [
+    "adjacent_ecosystem_intake_20260428",
+    "documentation_site_20260421",
+    "cli_ux_20260421",
+    "correlation_id_telemetry_20260427"
+  ],
+  "api_sources": [
+    "Dataverse MCP",
+    "Dataverse skills",
+    "Microsoft Dataverse",
+    "Power Platform CLI"
+  ]
+}

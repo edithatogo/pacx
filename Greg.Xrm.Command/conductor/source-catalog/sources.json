@@ -1,0 +1,79 @@
+{
+  "sources": [
+    {
+      "name": "NuGet",
+      "provider": "Microsoft",
+      "category": "Packages",
+      "kind": "feed",
+      "summary": "Primary feed for .NET and PACX ecosystem packages.",
+      "homePage": "https://www.nuget.org/",
+      "packages": [
+        "Microsoft.PowerPlatform.Dataverse.Client",
+        "Microsoft.PowerApps.CLI",
+        "Microsoft.PowerBI.Api",
+        "Microsoft.PowerBI.Core",
+        "Microsoft.PowerBI.ReportAuthoring"
+      ],
+      "capabilities": [
+        "browse packages",
+        "inspect prerelease versions",
+        "follow package metadata"
+      ]
+    },
+    {
+      "name": "PowerShell Gallery",
+      "provider": "Microsoft",
+      "category": "Packages",
+      "kind": "feed",
+      "summary": "PowerShell module discovery for operator workflows.",
+      "homePage": "https://www.powershellgallery.com/packages",
+      "packages": [
+        "PowerFlowCore",
+        "PowerAutomateForCrmSolution",
+        "Microsoft.PowerPlatform.PowerAutomate.Desktop.Actions.SDK",
+        "Microsoft.PowerPlatform.PowerAutomate.Desktop.Actions.Templates"
+      ],
+      "capabilities": [
+        "browse modules",
+        "inspect release metadata",
+        "install from gallery"
+      ]
+    },
+    {
+      "name": "Dataverse",
+      "provider": "Microsoft",
+      "category": "SDKs",
+      "kind": "repository",
+      "summary": "SDK, client, and skill discovery for Dataverse development.",
+      "homePage": "https://github.com/microsoft/Dataverse",
+      "packages": [
+        "Microsoft.PowerPlatform.Dataverse.Client",
+        "Microsoft.PowerPlatform.Dataverse.Migration",
+        "Dataverse-skills"
+      ],
+      "capabilities": [
+        "browse repositories",
+        "inspect skills",
+        "discover connectors"
+      ]
+    },
+    {
+      "name": "Power BI",
+      "provider": "Microsoft",
+      "category": "SDKs",
+      "kind": "repository",
+      "summary": "Power BI client and report authoring discovery.",
+      "homePage": "https://github.com/Microsoft/PowerBI-CSharp",
+      "packages": [
+        "Microsoft.PowerBI.Api",
+        "Microsoft.PowerBI.Core",
+        "Microsoft.PowerBI.ReportAuthoring"
+      ],
+      "capabilities": [
+        "browse SDKs",
+        "inspect client libraries",
+        "discover report authoring packages"
+      ]
+    }
+  ]
+}

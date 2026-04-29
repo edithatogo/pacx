@@ -1,0 +1,10 @@
+{
+  "logicalName": "sample_elasticrecord",
+  "isElastic": true,
+  "columns": [
+    {
+      "logicalName": "sample_name",
+      "type": "String"
+    }
+  ]
+}

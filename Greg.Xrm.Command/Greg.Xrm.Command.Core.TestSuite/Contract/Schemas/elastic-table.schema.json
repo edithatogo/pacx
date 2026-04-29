@@ -1,0 +1,18 @@
+{
+  "required": [
+    "logicalName",
+    "isElastic",
+    "columns"
+  ],
+  "properties": {
+    "logicalName": {
+      "type": "string"
+    },
+    "isElastic": {
+      "type": "boolean"
+    },
+    "columns": {
+      "type": "array"
+    }
+  }
+}

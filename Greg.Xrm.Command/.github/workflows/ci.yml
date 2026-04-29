@@ -1,0 +1,184 @@
+name: PacPacx CI
+
+on:
+  push:
+    branches: [ master, main ]
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
+  pull_request:
+    branches: [ master, main ]
+    paths-ignore:
+      - "**/*.md"
+      - "docs/**"
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        dotnet_version: [11.0.100-preview.3.26207.106]
+    uses: ./.github/workflows/_build.yml
+    with:
+      solution_path: Greg.Xrm.Command/Greg.Xrm.Command.sln
+      os: ${{ matrix.os }}
+      dotnet_version: ${{ matrix.dotnet_version }}
+      collect_coverage: true
+
+  commit_messages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Validate Conventional Commits
+        shell: pwsh
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+          PUSH_HEAD_SHA: ${{ github.sha }}
+        run: |
+          function Get-AllowedScopes {
+            $config = Get-Content -LiteralPath ".commitlintrc.json" -Raw | ConvertFrom-Json
+            $scopeEnum = $config.rules.'scope-enum'
+            return @($scopeEnum[2])
+          }
+
+          function Test-ConventionalCommit([string]$Message, [string[]]$AllowedScopes) {
+            $pattern = '^(?<type>[a-z]+)(\((?<scope>[a-z0-9,-]+)\))?(?<breaking>!)?: (?<subject>.+)$'
+            $match = [regex]::Match($Message, $pattern)
+            if (-not $match.Success) {
+              return "Commit message '$Message' is not a valid Conventional Commit."
+            }
+
+            $scope = $match.Groups['scope'].Value
+            if ($scope) {
+              $scopes = $scope.Split(',', [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object { $_.Trim() }
+              foreach ($candidate in $scopes) {
+                if ($AllowedScopes -notcontains $candidate) {
+                  return "Commit scope '$candidate' in '$Message' is not allowed. Allowed scopes: $($AllowedScopes -join ', ')."
+                }
+              }
+            }
+
+            return $null
+          }
+
+          $allowedScopes = Get-AllowedScopes
+          $messages = New-Object System.Collections.Generic.List[string]
+
+          if ($env:EVENT_NAME -eq 'pull_request') {
+            $titleError = Test-ConventionalCommit -Message $env:PR_TITLE -AllowedScopes $allowedScopes
+            if ($titleError) {
+              $messages.Add("PR title: $titleError")
+            }
+
+            $commitRange = "$($env:PR_BASE_SHA)..$($env:PR_HEAD_SHA)"
+            $commitSubjects = @(git log --format=%s --no-merges $commitRange)
+            foreach ($subject in $commitSubjects) {
+              if ([string]::IsNullOrWhiteSpace($subject)) {
+                continue
+              }
+
+              $error = Test-ConventionalCommit -Message $subject -AllowedScopes $allowedScopes
+              if ($error) {
+                $messages.Add("Commit '$subject': $error")
+              }
+            }
+          }
+          elseif ($env:EVENT_NAME -eq 'push') {
+            $baseSha = $env:PUSH_BEFORE_SHA
+            if ([string]::IsNullOrWhiteSpace($baseSha) -or $baseSha -match '^0+$') {
+              $baseSha = (git rev-list --max-parents=0 HEAD | Select-Object -First 1)
+            }
+
+            $commitRange = "$baseSha..$($env:PUSH_HEAD_SHA)"
+            $commitSubjects = @(git log --format=%s --no-merges $commitRange)
+            foreach ($subject in $commitSubjects) {
+              if ([string]::IsNullOrWhiteSpace($subject)) {
+                continue
+              }
+
+              $error = Test-ConventionalCommit -Message $subject -AllowedScopes $allowedScopes
+              if ($error) {
+                $messages.Add("Commit '$subject': $error")
+              }
+            }
+          }
+
+          if ($messages.Count -gt 0) {
+            $messages | ForEach-Object { Write-Error $_ }
+            throw "Conventional Commit validation failed."
+          }
+
+  coverage:
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
+
+      - name: Download coverage artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: coverage-cobertura
+          path: coverage
+
+      - name: Summarize coverage
+        uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # v1.3.0
+        with:
+          filename: coverage/coverage.cobertura.xml
+          badge: true
+          fail_below_min: false
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5
+        with:
+          files: coverage/coverage.cobertura.xml
+          use_oidc: true
+          fail_ci_if_error: true
+
+      - name: Enforce coverage threshold
+        shell: pwsh
+        run: |
+          $thresholdFile = Join-Path $PWD "coverage-threshold.yml"
+          if (-not (Test-Path -LiteralPath $thresholdFile)) {
+            throw "Missing coverage threshold file: $thresholdFile"
+          }
+
+          $thresholdContent = Get-Content -LiteralPath $thresholdFile -Raw
+          if ($thresholdContent -notmatch 'minimum_line_coverage:\s*(\d+(?:\.\d+)?)') {
+            throw "Unable to parse minimum_line_coverage from $thresholdFile."
+          }
+
+          $minimum = [double]$Matches[1]
+          [xml]$coverage = Get-Content -LiteralPath "coverage/coverage.cobertura.xml" -Raw
+          $lineRate = [double]::Parse($coverage.coverage.'line-rate', [System.Globalization.CultureInfo]::InvariantCulture) * 100
+
+          if ($lineRate -lt $minimum) {
+            throw "Line coverage $([math]::Round($lineRate, 2))% is below the required threshold of $minimum%."
+          }

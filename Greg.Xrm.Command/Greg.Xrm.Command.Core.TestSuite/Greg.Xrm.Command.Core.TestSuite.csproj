@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>Greg.Xrm.Command</RootNamespace>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Commands\Delete\**" />
+    <EmbeddedResource Remove="Commands\Delete\**" />
+    <None Remove="Commands\Delete\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
+    <PackageReference Include="FsCheck.Xunit" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Moq" />
+    <PackageReference Include="MSTest.TestAdapter" />
+    <PackageReference Include="MSTest.TestFramework" />
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NuGet.Protocol" />
+    <PackageReference Include="Verify.MSTest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Greg.Xrm.Command.Core\Greg.Xrm.Command.Core.csproj" SkipGetTargetFrameworkProperties="true" />
+    <ProjectReference Include="..\Greg.Xrm.Command.Plugin.Automation\Greg.Xrm.Command.Plugin.Automation.csproj" SkipGetTargetFrameworkProperties="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Contract\Schemas\*.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Contract\Samples\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target Name="CopyTestHostRuntimeConfig" AfterTargets="Build">
+    <Copy
+      SourceFiles="$(TargetDir)$(AssemblyName).runtimeconfig.json"
+      DestinationFiles="$(TargetDir)testhost.runtimeconfig.json"
+      SkipUnchangedFiles="true"
+      Condition="Exists('$(TargetDir)$(AssemblyName).runtimeconfig.json')" />
+    <Delete Files="$(TargetDir)testhost.exe;$(TargetDir)testhost.x86.exe" />
+  </Target>
+
+</Project>

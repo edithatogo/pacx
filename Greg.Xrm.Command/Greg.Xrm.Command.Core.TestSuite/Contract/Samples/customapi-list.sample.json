@@ -1,0 +1,10 @@
+{
+  "@odata.context": "https://contoso.crm.dynamics.com/api/data/v9.2/$metadata#customapis",
+  "value": [
+    {
+      "customapiid": "00000000-0000-0000-0000-000000000001",
+      "name": "sample_CustomApi",
+      "uniquename": "sample_CustomApi"
+    }
+  ]
+}

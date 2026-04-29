@@ -1,0 +1,14 @@
+{
+  "track_id": "testing_maturity_20260421",
+  "type": "infrastructure",
+  "status": "completed",
+  "phase": 7,
+  "completed_at": "2026-04-28T00:00:00Z",
+  "note": "Completed on the .NET 11 preview target: snapshot baselines, Stryker.NET config and nightly workflow, MSTest-discovered architecture rules, raw Dataverse contract schemas, integration workflow gating, and connector schema property-style coverage are in place.",
+  "priority": "Medium",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "description": "Raise testing maturity from unit+integration to snapshot+mutation+contract+architecture",
+  "dependencies": ["code_quality_hardening_20260421"],
+  "api_sources": ["Dataverse Web API (contract)"]
+}

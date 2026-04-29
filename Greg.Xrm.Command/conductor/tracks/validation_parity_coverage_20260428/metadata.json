@@ -1,0 +1,24 @@
+{
+  "track_id": "validation_parity_coverage_20260428",
+  "type": "infrastructure",
+  "status": "in_progress",
+  "phase": 4,
+  "priority": "High",
+  "created_at": "2026-04-28T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "description": "Integration coverage, command parity validation, and expanded schema/contract checks",
+  "dependencies": [
+    "testing_maturity_20260421",
+    "connector_schema_validation_20260427",
+    "correlation_id_telemetry_20260427",
+    "documentation_site_20260421",
+    "cli_ux_20260421"
+  ],
+  "api_sources": [
+    "Dataverse Web API",
+    "Power BI REST API",
+    "Fabric REST API",
+    "HTTP",
+    "CLI metadata"
+  ]
+}

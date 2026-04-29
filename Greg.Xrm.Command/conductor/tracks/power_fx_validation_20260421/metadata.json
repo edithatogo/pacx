@@ -1,0 +1,14 @@
+{
+  "track_id": "power_fx_validation_20260421",
+  "type": "feature",
+  "status": "completed",
+  "phase": 5,
+  "completed_at": "2026-04-28T16:30:00+10:00",
+  "note": "Completed on the .NET 11 preview target: Microsoft.PowerFx.Core is referenced, power-fx validate/format/repl commands are present, expression/file validation and in-place formatting are implemented, docs and unit-test coverage are in place. Local build validation remains gated by installing the .NET 11 preview SDK.",
+  "priority": "Medium",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T16:30:00+10:00",
+  "description": "Power FX expression validation and formatting (pac parity)",
+  "dependencies": [],
+  "api_sources": ["Microsoft.PowerFx.Core NuGet"]
+}

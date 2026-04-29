@@ -1,0 +1,14 @@
+{
+  "track_id": "fabric_onelake_20260421",
+  "type": "feature",
+  "status": "completed",
+  "phase": 7,
+  "completed_at": "2026-04-28T15:10:00+10:00",
+  "note": "Completed on the .NET 11 preview target: Fabric token scope/client, workspace/capacity/lakehouse commands, OneLake shortcut commands, semantic model list/refresh, Dataverse link commands, docs recipe, and unit-test coverage are in place. Local build validation remains gated by installing the .NET 11 preview SDK.",
+  "priority": "High",
+  "created_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T15:10:00+10:00",
+  "description": "Fabric + OneLake integration bridging Dataverse data to Power BI via Fabric",
+  "dependencies": [],
+  "api_sources": ["Fabric REST API", "OneLake", "XMLA endpoint"]
+}

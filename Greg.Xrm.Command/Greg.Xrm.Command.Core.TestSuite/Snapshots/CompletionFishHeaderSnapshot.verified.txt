@@ -1,0 +1,8 @@
+{
+  "IsSuccess": true,
+  "lines": [
+    "complete -c pacx -f -a '--format'",
+    "complete -c pacx -f -a 'auth'",
+    "complete -c pacx -f -a 'auth whoami'"
+  ]
+}

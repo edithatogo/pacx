@@ -1,0 +1,26 @@
+{
+  "skillPacks": [
+    {
+      "id": "dataverse-skill-pack",
+      "title": "Dataverse Skill Pack",
+      "summary": "Reusable Dataverse operator guidance for discovery, validation, and schema inspection.",
+      "docs": {
+        "guide": "docs/guides/dataverse-skill-pack.md",
+        "recipe": "docs/recipes/dataverse-skill-pack.md"
+      },
+      "commands": [
+        "pacx auth whoami",
+        "pacx org info",
+        "pacx solution list",
+        "pacx validate all",
+        "pacx connector validate --file connector.json --strict",
+        "pacx package validate --file package.json"
+      ],
+      "consumers": [
+        "docs",
+        "agents",
+        "future automation"
+      ]
+    }
+  ]
+}

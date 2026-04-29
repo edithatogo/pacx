@@ -1,0 +1,14 @@
+{
+  "track_id": "correlation_id_telemetry_20260427",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 4,
+  "completed_at": "2026-04-28T11:44:17+10:00",
+  "note": "Correlation ID generation, output, override, and HTTP propagation are implemented; OTLP bridge deferred until cli_ux telemetry lands",
+  "priority": "Medium",
+  "created_at": "2026-04-27T00:00:00Z",
+  "updated_at": "2026-04-28T11:44:17+10:00",
+  "description": "Correlation ID and telemetry across AI Builder and connector commands",
+  "dependencies": ["upstream_baseline_sync_20260422"],
+  "api_sources": ["CLI telemetry"]
+}

@@ -1,0 +1,18 @@
+{
+  "required": [
+    "catalogid",
+    "name",
+    "publisher"
+  ],
+  "properties": {
+    "catalogid": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "object"
+    }
+  }
+}
