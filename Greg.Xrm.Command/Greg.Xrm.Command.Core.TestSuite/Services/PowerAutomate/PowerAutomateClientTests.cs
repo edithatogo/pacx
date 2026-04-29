@@ -175,6 +175,107 @@ namespace Greg.Xrm.Command.Services.PowerAutomate
 			}
 		}
 
+		// Phase 2: Permission/owner endpoints
+		[TestMethod]
+		public async Task ListFlowPermissionsAsync_ShouldBuildCorrectUrl()
+		{
+			var handler = new RecordingHandler("""{"value":[]}""");
+			var client = CreateClient(handler);
+
+			using var result = await client.ListFlowPermissionsAsync("MyEnv", "flow-1", false, CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "/environments/MyEnv/flows/flow-1/permissions");
+			StringAssert.Contains(uri, "api-version=2016-11-01");
+			Assert.AreEqual(HttpMethod.Get, handler.LastRequest?.Method);
+		}
+
+		[TestMethod]
+		public async Task ModifyFlowPermissionsAsync_WithPut_ShouldPostCorrectBody()
+		{
+			var handler = new RecordingHandler("{}");
+			var client = CreateClient(handler);
+
+			var putPrincipals = new[] { new { properties = new { principal = new { id = "user-1", type = "User" }, roleName = "CanEdit" } } };
+			await client.ModifyFlowPermissionsAsync("MyEnv", "flow-1", putPrincipals, null!, false, CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "/environments/MyEnv/flows/flow-1/modifyPermissions");
+			Assert.AreEqual(HttpMethod.Post, handler.LastRequest?.Method);
+		}
+
+		[TestMethod]
+		public async Task ModifyFlowPermissionsAsync_WithDelete_ShouldPostCorrectBody()
+		{
+			var handler = new RecordingHandler("{}");
+			var client = CreateClient(handler);
+
+			var deletePrincipals = new[] { new { id = "user-1" } };
+			await client.ModifyFlowPermissionsAsync("MyEnv", "flow-1", null!, deletePrincipals, false, CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "/environments/MyEnv/flows/flow-1/modifyPermissions");
+			Assert.AreEqual(HttpMethod.Post, handler.LastRequest?.Method);
+		}
+
+		[TestMethod]
+		public async Task ListEnvironmentsAsync_ShouldBuildCorrectUrl()
+		{
+			var handler = new RecordingHandler("""{"value":[]}""");
+			var client = CreateClient(handler);
+
+			using var result = await client.ListEnvironmentsAsync(CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "/providers/Microsoft.ProcessSimple/environments");
+			StringAssert.Contains(uri, "api-version=2016-11-01");
+		}
+
+		[TestMethod]
+		public async Task GetEnvironmentAsync_ShouldBuildCorrectUrl()
+		{
+			var handler = new RecordingHandler("""{"name":"env-1"}""");
+			var client = CreateClient(handler);
+
+			using var result = await client.GetEnvironmentAsync("MyEnv", CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "/environments/MyEnv");
+		}
+
+		[TestMethod]
+		public async Task ListRecycleBinFlowsAsync_ShouldIncludeSoftDeletedParam()
+		{
+			var handler = new RecordingHandler("""{"value":[]}""");
+			var client = CreateClient(handler);
+
+			using var result = await client.ListRecycleBinFlowsAsync("MyEnv", CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "include=softDeletedFlows");
+			StringAssert.Contains(uri, "/v2/flows");
+		}
+
+		[TestMethod]
+		public async Task RestoreRecycleBinFlowAsync_ShouldPostToRestoreEndpoint()
+		{
+			var handler = new RecordingHandler("{}");
+			var client = CreateClient(handler);
+
+			await client.RestoreRecycleBinFlowAsync("MyEnv", "flow-1", CancellationToken.None);
+
+			var uri = handler.LastRequest?.RequestUri?.ToString();
+			Assert.IsNotNull(uri);
+			StringAssert.Contains(uri, "/environments/MyEnv/flows/flow-1/restore");
+			Assert.AreEqual(HttpMethod.Post, handler.LastRequest?.Method);
+		}
+
 		private static PowerAutomateClient CreateClient(HttpMessageHandler handler)
 		{
 			return new PowerAutomateClient(

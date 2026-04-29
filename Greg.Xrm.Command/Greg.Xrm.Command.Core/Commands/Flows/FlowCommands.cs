@@ -96,4 +96,87 @@ namespace Greg.Xrm.Command.Commands.Flows
 	public class FlowHelpCommand
 	{
 	}
+
+	// Phase 2: Flow owner management
+	[Command("flow", "owner", "list", HelpText = "List owners/permissions of a Power Automate cloud flow.")]
+	public class FlowOwnerListCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or ID.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+
+		[Option("name", "n", Order = 2, Required = true, HelpText = "The name (ID) of the flow.")]
+		public string FlowName { get; set; } = string.Empty;
+
+		[Option("as-admin", "a", Order = 3, HelpText = "Run as admin.")]
+		public bool AsAdmin { get; set; }
+	}
+
+	[Command("flow", "owner", "ensure", HelpText = "Add or update a permission (owner) on a Power Automate cloud flow.")]
+	public class FlowOwnerEnsureCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or ID.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+
+		[Option("name", "n", Order = 2, Required = true, HelpText = "The name (ID) of the flow.")]
+		public string FlowName { get; set; } = string.Empty;
+
+		[Option("principal-id", "p", Order = 3, Required = true, HelpText = "The AAD object ID of the user or group.")]
+		public string PrincipalId { get; set; } = string.Empty;
+
+		[Option("principal-type", "t", Order = 4, DefaultValue = "User", HelpText = "Principal type: User or Group.")]
+		public string PrincipalType { get; set; } = "User";
+
+		[Option("role", "r", Order = 5, DefaultValue = "CanEdit", HelpText = "Role to assign: CanView or CanEdit.")]
+		public string Role { get; set; } = "CanEdit";
+
+		[Option("as-admin", "a", Order = 6, HelpText = "Run as admin.")]
+		public bool AsAdmin { get; set; }
+	}
+
+	[Command("flow", "owner", "remove", HelpText = "Remove a permission (owner) from a Power Automate cloud flow.")]
+	public class FlowOwnerRemoveCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or ID.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+
+		[Option("name", "n", Order = 2, Required = true, HelpText = "The name (ID) of the flow.")]
+		public string FlowName { get; set; } = string.Empty;
+
+		[Option("principal-id", "p", Order = 3, Required = true, HelpText = "The AAD object ID of the user or group to remove.")]
+		public string PrincipalId { get; set; } = string.Empty;
+
+		[Option("as-admin", "a", Order = 4, HelpText = "Run as admin.")]
+		public bool AsAdmin { get; set; }
+	}
+
+	// Phase 2: Flow environment
+	[Command("flow", "environment", "list", HelpText = "List Power Automate environments.")]
+	public class FlowEnvironmentListCommand
+	{
+	}
+
+	[Command("flow", "environment", "get", HelpText = "Get details of a Power Automate environment.")]
+	public class FlowEnvironmentGetCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or ID.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+	}
+
+	// Phase 2: Flow recycle bin
+	[Command("flow", "recyclebin", "list", HelpText = "List soft-deleted (recycle bin) Power Automate cloud flows.")]
+	public class FlowRecycleBinListCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or ID.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+	}
+
+	[Command("flow", "recyclebin", "restore", HelpText = "Restore a soft-deleted Power Automate cloud flow from the recycle bin.")]
+	public class FlowRecycleBinRestoreCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or ID.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+
+		[Option("name", "n", Order = 2, Required = true, HelpText = "The name (ID) of the flow to restore.")]
+		public string FlowName { get; set; } = string.Empty;
+	}
 }

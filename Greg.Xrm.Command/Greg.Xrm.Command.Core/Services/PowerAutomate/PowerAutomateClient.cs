@@ -134,6 +134,51 @@ namespace Greg.Xrm.Command.Services.PowerAutomate
 			return match.Success ? match.Groups[1].Value : $"{fallbackName}.zip";
 		}
 
+		public async Task<JsonDocument> ListFlowPermissionsAsync(string environmentName, string flowName, bool asAdmin, CancellationToken cancellationToken)
+		{
+			var adminScope = asAdmin ? "/scopes/admin" : string.Empty;
+			var path = $"/providers/Microsoft.ProcessSimple{adminScope}/environments/{Uri.EscapeDataString(environmentName)}/flows/{Uri.EscapeDataString(flowName)}/permissions?api-version=2016-11-01";
+			return await GetAsync(path, cancellationToken).ConfigureAwait(false);
+		}
+
+		public async Task ModifyFlowPermissionsAsync(string environmentName, string flowName, object putPrincipals, object deletePrincipals, bool asAdmin, CancellationToken cancellationToken)
+		{
+			var adminScope = asAdmin ? "/scopes/admin" : string.Empty;
+			var path = $"/providers/Microsoft.ProcessSimple{adminScope}/environments/{Uri.EscapeDataString(environmentName)}/flows/{Uri.EscapeDataString(flowName)}/modifyPermissions?api-version=2016-11-01";
+
+			var body = new Dictionary<string, object>();
+			if (putPrincipals != null)
+				body["put"] = putPrincipals;
+			if (deletePrincipals != null)
+				body["delete"] = deletePrincipals;
+
+			await SendVoidAsync(HttpMethod.Post, path, body, cancellationToken).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> ListEnvironmentsAsync(CancellationToken cancellationToken)
+		{
+			var path = $"/providers/Microsoft.ProcessSimple/environments?api-version=2016-11-01";
+			return await GetAsync(path, cancellationToken).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> GetEnvironmentAsync(string environmentName, CancellationToken cancellationToken)
+		{
+			var path = $"/providers/Microsoft.ProcessSimple/environments/{Uri.EscapeDataString(environmentName)}?api-version=2016-11-01";
+			return await GetAsync(path, cancellationToken).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> ListRecycleBinFlowsAsync(string environmentName, CancellationToken cancellationToken)
+		{
+			var path = $"/providers/Microsoft.ProcessSimple/scopes/admin/environments/{Uri.EscapeDataString(environmentName)}/v2/flows?api-version=2016-11-01&include=softDeletedFlows";
+			return await GetAsync(path, cancellationToken).ConfigureAwait(false);
+		}
+
+		public async Task RestoreRecycleBinFlowAsync(string environmentName, string flowName, CancellationToken cancellationToken)
+		{
+			var path = $"/providers/Microsoft.ProcessSimple/scopes/admin/environments/{Uri.EscapeDataString(environmentName)}/flows/{Uri.EscapeDataString(flowName)}/restore?api-version=2016-11-01";
+			await SendVoidAsync(HttpMethod.Post, path, null, cancellationToken).ConfigureAwait(false);
+		}
+
 		private Task<JsonDocument> GetAsync(string path, CancellationToken cancellationToken)
 			=> SendAsync(HttpMethod.Get, path, null, cancellationToken);
 

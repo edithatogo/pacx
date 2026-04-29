@@ -167,6 +167,130 @@ namespace Greg.Xrm.Command.Commands.Flows
 			StringAssert.Contains(result.ErrorMessage, "Failed to list flows");
 		}
 
+		[TestMethod]
+		public async Task FlowOwnerList_ShouldCallListPermissions()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("""{"value":[{"properties":{"roleName":"CanEdit"}}]}"""));
+			var output = new OutputToMemory();
+			var executor = new FlowOwnerListCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowOwnerListCommand
+			{
+				EnvironmentName = TestEnvironment,
+				FlowName = TestFlowName
+			}, CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("ListFlowPermissions", client.LastCall);
+			Assert.AreEqual(TestEnvironment, client.LastEnvironment);
+			Assert.AreEqual(TestFlowName, client.LastFlowName);
+		}
+
+		[TestMethod]
+		public async Task FlowOwnerEnsure_ShouldCallModifyPermissionsWithPut()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("{}"));
+			var output = new OutputToMemory();
+			var executor = new FlowOwnerEnsureCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowOwnerEnsureCommand
+			{
+				EnvironmentName = TestEnvironment,
+				FlowName = TestFlowName,
+				PrincipalId = "user-abc-123",
+				PrincipalType = "User",
+				Role = "CanEdit"
+			}, CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("ModifyFlowPermissions", client.LastCall);
+			StringAssert.Contains(output.ToString(), "added/updated");
+		}
+
+		[TestMethod]
+		public async Task FlowOwnerRemove_ShouldCallModifyPermissionsWithDelete()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("{}"));
+			var output = new OutputToMemory();
+			var executor = new FlowOwnerRemoveCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowOwnerRemoveCommand
+			{
+				EnvironmentName = TestEnvironment,
+				FlowName = TestFlowName,
+				PrincipalId = "user-abc-123"
+			}, CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("ModifyFlowPermissions", client.LastCall);
+			StringAssert.Contains(output.ToString(), "removed from");
+		}
+
+		[TestMethod]
+		public async Task FlowEnvironmentList_ShouldCallListEnvironments()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("""{"value":[{"name":"env-1"}]}"""));
+			var output = new OutputToMemory();
+			var executor = new FlowEnvironmentListCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowEnvironmentListCommand(), CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("ListEnvironments", client.LastCall);
+		}
+
+		[TestMethod]
+		public async Task FlowEnvironmentGet_ShouldCallGetEnvironment()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("""{"name":"env-1"}"""));
+			var output = new OutputToMemory();
+			var executor = new FlowEnvironmentGetCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowEnvironmentGetCommand
+			{
+				EnvironmentName = TestEnvironment
+			}, CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("GetEnvironment", client.LastCall);
+			Assert.AreEqual(TestEnvironment, client.LastEnvironment);
+		}
+
+		[TestMethod]
+		public async Task FlowRecycleBinList_ShouldCallListRecycleBin()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("""{"value":[]}"""));
+			var output = new OutputToMemory();
+			var executor = new FlowRecycleBinListCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowRecycleBinListCommand
+			{
+				EnvironmentName = TestEnvironment
+			}, CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("ListRecycleBinFlows", client.LastCall);
+			Assert.AreEqual(TestEnvironment, client.LastEnvironment);
+		}
+
+		[TestMethod]
+		public async Task FlowRecycleBinRestore_ShouldCallRestore()
+		{
+			var client = new RecordingPowerAutomateClient(JsonDocument.Parse("{}"));
+			var output = new OutputToMemory();
+			var executor = new FlowRecycleBinRestoreCommandExecutor(client, output);
+
+			var result = await executor.ExecuteAsync(new FlowRecycleBinRestoreCommand
+			{
+				EnvironmentName = TestEnvironment,
+				FlowName = TestFlowName
+			}, CancellationToken.None);
+
+			Assert.IsTrue(result.IsSuccess);
+			Assert.AreEqual("RestoreRecycleBinFlow", client.LastCall);
+			StringAssert.Contains(output.ToString(), "restored");
+		}
+
 		private sealed class RecordingPowerAutomateClient(JsonDocument response) : IPowerAutomateClient
 		{
 			public string? LastCall { get; private set; }
@@ -175,6 +299,9 @@ namespace Greg.Xrm.Command.Commands.Flows
 			public string? LastSharingStatus { get; private set; }
 			public bool LastWithSolutions { get; private set; }
 			public bool LastAsAdmin { get; private set; }
+			public string? LastPrincipalId { get; private set; }
+			public object? LastPutPrincipals { get; private set; }
+			public object? LastDeletePrincipals { get; private set; }
 
 			public Task<JsonDocument> ListFlowsAsync(string environmentName, string? sharingStatus, bool withSolutions, bool asAdmin, CancellationToken cancellationToken)
 			{
@@ -237,6 +364,54 @@ namespace Greg.Xrm.Command.Commands.Flows
 				return Task.FromResult<(byte[], string)>((Array.Empty<byte>(), $"{flowName}.zip"));
 			}
 
+			public Task<JsonDocument> ListFlowPermissionsAsync(string environmentName, string flowName, bool asAdmin, CancellationToken cancellationToken)
+			{
+				LastCall = "ListFlowPermissions";
+				LastEnvironment = environmentName;
+				LastFlowName = flowName;
+				LastAsAdmin = asAdmin;
+				return Task.FromResult(Clone(response));
+			}
+
+			public Task ModifyFlowPermissionsAsync(string environmentName, string flowName, object putPrincipals, object deletePrincipals, bool asAdmin, CancellationToken cancellationToken)
+			{
+				LastCall = "ModifyFlowPermissions";
+				LastEnvironment = environmentName;
+				LastFlowName = flowName;
+				LastAsAdmin = asAdmin;
+				LastPutPrincipals = putPrincipals;
+				LastDeletePrincipals = deletePrincipals;
+				return Task.CompletedTask;
+			}
+
+			public Task<JsonDocument> ListEnvironmentsAsync(CancellationToken cancellationToken)
+			{
+				LastCall = "ListEnvironments";
+				return Task.FromResult(Clone(response));
+			}
+
+			public Task<JsonDocument> GetEnvironmentAsync(string environmentName, CancellationToken cancellationToken)
+			{
+				LastCall = "GetEnvironment";
+				LastEnvironment = environmentName;
+				return Task.FromResult(Clone(response));
+			}
+
+			public Task<JsonDocument> ListRecycleBinFlowsAsync(string environmentName, CancellationToken cancellationToken)
+			{
+				LastCall = "ListRecycleBinFlows";
+				LastEnvironment = environmentName;
+				return Task.FromResult(Clone(response));
+			}
+
+			public Task RestoreRecycleBinFlowAsync(string environmentName, string flowName, CancellationToken cancellationToken)
+			{
+				LastCall = "RestoreRecycleBinFlow";
+				LastEnvironment = environmentName;
+				LastFlowName = flowName;
+				return Task.CompletedTask;
+			}
+
 			private static JsonDocument Clone(JsonDocument document)
 			{
 				return JsonDocument.Parse(document.RootElement.GetRawText());
@@ -264,6 +439,24 @@ namespace Greg.Xrm.Command.Commands.Flows
 				=> throw exception;
 
 			public Task<(byte[] content, string fileName)> ExportFlowAsZipAsync(string environmentName, string flowName, CancellationToken cancellationToken)
+				=> throw exception;
+
+			public Task<JsonDocument> ListFlowPermissionsAsync(string environmentName, string flowName, bool asAdmin, CancellationToken cancellationToken)
+				=> throw exception;
+
+			public Task ModifyFlowPermissionsAsync(string environmentName, string flowName, object putPrincipals, object deletePrincipals, bool asAdmin, CancellationToken cancellationToken)
+				=> throw exception;
+
+			public Task<JsonDocument> ListEnvironmentsAsync(CancellationToken cancellationToken)
+				=> throw exception;
+
+			public Task<JsonDocument> GetEnvironmentAsync(string environmentName, CancellationToken cancellationToken)
+				=> throw exception;
+
+			public Task<JsonDocument> ListRecycleBinFlowsAsync(string environmentName, CancellationToken cancellationToken)
+				=> throw exception;
+
+			public Task RestoreRecycleBinFlowAsync(string environmentName, string flowName, CancellationToken cancellationToken)
 				=> throw exception;
 		}
 	}

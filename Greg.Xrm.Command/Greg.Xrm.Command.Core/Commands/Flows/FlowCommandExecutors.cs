@@ -139,4 +139,160 @@ namespace Greg.Xrm.Command.Commands.Flows
 			}
 		}
 	}
+
+	// Phase 2: Flow owner management executors
+	public class FlowOwnerListCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowOwnerListCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowOwnerListCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.ListFlowPermissionsAsync(command.EnvironmentName, command.FlowName, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to list flow owners: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowOwnerEnsureCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowOwnerEnsureCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowOwnerEnsureCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var putPrincipals = new[]
+				{
+					new
+					{
+						properties = new
+						{
+							principal = new
+							{
+								id = command.PrincipalId,
+								type = command.PrincipalType
+							},
+							roleName = command.Role
+						}
+					}
+				};
+
+				await client.ModifyFlowPermissionsAsync(command.EnvironmentName, command.FlowName, putPrincipals, null!, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				output.WriteLine($"Owner added/updated for flow '{command.FlowName}'.", ConsoleColor.Green);
+				return CommandResult.Success();
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to ensure flow owner: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowOwnerRemoveCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowOwnerRemoveCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowOwnerRemoveCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var deletePrincipals = new[]
+				{
+					new
+					{
+						id = command.PrincipalId
+					}
+				};
+
+				await client.ModifyFlowPermissionsAsync(command.EnvironmentName, command.FlowName, null!, deletePrincipals, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				output.WriteLine($"Owner removed from flow '{command.FlowName}'.", ConsoleColor.Green);
+				return CommandResult.Success();
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to remove flow owner: {ex.Message}", ex);
+			}
+		}
+	}
+
+	// Phase 2: Flow environment executors
+	public class FlowEnvironmentListCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowEnvironmentListCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowEnvironmentListCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.ListEnvironmentsAsync(cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to list environments: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowEnvironmentGetCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowEnvironmentGetCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowEnvironmentGetCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.GetEnvironmentAsync(command.EnvironmentName, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to get environment: {ex.Message}", ex);
+			}
+		}
+	}
+
+	// Phase 2: Flow recycle bin executors
+	public class FlowRecycleBinListCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowRecycleBinListCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowRecycleBinListCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.ListRecycleBinFlowsAsync(command.EnvironmentName, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to list recycle bin flows: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowRecycleBinRestoreCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowRecycleBinRestoreCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowRecycleBinRestoreCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				await client.RestoreRecycleBinFlowAsync(command.EnvironmentName, command.FlowName, cancellationToken).ConfigureAwait(false);
+				output.WriteLine($"Flow '{command.FlowName}' has been restored.", ConsoleColor.Green);
+				return CommandResult.Success();
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to restore flow: {ex.Message}", ex);
+			}
+		}
+	}
 }
