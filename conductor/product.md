@@ -17,6 +17,9 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 - **Model Context Protocol (MCP) Server:** Exposes CLI commands as tools for AI agents via a separate MCP host boundary.
 - **Advanced Automation Extensions:** Deep Flow management, run inspection, and connection visibility.
 - **spkl Parity:** Attribute-based plugin registration and flexible web resource mapping.
+- **Power Apps CLI:** Full CRUD, consent, ownership, and permission management for canvas/model-driven apps via the `pa app *` command group.
+- **pnp/cli-microsoft365 Parity:** Command reference parity with pnp for flow, Power Apps, and Power Platform admin commands, documented in `docs/guides/pnp-parity.md`.
+- **Platform Admin Extensions:** On-premises gateway discovery, management application lifecycle, and tenant settings via `gateway *`, `managementapp *`, and `tenant settings *` commands.
 - **Dataverse Platform Gaps:** CLI management for Custom APIs (Custom Actions), Catalog items, Elastic/Virtual tables, and Connection References.
 - **Power BI Semantic Model CLI:** Tabular Editor 3 capabilities via CLI — BIM deploy, diff, validate, and translation management.
 - Interactive mode for command discovery and execution.
