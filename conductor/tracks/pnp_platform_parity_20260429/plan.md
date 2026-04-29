@@ -73,13 +73,13 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [x] Task: Tests and documentation. [4e876d9]
 
 ### Phase 4: Platform admin
-- [ ] Task: `pacx gateway list/get` — gateway discovery.
-- [ ] Task: `pacx management app list/add` — management apps.
-- [ ] Task: `pacx admin tenant settings list/set` — tenant settings.
-- [ ] Task: `pacx solution publisher list/get/add/remove` — publisher CRUD.
-- [ ] Task: `pacx dataverse table get/remove` and `table row list/remove`.
-- [ ] Task: `pacx ai model remove` — remove AI Builder models.
-- [ ] Task: `pacx copilot agent remove` — remove Copilot agents.
+- [x] Task: `pacx gateway list/get` — gateway discovery. [b2e2e60]
+- [x] Task: `pacx management app list/add` — management apps. [b2e2e60]
+- [x] Task: `pacx admin tenant settings list/set` — tenant settings. [b2e2e60]
+- [ ] Task: `pacx solution publisher list/get/add/remove` — publisher CRUD. (Covered by existing `solution getPublisherList`)
+- [ ] Task: `pacx dataverse table get/remove` and `table row list/remove`. (Deferred — existing coverage)
+- [ ] Task: `pacx ai model remove` — remove AI Builder models. (Deferred — existing `ai model list/train/publish`)
+- [ ] Task: `pacx copilot agent remove` — remove Copilot agents. (Deferred — complex Dataverse action)
 - [ ] Task: Tests and documentation.
 
 ### Phase 5: Documentation & parity tracking
