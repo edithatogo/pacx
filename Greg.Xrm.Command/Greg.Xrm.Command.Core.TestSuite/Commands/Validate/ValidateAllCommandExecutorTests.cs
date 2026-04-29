@@ -1,4 +1,5 @@
 using Greg.Xrm.Command.Services.Output;
+using Greg.Xrm.Command.Parsing;
 using Moq;
 
 namespace Greg.Xrm.Command.Commands.Validate

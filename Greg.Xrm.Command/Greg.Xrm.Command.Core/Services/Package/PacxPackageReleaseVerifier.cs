@@ -136,7 +136,16 @@ namespace Greg.Xrm.Command.Services.Package
 				}
 
 				VerifyProvenance(provenance, manifest, releaseManifestPath, packagePath, checksumErrors);
-				VerifySbom(sbom, manifest, releaseManifestPath, packagePath, checksumErrors);
+
+				// Create a package manifest from the release manifest for SBOM verification
+				var packageManifest = new PacxPackageManifest
+				{
+					PackageId = manifest.PackageId,
+					Version = manifest.Version,
+					Name = manifest.Name,
+					Kind = manifest.Kind,
+				};
+				VerifySbom(sbom, packageManifest, releaseManifestPath, packagePath, checksumErrors);
 
 				var checksumEntries = ReadChecksums(checksumsPath);
 				VerifyChecksum(packagePath, checksumEntries, checksumErrors);

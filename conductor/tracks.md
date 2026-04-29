@@ -198,6 +198,48 @@ These four tracks have `Overview / Scope / Success Criteria` plus Phase/Task dec
 
 ---
 
+## New Tracks (2026-04-29)
+
+Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parity gap analysis.
+
+- [ ] **Track: Adjacent Ecosystem Intake**
+  *Link: [./tracks/adjacent_ecosystem_intake_20260429/](./tracks/adjacent_ecosystem_intake_20260429/)*
+  *Status: PENDING — Tool catalog, browse/install/run surfaces, source catalog, flow MCP catalog, skill pack catalog.*
+
+- [ ] **Track: Dataverse Skill Pack Guidance**
+  *Link: [./tracks/dataverse_skill_pack_guidance_20260429/](./tracks/dataverse_skill_pack_guidance_20260429/)*
+  *Status: PENDING — Skill pack catalog JSON, guidance docs.*
+
+- [ ] **Track: Flow Studio MCP Surfaces**
+  *Link: [./tracks/flow_studio_mcp_surfaces_20260429/](./tracks/flow_studio_mcp_surfaces_20260429/)*
+  *Status: PENDING — 12 MCP flow command files (browse, debug, govern, inspect, monitor, run), flow catalog, guide.*
+
+- [ ] **Track: Forms Authoring**
+  *Link: [./tracks/forms_authoring_20260429/](./tracks/forms_authoring_20260429/)*
+  *Status: PENDING — 20 command files (create/update/delete/publish/inspect, question/section manipulation), 28 tests.*
+
+- [ ] **Track: Release Plan Intelligence**
+  *Link: [./tracks/release_plan_intelligence_20260429/](./tracks/release_plan_intelligence_20260429/)*
+  *Status: PENDING — All 9 tasks across 3 phases pending.*
+
+- [ ] **Track: Release Supply Chain Hardening**
+  *Link: [./tracks/release_supply_chain_hardening_20260429/](./tracks/release_supply_chain_hardening_20260429/)*
+  *Status: PARTIAL (6/9 tasks done) — Provenance, SBOM, release verification done. Signing and release gates pending.*
+
+- [ ] **Track: Repo Hardening Capability Expansion**
+  *Link: [./tracks/repo_hardening_capability_expansion_20260429/](./tracks/repo_hardening_capability_expansion_20260429/)*
+  *Status: PENDING — Umbrella meta-track delegating to child tracks. Only decomposition complete.*
+
+- [ ] **Track: Validation Parity & Coverage**
+  *Link: [./tracks/validation_parity_coverage_20260429/](./tracks/validation_parity_coverage_20260429/)*
+  *Status: PARTIAL (6/12 tasks done) — ValidateAll orchestration, schema/contract validation, command reference parity done. Integration coverage pending.*
+
+- [~] **Track: pnp/cli-microsoft365 Power Platform Parity**
+  *Link: [./tracks/pnp_platform_parity_20260429/](./tracks/pnp_platform_parity_20260429/)*
+  *Status: IN PROGRESS — Implementation started.*
+
+---
+
 ## Track Dependency Graph
 
 ```

@@ -1,0 +1,14 @@
+{
+  "track_id": "release_supply_chain_hardening_20260429",
+  "type": "infrastructure",
+  "status": "in_progress",
+  "phase": 2,
+  "completed_at": null,
+  "note": "Partial (6/9 tasks done). Provenance, SBOM, release verification done. Signing and release gates pending.",
+  "priority": "High",
+  "created_at": "2026-04-29T00:00:00+10:00",
+  "updated_at": "2026-04-29T00:00:00+10:00",
+  "description": "Harden release supply chain — provenance, SBOM, signing, verification, and release gates",
+  "dependencies": ["ci_cd_hardening_20260421"],
+  "api_sources": ["Sigstore/cosign", "NuGet signing", "GitHub attestations"]
+}

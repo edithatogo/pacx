@@ -1,0 +1,142 @@
+using System.Text.Json;
+using Greg.Xrm.Command.Services.Output;
+using Greg.Xrm.Command.Services.PowerAutomate;
+
+namespace Greg.Xrm.Command.Commands.Flows
+{
+	internal static class FlowCommandOutput
+	{
+		public static CommandResult WriteJson(IOutput output, JsonDocument document)
+		{
+			using (document)
+			{
+				output.WriteLine(JsonSerializer.Serialize(document.RootElement, new JsonSerializerOptions { WriteIndented = true }));
+			}
+			return CommandResult.Success();
+		}
+	}
+
+	public class FlowListCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowListCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowListCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.ListFlowsAsync(command.EnvironmentName, command.SharingStatus, command.WithSolutions, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to list flows: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowGetCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowGetCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowGetCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.GetFlowAsync(command.EnvironmentName, command.FlowName, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to get flow: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowEnableCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowEnableCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowEnableCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.EnableFlowAsync(command.EnvironmentName, command.FlowName, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to enable flow: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowDisableCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowDisableCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowDisableCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				var result = await client.DisableFlowAsync(command.EnvironmentName, command.FlowName, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				return FlowCommandOutput.WriteJson(output, result);
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to disable flow: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowRemoveCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowRemoveCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowRemoveCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				await client.DeleteFlowAsync(command.EnvironmentName, command.FlowName, command.AsAdmin, cancellationToken).ConfigureAwait(false);
+				output.WriteLine($"Flow '{command.FlowName}' has been deleted.", ConsoleColor.Green);
+				return CommandResult.Success();
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to delete flow: {ex.Message}", ex);
+			}
+		}
+	}
+
+	public class FlowExportCommandExecutor(
+		IPowerAutomateClient client,
+		IOutput output) : ICommandExecutor<FlowExportCommand>
+	{
+		public async Task<CommandResult> ExecuteAsync(FlowExportCommand command, CancellationToken cancellationToken)
+		{
+			try
+			{
+				if (string.Equals(command.Format, "json", StringComparison.OrdinalIgnoreCase))
+				{
+					var result = await client.ExportFlowAsJsonAsync(command.EnvironmentName, command.FlowName, cancellationToken).ConfigureAwait(false);
+					var outputPath = command.OutputPath ?? $"{command.FlowName}.json";
+					var json = JsonSerializer.Serialize(result.RootElement, new JsonSerializerOptions { WriteIndented = true });
+					await File.WriteAllTextAsync(outputPath, json, cancellationToken).ConfigureAwait(false);
+					output.WriteLine($"Flow exported to {outputPath}", ConsoleColor.Green);
+				}
+				else
+				{
+					var (content, fileName) = await client.ExportFlowAsZipAsync(command.EnvironmentName, command.FlowName, cancellationToken).ConfigureAwait(false);
+					var outputPath = command.OutputPath ?? fileName;
+					await File.WriteAllBytesAsync(outputPath, content, cancellationToken).ConfigureAwait(false);
+					output.WriteLine($"Flow exported to {outputPath}", ConsoleColor.Green);
+				}
+
+				return CommandResult.Success();
+			}
+			catch (Exception ex)
+			{
+				return CommandResult.Fail($"Failed to export flow: {ex.Message}", ex);
+			}
+		}
+	}
+}

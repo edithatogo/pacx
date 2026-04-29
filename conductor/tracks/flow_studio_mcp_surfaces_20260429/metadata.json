@@ -1,0 +1,14 @@
+{
+  "track_id": "flow_studio_mcp_surfaces_20260429",
+  "type": "feature",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "12 MCP flow command files (browse, debug, govern, inspect, monitor, run), flow catalog, guide.",
+  "priority": "Medium",
+  "created_at": "2026-04-29T00:00:00+10:00",
+  "updated_at": "2026-04-29T00:00:00+10:00",
+  "description": "MCP server surfaces for Flow Studio integration — browse, debug, govern, inspect, monitor, run flows",
+  "dependencies": [],
+  "api_sources": ["Flow Studio MCP API", "Power Automate Management API"]
+}

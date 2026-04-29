@@ -1,7 +1,7 @@
 {
   "version": 2,
   "dependencies": {
-    "net10.0": {
+    "net11.0": {
       "Autofac.Extensions.DependencyInjection": {
         "type": "Direct",
         "requested": "[11.0.0, )",
@@ -96,7 +96,6 @@
           "Microsoft.Identity.Client.Extensions.Msal": "4.66.1",
           "Newtonsoft.Json": "13.0.1",
           "System.Configuration.ConfigurationManager": "6.0.0",
-          "System.Reflection.TypeExtensions": "4.7.0",
           "System.Runtime.Caching": "4.7.0",
           "System.Security.Permissions": "6.0.0",
           "System.ServiceModel.Http": "8.1.2",
@@ -516,6 +515,11 @@
           "Microsoft.IdentityModel.Logging": "8.16.0"
         }
       },
+      "Microsoft.PowerFx.Transport.Attributes": {
+        "type": "Transitive",
+        "resolved": "1.8.1",
+        "contentHash": "74zMpGpT+pSbSgRDbRf85sZT2v04XzpF5tDAEN/P8rlEndk7eZFhTJCzQIkpZ8GQauHXR97uQ+1DgC471XjpmA=="
+      },
       "Microsoft.SqlServer.Server": {
         "type": "Transitive",
         "resolved": "1.0.0",
@@ -624,11 +628,6 @@
           "Microsoft.IdentityModel.Tokens": "8.16.0"
         }
       },
-      "System.Reflection.TypeExtensions": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "VybpaOQQhqE6siHppMktjfGBw1GCwvCqiufqmP8F1nj7fTUNtW35LOEt3UZTEsECfo+ELAl/9o9nJx3U91i7vA=="
-      },
       "System.Runtime.Caching": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -674,13 +673,13 @@
           "Microsoft.Extensions.Hosting": "[10.0.6, )",
           "Microsoft.Extensions.Logging.Console": "[10.0.6, )",
           "Microsoft.Identity.Client": "[4.66.1, )",
+          "Microsoft.PowerFx.Core": "[1.8.1, )",
           "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
           "ModelContextProtocol": "[1.2.0, )",
           "NuGet.Protocol": "[7.3.1, )",
           "Octokit": "[14.0.0, )",
           "Pluralize.NET": "[1.0.2, )",
           "Spectre.Console": "[0.55.2, )",
-          "System.ComponentModel.Annotations": "[5.0.0, )",
           "System.IO.Packaging": "[10.0.6, )",
           "System.Reflection.MetadataLoadContext": "[10.0.6, )",
           "System.Security.Cryptography.Xml": "[10.0.6, )",
@@ -694,7 +693,6 @@
           "Autofac.Extensions.DependencyInjection": "[11.0.0, )",
           "ClosedXML": "[0.105.0, )",
           "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
-          "System.ComponentModel.Annotations": "[5.0.0, )",
           "System.Security.Cryptography.Xml": "[10.0.6, )",
           "System.ServiceModel.Http": "[10.0.652802, )",
           "System.ServiceModel.Primitives": "[10.0.652802, )"
@@ -717,6 +715,12 @@
         "requested": "[2.0.0, )",
         "resolved": "2.0.0",
         "contentHash": "pmmrI3qPE53xEJEcg575jQeDNPzMWfNJO8/SASlB9PLPrGVrsyVNFRrvfo+3BzcbQxfUBF1//gTOiJ82dOTlTw=="
+      },
+      "Microsoft.Bcl.AsyncInterfaces": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.0, )",
+        "resolved": "6.0.0",
+        "contentHash": "UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg=="
       },
       "Microsoft.Extensions.Logging": {
         "type": "CentralTransitive",
@@ -760,6 +764,16 @@
         "contentHash": "mE+m3pZ7zSKocSubKXxwZcUrCzLflC86IdLxrVjS8tialy0b1L+aECBqRBC/ykcPlB4y7skg49TaTiA+O2UfDw==",
         "dependencies": {
           "Microsoft.IdentityModel.Abstractions": "6.35.0"
+        }
+      },
+      "Microsoft.PowerFx.Core": {
+        "type": "CentralTransitive",
+        "requested": "[1.8.1, )",
+        "resolved": "1.8.1",
+        "contentHash": "+pLraSpOL9u29pWI8wWoGXwJEmr79wzEuf2grnPrAHj06vz/958A7jwBAY0sFc9UOmz89U3WsWgGCONPj+xn/A==",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
+          "Microsoft.PowerFx.Transport.Attributes": "1.8.1"
         }
       },
       "ModelContextProtocol": {

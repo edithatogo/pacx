@@ -1,0 +1,14 @@
+{
+  "track_id": "repo_hardening_capability_expansion_20260429",
+  "type": "infrastructure",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Umbrella meta-track delegating to child tracks. Only decomposition complete.",
+  "priority": "Medium",
+  "created_at": "2026-04-29T00:00:00+10:00",
+  "updated_at": "2026-04-29T00:00:00+10:00",
+  "description": "Umbrella meta-track for repo hardening and capability expansion — delegates to child tracks",
+  "dependencies": [],
+  "api_sources": []
+}

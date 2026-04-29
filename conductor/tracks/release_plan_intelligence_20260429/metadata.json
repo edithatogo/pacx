@@ -1,0 +1,14 @@
+{
+  "track_id": "release_plan_intelligence_20260429",
+  "type": "feature",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Not started. All 9 tasks across 3 phases pending.",
+  "priority": "Medium",
+  "created_at": "2026-04-29T00:00:00+10:00",
+  "updated_at": "2026-04-29T00:00:00+10:00",
+  "description": "Release plan intelligence — browse, analyze, and report on Power Platform release plans",
+  "dependencies": [],
+  "api_sources": ["Microsoft 365 Roadmap API", "Power Platform Release API"]
+}

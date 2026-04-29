@@ -1,0 +1,14 @@
+{
+  "track_id": "dataverse_skill_pack_guidance_20260429",
+  "type": "documentation",
+  "status": "pending",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Skill pack catalog JSON, guidance docs for Dataverse skill packs.",
+  "priority": "Medium",
+  "created_at": "2026-04-29T00:00:00+10:00",
+  "updated_at": "2026-04-29T00:00:00+10:00",
+  "description": "Guidance and catalog for Dataverse skill packs enabling reusable capabilities",
+  "dependencies": [],
+  "api_sources": ["Dataverse API", "Power Platform CLI"]
+}

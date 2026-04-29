@@ -96,6 +96,7 @@ namespace Greg.Xrm.Command
 			
 			builder.RegisterType<Services.AiBuilder.AiBuilderApiClientFactory>().As<Services.AiBuilder.IAiBuilderApiClientFactory>();
 			builder.RegisterType<Services.AiBuilder.AiBuilderService>().As<Services.AiBuilder.IAiBuilderService>();
+			builder.RegisterType<Services.PowerAutomate.PowerAutomateClient>().As<Services.PowerAutomate.IPowerAutomateClient>();
 		}
 	}
 }

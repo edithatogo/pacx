@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Greg.Xrm.Command.Commands.Package;
 
 namespace Greg.Xrm.Command.Services.Package
