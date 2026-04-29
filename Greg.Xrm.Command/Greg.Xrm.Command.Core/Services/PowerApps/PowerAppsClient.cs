@@ -47,7 +47,7 @@ namespace Greg.Xrm.Command.Services.PowerApps
 				throw new InvalidOperationException($"Failed to list package resources: {firstError}");
 			}
 
-			// Step 2: Initiate export
+			// Step 2: Initiate export and capture the Location header (polling URL)
 			var exportPath = $"/providers/Microsoft.BusinessAppPlatform/environments/{Uri.EscapeDataString(environmentName)}/exportPackage?api-version=2016-11-01";
 			var exportPayload = new
 			{
@@ -62,17 +62,58 @@ namespace Greg.Xrm.Command.Services.PowerApps
 				resources = new { }
 			};
 
-			var exportResult = await PostAsync(exportPath, exportPayload, cancellationToken).ConfigureAwait(false);
-			var packageLink = exportResult.RootElement.GetProperty("packageLink").GetProperty("value").GetString()
-				?? throw new InvalidOperationException("No package download link returned.");
+			using var exportRequest = await CreateRequestAsync(HttpMethod.Post, exportPath, cancellationToken).ConfigureAwait(false);
+			exportRequest.Content = new StringContent(JsonSerializer.Serialize(exportPayload, SerializerOptions), System.Text.Encoding.UTF8, "application/json");
+			var httpClient = this.httpClientFactory.CreateClient();
+			using var exportResponse = await httpClient.SendAsync(exportRequest, cancellationToken).ConfigureAwait(false);
+			var exportContent = await exportResponse.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+			if (!exportResponse.IsSuccessStatusCode)
+			{
+				throw new InvalidOperationException($"Failed to initiate export: {exportContent}");
+			}
+
+			var pollingUrl = exportResponse.Headers.Location?.ToString()
+				?? throw new InvalidOperationException("No polling URL returned for export.");
+
+			// Step 3: Poll until the export completes
+			string packageLink;
+			using (var pollClient = this.httpClientFactory.CreateClient())
+			{
+				while (true)
+				{
+					using var pollResponse = await pollClient.GetAsync(pollingUrl, cancellationToken).ConfigureAwait(false);
+					var pollBody = JsonDocument.Parse(await pollResponse.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
+
+					var status = pollBody.RootElement
+						.GetProperty("properties")
+						.GetProperty("status")
+						.GetString();
+
+					if (status == "Succeeded")
+					{
+						packageLink = pollBody.RootElement
+							.GetProperty("properties")
+							.GetProperty("packageLink")
+							.GetProperty("value")
+							.GetString()
+							?? throw new InvalidOperationException("No package download link returned.");
+						break;
+					}
+					if (status == "Failed")
+					{
+						throw new InvalidOperationException("Export failed.");
+					}
+
+					await Task.Delay(5000, cancellationToken).ConfigureAwait(false);
+				}
+			}
 
 			var fileName = ExtractFileName(packageLink, appName);
 
-			// Step 3: Download the zip
-			var client = this.httpClientFactory.CreateClient();
+			// Step 4: Download the zip
 			using var downloadRequest = new HttpRequestMessage(HttpMethod.Get, packageLink);
 			downloadRequest.Headers.Add("x-anonymous", "true");
-			using var downloadResponse = await client.SendAsync(downloadRequest, cancellationToken).ConfigureAwait(false);
+			using var downloadResponse = await httpClient.SendAsync(downloadRequest, cancellationToken).ConfigureAwait(false);
 			downloadResponse.EnsureSuccessStatusCode();
 			var content = await downloadResponse.Content.ReadAsByteArrayAsync(cancellationToken).ConfigureAwait(false);
 

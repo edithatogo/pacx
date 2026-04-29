@@ -71,6 +71,20 @@ namespace Greg.Xrm.Command.Commands.PowerBi
 				return Task.FromResult(Clone(response));
 			}
 
+			public Task<JsonDocument> ListGatewaysAsync(CancellationToken cancellationToken)
+			{
+				this.LastMethod = "GET";
+				this.LastPath = "gateways";
+				return Task.FromResult(Clone(response));
+			}
+
+			public Task<JsonDocument> GetGatewayAsync(string gatewayId, CancellationToken cancellationToken)
+			{
+				this.LastMethod = "GET";
+				this.LastPath = $"gateways/{gatewayId}";
+				return Task.FromResult(Clone(response));
+			}
+
 			private static JsonDocument Clone(JsonDocument document)
 			{
 				return JsonDocument.Parse(document.RootElement.GetRawText());
