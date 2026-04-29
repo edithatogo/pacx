@@ -234,9 +234,9 @@ Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parit
   *Link: [./tracks/validation_parity_coverage_20260429/](./tracks/validation_parity_coverage_20260429/)*
   *Status: PARTIAL (6/12 tasks done) — ValidateAll orchestration, schema/contract validation, command reference parity done. Integration coverage pending.*
 
-- [~] **Track: pnp/cli-microsoft365 Power Platform Parity**
+- [x] **Track: pnp/cli-microsoft365 Power Platform Parity**
   *Link: [./tracks/pnp_platform_parity_20260429/](./tracks/pnp_platform_parity_20260429/)*
-  *Status: IN PROGRESS — Implementation started.*
+  *Status: IMPLEMENTED — Flow CRUD + management, Power Apps CRUD, consent, owner, permissions, gateway, management app, tenant settings commands implemented with tests and docs.*
 
 ---
 
