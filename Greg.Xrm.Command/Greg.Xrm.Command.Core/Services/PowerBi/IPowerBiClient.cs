@@ -11,5 +11,10 @@ namespace Greg.Xrm.Command.Services.PowerBi
 		Task<JsonDocument> PostFileAsync(string path, string filePath, CancellationToken cancellationToken);
 
 		Task<JsonDocument> DeleteAsync(string path, CancellationToken cancellationToken);
+
+		// Gateway
+		Task<JsonDocument> ListGatewaysAsync(CancellationToken cancellationToken);
+
+		Task<JsonDocument> GetGatewayAsync(string gatewayId, CancellationToken cancellationToken);
 	}
 }

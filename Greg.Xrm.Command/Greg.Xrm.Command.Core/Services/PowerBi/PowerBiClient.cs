@@ -45,6 +45,16 @@ namespace Greg.Xrm.Command.Services.PowerBi
 			return await SendAsync(request, cancellationToken).ConfigureAwait(false);
 		}
 
+		public async Task<JsonDocument> ListGatewaysAsync(CancellationToken cancellationToken)
+		{
+			return await GetAsync("gateways", cancellationToken).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> GetGatewayAsync(string gatewayId, CancellationToken cancellationToken)
+		{
+			return await GetAsync($"gateways/{Uri.EscapeDataString(gatewayId)}", cancellationToken).ConfigureAwait(false);
+		}
+
 		private async Task<HttpRequestMessage> CreateRequestAsync(HttpMethod method, string path, CancellationToken cancellationToken)
 		{
 			var token = await this.tokenProvider.GetTokenAsync(Resource, cancellationToken).ConfigureAwait(false);

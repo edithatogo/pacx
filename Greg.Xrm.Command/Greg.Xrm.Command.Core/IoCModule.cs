@@ -98,6 +98,7 @@ namespace Greg.Xrm.Command
 			builder.RegisterType<Services.AiBuilder.AiBuilderService>().As<Services.AiBuilder.IAiBuilderService>();
 			builder.RegisterType<Services.PowerAutomate.PowerAutomateClient>().As<Services.PowerAutomate.IPowerAutomateClient>();
 			builder.RegisterType<Services.PowerApps.PowerAppsClient>().As<Services.PowerApps.IPowerAppsClient>();
+			builder.RegisterType<Services.PowerPlatformAdmin.PowerPlatformAdminClient>().As<Services.PowerPlatformAdmin.IPowerPlatformAdminClient>();
 		}
 	}
 }
