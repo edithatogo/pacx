@@ -1,0 +1,53 @@
+{
+  "families": [
+    {
+      "id": "power-platform",
+      "name": "Power Platform",
+      "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
+      "category": "Power Platform",
+      "summary": "Release plans for Power Platform core capabilities including admin, governance, AI Builder, and connectors."
+    },
+    {
+      "id": "dynamics-365",
+      "name": "Dynamics 365",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/release-plan/",
+      "category": "Dynamics 365",
+      "summary": "Release plans for Dynamics 365 sales, service, finance, supply chain, and marketing applications."
+    },
+    {
+      "id": "power-bi",
+      "name": "Power BI",
+      "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
+      "category": "Power BI",
+      "summary": "Release plans for Power BI analytics, reporting, and semantic model capabilities."
+    },
+    {
+      "id": "power-apps",
+      "name": "Power Apps",
+      "url": "https://learn.microsoft.com/en-us/power-apps/release-plan/",
+      "category": "Power Platform",
+      "summary": "Release plans for Power Apps canvas, model-driven, and portal development."
+    },
+    {
+      "id": "power-automate",
+      "name": "Power Automate",
+      "url": "https://learn.microsoft.com/en-us/power-automate/release-plan/",
+      "category": "Power Platform",
+      "summary": "Release plans for Power Automate cloud flows, desktop flows, and process mining."
+    },
+    {
+      "id": "copilot-studio",
+      "name": "Copilot Studio",
+      "url": "https://learn.microsoft.com/en-us/copilot-studio/release-plan/",
+      "category": "AI",
+      "summary": "Release plans for Copilot Studio agent authoring, topics, and channel publishing."
+    },
+    {
+      "id": "power-pages",
+      "name": "Power Pages",
+      "url": "https://learn.microsoft.com/en-us/power-pages/release-plan/",
+      "category": "Power Platform",
+      "summary": "Release plans for Power Pages site building, liquid templates, and identity."
+    }
+  ]
+}

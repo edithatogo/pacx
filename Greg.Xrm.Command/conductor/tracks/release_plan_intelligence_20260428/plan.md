@@ -23,9 +23,9 @@ Add PACX-native roadmap intelligence for Microsoft release-plan families so the 
 ## Phases
 
 ### Phase 1: Browse and catalog
-- [ ] Task: Define the supported release-plan families and their source URLs.
-- [ ] Task: Add a browsing command surface for roadmap intake.
-- [ ] Task: Add tests for parsing and listing the source families.
+- [x] Task: Define the supported release-plan families and their source URLs.
+- [x] Task: Add a browsing command surface for roadmap intake.
+- [x] Task: Add tests for parsing and listing the source families.
 
 ### Phase 2: Snapshot and diff
 - [ ] Task: Add snapshot storage for release-plan captures.
