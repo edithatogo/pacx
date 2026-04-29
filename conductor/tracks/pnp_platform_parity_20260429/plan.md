@@ -66,10 +66,10 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [x] Task: Tests and documentation. [fb1b1d9]
 
 ### Phase 3: Power Apps management
-- [ ] Task: `pacx pa app list/get/remove/export` — Power App CRUD.
-- [ ] Task: `pacx pa app consent set` — consent management.
-- [ ] Task: `pacx pa app owner set` — ownership management.
-- [ ] Task: `pacx pa app permission list/ensure/remove` — permission management.
+- [x] Task: `pacx pa app list/get/remove/export` — Power App CRUD. [4e876d9]
+- [x] Task: `pacx pa app consent set` — consent management. [4e876d9]
+- [x] Task: `pacx pa app owner set` — ownership management. [4e876d9]
+- [x] Task: `pacx pa app permission list/ensure/remove` — permission management. [4e876d9]
 - [ ] Task: Tests and documentation.
 
 ### Phase 4: Platform admin
