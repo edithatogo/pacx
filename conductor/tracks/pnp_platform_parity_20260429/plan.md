@@ -86,3 +86,6 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [x] Task: Create `docs/guides/pnp-parity.md` — cross-reference table.
 - [ ] Task: Generate report of parity status.
 - [ ] Task: Review pass.
+
+### Phase 6: Review Fixes
+- [x] Task: Apply review suggestions — fix export polling loop. [37f6e67]
