@@ -49,7 +49,7 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 
 ## Phases
 
-### Phase 1: Flow CRUD
+### Phase 1: Flow CRUD [checkpoint: 0f84d6c]
 - [x] Task: `pacx flow list` — enumerate flows in environment. [a6eec86]
 - [x] Task: `pacx flow get <id>` — flow definition details. [a6eec86]
 - [x] Task: `pacx flow export <id>` — export as package/zip. [a6eec86]
