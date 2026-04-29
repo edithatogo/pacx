@@ -70,7 +70,7 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [x] Task: `pacx pa app consent set` — consent management. [4e876d9]
 - [x] Task: `pacx pa app owner set` — ownership management. [4e876d9]
 - [x] Task: `pacx pa app permission list/ensure/remove` — permission management. [4e876d9]
-- [ ] Task: Tests and documentation.
+- [x] Task: Tests and documentation. [4e876d9]
 
 ### Phase 4: Platform admin
 - [ ] Task: `pacx gateway list/get` — gateway discovery.
@@ -86,6 +86,3 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [ ] Task: Create `docs/guides/pnp-parity.md` — cross-reference table.
 - [ ] Task: Generate report of parity status.
 - [ ] Task: Review pass.
-
-### Phase 6: PR Lifecycle
-- [ ] Task: Upstream PR; merge.
