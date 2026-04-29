@@ -1,0 +1,25 @@
+{
+  "mission_id": "549f6e12",
+  "description": "Swarm Mission",
+  "started_at": 1776918005.5147293,
+  "status": "running",
+  "agents": [
+    {
+      "name": "Junior",
+      "mode": "parallel",
+      "color": "yellow",
+      "status": "failed"
+    },
+    {
+      "name": "Quality_Validator",
+      "mode": "validator",
+      "color": "green",
+      "status": "running"
+    }
+  ],
+  "attempt": 1,
+  "team_name": "swarm-mission",
+  "updated_at": 1776936757.3028672,
+  "ended_at": 0.0,
+  "failure_reason": ""
+}

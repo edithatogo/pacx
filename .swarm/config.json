@@ -1,18 +1,154 @@
 {
-  "name": "swarm-mission",
-  "created_at": 1776915084.2055237,
+  "name": "pacx-all-tracks-completion",
+  "created_at": 1777291020,
   "leader": "leader",
   "members": [
     {
-      "agent_id": "junior@swarm-mission",
-      "name": "Junior",
+      "agent_id": "mission_lead@pacx-all-tracks-completion",
+      "name": "Mission_Lead",
+      "color": "blue",
+      "model": "auto-gemini-3",
+      "mode": "coordinator",
+      "status": "pending"
+    },
+    {
+      "agent_id": "telemetry_worker@pacx-all-tracks-completion",
+      "name": "Telemetry_Worker",
       "color": "yellow",
       "model": "auto-gemini-3",
       "mode": "parallel",
       "status": "pending"
     },
     {
-      "agent_id": "quality_validator@swarm-mission",
+      "agent_id": "connector_worker@pacx-all-tracks-completion",
+      "name": "Connector_Worker",
+      "color": "orange",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "ai_worker@pacx-all-tracks-completion",
+      "name": "Ai_Worker",
+      "color": "pink",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "workflow_worker@pacx-all-tracks-completion",
+      "name": "Workflow_Worker",
+      "color": "cyan",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "dx_worker@pacx-all-tracks-completion",
+      "name": "DX_Worker",
+      "color": "green",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "cli_worker@pacx-all-tracks-completion",
+      "name": "CLI_Worker",
+      "color": "purple",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "testing_worker@pacx-all-tracks-completion",
+      "name": "Testing_Worker",
+      "color": "teal",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "fabric_worker@pacx-all-tracks-completion",
+      "name": "Fabric_Worker",
+      "color": "amber",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "powerbi_worker@pacx-all-tracks-completion",
+      "name": "PowerBI_Worker",
+      "color": "violet",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "desktopflow_worker@pacx-all-tracks-completion",
+      "name": "DesktopFlow_Worker",
+      "color": "yellow",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "dataverse_gaps_worker@pacx-all-tracks-completion",
+      "name": "Dataverse_Gaps_Worker",
+      "color": "orange",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "forms_worker@pacx-all-tracks-completion",
+      "name": "Forms_Worker",
+      "color": "pink",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "powerfx_worker@pacx-all-tracks-completion",
+      "name": "PowerFx_Worker",
+      "color": "blue",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "performance_worker@pacx-all-tracks-completion",
+      "name": "Performance_Worker",
+      "color": "gray",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "copilot_worker@pacx-all-tracks-completion",
+      "name": "Copilot_Worker",
+      "color": "red",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "legacy_backlog_worker@pacx-all-tracks-completion",
+      "name": "Legacy_Backlog_Worker",
+      "color": "brown",
+      "model": "auto-gemini-3",
+      "mode": "parallel",
+      "status": "pending"
+    },
+    {
+      "agent_id": "integration_lead@pacx-all-tracks-completion",
+      "name": "Integration_Lead",
+      "color": "white",
+      "model": "auto-gemini-3",
+      "mode": "coordinator",
+      "status": "pending"
+    },
+    {
+      "agent_id": "quality_validator@pacx-all-tracks-completion",
       "name": "Quality_Validator",
       "color": "green",
       "model": "auto-gemini-3",
@@ -22,6 +158,8 @@
   ],
   "settings": {
     "backend": "thread",
-    "poll_interval_ms": 1000
+    "poll_interval_ms": 1000,
+    "manifest": "swarm-track-completion-manifest.json",
+    "completion_gate": "Every track in active_track_queue is complete, blocked with accepted rationale, or archived."
   }
 }

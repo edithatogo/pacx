@@ -70,7 +70,7 @@ PACX aims to be the standard open-source utility belt for Dataverse developers, 
 | **API Rate Limits** | Dataverse Web API (organization settings) + HTTP response headers | `ServiceClient` | Throttle info in `x-ratelimit` headers; org settings for limits. |
 | **Liquid / Power Pages Linting** | N/A (client-side processing) | Custom parser / Roslyn-style analyzer | Parse Liquid templates, check against known functions/objects. |
 | **MS Forms** | Forms internal API (`forms.office.com/formapi/api/{tenantId}/{users|groups}/{ownerId}/`) | Direct HTTP + OAuth2 (Client Credentials for user forms, ROPC for group forms) | List forms, get responses (paged), response count, export to CSV/SQL. **Undocumented API** — group forms require ROPC (no MFA). Read-only for now; create/update deferred. |
-| **GitHub Fork PR Lifecycle** | GitHub REST API (`api.github.com`) | Octokit.NET | Open PRs against the fork, track review status, auto-apply conductor:review, detect merge conflicts, and monitor merge readiness without creating upstream issues. |
+| **GitHub PR Lifecycle** | GitHub REST API (`api.github.com`) | Octokit.NET | Open PRs, track review status, auto-apply conductor:review, detect merge conflicts, and monitor merge readiness. |
 
 ---
 
@@ -207,37 +207,18 @@ The Forms API at `forms.office.com/formapi/api/` is undocumented but fully funct
 18. **E2E smoke test infrastructure** — Dedicated integration test project + CI workflow against real Dataverse environment.
 19. **Plugin loading test coverage** — Currently 0%. Add tests for CommandRegistry, PluginLoader, Bootstrapper with mock plugin DLLs. Target: >90% coverage.
 
-### Fork PR Lifecycle Automation Protocol
+### PR Lifecycle (Canonical Workflow)
 
-**Problem:** Currently, after each feature track is completed, opening issues and routing work through upstream PRs is the wrong delivery model for a maintained fork. Review-fix cycles can still take multiple manual passes.
+This is the canonical repository. PRs are opened, reviewed, and merged directly — no upstream fork workflow.
 
-**Solution:** Add a standardized **Fork PR Lifecycle (Ralph Loop) Phase** to every track's plan. The Ralph loop self-drives the review-fix cycle until the fork PR is actually ready.
-
-**Standard Phase Template (added to every track):**
+**Standard Phase Template:**
 ```markdown
-## Phase N: Fork PR Lifecycle (Ralph Loop)
-- [ ] Task: Create a PR against this fork with implementation.
-- [ ] Task: Run `/ralph-loop` on the PR with completion promise:
-          "All Critical and High review issues resolved, PR ready for merge"
-- [ ] Task: Confirm PR is merged or document blockers.
+## Phase N: Merge & Release
+- [ ] Task: Open a PR against the canonical repository.
+- [ ] Task: Run `/conductor:review` on the PR.
+- [ ] Task: Resolve all Critical and High issues.
+- [ ] Task: Merge.
 ```
-
-**How the Ralph Loop Works:**
-1. Enters the loop with the fork PR URL and completion promise.
-2. Runs `/conductor:review` on the PR.
-3. Applies all suggested fixes automatically.
-4. Commits the fixes.
-5. Re-runs `/conductor:review`.
-6. Checks the completion promise — are there still Critical/High issues? If yes → repeat. If no → promise fires, loop exits.
-7. Reports the final state: merged, or blockers documented.
-
-**Why Ralph Loop Over Manual Steps:**
-| Manual Approach | Ralph Loop |
-|----------------|-----------|
-| Assumes one review pass is enough | Iterates until the PR actually passes |
-| Reviewer fatigue — easy to forget re-review | Automatic enforcement |
-| Arbitrary "max 2 fix attempts" limit | Continues until the promise is genuinely true |
-| Manual monitoring for conflicts | Self-driving until completion |
 
 ---
 

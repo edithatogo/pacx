@@ -1,0 +1,2 @@
+*.verified.* text eol=lf
+*.received.* text eol=lf

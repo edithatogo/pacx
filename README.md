@@ -1,81 +1,65 @@
-# PacPacx — AI Builder & Custom Connectors
+# PacPacx
 
-Repository for Power Platform automation tracks and workflows.
+[![CI](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/ci.yml/badge.svg)](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/ci.yml)
+[![Docs](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/docs.yml/badge.svg)](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/docs.yml)
+[![Coverage](https://codecov.io/gh/edithatogo/Greg.Xrm.Command/branch/master/graph/badge.svg)](https://codecov.io/gh/edithatogo/Greg.Xrm.Command)
+[![NuGet](https://img.shields.io/nuget/v/Greg.Xrm.Command.svg)](https://www.nuget.org/packages/Greg.Xrm.Command)
+[![OpenSSF Scorecard](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/scorecard.yml/badge.svg)](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/scorecard.yml)
+![OpenSSF Best Practices](https://img.shields.io/badge/OpenSSF%20Best%20Practices-not%20configured-lightgrey)
 
-## 📁 Contents
+PacPacx is a Power Platform automation workspace for the `pacx` CLI, focused on Dataverse, ALM, AI Builder, custom connectors, MCP hosting, and repository workflows. It extends the Microsoft `pac` style of command-line automation with a broader command surface and track-based implementation plans.
 
-- `README.md` — This file
-- `CONTRIBUTING.md` — Development setup and contribution guidelines
-- `PAC_PACX_INVENTORY.md` — Complete list of all PAC & PACX commands and tools
-- `POWER_PLATFORM_MCP_SETUP.md` — MCP server configuration guide
-- `.mcp.json` — MCP server configuration template
-- `tracks/` — Declarative track specifications and plans
+## Documentation
 
-## 🚀 Quick Start
+The documentation site source lives in [docs/](docs/). Start with:
 
-### PAC CLI
-```bash
-pac auth list          # Check authentication
-pac env list           # List environments
-pac copilot mcp --run  # Start MCP server
+- [Getting started](docs/index.md)
+- [Authentication](docs/guides/authentication.md)
+- [Generated command reference](docs/reference/commands/generated/index.md)
+- [Recipes](docs/recipes/toc.yml)
+- [Migration from pac](docs/guides/migration-from-pac.md)
+- [Architecture decisions](docs/adr/index.md)
+
+The generated command reference is refreshed with:
+
+```powershell
+.\scripts\generate-command-docs.ps1
 ```
 
-### PACX CLI
-```bash
-pacx auth              # Setup authentication
-pacx table list        # List Dataverse tables
-pacx --interactive     # Interactive mode
-```
+| Reference coverage | Count |
+| --- | ---: |
+| Generated command pages | 189 |
+| Top-level command areas | 50 |
 
-### Build & Test (repo-level)
-```bash
+Largest command areas: `solution`, `column`, `package`, `plugin`, `workflow`, `webresources`, `view`, `auth`, `rel`, `table`, `settings`, and `completions`.
+
+## Build
+
+```powershell
 dotnet restore
 dotnet build
 dotnet test
 ```
 
-If you do not have admin permissions, install the .NET SDK into your user profile and run it via `%USERPROFILE%\\.dotnet\\dotnet.exe` or by setting `DOTNET_ROOT=%USERPROFILE%\\.dotnet`.
-If `dotnet` still resolves the wrong SDK, clear any stale `MSBuildSDKsPath` override in your shell before building.
-For local commit hygiene, run `dotnet husky install` once after cloning, then keep `trufflehog` and `commitlint` available on your PATH.
-The CI workflow now enforces the same Conventional Commits policy by linting PR titles and commit messages.
-You can also open the repo in the devcontainer defined by `.devcontainer/devcontainer.json`; it restores tools, installs the hooks, and restores the solution on first start.
-Pull requests and issues have templates under `.github/` so summaries, test plans, and security disclosures are captured consistently.
+The solution is pinned to the published .NET 11 preview SDK line through `global.json`. If `dotnet` resolves the wrong SDK, clear stale `MSBuildSDKsPath` overrides and use a user-profile SDK install when admin access is unavailable.
 
-## 📋 Documentation
+## Development
 
-See `PAC_PACX_INVENTORY.md` for the complete list of all available commands and installed tools.
+- Open the repo in the devcontainer under [.devcontainer/](.devcontainer/) for a preconfigured toolchain.
+- Run `dotnet husky install` once after cloning to enable local hooks.
+- Keep `trufflehog` and `commitlint` on `PATH` for the same checks enforced by CI.
+- Use the templates under [.github/](.github/) for issues, pull requests, funding metadata, and security reporting.
 
-See `POWER_PLATFORM_MCP_SETUP.md` for MCP server configuration and setup instructions.
+## Project Files
 
-## 🏗️ Tracks
+- [PAC_PACX_INVENTORY.md](PAC_PACX_INVENTORY.md) lists PAC and PACX command inventory details.
+- [POWER_PLATFORM_MCP_SETUP.md](POWER_PLATFORM_MCP_SETUP.md) documents MCP server configuration.
+- [tracks/](tracks/) and [conductor/tracks/](conductor/tracks/) hold declarative implementation plans and conductor status.
 
-Tracks are stored under `tracks/`. Each track has a `metadata.json` and a `plan.md`. The preferred, improved tracks to use are:
-- `tracks/upstream_baseline_sync_20260422/` - gates downstream planning work on upstream branch sync
-- `tracks/ai_builder_connectors_improved_20260427/`
-- `tracks/ai_wrapper_service_20260427/`
-- `tracks/connector_schema_validation_20260427/`
-- `tracks/correlation_id_telemetry_20260427/`
-- `tracks/dry_run_and_checkpoint_20260427/`
-- `tracks/rate_limit_handling_20260427/`
-- `tracks/secrets_vault_integration_20260427/`
-- `tracks/schema_versioning_20260427/`
-- `tracks/help_command_20260427/`
+## Security
 
-## 🛡️ Quality & CI
+Do not commit secrets. Use vault-backed credentials for production automation, follow least privilege for Azure RBAC, and include security impact notes in pull requests that change authentication, connector, deployment, or MCP boundaries.
 
-- CI: `.github/workflows/ci.yml` runs build → test → lint on PRs and validates Conventional Commit titles/messages; deploy on tags.
-- Formatting: `dotnet format` (enforced via `.editorconfig`), plus `editorconfig-checker` in CI for repo-wide file hygiene.
-- SDK: pinned via `global.json` (v10.0.x); use the user-profile install path if you do not have admin rights.
-- Tests: add unit tests under each track’s test project as needed.
-- Local hooks: `.husky/pre-commit` runs TruffleHog and `.husky/commit-msg` runs commitlint.
-- Containerized build: `Dockerfile` restores, builds, and publishes the CLI from the repo root using the pinned .NET 10 SDK line.
+## License
 
-## 🔐 Security
-
-- Do not commit secrets.
-- Use vault integration for production credentials.
-- Follow least-privilege for Azure RBAC.
-
-## 📄 License
-
-TBD — add LICENSE file.
+TBD. Add a `LICENSE` file before publishing packages or releases.

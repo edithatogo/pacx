@@ -9,7 +9,7 @@ This repo contains infrastructure and track definitions for the PacPacx Power Pl
 - docs/ — High-level docs (optional)
 
 ## Getting Started
-- Ensure .NET 10 SDK is installed (see `global.json`).
+- Ensure the .NET 11 preview SDK is installed (see `global.json`).
 - If you do not have admin rights, install the SDK under your user profile and set `DOTNET_ROOT=%USERPROFILE%\\.dotnet` before running `dotnet`.
 - If restore or build resolves an older SDK, clear any `MSBuildSDKsPath` override in the shell first.
 - Run `dotnet restore && dotnet build` to verify.

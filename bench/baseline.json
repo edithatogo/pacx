@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-04-28T00:00:00Z",
+  "targetFramework": "net11.0",
+  "thresholds": {
+    "maxRegressionPercent": 20
+  },
+  "benchmarks": {
+    "StartupBenchmarks.Full Startup (Container + Registry + Parse 'help')": {
+      "meanMs": null,
+      "status": "pending-local-dotnet-11-sdk"
+    },
+    "CommandLineParserBenchmarks": {
+      "meanNs": null,
+      "status": "pending-local-dotnet-11-sdk"
+    }
+  }
+}

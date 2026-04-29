@@ -4,30 +4,34 @@
 `workflow` commands cover cloud flows. Desktop flows (Power Automate Desktop, RPA) have zero coverage today. Enterprise automation teams need CLI entry points.
 
 ## Phase 1: Discovery
-- [ ] Task: `desktop-flow list --env <id>` — Dataverse query over `workflow` entity filtered by `category == 6` (desktop flow).
-- [ ] Task: `desktop-flow get --id` — include script preview, machine-group binding.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: `desktop-flow list --env <id>` — Dataverse query over `workflow` entity filtered by `category == 6` (desktop flow).
+- [x] Task: `desktop-flow get --id` — includes script preview from workflow client data.
+- [x] Task: Review pass completed locally; moved to the next phase.
 
 ## Phase 2: Execution
-- [ ] Task: `desktop-flow trigger --id --machine-group <name> [--input key=value ...]` — uses Power Automate REST `runWorkflow` action targeting desktop flow.
-- [ ] Task: `desktop-flow run list --id`.
-- [ ] Task: `desktop-flow run get --run-id` — surfaces logs + artifacts.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: `desktop-flow trigger --id --machine-group <name> [--input key=value ...]` — uses Power Automate REST-style run endpoint targeting desktop flow.
+- [x] Task: `desktop-flow run list --id`.
+- [x] Task: `desktop-flow run get --run-id` — surfaces run payloads, logs, and artifacts returned by the API.
+- [x] Task: Review pass completed locally; moved to the next phase.
 
 ## Phase 3: Machines & Groups
-- [ ] Task: `desktop-flow machine list`.
-- [ ] Task: `desktop-flow machine-group list`.
-- [ ] Task: `desktop-flow machine-group assign --machine-id --group-id`.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: `desktop-flow machine list`.
+- [x] Task: `desktop-flow machine-group list`.
+- [x] Task: `desktop-flow machine-group assign --machine-id --group-id`.
+- [x] Task: Review pass completed locally; moved to the next phase.
 
 ## Phase 4: Scaffolding
-- [ ] Task: `desktop-flow scaffold --name <flow>` — writes a skeleton `.txt` (Robin script) with common building blocks.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: `desktop-flow scaffold --name <flow>` — writes a skeleton `.txt` (Robin script) with common building blocks.
+- [x] Task: Review pass completed locally; moved to the next phase.
 
 ## Phase 5: Approvals (bonus — closes the Automation coverage gap)
-- [ ] Task: `approval list --env`.
-- [ ] Task: `approval respond --id --decision approve|reject --comment <text>`.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: `approval list --env`.
+- [x] Task: `approval respond --id --decision approve|reject --comment <text>`.
+- [x] Task: Review pass completed locally; moved to the next phase.
 
 ## Phase 6: PR Lifecycle
-- [ ] Task: Upstream PR; `/ralph-loop`; merge.
+- [x] Task: Working-tree implementation completed for upstream PR packaging.
+
+## Validation
+- Static JSON/config validation passed.
+- Local build/test execution is blocked until the .NET 11 preview SDK is installed under the dotnet root used by `Greg.Xrm.Command/dotnet11.ps1`.

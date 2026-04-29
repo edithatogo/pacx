@@ -197,21 +197,14 @@ Before marking any task complete, verify:
 
 ## Code Review Process
 
-### MANDATORY: `/conductor:review` on Every PR
+### MANDATORY: Run `/conductor:review` Before Merging
 
-**No PR may be merged without a passing `/conductor:review`.** This is a blocking quality gate.
+**No work may be merged without a passing `/conductor:review`.** This is a blocking quality gate.
 
 #### Protocol
-1. **Before opening a PR:** Run `/conductor:review` locally and address all Critical and High findings.
-2. **After opening a PR in the fork:** The track's Fork PR Lifecycle phase runs `/ralph-loop` with the completion promise:
-   > "All Critical and High review issues resolved, PR ready for merge"
-3. **The Ralph Loop automates:**
-   - Runs `/conductor:review` on the PR diff
-   - Applies all suggested fixes automatically
-   - Commits the fixes
-   - Re-runs `/conductor:review`
-   - Repeats until no Critical or High issues remain
-4. **After the loop exits:** The fork PR may be merged (or blockers are documented).
+1. **Before merging:** Run `/conductor:review` on the working tree and address all Critical and High findings.
+2. **Resolve iteratively** until no Critical or High issues remain.
+3. **Merge to master.**
 
 #### What `/conductor:review` Checks
 | Check | Severity if Failed | Source |
@@ -233,9 +226,6 @@ Before marking any task complete, verify:
 4. **Security** — No hardcoded secrets, input validation present, SQL injection prevented
 5. **Performance** — Database queries optimized, no unnecessary joins, no N+1 queries
 6. **Mock correctness** — All async methods return non-null tasks, both overloads mocked where needed
-
-#### Exceptions
-If a fork PR cannot pass review (e.g., blocked by external dependency), it must be documented in the track's `plan.md` with a `BLOCKED:` note explaining why. Do not create upstream issues to work around that blocker.
 
 ## Commit Guidelines
 

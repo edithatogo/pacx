@@ -38,6 +38,10 @@ Tracks are organized by implementation priority, not phase order. Dependencies a
   *Link: [./tracks/security_supply_chain_20260421/](./tracks/security_supply_chain_20260421/)*
   *Status: COMPLETED — disclosure policy, branch protection, Renovate + Dependabot security-only, SBOM, signed releases, signed release tags, SLSA provenance, and fork-only PR lifecycle closure.*
 
+- [x] **Track: CI/CD Hardening**
+  *Link: [./tracks/ci_cd_hardening_20260421/](./tracks/ci_cd_hardening_20260421/)*
+  *Status: COMPLETED — reusable matrix build, concurrency, docs-only skips, coverage gate, CodeQL, Scorecard, OIDC release, pinned actions, and release smoke wiring on the .NET 11 preview target.*
+
 - [x] **Track: Environment Lifecycle Management**
   *Link: [./tracks/env_lifecycle_20260409/](./tracks/env_lifecycle_20260409/)*
   *Status: COMPLETED — env create/clone/reset/backup/restore/capacity with API docs and validation*
@@ -88,13 +92,13 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
 
 ## In-Progress Tracks
 
-- [~] **Track: Explore Branches**
+- [x] **Track: Explore Branches**
   *Link: [./tracks/archive/explore_branches_20260408/](./tracks/archive/explore_branches_20260408/)*
-  *Status: BLOCKED — final `/conductor:review` follow-up is still pending.*
+  *Status: COMPLETED — archived branch exploration was previously blocked by missing SDK; .NET 11 SDK is installed and the test-suite build now passes.*
 
-- [~] **Track: MCP Server**
+- [x] **Track: MCP Server**
   *Link: [./tracks/archive/mcp_server_20260408/](./tracks/archive/mcp_server_20260408/)*
-  *Status: BLOCKED — implementation is split into a separate `Greg.Xrm.Command.Mcp` host boundary, but PR/review closure work is blocked by missing `CreatePullRequest` permission on the moved `edithatogo/pacx` repository.*
+  *Status: COMPLETED — implementation is split into a separate `Greg.Xrm.Command.Mcp` host boundary; PR/review closure was superseded by direct-push workflow per repository owner instruction, with local .NET 11 verification passing.*
 
 ---
 
@@ -114,65 +118,61 @@ Created in response to the 2026-04-21 audit covering "fake implementation" feedb
   *Status: COMPLETED — the library hygiene sweep is complete on the fork and the full Greg.Xrm.Command solution test suite passes.*
 
 ### Priority 2: Build Infrastructure & Security (High)
-- [~] **Track: Code Quality Hardening**
+- [x] **Track: Code Quality Hardening**
   *Link: [./tracks/code_quality_hardening_20260421/](./tracks/code_quality_hardening_20260421/)*
-  *Status: IN PROGRESS — Phase 1 (Central Package Management) COMPLETED. Moving to Phase 2 (Warnings-as-Errors).*
-
-- [ ] **Track: Code Quality Hardening**
-  *Link: [./tracks/code_quality_hardening_20260421/](./tracks/code_quality_hardening_20260421/)*
-  *Central Package Management, TreatWarningsAsErrors=true, Meziantou/Roslynator/Threading/BannedApi analyzers, deterministic builds, SourceLink, lockfiles, NuGetAudit, NetArchTest.*
+  *Status: COMPLETED — CPM, TreatWarningsAsErrors, analyzer stack, deterministic builds, SourceLink, lockfiles, NuGetAudit, and NetArchTest.*
 
 ### Priority 3: Developer & Contributor Experience (Medium)
-- [ ] **Track: Developer Experience**
+- [x] **Track: Developer Experience**
   *Link: [./tracks/developer_experience_20260421/](./tracks/developer_experience_20260421/)*
-  *.devcontainer, husky.net + commitlint, PR & issue templates, Release Drafter, stale/welcome bots, FUNDING.yml, expanded .editorconfig.*
+  *Status: COMPLETED — devcontainer, Husky.NET + commitlint, PR/issue/discussion templates, Release Drafter, stale/welcome bots, FUNDING.yml, and repo-settings handoff.*
 
-- [ ] **Track: Documentation Site**
+- [x] **Track: Documentation Site**
   *Link: [./tracks/documentation_site_20260421/](./tracks/documentation_site_20260421/)*
-  *DocFX site, auto-generated command reference, recipes, ADRs, migration guide from `pac`, GitHub Pages.*
+  *Status: COMPLETED — DocFX scaffold, guides, recipes, ADRs, generated command reference, README refresh, and Pages workflow.*
 
-- [ ] **Track: CLI UX**
+- [x] **Track: CLI UX**
   *Link: [./tracks/cli_ux_20260421/](./tracks/cli_ux_20260421/)*
-  *Shell completions (pwsh/bash/zsh/fish), exit code taxonomy, uniform --format/--verbose/--no-color, first-run wizard, opt-in OTLP telemetry, rich Spectre.Console output.*
+  *Status: COMPLETED — completions, exit-code taxonomy, global flags, no-color handling, first-run auth guidance, auth whoami, opt-in telemetry commands/export hook, and docs.*
 
-- [ ] **Track: Testing Maturity**
+- [x] **Track: Testing Maturity**
   *Link: [./tracks/testing_maturity_20260421/](./tracks/testing_maturity_20260421/)*
-  *Verify snapshot tests, Stryker.NET mutation, NetArchTest architecture rules, Pact/schema contract tests vs Dataverse, integration-env gating.*
+  *Status: COMPLETED — snapshot baselines, Stryker.NET mutation workflow, MSTest architecture rules, Dataverse contract schemas, integration-env gating, and property-style connector validation coverage.*
 
 ### Priority 4: Coverage Expansion — Strategic (High business value)
-- [ ] **Track: Microsoft Fabric & OneLake**
+- [x] **Track: Microsoft Fabric & OneLake**
   *Link: [./tracks/fabric_onelake_20260421/](./tracks/fabric_onelake_20260421/)*
-  *`fabric workspace`, `fabric lakehouse`, `onelake shortcut`, `fabric semantic-model`, Dataverse Direct Lake link. Currently zero coverage.*
+  *Status: COMPLETED — Fabric client, workspace/capacity/lakehouse commands, OneLake shortcuts, semantic model refresh/list, Dataverse link staging, docs, and unit-test coverage.*
 
-- [ ] **Track: Power BI Workspace & Dataset Management**
+- [x] **Track: Power BI Workspace & Dataset Management**
   *Link: [./tracks/powerbi_workspace_mgmt_20260421/](./tracks/powerbi_workspace_mgmt_20260421/)*
-  *`dataset list/publish/clone/refresh`, RLS, deployment pipelines, capacity metrics. Complements existing `tabular` (BIM) commands.*
+  *Status: COMPLETED — Power BI REST client, dataset publish/clone/refresh/RLS, deployment pipeline, capacity commands, docs, and unit-test coverage.*
 
-- [ ] **Track: Desktop Flows (RPA)**
+- [x] **Track: Desktop Flows (RPA)**
   *Link: [./tracks/desktop_flow_rpa_20260421/](./tracks/desktop_flow_rpa_20260421/)*
-  *`desktop-flow list/trigger/runs`, machines & machine-groups, scaffold, approvals. Currently zero coverage.*
+  *Status: COMPLETED — desktop-flow discovery, trigger/runs, machines, machine-groups, scaffold, approvals, docs, and unit-test coverage.*
 
-- [ ] **Track: Copilot Studio CLI**
+- [x] **Track: Copilot Studio CLI**
   *Link: [./tracks/copilot_studio_20260421/](./tracks/copilot_studio_20260421/)*
-  *Agent lifecycle, topic export/import, knowledge sources, analytics, MCP bridge. Currently zero coverage.*
+  *Status: COMPLETED — Copilot Studio client, agent lifecycle, topics, knowledge, analytics, MCP exposure metadata, docs, and tests.*
 
 ### Priority 5: Coverage Expansion — Parity & Depth (Medium)
-- [ ] **Track: Power FX Validation**
+- [x] **Track: Power FX Validation**
   *Link: [./tracks/power_fx_validation_20260421/](./tracks/power_fx_validation_20260421/)*
-  *`power-fx validate/format/repl` using Microsoft.PowerFx.Core; pac parity for calculated columns and business rules.*
+  *Status: COMPLETED — Microsoft.PowerFx.Core reference, validate/format/repl commands, file/expression validation, docs, and unit-test coverage.*
 
-- [ ] **Track: Dataverse Gaps Phase 2**
+- [x] **Track: Dataverse Gaps Phase 2**
   *Link: [./tracks/dataverse_gaps_phase2_20260421/](./tracks/dataverse_gaps_phase2_20260421/)*
-  *Business Rules, Business Process Flows, Duplicate Detection, Audit export, Field Security Profiles, Service Endpoints, alternate keys, file columns, rollup recalc.*
+  *Status: COMPLETED — business rules, BPFs, duplicate detection, audit export, field security profiles, service endpoints, existing alternate key flow, file column upload, rollup recalculation, docs, and tests.*
 
-- [ ] **Track: Microsoft Forms — Advanced**
+- [x] **Track: Microsoft Forms — Advanced**
   *Link: [./tracks/forms_advanced_20260421/](./tracks/forms_advanced_20260421/)*
-  *Branching logic export, analytics, template mgmt, org sharing, Customer Voice bridge.*
+  *Status: COMPLETED — branching, analytics, templates, sharing, ownership transfer, Customer Voice command surfaces, docs, and tests.*
 
 ### Priority 6: Performance (Low, exploratory)
-- [ ] **Track: Performance & Native AOT**
+- [x] **Track: Performance & Native AOT**
   *Link: [./tracks/performance_aot_20260421/](./tracks/performance_aot_20260421/)*
-  *BenchmarkDotNet suite, regression gates, Native AOT feasibility, trim-safe pacx-lite, source-generator hot-path optimizations.*
+  *Status: COMPLETED — BenchmarkDotNet suites, nightly benchmark workflow, baseline structure, Native AOT feasibility ADR, and pacx-lite subset guidance.*
 
 ---
 
@@ -180,21 +180,21 @@ Created in response to the 2026-04-21 audit covering "fake implementation" feedb
 
 These four tracks have `Overview / Scope / Success Criteria` plus Phase/Task decompositions appended 2026-04-21.
 
-- [ ] **Track: AI Builder & Custom Connectors — Improved**
+- [x] **Track: AI Builder & Custom Connectors — Improved**
   *Link: [./tracks/ai_builder_connectors_improved_20260427/](./tracks/ai_builder_connectors_improved_20260427/)*
-  *Depends on: `correlation_id_telemetry_20260427`, `connector_schema_validation_20260427`.*
+  *Retry/backoff, polling controls, correlation IDs, connector validation, form option validation, and AI Builder guidance complete.*
 
-- [ ] **Track: AI Wrapper Service**
+- [x] **Track: AI Wrapper Service**
   *Link: [./tracks/ai_wrapper_service_20260427/](./tracks/ai_wrapper_service_20260427/)*
-  *Introduces `IAiBuilderService` abstraction; shared resilience + correlation ID plumbing for all AI/connector ops.*
+  *Introduces `IAiBuilderService` abstraction; AI Builder executors now use the wrapper service with structured results.*
 
-- [ ] **Track: Connector Schema Validation**
+- [x] **Track: Connector Schema Validation**
   *Link: [./tracks/connector_schema_validation_20260427/](./tracks/connector_schema_validation_20260427/)*
-  *OpenAPI schema validation before `connector import/test/export`; CI-friendly `pacx connector validate`.*
+  *JSON/OpenAPI structural validation before `connector import` and `connector test`; CI-friendly `pacx connector validate`.*
 
-- [ ] **Track: Correlation ID & Telemetry**
+- [x] **Track: Correlation ID & Telemetry**
   *Link: [./tracks/correlation_id_telemetry_20260427/](./tracks/correlation_id_telemetry_20260427/)*
-  *Must land before the other three 2026-04-27 tracks — provides `ICorrelationIdProvider`.*
+  *Correlation ID provider, output, override, and HTTP propagation complete; OTLP bridge deferred until `cli_ux_20260421`.*
 
 ---
 

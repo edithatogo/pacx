@@ -1,0 +1,24 @@
+- name: Deploy a Solution From CI
+  href: deploy-solution-from-ci.md
+- name: Export Form Responses Weekly
+  href: export-form-responses-weekly.md
+- name: Scaffold a Virtual Table
+  href: scaffold-virtual-table.md
+- name: Compare Tabular Models
+  href: compare-tabular-models.md
+- name: Validate Connectors in CI
+  href: validate-connectors-in-ci.md
+- name: Mirror Dataverse to OneLake
+  href: mirror-dataverse-to-onelake.md
+- name: Manage Power BI Datasets
+  href: manage-powerbi-datasets.md
+- name: Desktop Flow RPA
+  href: desktop-flow-rpa.md
+- name: Validate Power Fx
+  href: validate-power-fx.md
+- name: Advanced Microsoft Forms
+  href: forms-advanced.md
+- name: Copilot Studio
+  href: copilot-studio.md
+- name: Dataverse Platform Gaps Phase 2
+  href: dataverse-gaps-phase2.md

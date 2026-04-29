@@ -1,0 +1,2 @@
+MSBUILD : error MSB1009: Project file does not exist.
+Switch: Greg.Xrm.Command\Greg.Xrm.Command.csproj

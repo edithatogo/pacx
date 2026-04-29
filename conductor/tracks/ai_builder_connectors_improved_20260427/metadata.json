@@ -1,13 +1,13 @@
 {
   "track_id": "ai_builder_connectors_improved_20260427",
   "type": "feature",
-  "status": "pending",
-  "phase": 1,
-  "completed_at": null,
-  "note": "Improved track: adds retry/backoff, polling controls, telemetry IDs, schema validation, and better UX for AI Builder and connector operations",
+  "status": "complete",
+  "phase": 5,
+  "completed_at": "2026-04-28T11:47:44+10:00",
+  "note": "Retry/backoff, polling controls, correlation IDs, connector schema validation, form option validation, and AI Builder next-step guidance are implemented",
   "priority": "Medium",
   "created_at": "2026-04-27T00:00:00Z",
-  "updated_at": "2026-04-27T00:00:00Z",
+  "updated_at": "2026-04-28T11:47:44+10:00",
   "description": "Enhanced AI Builder & Custom Connectors with resilience, observability, and usability improvements",
   "dependencies": ["upstream_baseline_sync_20260422", "correlation_id_telemetry_20260427", "connector_schema_validation_20260427"],
   "api_sources": ["Dataverse Web API (aimodel, connector)", "AI Builder API", "HTTP"]

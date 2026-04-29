@@ -1,0 +1,135 @@
+{
+  "mission_id": "all-tracks-completion",
+  "description": "Complete, block with accepted rationale, or archive every non-complete PACX conductor track.",
+  "started_at": 1777291200,
+  "status": "ready",
+  "team_name": "pacx-all-tracks-completion",
+  "manifest": "swarm-track-completion-manifest.json",
+  "supersedes": [
+    "549f6e12",
+    "b4cdc176",
+    "pacx-conductor-backlog"
+  ],
+  "agents": [
+    {
+      "name": "Mission_Lead",
+      "mode": "coordinator",
+      "color": "blue",
+      "status": "pending"
+    },
+    {
+      "name": "Integration_Lead",
+      "mode": "coordinator",
+      "color": "white",
+      "status": "pending"
+    },
+    {
+      "name": "Quality_Validator",
+      "mode": "validator",
+      "color": "green",
+      "status": "pending"
+    },
+    {
+      "name": "Telemetry_Worker",
+      "mode": "parallel",
+      "color": "yellow",
+      "status": "pending"
+    },
+    {
+      "name": "Connector_Worker",
+      "mode": "parallel",
+      "color": "orange",
+      "status": "pending"
+    },
+    {
+      "name": "Ai_Worker",
+      "mode": "parallel",
+      "color": "pink",
+      "status": "pending"
+    },
+    {
+      "name": "Workflow_Worker",
+      "mode": "parallel",
+      "color": "cyan",
+      "status": "pending"
+    },
+    {
+      "name": "DX_Worker",
+      "mode": "parallel",
+      "color": "green",
+      "status": "pending"
+    },
+    {
+      "name": "CLI_Worker",
+      "mode": "parallel",
+      "color": "purple",
+      "status": "pending"
+    },
+    {
+      "name": "Testing_Worker",
+      "mode": "parallel",
+      "color": "teal",
+      "status": "pending"
+    },
+    {
+      "name": "Fabric_Worker",
+      "mode": "parallel",
+      "color": "amber",
+      "status": "pending"
+    },
+    {
+      "name": "PowerBI_Worker",
+      "mode": "parallel",
+      "color": "violet",
+      "status": "pending"
+    },
+    {
+      "name": "DesktopFlow_Worker",
+      "mode": "parallel",
+      "color": "yellow",
+      "status": "pending"
+    },
+    {
+      "name": "Dataverse_Gaps_Worker",
+      "mode": "parallel",
+      "color": "orange",
+      "status": "pending"
+    },
+    {
+      "name": "Forms_Worker",
+      "mode": "parallel",
+      "color": "pink",
+      "status": "pending"
+    },
+    {
+      "name": "PowerFx_Worker",
+      "mode": "parallel",
+      "color": "blue",
+      "status": "pending"
+    },
+    {
+      "name": "Performance_Worker",
+      "mode": "parallel",
+      "color": "gray",
+      "status": "pending"
+    },
+    {
+      "name": "Copilot_Worker",
+      "mode": "parallel",
+      "color": "red",
+      "status": "blocked",
+      "blocked_by": "archive/mcp_server_20260408"
+    },
+    {
+      "name": "Legacy_Backlog_Worker",
+      "mode": "parallel",
+      "color": "brown",
+      "status": "pending"
+    }
+  ],
+  "attempt": 1,
+  "updated_at": 1777291200,
+  "ended_at": 0.0,
+  "failure_reason": "",
+  "completion_gate": "All tracks in swarm-track-completion-manifest.json active_track_queue are complete, blocked with accepted rationale, or archived."
+}

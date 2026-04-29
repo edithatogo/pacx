@@ -26,7 +26,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        dotnet_version: [10.0.202]
+        dotnet_version: [11.0.100-preview.3.26207.106]
     uses: ./.github/workflows/_build.yml
     with:
       solution_path: Greg.Xrm.Command/Greg.Xrm.Command.sln

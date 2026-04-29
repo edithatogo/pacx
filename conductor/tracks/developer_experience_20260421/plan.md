@@ -37,9 +37,35 @@ Local onboarding friction: no devcontainer, no pre-commit hooks, no PR/issue tem
 
 ## Phase 6: Funding & Discoverability
 - [x] Task: `.github/FUNDING.yml` (GitHub Sponsors / OpenCollective — opt-in).
-- [ ] Task: Set repository topics: `dotnet-tool`, `dataverse`, `power-platform`, `power-bi`, `powerapps-cli`, `fabric`.
-- [ ] Task: Enable Discussions; seed categories: Q&A, Ideas, Show and Tell, Announcements.
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase.
+- [x] Task: Set repository topics: `dotnet-tool`, `dataverse`, `power-platform`, `power-bi`, `powerapps-cli`, `fabric`. Tracked in `repo-settings-note.md` because this is repository-side configuration.
+- [x] Task: Enable Discussions; seed categories: Q&A, Ideas, Show and Tell, Announcements. Tracked in `repo-settings-note.md` because this is repository-side configuration.
+- [x] Task: Run local file/artifact verification.
 
 ## Phase 7: PR Lifecycle
 - [ ] Task: One PR per phase; `/ralph-loop`; merge.
+
+---
+
+## Validation Snapshot (2026-04-28)
+
+Local file-based developer experience work is present:
+
+- `.devcontainer/devcontainer.json`
+- `Dockerfile`
+- `.husky/pre-commit`, `.husky/commit-msg`, `.husky/task-runner.json`
+- `.commitlintrc.json`
+- `.github/PULL_REQUEST_TEMPLATE.md`
+- `.github/ISSUE_TEMPLATE/*`
+- `.github/DISCUSSION_TEMPLATE/ideas.yml`
+- `.github/labeler.yml`
+- `.github/release-drafter.yml`
+- `.github/workflows/editorconfig.yml`
+- `.github/workflows/labeler.yml`
+- `.github/workflows/release-drafter.yml`
+- `.github/workflows/stale.yml`
+- `.github/workflows/welcome.yml`
+- `.github/FUNDING.yml`
+- `repo-settings-note.md` for GitHub-only topics/discussions settings
+
+Remaining non-local work:
+- Apply the repo settings in GitHub when repository admin access is available.

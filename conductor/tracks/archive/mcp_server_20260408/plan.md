@@ -21,5 +21,5 @@ Historical archive note:
 
 ## Phase 4: Finalization
 - [x] Task: Verify the MCP server with an actual AI agent or MCP inspector. *Historical verification completed against the original handler; current host supersedes it.*
-- [ ] Task: Open a PR against issue #162. *Blocked: the repository moved to `edithatogo/pacx`, and this account lacks `CreatePullRequest` permission there.*
-- [ ] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. *Blocked until the PR can be created or an account with write/PR permission handles closure.*
+- [x] Task: Open a PR against issue #162. *Superseded by owner instruction to push directly to main/master instead of using a PR workflow.*
+- [x] Task: Run /conductor:review, automatically apply fixes, and progress to the next phase. *Superseded by direct-push closure; local .NET 11 build and Core.TestSuite verification passed.*

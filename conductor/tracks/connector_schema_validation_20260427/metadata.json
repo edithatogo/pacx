@@ -1,13 +1,13 @@
 {
   "track_id": "connector_schema_validation_20260427",
   "type": "feature",
-  "status": "pending",
+  "status": "complete",
   "phase": 1,
-  "completed_at": null,
-  "note": "Pre-validate connector definitions against OpenAPI schema before calling Power Platform APIs",
+  "completed_at": "2026-04-28T10:30:37+10:00",
+  "note": "JSON/OpenAPI structural validation now runs for connector validate/import/test before API/backend work; --schema-file policy overlay, validation exit-code alignment, ADR, and CI recipe are complete on the .NET 11 preview target",
   "priority": "Medium",
   "created_at": "2026-04-27T00:00:00Z",
-  "updated_at": "2026-04-27T00:00:00Z",
+  "updated_at": "2026-04-28T11:15:00+10:00",
   "description": "Schema validation for connector definitions to catch errors early",
   "dependencies": ["upstream_baseline_sync_20260422", "correlation_id_telemetry_20260427"],
   "api_sources": ["OpenAPI/Swagger validation"]

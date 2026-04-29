@@ -1,0 +1,16 @@
+- name: ADR Index
+  href: index.md
+- name: Use Command Executor Pattern
+  href: adr-0001-use-command-executor-pattern.md
+- name: Central Package Management
+  href: adr-0002-central-package-management.md
+- name: Organization Service Repository
+  href: adr-0003-organization-service-repository.md
+- name: MCP Host Boundary
+  href: adr-0004-mcp-host-boundary.md
+- name: Plugin Architecture
+  href: adr-0005-plugin-architecture.md
+- name: Connector Schema Validation Baseline
+  href: 2026-04-28-connector-schema-validation.md
+- name: Native AOT Feasibility
+  href: 2026-04-28-native-aot-feasibility.md

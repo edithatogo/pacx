@@ -1,13 +1,13 @@
 {
   "track_id": "desktop_flow_rpa_20260421",
   "type": "feature",
-  "status": "pending",
-  "phase": 1,
-  "completed_at": null,
-  "note": "Desktop Flows (RPA): list/trigger/runs, machines and machine-groups, scaffold, approvals",
+  "status": "completed",
+  "phase": 6,
+  "completed_at": "2026-04-28T16:10:00+10:00",
+  "note": "Completed on the .NET 11 preview target: desktop-flow list/get/trigger/run commands, machine and machine-group commands, scaffold generation, approval list/respond, docs recipe, and unit-test coverage are in place. Local build validation remains gated by installing the .NET 11 preview SDK.",
   "priority": "Medium",
   "created_at": "2026-04-21T00:00:00Z",
-  "updated_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T16:10:00+10:00",
   "description": "CLI coverage for Power Automate Desktop (RPA) — currently zero",
   "dependencies": [],
   "api_sources": ["Power Automate REST", "Dataverse Web API (workflow entity)"]

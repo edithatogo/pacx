@@ -1,0 +1,322 @@
+{
+  "mission": "pacx-all-tracks-completion",
+  "generated": "2026-04-27",
+  "goal": "Drive every non-complete conductor track to completed, explicitly blocked, or intentionally archived state.",
+  "source_of_truth": [
+    "conductor/tracks.md",
+    "conductor/tracks/*/metadata.json",
+    "conductor/tracks/*/plan.md",
+    "conductor/tracks/archive/*/metadata.json",
+    "conductor/tracks/archive/*/plan.md"
+  ],
+  "global_rules": [
+    "Do not revert unrelated dirty work.",
+    "Each worker edits only its owned files and track plan.",
+    "Every worker handoff must list files changed, tests run, residual blockers, and track checkboxes updated.",
+    "Quality_Validator must accept the handoff before Integration_Lead marks a track complete.",
+    "A track is not complete until implementation, focused tests, conductor plan updates, metadata updates, and validation notes are present.",
+    "If local dotnet validation is blocked by SDK/workload resolver state, record the exact blocker and route environment repair to Integration_Lead before marking implementation tracks complete."
+  ],
+  "completion_states": {
+    "ready": "Dependencies are satisfied and worker may implement.",
+    "waiting": "Dependency track must complete first.",
+    "blocked": "External permission/environment/API access prevents completion.",
+    "validating": "Implementation is handed off to Quality_Validator.",
+    "complete": "Validator accepted and Integration_Lead reconciled track metadata."
+  },
+  "waves": [
+    {
+      "id": "W0",
+      "name": "Baseline and Environment Repair",
+      "tracks": [
+        "code_quality_hardening_20260421",
+        "ci_cd_hardening_20260421",
+        "developer_experience_20260421"
+      ],
+      "exit_gate": "Mission files, dirty-state note, stale mission handling, and dotnet validation blocker are recorded."
+    },
+    {
+      "id": "W1",
+      "name": "Foundations",
+      "tracks": [
+        "correlation_id_telemetry_20260427",
+        "connector_schema_validation_20260427",
+        "testing_maturity_20260421",
+        "cli_ux_20260421",
+        "solution_tests_20260408",
+        "cicd_tests_20260408",
+        "code_quality_20260408"
+      ],
+      "exit_gate": "Shared telemetry, connector validation, parser/CLI behavior, and legacy test tracks have accepted validation."
+    },
+    {
+      "id": "W2",
+      "name": "AI and Connector Completion",
+      "tracks": [
+        "ai_builder_connectors_improved_20260427",
+        "ai_wrapper_service_20260427"
+      ],
+      "exit_gate": "AI Builder and connector flows reuse telemetry and schema validation, with retry/polling/timeout tests accepted."
+    },
+    {
+      "id": "W3",
+      "name": "Strategic Product Coverage",
+      "tracks": [
+        "fabric_onelake_20260421",
+        "powerbi_workspace_mgmt_20260421",
+        "desktop_flow_rpa_20260421",
+        "power_fx_validation_20260421"
+      ],
+      "exit_gate": "Each product surface has fake-client tests and no live tenant dependency in unit tests."
+    },
+    {
+      "id": "W4",
+      "name": "Dataverse and Forms Depth",
+      "tracks": [
+        "dataverse_gaps_phase2_20260421",
+        "forms_advanced_20260421"
+      ],
+      "exit_gate": "Each command slice has parser and executor coverage and preserves existing v1 behavior."
+    },
+    {
+      "id": "W5",
+      "name": "Docs, Performance, and Legacy Closure",
+      "tracks": [
+        "documentation_site_20260421",
+        "performance_aot_20260421",
+        "pr_lifecycle_20260409",
+        "pr146_integration_20260408",
+        "resolve_issues_20260408",
+        "archive/explore_branches_20260408",
+        "archive/mcp_server_20260408"
+      ],
+      "exit_gate": "Docs build or blocker is recorded, performance checks are opt-in, and legacy tracks are completed or archived with rationale."
+    },
+    {
+      "id": "W6",
+      "name": "Copilot and Final Reconciliation",
+      "tracks": [
+        "copilot_studio_20260421"
+      ],
+      "exit_gate": "Copilot starts only after MCP closure, then Integration_Lead reconciles conductor/tracks.md and status reports."
+    }
+  ],
+  "assignments": [
+    {
+      "agent": "Mission_Lead",
+      "tracks": [
+        "mission_control"
+      ],
+      "responsibilities": [
+        "Maintain this manifest as queue state changes.",
+        "Start only dependency-ready tracks.",
+        "Move failed validation back to the owning worker.",
+        "Stop the mission only when every active track is complete, blocked, or archived."
+      ]
+    },
+    {
+      "agent": "Integration_Lead",
+      "tracks": [
+        "cross_track_integration",
+        "conductor/tracks.md",
+        "logs/status_all.json",
+        ".swarm"
+      ],
+      "responsibilities": [
+        "Resolve file ownership conflicts.",
+        "Reconcile stale or contradictory metadata.",
+        "Repair or document environment validation blockers.",
+        "Update final conductor reports after validator acceptance."
+      ]
+    },
+    {
+      "agent": "Telemetry_Worker",
+      "tracks": [
+        "correlation_id_telemetry_20260427"
+      ]
+    },
+    {
+      "agent": "Connector_Worker",
+      "tracks": [
+        "connector_schema_validation_20260427"
+      ]
+    },
+    {
+      "agent": "Ai_Worker",
+      "tracks": [
+        "ai_builder_connectors_improved_20260427",
+        "ai_wrapper_service_20260427"
+      ]
+    },
+    {
+      "agent": "Workflow_Worker",
+      "tracks": [
+        "ci_cd_hardening_20260421"
+      ]
+    },
+    {
+      "agent": "DX_Worker",
+      "tracks": [
+        "developer_experience_20260421",
+        "documentation_site_20260421"
+      ]
+    },
+    {
+      "agent": "CLI_Worker",
+      "tracks": [
+        "cli_ux_20260421"
+      ]
+    },
+    {
+      "agent": "Testing_Worker",
+      "tracks": [
+        "testing_maturity_20260421",
+        "solution_tests_20260408",
+        "cicd_tests_20260408",
+        "code_quality_20260408"
+      ]
+    },
+    {
+      "agent": "Fabric_Worker",
+      "tracks": [
+        "fabric_onelake_20260421"
+      ]
+    },
+    {
+      "agent": "PowerBI_Worker",
+      "tracks": [
+        "powerbi_workspace_mgmt_20260421"
+      ]
+    },
+    {
+      "agent": "DesktopFlow_Worker",
+      "tracks": [
+        "desktop_flow_rpa_20260421"
+      ]
+    },
+    {
+      "agent": "Dataverse_Gaps_Worker",
+      "tracks": [
+        "dataverse_gaps_phase2_20260421"
+      ]
+    },
+    {
+      "agent": "Forms_Worker",
+      "tracks": [
+        "forms_advanced_20260421"
+      ]
+    },
+    {
+      "agent": "PowerFx_Worker",
+      "tracks": [
+        "power_fx_validation_20260421"
+      ]
+    },
+    {
+      "agent": "Performance_Worker",
+      "tracks": [
+        "performance_aot_20260421"
+      ]
+    },
+    {
+      "agent": "Copilot_Worker",
+      "tracks": [
+        "copilot_studio_20260421"
+      ],
+      "blocked_by": [
+        "archive/mcp_server_20260408"
+      ]
+    },
+    {
+      "agent": "Legacy_Backlog_Worker",
+      "tracks": [
+        "pr_lifecycle_20260409",
+        "pr146_integration_20260408",
+        "resolve_issues_20260408",
+        "archive/explore_branches_20260408",
+        "archive/mcp_server_20260408"
+      ]
+    },
+    {
+      "agent": "Quality_Validator",
+      "tracks": [
+        "*"
+      ],
+      "responsibilities": [
+        "Review every worker handoff.",
+        "Run focused tests or record the exact blocker.",
+        "Approve, reject, or mark blocked with file/line evidence."
+      ]
+    }
+  ],
+  "active_track_queue": [
+    "ci_cd_hardening_20260421",
+    "developer_experience_20260421",
+    "correlation_id_telemetry_20260427",
+    "connector_schema_validation_20260427",
+    "ai_builder_connectors_improved_20260427",
+    "ai_wrapper_service_20260427",
+    "cli_ux_20260421",
+    "testing_maturity_20260421",
+    "solution_tests_20260408",
+    "cicd_tests_20260408",
+    "code_quality_20260408",
+    "fabric_onelake_20260421",
+    "powerbi_workspace_mgmt_20260421",
+    "desktop_flow_rpa_20260421",
+    "power_fx_validation_20260421",
+    "dataverse_gaps_phase2_20260421",
+    "forms_advanced_20260421",
+    "documentation_site_20260421",
+    "performance_aot_20260421",
+    "pr_lifecycle_20260409",
+    "pr146_integration_20260408",
+    "resolve_issues_20260408",
+    "archive/explore_branches_20260408",
+    "archive/mcp_server_20260408",
+    "copilot_studio_20260421"
+  ],
+  "already_complete_but_reconcile": [
+    "upstream_baseline_sync_20260422",
+    "defake_stubs_20260421",
+    "library_hygiene_20260421",
+    "code_quality_hardening_20260421",
+    "security_supply_chain_20260421",
+    "ai_builder_connectors_20260409",
+    "alm_center_20260409",
+    "automation_plugin_20260408",
+    "cicd_quality_20260409",
+    "data_crossplatform_20260409",
+    "e2e_smoke_tests_20260409",
+    "env_lifecycle_20260409",
+    "governance_security_20260409",
+    "ms_forms_20260409",
+    "pcf_enhancement_20260409",
+    "plugin_test_coverage_20260409",
+    "power_pages_cli_20260409",
+    "spkl_parity_20260409",
+    "tabular_editor_20260409"
+  ],
+  "known_blockers": [
+    {
+      "id": "local_dotnet_workload_resolver",
+      "scope": "all .NET validation",
+      "status": "open",
+      "required_resolution": "Fix SDK/workload resolver or record an accepted external validation path before final completion."
+    },
+    {
+      "id": "mcp_server_20260408",
+      "scope": "copilot_studio_20260421",
+      "status": "open",
+      "required_resolution": "Complete, archive, or explicitly bypass MCP Server before Copilot implementation starts."
+    }
+  ],
+  "final_done_definition": [
+    "active_track_queue is empty or every remaining item is marked blocked with accepted rationale.",
+    "conductor/tracks.md has no contradictory duplicate status for the same track.",
+    "Every track metadata.json status matches the accepted state.",
+    "logs/status_all.json or replacement status report is regenerated.",
+    "Quality_Validator has an acceptance note for every completed track.",
+    "Integration_Lead has summarized unresolved dirty work and validation gaps."
+  ]
+}

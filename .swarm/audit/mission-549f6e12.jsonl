@@ -1,0 +1,8 @@
+{"ts": 1776918005.6100883, "agent": "Junior", "event": "spawned", "detail": "mode=parallel", "meta": {"backend": "thread", "retry": 0}}
+{"ts": 1776918322.2974317, "agent": "Junior", "event": "warning", "detail": "watchdog_soft_shutdown_requested", "meta": {"idle_seconds": 316.64}}
+{"ts": 1776936648.5243242, "agent": "Junior", "event": "error", "detail": "watchdog_no_progress_timeout", "meta": {"idle_seconds": 18642.92, "failure_class": "timeout_error"}}
+{"ts": 1776936651.9417837, "agent": "Junior", "event": "status_change", "detail": "retrying", "meta": {"attempt": 1, "reason": "watchdog_timeout"}}
+{"ts": 1776936652.1885304, "agent": "Junior", "event": "spawned", "detail": "mode=parallel", "meta": {"backend": "thread", "retry": 1}}
+{"ts": 1776936742.2420993, "agent": "Junior", "event": "warning", "detail": "watchdog_soft_shutdown_requested", "meta": {"idle_seconds": 90.05}}
+{"ts": 1776936757.2720068, "agent": "Junior", "event": "error", "detail": "watchdog_no_progress_timeout", "meta": {"idle_seconds": 105.08, "failure_class": "timeout_error"}}
+{"ts": 1776936757.3018727, "agent": "Quality_Validator", "event": "spawned", "detail": "mode=validator", "meta": {"backend": "thread", "retry": 0}}

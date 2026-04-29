@@ -1,6 +1,6 @@
 {
   "name": "PACX",
-  "image": "mcr.microsoft.com/devcontainers/dotnet:1-10.0-jammy",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-11.0-jammy",
   "features": {
     "ghcr.io/devcontainers/features/powershell:1": {},
     "ghcr.io/devcontainers/features/azure-cli:1": {},

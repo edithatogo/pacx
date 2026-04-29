@@ -1,0 +1,42 @@
+name: Integration
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 17 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  dataverse:
+    name: Dataverse integration tests
+    runs-on: ubuntu-latest
+    environment: integration
+    timeout-minutes: 45
+    env:
+      PACX_INTEGRATION_ENV_URL: ${{ secrets.PACX_INTEGRATION_ENV_URL }}
+      PACX_INTEGRATION_CLIENT_ID: ${{ secrets.PACX_INTEGRATION_CLIENT_ID }}
+      PACX_INTEGRATION_TENANT_ID: ${{ secrets.PACX_INTEGRATION_TENANT_ID }}
+      PACX_INTEGRATION_CLIENT_SECRET: ${{ secrets.PACX_INTEGRATION_CLIENT_SECRET }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-preview.3.26207.106
+          cache: true
+
+      - name: Restore
+        run: dotnet restore Greg.Xrm.Command/Greg.Xrm.Command.sln
+
+      - name: Skip when integration environment is not configured
+        if: env.PACX_INTEGRATION_ENV_URL == ''
+        run: echo "PACX_INTEGRATION_ENV_URL is not configured; skipping integration suite."
+
+      - name: Run integration tests
+        if: env.PACX_INTEGRATION_ENV_URL != ''
+        run: dotnet test Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/Greg.Xrm.Command.Core.TestSuite.csproj --no-restore --filter "TestCategory=Integration"

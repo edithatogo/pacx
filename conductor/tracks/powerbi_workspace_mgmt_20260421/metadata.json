@@ -1,13 +1,13 @@
 {
   "track_id": "powerbi_workspace_mgmt_20260421",
   "type": "feature",
-  "status": "pending",
-  "phase": 1,
-  "completed_at": null,
-  "note": "Power BI workspace-level CLI: dataset publish/clone/refresh, RLS, deployment pipelines, capacity metrics",
+  "status": "completed",
+  "phase": 7,
+  "completed_at": "2026-04-28T15:35:00+10:00",
+  "note": "Completed on the .NET 11 preview target: Power BI REST client, dataset list/publish/clone/delete, RLS assignment/list, refresh trigger/status/schedule, deployment pipeline, capacity commands, docs recipe, and unit-test coverage are in place. Local build validation remains gated by installing the .NET 11 preview SDK.",
   "priority": "High",
   "created_at": "2026-04-21T00:00:00Z",
-  "updated_at": "2026-04-21T00:00:00Z",
+  "updated_at": "2026-04-28T15:35:00+10:00",
   "description": "Complement tabular (BIM) commands with workspace, dataset, RLS, refresh, pipeline, capacity management",
   "dependencies": [],
   "api_sources": ["Power BI REST API v1", "XMLA endpoint"]

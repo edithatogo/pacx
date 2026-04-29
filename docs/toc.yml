@@ -1,0 +1,20 @@
+- name: Getting Started
+  href: index.md
+- name: Authentication
+  href: guides/authentication.md
+- name: Shell Completions
+  href: guides/shell-completions.md
+- name: Exit Codes
+  href: guides/exit-codes.md
+- name: Telemetry
+  href: guides/telemetry.md
+- name: Commands
+  href: reference/commands/index.md
+- name: Recipes
+  href: recipes/toc.yml
+- name: ADRs
+  href: adr/toc.yml
+- name: Contributing
+  href: contributing.md
+- name: Upgrade Guide
+  href: guides/migration-from-pac.md

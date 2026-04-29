@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Greg.Xrm.Command.Interfaces\Greg.Xrm.Command.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

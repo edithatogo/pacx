@@ -1,4 +1,4 @@
-ARG SDK_IMAGE=mcr.microsoft.com/dotnet/sdk:10.0
+ARG SDK_IMAGE=mcr.microsoft.com/dotnet/sdk:11.0
 FROM ${SDK_IMAGE} AS build
 
 WORKDIR /src

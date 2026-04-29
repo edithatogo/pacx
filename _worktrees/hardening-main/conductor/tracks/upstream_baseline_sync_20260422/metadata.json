@@ -1,0 +1,14 @@
+{
+  "track_id": "upstream_baseline_sync_20260422",
+  "type": "feature",
+  "status": "blocked",
+  "phase": 5,
+  "completed_at": null,
+  "note": "Sync ahead upstream branches into the PACX baseline and gate downstream planning work on the result.",
+  "priority": "High",
+  "created_at": "2026-04-22T00:00:00Z",
+  "updated_at": "2026-04-22T05:56:54.4056203+10:00",
+  "description": "Integrate ahead upstream branches into the local baseline before continuing the planned pipeline.",
+  "dependencies": [],
+  "api_sources": ["GitHub upstream repository", "local PACX baseline"]
+}
