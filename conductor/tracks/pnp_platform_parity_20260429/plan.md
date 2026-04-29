@@ -60,10 +60,10 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 - [ ] Task: Documentation.
 
 ### Phase 2: Flow management surfaces
-- [ ] Task: `pacx flow owner list/get/set/remove` — ownership commands.
-- [ ] Task: `pacx flow environment list/get` — environment scoping.
-- [ ] Task: `pacx flow recyclebin list/restore` — recovery commands.
-- [ ] Task: Tests and documentation.
+- [x] Task: `pacx flow owner list/get/set/remove` — ownership commands. [fb1b1d9]
+- [x] Task: `pacx flow environment list/get` — environment scoping. [fb1b1d9]
+- [x] Task: `pacx flow recyclebin list/restore` — recovery commands. [fb1b1d9]
+- [x] Task: Tests and documentation. [fb1b1d9]
 
 ### Phase 3: Power Apps management
 - [ ] Task: `pacx pa app list/get/remove/export` — Power App CRUD.
