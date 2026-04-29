@@ -50,13 +50,13 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 ## Phases
 
 ### Phase 1: Flow CRUD
-- [~] Task: `pacx flow list` — enumerate flows in environment.
-- [ ] Task: `pacx flow get <id>` — flow definition details.
-- [ ] Task: `pacx flow export <id>` — export as package/zip.
-- [ ] Task: `pacx flow enable <id>` — activate a flow.
-- [ ] Task: `pacx flow disable <id>` — deactivate a flow.
-- [ ] Task: `pacx flow remove <id>` — delete a flow.
-- [ ] Task: Tests for all flow CRUD commands.
+- [x] Task: `pacx flow list` — enumerate flows in environment. [a6eec86]
+- [x] Task: `pacx flow get <id>` — flow definition details. [a6eec86]
+- [x] Task: `pacx flow export <id>` — export as package/zip. [a6eec86]
+- [x] Task: `pacx flow enable <id>` — activate a flow. [a6eec86]
+- [x] Task: `pacx flow disable <id>` — deactivate a flow. [a6eec86]
+- [x] Task: `pacx flow remove <id>` — delete a flow. [a6eec86]
+- [x] Task: Tests for all flow CRUD commands. [a6eec86]
 - [ ] Task: Documentation.
 
 ### Phase 2: Flow management surfaces
