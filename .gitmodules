@@ -1,0 +1,3 @@
+[submodule "Greg.Xrm.Command"]
+	path = Greg.Xrm.Command
+	url = https://github.com/edithatogo/Greg.Xrm.Command
