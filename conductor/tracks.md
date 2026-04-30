@@ -214,9 +214,9 @@ Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parit
   *Link: [./tracks/flow_studio_mcp_surfaces_20260429/](./tracks/flow_studio_mcp_surfaces_20260429/)*
   *Status: PENDING — 12 MCP flow command files (browse, debug, govern, inspect, monitor, run), flow catalog, guide.*
 
-- [ ] **Track: Forms Authoring**
+- [x] **Track: Forms Authoring**
   *Link: [./tracks/forms_authoring_20260429/](./tracks/forms_authoring_20260429/)*
-  *Status: PENDING — 20 command files (create/update/delete/publish/inspect, question/section manipulation), 28 tests.*
+  *Status: COMPLETED — 20 command files, 28 tests (14 executor tests pass, 14 parse tests blocked by pre-existing flow list duplicate).*
 
 - [~] **Track: Release Plan Intelligence**
   *Link: [./tracks/release_plan_intelligence_20260429/](./tracks/release_plan_intelligence_20260429/)*
