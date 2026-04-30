@@ -33,6 +33,9 @@
     <UseSharedCompilation>false</UseSharedCompilation>
     <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
     <NoWarn>$(NoWarn);NU1510;NU1900</NoWarn>
+    <!-- Strong-name signing — committed SNK (identity, not secrecy) -->
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)pacx_strongname.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- Global usings for all projects -->
