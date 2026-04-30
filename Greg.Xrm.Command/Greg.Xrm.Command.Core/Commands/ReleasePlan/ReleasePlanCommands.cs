@@ -47,4 +47,33 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 	public class ReleasePlanProductsCommand
 	{
 	}
+
+	[Command("release-plan", "analyze", HelpText = "Analyze impact of release plan changes on a Dataverse environment.")]
+	public class ReleasePlanAnalyzeCommand
+	{
+		[Option("environment", "env", Order = 1, Required = true, HelpText = "The environment name or URL to analyze.")]
+		public string EnvironmentName { get; set; } = string.Empty;
+
+		[Option("product", "p", Order = 2, HelpText = "Filter analysis to a specific product (e.g., Power Platform, Power BI).")]
+		public string? Product { get; set; }
+
+		[Option("status", "s", Order = 3, HelpText = "Filter by release plan status (e.g., InDevelopment, Launched, RollingOut).")]
+		public string? Status { get; set; }
+	}
+
+	[Command("release-plan", "report", HelpText = "Generate a summary report of release plan items.")]
+	public class ReleasePlanReportCommand
+	{
+		[Option("product", "p", Order = 1, HelpText = "Filter by product name.")]
+		public string? Product { get; set; }
+
+		[Option("status", "s", Order = 2, HelpText = "Filter by status (e.g., Launched, RollingOut, InDevelopment).")]
+		public string? Status { get; set; }
+
+		[Option("output", "o", Order = 3, HelpText = "Output file path for the report (default: console output).")]
+		public string? OutputPath { get; set; }
+
+		[Option("format", "f", Order = 4, DefaultValue = "markdown", HelpText = "Report format: 'markdown' (default) or 'html'.")]
+		public string Format { get; set; } = "markdown";
+	}
 }
