@@ -222,10 +222,6 @@ Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parit
   *Link: [./tracks/release_plan_intelligence_20260429/](./tracks/release_plan_intelligence_20260429/)*
   *Status: PENDING — All 9 tasks across 3 phases pending.*
 
-- [x] **Track: Release Supply Chain Hardening**
-  *Link: [./tracks/release_supply_chain_hardening_20260429/](./tracks/release_supply_chain_hardening_20260429/)*
-  *Status: COMPLETED — strong-name signing, assembly signing, Sigstore signing, Git tag signing, release gates, CI integration, and 9 tests.*
-
 - [ ] **Track: Repo Hardening Capability Expansion**
   *Link: [./tracks/repo_hardening_capability_expansion_20260429/](./tracks/repo_hardening_capability_expansion_20260429/)*
   *Status: PENDING — Umbrella meta-track delegating to child tracks. Only decomposition complete.*
