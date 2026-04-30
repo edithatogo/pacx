@@ -30,19 +30,19 @@ Harden release supply chain — provenance, SBOM, signing, verification, and rel
 - [x] Task: `PacxPackageReleaseVerifier` — verification logic.
 - [x] Task: Tests for provenance/SBOM.
 
-### Phase 2: Signing (PENDING)
-- [ ] Task: Configure strong-name signing key (.snk) management.
-- [ ] Task: Sign assemblies during build (`.targets` / `.props` integration).
-- [ ] Task: Sign NuGet packages during release workflow.
-- [ ] Task: Sign Git tags for release commits.
-- [ ] Task: Tests for signature verification.
+### Phase 2: Signing (COMPLETED)
+- [x] Task: Configure strong-name signing key (.snk) management. [b5ed258]
+- [x] Task: Sign assemblies during build (`.targets` / `.props` integration). [b5ed258]
+- [x] Task: Sign NuGet packages during release workflow. [b5ed258] (Implemented via Sigstore signing in release.yml — line 219: sigstore/gh-action-sigstore-python signs .nupkg files and SBOM)
+- [x] Task: Sign Git tags for release commits. (Already implemented via `release-tag.yml` — Gitsign Sigstore-based, active prior to this track)
+- [x] Task: Tests for signature verification. [b5ed258]
 
-### Phase 3: Release gates (PENDING)
-- [ ] Task: Verify provenance before NuGet publish.
-- [ ] Task: Verify SBOM completeness before release.
-- [ ] Task: Verify signatures before release promotion.
-- [ ] Task: CI gate integration in release workflow.
-- [ ] Task: Tests.
+### Phase 3: Release gates (COMPLETED)
+- [x] Task: Verify provenance before NuGet publish. [b5ed258]
+- [x] Task: Verify SBOM completeness before release. [b5ed258]
+- [x] Task: Verify signatures before release promotion. [b5ed258]
+- [x] Task: CI gate integration in release workflow. [b5ed258]
+- [x] Task: Tests. [b5ed258]
 
 ### Phase 4: PR Lifecycle
 - [ ] Task: Upstream PR; merge.
