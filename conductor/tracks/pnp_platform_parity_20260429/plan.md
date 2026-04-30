@@ -89,3 +89,4 @@ Add pacx equivalents for pnp Power Platform commands in these gap areas:
 
 ### Phase 6: Review Fixes
 - [x] Task: Apply review suggestions — fix export polling loop. [37f6e67]
+- [x] Task: Apply review suggestions — --confirm semantics, missing tests, stub warnings. [2407e25]
