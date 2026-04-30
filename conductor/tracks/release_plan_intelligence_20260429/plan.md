@@ -36,9 +36,9 @@ Release plan intelligence — browse, analyze, and report on Power Platform rele
 
 ### Phase 3: Impact analysis
 - [x] Task: Map release plan changes to Dataverse solution components. [c0cd3c1]
-- [ ] Task: `pacx release-plan analyze <env>` — check affected features.
-- [ ] Task: `pacx release-plan report` — generate markdown/HTML report.
-- [ ] Task: Tests.
+- [x] Task: `pacx release-plan analyze <env>` — check affected features. [58b32a0]
+- [x] Task: `pacx release-plan report` — generate markdown/HTML report. [58b32a0]
+- [x] Task: Tests. [58b32a0]
 
 ### Phase 4: PR Lifecycle
 - [ ] Task: Upstream PR; merge.
