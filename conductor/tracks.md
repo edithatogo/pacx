@@ -218,9 +218,9 @@ Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parit
   *Link: [./tracks/forms_authoring_20260429/](./tracks/forms_authoring_20260429/)*
   *Status: PENDING — 20 command files (create/update/delete/publish/inspect, question/section manipulation), 28 tests.*
 
-- [ ] **Track: Release Plan Intelligence**
+- [~] **Track: Release Plan Intelligence**
   *Link: [./tracks/release_plan_intelligence_20260429/](./tracks/release_plan_intelligence_20260429/)*
-  *Status: PENDING — All 9 tasks across 3 phases pending.*
+  *Status: IN PROGRESS — Phase 1 & 2 complete (data model, fetch/cache, list/get/search/refresh commands). Phase 3 (impact analysis) pending.*
 
 - [ ] **Track: Repo Hardening Capability Expansion**
   *Link: [./tracks/repo_hardening_capability_expansion_20260429/](./tracks/repo_hardening_capability_expansion_20260429/)*

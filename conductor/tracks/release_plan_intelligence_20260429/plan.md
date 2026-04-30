@@ -23,16 +23,16 @@ Release plan intelligence — browse, analyze, and report on Power Platform rele
 ## Phases
 
 ### Phase 1: Data ingestion
-- [ ] Task: Define release plan data model.
-- [ ] Task: Fetch/cache release plan data from Microsoft 365 Roadmap API / RSS.
-- [ ] Task: Storage strategy for offline access.
-- [ ] Task: Tests.
+- [x] Task: Define release plan data model. [5e59963]
+- [x] Task: Fetch/cache release plan data from Microsoft 365 Roadmap API / RSS. [5e59963]
+- [x] Task: Storage strategy for offline access. [5e59963]
+- [x] Task: Tests. [5e59963]
 
 ### Phase 2: Browse & search
-- [ ] Task: `pacx release-plan list` — list available plans.
-- [ ] Task: `pacx release-plan get <id>` — plan details.
-- [ ] Task: `pacx release-plan search <query>` — search plans.
-- [ ] Task: Tests.
+- [x] Task: `pacx release-plan list` — list available plans. [5e59963]
+- [x] Task: `pacx release-plan get <id>` — plan details. [5e59963]
+- [x] Task: `pacx release-plan search <query>` — search plans. [5e59963]
+- [x] Task: Tests. [5e59963]
 
 ### Phase 3: Impact analysis
 - [ ] Task: Map release plan changes to Dataverse solution components.
