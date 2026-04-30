@@ -38,11 +38,11 @@ Harden release supply chain — provenance, SBOM, signing, verification, and rel
 - [x] Task: Tests for signature verification. [b5ed258]
 
 ### Phase 3: Release gates (COMPLETED)
-- [x] Task: Verify provenance before NuGet publish. [b5ed258]
-- [x] Task: Verify SBOM completeness before release. [b5ed258]
-- [x] Task: Verify signatures before release promotion. [b5ed258]
-- [x] Task: CI gate integration in release workflow. [b5ed258]
-- [x] Task: Tests. [b5ed258]
+- [x] Task: Verify provenance before NuGet publish. [1026ee3]
+- [x] Task: Verify SBOM completeness before release. [1026ee3]
+- [x] Task: Verify signatures before release promotion. [1026ee3]
+- [x] Task: CI gate integration in release workflow. [1026ee3]
+- [x] Task: Tests. [1026ee3]
 
 ### Phase 4: PR Lifecycle
-- [ ] Task: Upstream PR; merge.
+- [x] Task: Upstream PR; merge. (N/A — submodule embedded, no separate upstream)
