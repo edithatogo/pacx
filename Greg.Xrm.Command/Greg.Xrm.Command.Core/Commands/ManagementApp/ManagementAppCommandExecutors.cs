@@ -41,7 +41,7 @@ namespace Greg.Xrm.Command.Commands.ManagementApp
 		{
 			try
 			{
-				output.WriteLine($"Management app '{command.ApplicationId}' registered successfully.");
+				output.WriteLine("Warning: 'managementapp add' is not yet implemented. Use the Power Platform admin center to register management applications.");
 				return CommandResult.Success();
 			}
 			catch (Exception ex)

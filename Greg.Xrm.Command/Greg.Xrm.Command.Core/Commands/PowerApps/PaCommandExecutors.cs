@@ -62,8 +62,13 @@ namespace Greg.Xrm.Command.Commands.PowerApps
 			{
 				if (!command.Confirm)
 				{
-					output.WriteLine($"Are you sure you want to delete the Power App '{command.AppName}'? Use --confirm to skip this prompt.");
-					return CommandResult.Success();
+					output.Write($"Are you sure you want to delete the Power App '{command.AppName}'? (y/N) ");
+					var response = Console.ReadLine()?.Trim()?.ToLowerInvariant();
+					if (response != "y" && response != "yes")
+					{
+						output.WriteLine("Deletion cancelled.");
+						return CommandResult.Success();
+					}
 				}
 
 				await client.DeleteAppAsync(command.AppName, command.EnvironmentName, command.AsAdmin, cancellationToken).ConfigureAwait(false);

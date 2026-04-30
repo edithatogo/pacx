@@ -41,7 +41,7 @@ namespace Greg.Xrm.Command.Commands.TenantSettings
 		{
 			try
 			{
-				output.WriteLine("Tenant settings update is not yet implemented. Use the Power Platform admin center to configure tenant settings.");
+				output.WriteLine("Warning: 'tenant settings set' is not yet implemented. Use the Power Platform admin center to configure tenant settings.");
 				return CommandResult.Success();
 			}
 			catch (Exception ex)

@@ -128,6 +128,7 @@ namespace Greg.Xrm.Command.Commands.PowerApps
 			Assert.IsTrue(result.IsSuccess);
 			Assert.IsNull(client.LastCall);
 			StringAssert.Contains(output.ToString(), "Are you sure");
+			StringAssert.Contains(output.ToString(), "Deletion cancelled");
 		}
 
 		[TestMethod]
