@@ -35,7 +35,7 @@ Release plan intelligence — browse, analyze, and report on Power Platform rele
 - [x] Task: Tests. [5e59963]
 
 ### Phase 3: Impact analysis
-- [ ] Task: Map release plan changes to Dataverse solution components.
+- [x] Task: Map release plan changes to Dataverse solution components. [c0cd3c1]
 - [ ] Task: `pacx release-plan analyze <env>` — check affected features.
 - [ ] Task: `pacx release-plan report` — generate markdown/HTML report.
 - [ ] Task: Tests.
