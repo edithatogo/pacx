@@ -99,6 +99,9 @@ namespace Greg.Xrm.Command
 			builder.RegisterType<Services.PowerAutomate.PowerAutomateClient>().As<Services.PowerAutomate.IPowerAutomateClient>();
 			builder.RegisterType<Services.PowerApps.PowerAppsClient>().As<Services.PowerApps.IPowerAppsClient>();
 			builder.RegisterType<Services.PowerPlatformAdmin.PowerPlatformAdminClient>().As<Services.PowerPlatformAdmin.IPowerPlatformAdminClient>();
+			builder.RegisterType<Services.ReleasePlan.ReleasePlanClient>().As<Services.ReleasePlan.IReleasePlanClient>();
+			builder.RegisterType<Services.ReleasePlan.ReleasePlanCache>().As<Services.ReleasePlan.IReleasePlanCache>();
+			builder.RegisterType<Services.ReleasePlan.ReleasePlanService>().As<Services.ReleasePlan.IReleasePlanService>();
 		}
 	}
 }
