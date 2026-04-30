@@ -218,9 +218,9 @@ Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parit
   *Link: [./tracks/forms_authoring_20260429/](./tracks/forms_authoring_20260429/)*
   *Status: COMPLETED — 20 command files, 28 tests (14 executor tests pass, 14 parse tests blocked by pre-existing flow list duplicate).*
 
-- [~] **Track: Release Plan Intelligence**
-  *Link: [./tracks/release_plan_intelligence_20260429/](./tracks/release_plan_intelligence_20260429/)*
-  *Status: IN PROGRESS — Phase 1 & 2 complete (data model, fetch/cache, list/get/search/refresh commands). Phase 3 (impact analysis) pending.*
+- [x] **Track: Release Plan Intelligence** *(archived)*
+  *Link: [./archive/release_plan_intelligence_20260429/](./archive/release_plan_intelligence_20260429/)*
+  *Status: COMPLETED — browse, analyze, report commands with impact analysis. Fork-only feature, no upstream PR.*
 
 - [ ] **Track: Repo Hardening Capability Expansion**
   *Link: [./tracks/repo_hardening_capability_expansion_20260429/](./tracks/repo_hardening_capability_expansion_20260429/)*
