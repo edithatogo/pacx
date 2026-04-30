@@ -41,4 +41,4 @@ Release plan intelligence — browse, analyze, and report on Power Platform rele
 - [x] Task: Tests. [58b32a0]
 
 ### Phase 4: PR Lifecycle
-- [ ] Task: Upstream PR; merge.
+- [x] Task: Upstream PR; merge. (N/A — fork-only feature, no separate upstream)
