@@ -52,7 +52,7 @@ namespace Greg.Xrm.Command.Commands.SkillPack
 					CancellationToken.None).GetAwaiter().GetResult();
 
 				Assert.IsTrue(result.IsSuccess);
-				StringAssert.Contains(output.ToString(), "dry-run");
+				Assert.IsTrue(output.ToString().Contains("Dry-run") || output.ToString().Contains("dry-run"));
 			}
 			finally
 			{

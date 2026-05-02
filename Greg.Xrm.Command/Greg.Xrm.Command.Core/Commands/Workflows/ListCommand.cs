@@ -5,7 +5,6 @@ using Greg.Xrm.Command.Services;
 namespace Greg.Xrm.Command.Commands.Workflows
 {
 	[Command("workflow", "list", HelpText = "Returns a list of workflows (Power Automate Flow)")]
-	[Alias("flow", "list")]
 	public class ListCommand : ICanProvideUsageExample
 	{
 		[Option("name", "n", Order = 1, HelpText = "The unique name (or part of it) of the workflow to retrieve")]

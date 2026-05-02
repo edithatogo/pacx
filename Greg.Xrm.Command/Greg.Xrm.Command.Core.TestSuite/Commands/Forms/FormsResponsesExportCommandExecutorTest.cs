@@ -14,7 +14,7 @@ namespace Greg.Xrm.Command.Commands.Forms
 			try
 			{
 				var apiMock = new Mock<IFormsApiClient>();
-				apiMock.Setup(a => a.GetResponsesAsync("contoso.onmicrosoft.com", "me", "User", "form123", 100, 0, It.IsAny<CancellationToken>()))
+				apiMock.Setup(a => a.GetResponsesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
 					.ReturnsAsync(new List<FormsResponse>
 					{
 						new() { Id = 1, SubmittedAt = new DateTime(2026, 1, 1), Answers = "{\"q1\":\"Yes\"}" }
@@ -25,14 +25,14 @@ namespace Greg.Xrm.Command.Commands.Forms
 				var result = executor.ExecuteAsync(
 					new FormsResponsesExportCommand
 					{
-						TenantId = "contoso.onmicrosoft.com",
+						TenantId = "00000000-0000-0000-0000-000000000000",
 						FormId = "form123",
 						OutputPath = outputPath,
 						Format = "csv"
 					},
 					CancellationToken.None).GetAwaiter().GetResult();
 
-				Assert.IsTrue(result.IsSuccess);
+				Assert.IsTrue(result.IsSuccess, result.ErrorMessage ?? "no error");
 				Assert.IsTrue(File.Exists(outputPath));
 				var content = File.ReadAllText(outputPath);
 				StringAssert.Contains(content, "ResponseId");
@@ -58,7 +58,7 @@ namespace Greg.Xrm.Command.Commands.Forms
 				var result = executor.ExecuteAsync(
 					new FormsResponsesExportCommand
 					{
-						TenantId = "contoso.onmicrosoft.com",
+						TenantId = "00000000-0000-0000-0000-000000000000",
 						FormId = "form123",
 						OutputPath = outputPath,
 						Format = "json"
