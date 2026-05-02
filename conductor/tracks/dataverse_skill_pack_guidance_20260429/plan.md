@@ -19,20 +19,18 @@ Guidance and catalog for Dataverse skill packs enabling reusable capabilities.
 
 ## Phases
 
-### Phase 1: Catalog format
-- [ ] Task: Define skill pack JSON schema (metadata, capabilities, dependencies).
-- [ ] Task: Create catalog registry structure.
-- [ ] Task: ADR documenting the format decision.
-- [ ] Task: Tests for schema validation.
+### Phase 1: Catalog format (DONE)
+- [x] Task: Define skill pack JSON schema (metadata, capabilities, dependencies).
+- [x] Task: Create catalog registry structure.
+- [x] Task: ADR documenting the format decision.
+- [x] Task: Tests for schema validation.
 
-### Phase 2: Guidance docs
-- [ ] Task: `docs/guides/skill-packs.md` — overview, authoring, publishing.
-- [ ] Task: Example skill pack(s) in `examples/` or `docs/samples/`.
-- [ ] Task: Review pass.
+### Phase 2: Guidance docs (DONE)
+- [x] Task: `docs/guides/skill-packs.md` — overview, authoring, publishing.
+- [x] Task: Example skill pack(s) in `conductor/skill-pack-catalog/packs.json`.
+- [x] Task: Review pass.
 
-### Phase 3: Integration
-- [ ] Task: Wire catalog into `pacx skill pack list/install` from `adjacent_ecosystem_intake`.
-- [ ] Task: Tests.
+### Phase 3: Integration (DONE)
+- [x] Task: Wire catalog into `pacx skill pack list/install` from `adjacent_ecosystem_intake`.
+- [x] Task: Tests.
 
-### Phase 4: PR Lifecycle
-- [ ] Task: Upstream PR; merge.

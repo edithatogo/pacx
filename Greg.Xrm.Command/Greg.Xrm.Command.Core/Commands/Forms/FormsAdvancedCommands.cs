@@ -98,5 +98,8 @@ namespace Greg.Xrm.Command.Commands.Forms
 
 		[Option("owner", "o", Order = 3, HelpText = "Owner user ID.")]
 		public string? OwnerId { get; set; }
+
+		[Option("owner-type", Order = 4, DefaultValue = "User", HelpText = "Owner type: User or Group.")]
+		public string OwnerType { get; set; } = "User";
 	}
 }

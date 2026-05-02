@@ -1,0 +1,8 @@
+# Merge queue configuration (applied via GitHub UI or branch protection API)
+# Group size: 5 PRs max
+# Merge method: Squash
+# Status checks required:
+#   - validate
+#   - dependency_review
+#   - commit_messages
+#   - coverage

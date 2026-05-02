@@ -24,6 +24,9 @@ internal static class Program
 {
 	private static async Task<int> Main(string[] args)
 	{
+		var originalArgs = (string[])args.Clone();
+		args = ProcessGlobalFlags(args);
+
 		var serviceCollection = new ServiceCollection();
 		serviceCollection.AddSingleton<IStorage>(new Storage());
 		serviceCollection.AddSingleton<ICommandLineArguments>(new CommandLineArguments(args));
@@ -38,7 +41,7 @@ internal static class Program
 		serviceCollection.AddTransient<IPacxProjectRepository, PacxProjectRepository>();
 		serviceCollection.AddSingleton<IOrganizationServiceRepository, OrganizationServiceRepository>();
 		serviceCollection.AddSingleton<ITokenProvider, TokenProvider>();
-		serviceCollection.AddSingleton<IOutput>(_ => new OutputToConsole(ShouldEnableColors(args)));
+		serviceCollection.AddSingleton<IOutput>(_ => CreateOutput(originalArgs));
 		serviceCollection.AddSingleton<Greg.Xrm.Command.Diagnostics.ICorrelationIdProvider, Greg.Xrm.Command.Diagnostics.AmbientCorrelationIdProvider>();
 		serviceCollection.AddSingleton<IMcpServerLauncher, McpServerLauncher>();
 		serviceCollection.AddTransient<IHistoryTracker, HistoryTracker>();
@@ -124,6 +127,33 @@ internal static class Program
 			}
 #endif
 		}
+	}
+
+	private static string[] ProcessGlobalFlags(string[] args)
+	{
+		var list = args.ToList();
+		list.RemoveAll(a => string.Equals(a, "--no-color", StringComparison.OrdinalIgnoreCase));
+		list.RemoveAll(a => string.Equals(a, "--silent", StringComparison.OrdinalIgnoreCase));
+		list.RemoveAll(a => string.Equals(a, "--quiet", StringComparison.OrdinalIgnoreCase));
+		return [.. list];
+	}
+
+	private static IOutput CreateOutput(string[] originalArgs)
+	{
+		var silent = originalArgs.Contains("--silent", StringComparer.OrdinalIgnoreCase);
+		var quiet = originalArgs.Contains("--quiet", StringComparer.OrdinalIgnoreCase);
+
+		var colorsEnabled = ShouldEnableColors(originalArgs);
+
+		if (silent)
+			return new SilentOutput();
+
+		var consoleOutput = new OutputToConsole(colorsEnabled);
+
+		if (quiet)
+			return new QuietOutput(consoleOutput);
+
+		return consoleOutput;
 	}
 
 	private static bool ShouldEnableColors(string[] args)

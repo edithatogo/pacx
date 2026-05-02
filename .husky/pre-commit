@@ -3,4 +3,16 @@
 
 set -e
 
-dotnet husky run --group pre-commit-operations
+echo "Checking code formatting..."
+dotnet format Greg.Xrm.Command/Greg.Xrm.Command.sln --verify-no-changes --severity warn
+if [ $? -ne 0 ]; then
+  echo "Code formatting issues found. Run 'dotnet format' to fix."
+  exit 1
+fi
+
+echo "Running pre-commit build..."
+dotnet build Greg.Xrm.Command/Greg.Xrm.Command.sln --no-restore --verbosity minimal
+if [ $? -ne 0 ]; then
+  echo "Build failed. Fix errors before committing."
+  exit 1
+fi

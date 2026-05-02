@@ -1,0 +1,14 @@
+{
+  "track_id": "cli_excellence_20260502",
+  "type": "feature",
+  "status": "complete",
+  "phase": 6,
+  "completed_at": "2026-05-02T00:00:00+10:00",
+  "note": "Self-update, diagnostics command, silent/quiet mode, progress bars, YAML output, config auto-discovery.",
+  "priority": "Medium",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "SOTA CLI polish: self-update, diagnostics, silent mode, progress bars, YAML output, auto-discovered config",
+  "dependencies": ["cli_ux_20260421"],
+  "api_sources": ["GitHub Releases API", "NuGet API"]
+}

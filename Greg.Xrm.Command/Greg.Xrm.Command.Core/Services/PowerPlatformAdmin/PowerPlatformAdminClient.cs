@@ -32,6 +32,66 @@ namespace Greg.Xrm.Command.Services.PowerPlatformAdmin
 			await SendVoidAsync(HttpMethod.Post, "/providers/Microsoft.BusinessAppPlatform/scopes/admin/updateTenantSettings?api-version=2020-10-01", settings, cancellationToken).ConfigureAwait(false);
 		}
 
+		public async Task<JsonDocument> CreateEnvironmentAsync(string name, string type, string region, string currency, string language, CancellationToken ct)
+		{
+			var payload = new
+			{
+				properties = new
+				{
+					displayName = name,
+					environmentType = type,
+					location = region ?? "australiaeast"
+				}
+			};
+			return await PostAsync("/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments?api-version=2020-10-01", payload, ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> GetEnvironmentAsync(string environmentId, CancellationToken ct)
+		{
+			return await GetAsync($"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}?api-version=2020-10-01", ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> ListEnvironmentsAsync(CancellationToken ct)
+		{
+			return await GetAsync("/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments?api-version=2020-10-01", ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> ResetEnvironmentAsync(string environmentId, string resetType, CancellationToken ct)
+		{
+			var payload = new { resetType };
+			return await PostAsync($"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}/reset?api-version=2020-10-01", payload, ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> CopyEnvironmentAsync(string sourceEnvId, string targetName, string mode, CancellationToken ct)
+		{
+			var payload = new
+			{
+				properties = new
+				{
+					displayName = targetName,
+					copyType = mode ?? "MinimalCopy"
+				}
+			};
+			return await PostAsync($"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{sourceEnvId}/copy?api-version=2020-10-01", payload, ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> BackupEnvironmentAsync(string environmentId, string label, CancellationToken ct)
+		{
+			var payload = new { Label = label };
+			return await PostAsync($"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}/backup?api-version=2020-10-01", payload, ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> RestoreEnvironmentAsync(string environmentId, string backupId, CancellationToken ct)
+		{
+			var payload = new { BackupId = backupId };
+			return await PostAsync($"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}/restore?api-version=2020-10-01", payload, ct).ConfigureAwait(false);
+		}
+
+		public async Task<JsonDocument> GetEnvironmentCapacityAsync(string environmentId, CancellationToken ct)
+		{
+			return await GetAsync($"/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/{environmentId}?api-version=2020-10-01&$expand=capacity", ct).ConfigureAwait(false);
+		}
+
 		private async Task<JsonDocument> GetAsync(string path, CancellationToken cancellationToken)
 			=> await SendAsync(HttpMethod.Get, path, null, cancellationToken).ConfigureAwait(false);
 
@@ -60,7 +120,7 @@ namespace Greg.Xrm.Command.Services.PowerPlatformAdmin
 			var content = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 			if (!response.IsSuccessStatusCode)
 			{
-				throw new InvalidOperationException($"Power Platform Admin API error ({response.StatusCode}): {content}");
+				throw new InvalidOperationException($"Power Platform Admin API error ({response.StatusCode}): {RedactErrorContent(content)}");
 			}
 		}
 
@@ -85,10 +145,27 @@ namespace Greg.Xrm.Command.Services.PowerPlatformAdmin
 			var content = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 			if (!response.IsSuccessStatusCode)
 			{
-				throw new InvalidOperationException($"Power Platform Admin API error ({response.StatusCode}): {content}");
+				throw new InvalidOperationException($"Power Platform Admin API error ({response.StatusCode}): {RedactErrorContent(content)}");
 			}
 
 			return JsonDocument.Parse(string.IsNullOrWhiteSpace(content) ? "{}" : content);
+		}
+
+		private static string RedactErrorContent(string content)
+		{
+			try
+			{
+				using var doc = JsonDocument.Parse(content);
+				if (doc.RootElement.TryGetProperty("error", out var error)
+				    && error.TryGetProperty("message", out var message))
+				{
+					return message.GetString() ?? "API error";
+				}
+			}
+			catch
+			{
+			}
+			return content.Length <= 200 ? content : content[..200] + "...";
 		}
 	}
 }

@@ -44,9 +44,10 @@ namespace Greg.Xrm.Command.Services.Plugin
 				// Step 4: Read and parse the .nuspec XML content
 				using var stream = part.GetStream();
 
-				var reader = new XmlTextReader(stream);
+				var readerSettings = new XmlReaderSettings { DtdProcessing = DtdProcessing.Prohibit };
+				var reader = XmlReader.Create(stream, readerSettings);
 
-				var xmlDocument = new XmlDocument();
+				var xmlDocument = new XmlDocument { XmlResolver = null };
 				xmlDocument.Load(reader);
 
 				// Step 5: Set up XML namespace manager to handle namespaced XML elements

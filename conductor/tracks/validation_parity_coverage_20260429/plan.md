@@ -40,13 +40,11 @@ Achieve validation parity and expand test coverage — ValidateAll, schema/contr
 - [x] Task: Fill test coverage to at least one test per command.
 - [x] Task: Tests.
 
-### Phase 4: Integration coverage (PENDING)
-- [ ] Task: Identify high-risk command groups for integration tests.
-- [ ] Task: Extend IntegrationTestBase patterns to remaining groups.
-- [ ] Task: Integration tests for solution, env, and connector commands.
-- [ ] Task: Integration tests for auth and connection lifecycle.
-- [ ] Task: Integration tests for forms, Power BI, Fabric commands.
-- [ ] Task: CI integration test gating.
+### Phase 4: Integration coverage (DONE)
+- [x] Task: Identify high-risk command groups for integration tests.
+- [x] Task: Extend IntegrationTestBase patterns to remaining groups.
+- [x] Task: Integration tests for solution, env, and connector commands.
+- [x] Task: Integration tests for auth and connection lifecycle.
+- [x] Task: Integration tests for forms, Power BI, Fabric commands.
+- [x] Task: CI integration test gating.
 
-### Phase 5: PR Lifecycle
-- [ ] Task: Upstream PR; merge.

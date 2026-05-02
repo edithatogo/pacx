@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  pacx:
+    image: ghcr.io/$GITHUB_REPOSITORY:latest
+    environment:
+      - MSAL_CLIENT_ID=${MSAL_CLIENT_ID}
+      - MSAL_CLIENT_SECRET=${MSAL_CLIENT_SECRET}
+      - TENANT_ID=${TENANT_ID}
+    volumes:
+      - ./output:/app/output
+    command: ["forms", "list", "--tenant", "${TENANT_ID}"]

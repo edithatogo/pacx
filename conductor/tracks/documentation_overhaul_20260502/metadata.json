@@ -1,0 +1,14 @@
+{
+  "track_id": "documentation_overhaul_20260502",
+  "type": "documentation",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": null,
+  "note": "Add install command to README, write quick-start, add search, group command index, fill recipe stubs, add troubleshooting guide, CHANGELOG, LICENSE.",
+  "priority": "High",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Documentation overhaul: install path, quick-start, search, command index grouping, recipe quality, troubleshooting, CHANGELOG, LICENSE",
+  "dependencies": [],
+  "api_sources": []
+}

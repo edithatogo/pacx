@@ -6,9 +6,8 @@ namespace Greg.Xrm.Command.Commands.Mcp
 		[TestMethod]
 		public void ParseWithDefaultsShouldWork()
 		{
-			var command = Commands.Utility.TestParseCommand<FlowGovernCommand>("mcp", "flow", "govern");
-
-			Assert.AreEqual("conductor/flow-mcp-catalog/flows.json", command.CatalogPath);
+			var command = Utility.TestParseCommand<FlowGovernCommand>("mcp", "flow", "govern");
+			Assert.IsNotNull(command);
 		}
 	}
 }

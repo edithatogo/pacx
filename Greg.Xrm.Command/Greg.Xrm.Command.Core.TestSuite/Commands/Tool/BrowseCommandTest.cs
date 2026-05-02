@@ -7,8 +7,9 @@ namespace Greg.Xrm.Command.Commands.Tool
 		public void ParseWithDefaultsShouldWork()
 		{
 			var command = Utility.TestParseCommand<BrowseCommand>("tool", "browse");
-
 			Assert.AreEqual("conductor/tool-catalog/tools.json", command.CatalogPath);
+			Assert.IsNull(command.Category);
+			Assert.IsNull(command.Query);
 		}
 
 		[TestMethod]
@@ -17,11 +18,11 @@ namespace Greg.Xrm.Command.Commands.Tool
 			var command = Utility.TestParseCommand<BrowseCommand>(
 				"tool", "browse",
 				"--catalog", "catalog.json",
-				"--category", "dataverse",
+				"--category", "mcp",
 				"--query", "flow");
 
 			Assert.AreEqual("catalog.json", command.CatalogPath);
-			Assert.AreEqual("dataverse", command.Category);
+			Assert.AreEqual("mcp", command.Category);
 			Assert.AreEqual("flow", command.Query);
 		}
 	}

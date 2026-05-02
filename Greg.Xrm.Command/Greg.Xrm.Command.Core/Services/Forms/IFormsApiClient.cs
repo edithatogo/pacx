@@ -1,29 +1,40 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Greg.Xrm.Command.Services.Forms
 {
 	public interface IFormsApiClient
 	{
-		Task<IEnumerable<FormInfo>> ListFormsAsync(string tenantId, string? ownerId, CancellationToken ct = default);
-		Task<int> GetResponseCountAsync(string tenantId, string ownerId, string formId, CancellationToken ct = default);
-		Task<IEnumerable<ResponseInfo>> ExportResponsesAsync(string tenantId, string ownerId, string formId, int skip = 0, int top = 100, CancellationToken ct = default);
+		Task<IReadOnlyList<FormsForm>> GetFormsAsync(string tenantId, string ownerId, string ownerType, CancellationToken ct);
+		Task<FormsForm?> GetFormDetailAsync(string tenantId, string ownerId, string ownerType, string formId, CancellationToken ct);
+		Task<int> GetResponseCountAsync(string tenantId, string ownerId, string ownerType, string formId, CancellationToken ct);
+		Task<IReadOnlyList<FormsResponse>> GetResponsesAsync(string tenantId, string ownerId, string ownerType, string formId, int top, int skip, CancellationToken ct);
+		Task<FormsResponse?> GetResponseAsync(string tenantId, string ownerId, string ownerType, string formId, int responseId, CancellationToken ct);
+		Task<JsonDocument?> GetBranchingAsync(string tenantId, string ownerId, string ownerType, string formId, CancellationToken ct);
+		Task<JsonDocument?> GetAnalyticsAsync(string tenantId, string ownerId, string ownerType, string formId, CancellationToken ct);
+		Task ShareFormAsync(string tenantId, string ownerId, string ownerType, string formId, string groupId, string role, CancellationToken ct);
+		Task TransferOwnershipAsync(string tenantId, string ownerId, string ownerType, string formId, string targetUpn, CancellationToken ct);
+		Task<IReadOnlyList<FormsForm>> ListTemplatesAsync(string tenantId, CancellationToken ct);
+		Task CreateTemplateAsync(string tenantId, string formId, string scope, CancellationToken ct);
+		Task ShareTemplateAsync(string tenantId, string templateId, string groupId, CancellationToken ct);
 	}
 
-	public class FormInfo
+	public sealed class FormsForm
 	{
-		public string FormId { get; set; } = "";
-		public string Title { get; set; } = "";
-		public string Status { get; set; } = "";
-		public int ResponseCount { get; set; }
-		public string OwnerId { get; set; } = "";
+		public string Id { get; set; } = string.Empty;
+		public string Title { get; set; } = string.Empty;
+		public string Status { get; set; } = string.Empty;
+		public DateTime? CreatedDate { get; set; }
+		public DateTime? ModifiedDate { get; set; }
+		public string? OwnerId { get; set; }
+		public int RowCount { get; set; }
+		public string? Type { get; set; }
+		public bool SoftDeleted { get; set; }
 	}
 
-	public class ResponseInfo
+	public sealed class FormsResponse
 	{
-		public string ResponseId { get; set; } = "";
+		public int Id { get; set; }
 		public DateTime SubmittedAt { get; set; }
-		public Dictionary<string, object> Answers { get; set; } = new();
+		public string? Answers { get; set; }
 	}
 }

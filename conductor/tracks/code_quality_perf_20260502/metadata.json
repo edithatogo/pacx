@@ -1,0 +1,14 @@
+{
+  "track_id": "code_quality_perf_20260502",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": null,
+  "note": "Dead code bug fix, sync-over-async in tests, source generators for command pipeline, CommandResult allocation, catch filters, Autofac removal.",
+  "priority": "High",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Code quality & performance: fix dead code bug, eliminate sync-over-async in tests, source generators for command pipeline, CommandResult allocation, catch filters",
+  "dependencies": [],
+  "api_sources": ["Roslyn source generators", "Microsoft.Extensions.DependencyInjection"]
+}

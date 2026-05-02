@@ -1,0 +1,148 @@
+{
+  "flows": [
+    {
+      "name": "List Flows",
+      "provider": "PACX Flow Studio",
+      "category": "browse",
+      "kind": "discovery",
+      "summary": "Lists all flows in the environment with status and metadata.",
+      "operations": ["flow-list", "flow-search", "flow-filter"]
+    },
+    {
+      "name": "Search Flows",
+      "provider": "PACX Flow Studio",
+      "category": "browse",
+      "kind": "discovery",
+      "summary": "Search flows by name, trigger type, or connected connector.",
+      "operations": ["flow-search-by-name", "flow-search-by-connector", "flow-search-by-trigger"]
+    },
+    {
+      "name": "List Environments",
+      "provider": "PACX Flow Studio",
+      "category": "browse",
+      "kind": "discovery",
+      "summary": "Browse available Power Platform environments for flow operations.",
+      "operations": ["env-list", "env-select", "env-detail"]
+    },
+    {
+      "name": "Get Flow Definition",
+      "provider": "PACX Flow Studio",
+      "category": "inspect",
+      "kind": "analysis",
+      "summary": "Retrieve the full flow definition including triggers, actions, and conditions.",
+      "operations": ["flow-definition-get", "flow-actions-list", "flow-triggers-list"]
+    },
+    {
+      "name": "Action Details",
+      "provider": "PACX Flow Studio",
+      "category": "inspect",
+      "kind": "analysis",
+      "summary": "Show detailed information about a specific flow action including inputs and outputs.",
+      "operations": ["action-inputs", "action-outputs", "action-settings"]
+    },
+    {
+      "name": "Trigger Details",
+      "provider": "PACX Flow Studio",
+      "category": "inspect",
+      "kind": "analysis",
+      "summary": "Show trigger configuration and connection details for a flow.",
+      "operations": ["trigger-config", "trigger-connections", "trigger-frequency"]
+    },
+    {
+      "name": "Run History",
+      "provider": "PACX Flow Studio",
+      "category": "monitor",
+      "kind": "observability",
+      "summary": "View run history, status, and execution times for a flow.",
+      "operations": ["run-history", "run-status", "run-duration"]
+    },
+    {
+      "name": "Run Status",
+      "provider": "PACX Flow Studio",
+      "category": "monitor",
+      "kind": "observability",
+      "summary": "Check the current status of a specific flow run.",
+      "operations": ["run-check-status", "run-get-results", "run-get-errors"]
+    },
+    {
+      "name": "Metrics Summary",
+      "provider": "PACX Flow Studio",
+      "category": "monitor",
+      "kind": "observability",
+      "summary": "Aggregated metrics for flow runs including success rate, average duration, and failure count.",
+      "operations": ["metrics-success-rate", "metrics-avg-duration", "metrics-failure-count"]
+    },
+    {
+      "name": "Trigger Flow",
+      "provider": "PACX Flow Studio",
+      "category": "run",
+      "kind": "execution",
+      "summary": "Trigger a flow run with optional input parameters.",
+      "operations": ["flow-trigger", "flow-trigger-with-params", "flow-schedule"]
+    },
+    {
+      "name": "Cancel Run",
+      "provider": "PACX Flow Studio",
+      "category": "run",
+      "kind": "execution",
+      "summary": "Cancel a running flow instance.",
+      "operations": ["run-cancel", "run-abort", "run-terminate"]
+    },
+    {
+      "name": "Resubmit Run",
+      "provider": "PACX Flow Studio",
+      "category": "run",
+      "kind": "execution",
+      "summary": "Resubmit a failed or cancelled flow run.",
+      "operations": ["run-resubmit", "run-retry", "run-clone"]
+    },
+    {
+      "name": "Get Errors",
+      "provider": "PACX Flow Studio",
+      "category": "debug",
+      "kind": "troubleshooting",
+      "summary": "Retrieve detailed error information for failed flow runs.",
+      "operations": ["error-details", "error-stack-trace", "error-action-find"]
+    },
+    {
+      "name": "Troubleshoot Run",
+      "provider": "PACX Flow Studio",
+      "category": "debug",
+      "kind": "troubleshooting",
+      "summary": "Analyze a failed run and provide troubleshooting suggestions.",
+      "operations": ["troubleshoot-analyze", "troubleshoot-suggest-fix", "troubleshoot-check-connections"]
+    },
+    {
+      "name": "Connection Check",
+      "provider": "PACX Flow Studio",
+      "category": "debug",
+      "kind": "troubleshooting",
+      "summary": "Validate connector connections used by a flow.",
+      "operations": ["connection-validate", "connection-status", "connection-reconnect"]
+    },
+    {
+      "name": "Policy Check",
+      "provider": "PACX Flow Studio",
+      "category": "govern",
+      "kind": "compliance",
+      "summary": "Run DLP and governance policy checks against a flow definition.",
+      "operations": ["policy-dlp-check", "policy-connector-check", "policy-compliance-score"]
+    },
+    {
+      "name": "Compliance Scan",
+      "provider": "PACX Flow Studio",
+      "category": "govern",
+      "kind": "compliance",
+      "summary": "Scan flows for compliance with organizational policies and standards.",
+      "operations": ["compliance-scan-full", "compliance-scan-quick", "compliance-report"]
+    },
+    {
+      "name": "Risk Assessment",
+      "provider": "PACX Flow Studio",
+      "category": "govern",
+      "kind": "compliance",
+      "summary": "Assess security and operational risk of a flow configuration.",
+      "operations": ["risk-assess-security", "risk-assess-operational", "risk-recommendations"]
+    }
+  ]
+}

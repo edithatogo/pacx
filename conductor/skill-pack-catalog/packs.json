@@ -1,0 +1,54 @@
+{
+  "packs": [
+    {
+      "id": "dataverse-devops",
+      "name": "Dataverse DevOps",
+      "description": "CI/CD automation patterns for Dataverse including solution management, environment lifecycle, and ALM pipeline integration.",
+      "version": "1.0.0",
+      "author": "PACX Team",
+      "capabilities": ["solution-export-import", "env-create-clone", "alm-pipeline-run", "managed-solution-deploy"],
+      "dependencies": [],
+      "tags": ["dataverse", "devops", "ci-cd", "alm"]
+    },
+    {
+      "id": "power-platform-governance",
+      "name": "Power Platform Governance",
+      "description": "Governance tooling for Power Platform including DLP policies, security audits, and tenant settings management.",
+      "version": "1.0.0",
+      "author": "PACX Team",
+      "capabilities": ["dlp-policy-audit", "security-role-report", "tenant-settings-manage", "audit-log-export"],
+      "dependencies": ["dataverse-devops"],
+      "tags": ["governance", "security", "dlp", "compliance"]
+    },
+    {
+      "id": "flow-automation",
+      "name": "Flow Automation Suite",
+      "description": "Power Automate management covering cloud flows, desktop flows, and MCP integration for end-to-end automation.",
+      "version": "2.0.0",
+      "author": "PACX Team",
+      "capabilities": ["flow-list-manage", "desktop-flow-rpa", "mcp-flow-commands", "flow-run-monitor"],
+      "dependencies": ["dataverse-devops"],
+      "tags": ["power-automate", "flow", "rpa", "mcp"]
+    },
+    {
+      "id": "copilot-enablement",
+      "name": "Copilot Enablement",
+      "description": "Copilot Studio agent lifecycle management including topic management, knowledge sources, and analytics.",
+      "version": "1.0.0",
+      "author": "PACX Team",
+      "capabilities": ["agent-lifecycle", "topic-manage", "knowledge-connect", "analytics-report"],
+      "dependencies": ["power-platform-governance"],
+      "tags": ["copilot", "ai", "agent", "knowledge"]
+    },
+    {
+      "id": "power-bi-ops",
+      "name": "Power BI Operations",
+      "description": "Power BI workspace and dataset management including deployment pipelines, capacity management, and RLS configuration.",
+      "version": "1.0.0",
+      "author": "PACX Team",
+      "capabilities": ["workspace-lifecycle", "dataset-publish-clone", "deployment-pipeline", "capacity-manage", "rls-configure"],
+      "dependencies": [],
+      "tags": ["power-bi", "analytics", "dataset", "capacity"]
+    }
+  ]
+}

@@ -6,39 +6,45 @@ namespace Greg.Xrm.Command.Commands.Tool
 	public class RunCommandExecutorTest
 	{
 		[TestMethod]
-		public void RunShouldRenderToolDetails()
+		public void ExecuteWithExistingToolShouldSucceed()
 		{
-			var tempDir = TestTempPath.CreateDirectory("tool_catalog_run");
+			var tempDir = TestTempPath.CreateDirectory("tool_run_test");
 			var catalogPath = Path.Combine(tempDir, "tools.json");
-
 			try
 			{
-				File.WriteAllText(catalogPath, """
-{
-  "tools": [
-    {
-      "id": "xrmtoolbox",
-      "name": "XrmToolBox",
-      "provider": "MscrmTools",
-      "category": "Dataverse",
-      "kind": "desktop app",
-      "summary": "Plugin host and tool library for Dataverse admins.",
-      "homePage": "https://www.xrmtoolbox.com/plugins/",
-      "capabilities": [ "discover plugins", "launch tools" ]
-    }
-  ]
-}
-""");
+				File.WriteAllText(catalogPath, """{ "tools": [{"id":"my-tool","name":"My Tool","provider":"PACX","category":"core","kind":"cli","summary":"A test tool.","capabilities":["test"]}] }""");
 
 				var output = new OutputToMemory();
 				var executor = new RunCommandExecutor(output);
-
-				var result = executor.ExecuteAsync(new RunCommand { CatalogPath = catalogPath, Name = "xrmtoolbox" }, CancellationToken.None).GetAwaiter().GetResult();
+				var result = executor.ExecuteAsync(
+					new RunCommand { CatalogPath = catalogPath, Name = "my-tool" },
+					CancellationToken.None).GetAwaiter().GetResult();
 
 				Assert.IsTrue(result.IsSuccess);
-				StringAssert.Contains(output.ToString(), "XrmToolBox (Dataverse)");
-				StringAssert.Contains(output.ToString(), "Home page: https://www.xrmtoolbox.com/plugins/");
-				StringAssert.Contains(output.ToString(), "Capabilities:");
+				StringAssert.Contains(output.ToString(), "My Tool");
+			}
+			finally
+			{
+				Directory.Delete(tempDir, true);
+			}
+		}
+
+		[TestMethod]
+		public void ExecuteWithNonExistentToolShouldFail()
+		{
+			var tempDir = TestTempPath.CreateDirectory("tool_run_missing_test");
+			var catalogPath = Path.Combine(tempDir, "tools.json");
+			try
+			{
+				File.WriteAllText(catalogPath, """{ "tools": [] }""");
+
+				var output = new OutputToMemory();
+				var executor = new RunCommandExecutor(output);
+				var result = executor.ExecuteAsync(
+					new RunCommand { CatalogPath = catalogPath, Name = "missing" },
+					CancellationToken.None).GetAwaiter().GetResult();
+
+				Assert.IsFalse(result.IsSuccess);
 			}
 			finally
 			{

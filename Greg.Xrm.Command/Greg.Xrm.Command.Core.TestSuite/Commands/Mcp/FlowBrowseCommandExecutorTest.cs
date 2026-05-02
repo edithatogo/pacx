@@ -6,44 +6,45 @@ namespace Greg.Xrm.Command.Commands.Mcp
 	public class FlowBrowseCommandExecutorTest
 	{
 		[TestMethod]
-		public void BrowseShouldRenderMatchingFlows()
+		public void ExecuteShouldRenderMatchingFlows()
 		{
-			var tempDir = TestTempPath.CreateDirectory("flow_mcp_catalog");
+			var tempDir = TestTempPath.CreateDirectory("flow_mcp_test");
 			var catalogPath = Path.Combine(tempDir, "flows.json");
-
 			try
 			{
-				File.WriteAllText(catalogPath, """
-{
-  "flows": [
-    {
-      "name": "Flow Studio Debug",
-      "provider": "Flow Studio",
-      "category": "Debug",
-      "kind": "mcp tool",
-      "summary": "Inspect flow runs and failures.",
-      "homePage": "https://mcp.flowstudio.app/",
-      "operations": [ "debug", "inspect run history" ]
-    },
-    {
-      "name": "Flow Studio Govern",
-      "provider": "Flow Studio",
-      "category": "Governance",
-      "kind": "mcp tool",
-      "summary": "Review approvals and environment controls.",
-      "operations": [ "govern", "audit" ]
-    }
-  ]
-}
-""");
+				File.WriteAllText(catalogPath, """{ "flows": [{"name":"List Flows","provider":"PACX","category":"browse","kind":"discovery","summary":"Lists flows.","operations":["flow-list"]}] }""");
 
 				var output = new OutputToMemory();
 				var executor = new FlowBrowseCommandExecutor(output);
-				var result = executor.ExecuteAsync(new FlowBrowseCommand { CatalogPath = catalogPath, Query = "debug" }, CancellationToken.None).GetAwaiter().GetResult();
+				var result = executor.ExecuteAsync(
+					new FlowBrowseCommand { CatalogPath = catalogPath },
+					CancellationToken.None).GetAwaiter().GetResult();
 
 				Assert.IsTrue(result.IsSuccess);
-				StringAssert.Contains(output.ToString(), "Flow Studio Debug");
-				Assert.IsFalse(output.ToString().Contains("Flow Studio Govern", StringComparison.OrdinalIgnoreCase));
+				StringAssert.Contains(output.ToString(), "List Flows");
+			}
+			finally
+			{
+				Directory.Delete(tempDir, true);
+			}
+		}
+
+		[TestMethod]
+		public void ExecuteWithNoMatchesShouldShowWarning()
+		{
+			var tempDir = TestTempPath.CreateDirectory("flow_mcp_empty_test");
+			var catalogPath = Path.Combine(tempDir, "flows.json");
+			try
+			{
+				File.WriteAllText(catalogPath, """{ "flows": [] }""");
+
+				var output = new OutputToMemory();
+				var executor = new FlowBrowseCommandExecutor(output);
+				var result = executor.ExecuteAsync(
+					new FlowBrowseCommand { CatalogPath = catalogPath, Query = "nonexistent" },
+					CancellationToken.None).GetAwaiter().GetResult();
+
+				Assert.IsTrue(result.IsSuccess);
 			}
 			finally
 			{

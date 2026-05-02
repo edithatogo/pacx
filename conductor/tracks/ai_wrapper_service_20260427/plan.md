@@ -59,8 +59,6 @@ Introduce a shared wrapper service (e.g., `AiBuilderService`) that encapsulates 
 - [ ] Task: `--retry-max <n>`, `--retry-backoff-ms <n>` CLI overrides. Deferred to CLI/config track/work.
 - [x] Task: Run local focused verification for completed wrapper migration.
 
-### Phase 5: PR Lifecycle
-- [ ] Task: Upstream PR; `/ralph-loop`; merge.
 
 ---
 

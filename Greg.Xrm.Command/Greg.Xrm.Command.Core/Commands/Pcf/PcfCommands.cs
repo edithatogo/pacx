@@ -26,6 +26,9 @@ namespace Greg.Xrm.Command.Commands.Pcf
 
 		[Option("dry-run", Order = 3, HelpText = "Show what would be published without actually publishing.")]
 		public bool DryRun { get; set; }
+
+		[Option("pac-path", Order = 4, DefaultValue = "pac", HelpText = "Path to the pac CLI executable.")]
+		public string PacPath { get; set; } = "pac";
 	}
 
 	[Command("pcf", "version", "bump", HelpText = "Semantic version management for PCF components with changelog.")]

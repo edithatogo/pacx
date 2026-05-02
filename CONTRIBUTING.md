@@ -33,5 +33,12 @@ See CONTRIBUTING.md for setup and PR guidelines.
 - Tag pushes produce build artifacts.
 - PRs must pass checks before merge.
 
+## Merge Queue
+
+This repository uses GitHub merge queues for `main`/`master` branches. When your PR passes all checks:
+1. Click "Merge when ready" (the merge queue button)
+2. Your PR enters the queue and merges automatically once all queued PRs pass
+3. Never use "Create a merge commit" or "Squash and merge" directly on main
+
 ## Licensing
 See LICENSE (add if missing).

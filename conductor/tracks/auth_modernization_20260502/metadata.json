@@ -1,0 +1,14 @@
+{
+  "track_id": "auth_modernization_20260502",
+  "type": "feature",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": null,
+  "note": "Add device code flow, managed identity, persistent token cache. Unify FormsTokenProvider with main ITokenProvider.",
+  "priority": "Critical",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Modernize auth: device code flow, managed identity, persistent token cache, unified token providers. Remove ROPC dependency.",
+  "dependencies": [],
+  "api_sources": ["MSAL.NET", "Azure Identity", "DPAPI"]
+}

@@ -4,6 +4,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -21,12 +22,41 @@ namespace Greg.Xrm.Command.Commands.QualityGate
 			try
 			{
 				// If solution is provided, run solution check first
-				if (!string.IsNullOrEmpty(command.SolutionUniqueName))
+				if (!string.IsNullOrEmpty(command.SolutionUniqueName) || command.RunCheck)
 				{
-					output.Write("Running solution check...");
-					// Note: This requires pac CLI to be installed
-					// For now, we parse existing results
-					output.WriteLine(" Solution check must be run externally. Use --input to provide results.", ConsoleColor.Yellow);
+					var solutionName = command.SolutionUniqueName ?? GuessSolutionName();
+					output.Write($"Running pac solution check for '{solutionName}'...");
+					try
+					{
+						var psi = new ProcessStartInfo
+						{
+							FileName = command.PacPath,
+							Arguments = $"solution check --solutionName {solutionName} --outputDirectory .pacx_quality --verbosity minimal",
+							RedirectStandardOutput = true,
+							RedirectStandardError = true,
+							UseShellExecute = false,
+							CreateNoWindow = true,
+						};
+						using var process = Process.Start(psi);
+						if (process == null)
+							throw new InvalidOperationException("pac CLI is not installed or not found.");
+						var stdOut = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
+						var stdErr = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
+						await process.WaitForExitAsync(cancellationToken).ConfigureAwait(false);
+						if (process.ExitCode != 0)
+							output.WriteLine($" Warning: pac exited with code {process.ExitCode}: {stdErr}", ConsoleColor.Yellow);
+						else
+							output.WriteLine(" Done", ConsoleColor.Green);
+						command.InputPath ??= ".pacx_quality";
+					}
+					catch (InvalidOperationException)
+					{
+						throw;
+					}
+					catch (Exception ex)
+					{
+						output.WriteLine($" Failed: {ex.Message}", ConsoleColor.Yellow);
+					}
 				}
 
 				// Parse solution check results
@@ -211,6 +241,15 @@ namespace Greg.Xrm.Command.Commands.QualityGate
 			{
 				// If parsing fails, skip this file
 			}
+		}
+
+		private static string GuessSolutionName()
+		{
+			var cdsproj = Directory.GetFiles(Environment.CurrentDirectory, "*.cdsproj").FirstOrDefault();
+			if (cdsproj != null) return Path.GetFileNameWithoutExtension(cdsproj);
+			var zip = Directory.GetFiles(Environment.CurrentDirectory, "*_managed.zip").FirstOrDefault();
+			if (zip != null) return Path.GetFileNameWithoutExtension(zip).Replace("_managed", "");
+			return "Solution";
 		}
 
 		private sealed class QualityIssue

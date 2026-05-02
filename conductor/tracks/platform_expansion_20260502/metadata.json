@@ -1,0 +1,14 @@
+{
+  "track_id": "platform_expansion_20260502",
+  "type": "feature",
+  "status": "complete",
+  "phase": 6,
+  "completed_at": "2026-05-02T00:00:00+10:00",
+  "note": "Complete. Docker image, PowerShell module, VS Code extension, GitHub Action, Azure DevOps task, IaC docs.",
+  "priority": "Medium",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Expand PACX across platforms: Docker, PowerShell, VS Code, GitHub Action, Azure DevOps, IaC",
+  "dependencies": [],
+  "api_sources": ["Docker", "VS Code", "GitHub Actions", "Azure DevOps", "Bicep/Terraform"]
+}

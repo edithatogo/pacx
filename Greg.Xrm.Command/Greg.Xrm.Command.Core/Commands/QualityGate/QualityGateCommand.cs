@@ -16,5 +16,11 @@ namespace Greg.Xrm.Command.Commands.QualityGate
 
 		[Option("solution", "s", Order = 4, HelpText = "Run solution check on this solution before gating.")]
 		public string? SolutionUniqueName { get; set; }
+
+		[Option("run-check", "r", Order = 5, HelpText = "Run pac solution check before evaluating results.")]
+		public bool RunCheck { get; set; }
+
+		[Option("pac-path", Order = 6, DefaultValue = "pac", HelpText = "Path to the pac CLI executable.")]
+		public string PacPath { get; set; } = "pac";
 	}
 }

@@ -1,0 +1,56 @@
+{
+    "manifestVersion": 1,
+    "id": "pacx-power-platform-cli",
+    "name": "PACX Power Platform CLI",
+    "version": "0.1.0",
+    "publisher": "gregxrm",
+    "description": "Run PACX CLI commands for Power Platform automation – Dataverse, ALM, AI Builder, and governance",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "tags": [
+        "pacx",
+        "power-platform",
+        "dataverse",
+        "dynamics365",
+        "alm",
+        "cli",
+        "automation"
+    ],
+    "icons": {
+        "default": "icon.png"
+    },
+    "files": [
+        {
+            "path": "tasks",
+            "addressable": true
+        }
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "links": {
+        "license": {
+            "uri": "https://github.com/edithatogo/Greg.Xrm.Command/blob/master/LICENSE"
+        },
+        "repository": {
+            "uri": "https://github.com/edithatogo/Greg.Xrm.Command"
+        },
+        "support": {
+            "uri": "https://github.com/edithatogo/Greg.Xrm.Command/issues"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/edithatogo/Greg.Xrm.Command"
+    },
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "demands": [],
+    "scopes": []
+}

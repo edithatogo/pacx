@@ -1,0 +1,81 @@
+{
+    "name": "pacx-vscode",
+    "displayName": "PACX Power Platform CLI",
+    "description": "Power Platform automation commands for Dataverse, ALM, AI Builder, and governance – powered by PACX CLI",
+    "version": "0.1.0",
+    "publisher": "gregxrm",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "pacx",
+        "power-platform",
+        "dataverse",
+        "dynamics365",
+        "alm",
+        "cli"
+    ],
+    "activationEvents": [
+        "onCommand:pacx.listForms",
+        "onCommand:pacx.listSolutions",
+        "onCommand:pacx.listEnvironments",
+        "onCommand:pacx.runCommand"
+    ],
+    "main": "./src/extension.ts",
+    "contributes": {
+        "commands": [
+            {
+                "command": "pacx.listForms",
+                "title": "PACX: List Microsoft Forms"
+            },
+            {
+                "command": "pacx.listSolutions",
+                "title": "PACX: List Dataverse Solutions"
+            },
+            {
+                "command": "pacx.listEnvironments",
+                "title": "PACX: List Power Platform Environments"
+            },
+            {
+                "command": "pacx.runCommand",
+                "title": "PACX: Run CLI Command"
+            }
+        ],
+        "configuration": {
+            "title": "PACX",
+            "properties": {
+                "pacx.path": {
+                    "type": "string",
+                    "default": "pacx",
+                    "description": "Path to the PACX CLI executable"
+                },
+                "pacx.tenantId": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Default tenant ID or domain for PACX commands"
+                }
+            }
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/edithatogo/Greg.Xrm.Command.git"
+    },
+    "homepage": "https://github.com/edithatogo/Greg.Xrm.Command",
+    "bugs": {
+        "url": "https://github.com/edithatogo/Greg.Xrm.Command/issues"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/vscode": "^1.85.0",
+        "typescript": "^5.3.0"
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    }
+}

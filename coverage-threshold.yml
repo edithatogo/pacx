@@ -1,1 +1,2 @@
-minimum_line_coverage: 70
+minimum_line_coverage: 90
+minimum_branch_coverage: 80

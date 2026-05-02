@@ -11,10 +11,13 @@ namespace Greg.Xrm.Command.Commands.Forms
 		[Option("owner", "o", Order = 2, HelpText = "Owner user ID. If not provided, lists current user's forms.")]
 		public string? OwnerId { get; set; }
 
-		[Option("format", "f", Order = 3, DefaultValue = "table", HelpText = "Output format: table, json.")]
+		[Option("owner-type", Order = 3, DefaultValue = "User", HelpText = "Owner type: User or Group.")]
+		public string OwnerType { get; set; } = "User";
+
+		[Option("format", "f", Order = 4, DefaultValue = "table", HelpText = "Output format: table, json.")]
 		public string Format { get; set; } = "table";
 
-		[Option("token", Order = 4, HelpText = "OAuth2 access token. Reads from MSAL cache or environment if not provided.")]
+		[Option("token", Order = 5, HelpText = "OAuth2 access token. Reads from MSAL cache or environment if not provided.")]
 		public string? Token { get; set; }
 	}
 
@@ -30,7 +33,10 @@ namespace Greg.Xrm.Command.Commands.Forms
 		[Option("owner", "o", Order = 3, HelpText = "Owner user ID.")]
 		public string? OwnerId { get; set; }
 
-		[Option("token", Order = 4, HelpText = "OAuth2 access token.")]
+		[Option("owner-type", Order = 4, DefaultValue = "User", HelpText = "Owner type: User or Group.")]
+		public string OwnerType { get; set; } = "User";
+
+		[Option("token", Order = 5, HelpText = "OAuth2 access token.")]
 		public string? Token { get; set; }
 	}
 
@@ -49,13 +55,16 @@ namespace Greg.Xrm.Command.Commands.Forms
 		[Option("owner", Order = 4, HelpText = "Owner user ID.")]
 		public string? OwnerId { get; set; }
 
-		[Option("format", Order = 5, DefaultValue = "csv", HelpText = "Export format: csv, json, sql.")]
+		[Option("owner-type", Order = 5, DefaultValue = "User", HelpText = "Owner type: User or Group.")]
+		public string OwnerType { get; set; } = "User";
+
+		[Option("format", Order = 6, DefaultValue = "csv", HelpText = "Export format: csv, json, sql.")]
 		public string Format { get; set; } = "csv";
 
-		[Option("incremental", "i", Order = 6, HelpText = "Only export responses since last export.")]
+		[Option("incremental", "i", Order = 7, HelpText = "Only export responses since last export.")]
 		public bool Incremental { get; set; }
 
-		[Option("token", Order = 7, HelpText = "OAuth2 access token.")]
+		[Option("token", Order = 8, HelpText = "OAuth2 access token.")]
 		public string? Token { get; set; }
 	}
 }

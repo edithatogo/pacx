@@ -26,15 +26,15 @@ This meta-track delegates to the following child tracks:
 - [x] Task: Decompose into child tracks.
 - [x] Task: Document in tracks registry.
 
-### Phase 2: Child track execution
-- [ ] Task: Monitor and coordinate child track progress.
-- [ ] Task: Resolve cross-track dependencies and conflicts.
-- [ ] Task: Ensure child tracks meet success criteria.
+### Phase 2: Child track execution (DONE)
+- [x] Task: Monitor and coordinate child track progress.
+- [x] Task: Resolve cross-track dependencies and conflicts.
+- [x] Task: Ensure child tracks meet success criteria.
 
-### Phase 3: Validation
-- [ ] Task: Run Scorecard / CodeQL on hardened repo.
-- [ ] Task: Produce hardening score report.
-- [ ] Task: Document remaining gaps for future work.
+### Phase 3: Validation (DONE)
+- [x] Task: Run Scorecard / CodeQL on hardened repo.
+- [x] Task: Produce hardening score report.
+- [x] Task: Document remaining gaps for future work.
 
-### Phase 4: Closure
-- [ ] Task: Close meta-track when all child tracks complete.
+### Phase 4: Closure (DONE)
+- [x] Task: Close meta-track when all child tracks complete.

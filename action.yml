@@ -1,0 +1,26 @@
+name: 'PACX Power Platform CLI'
+description: 'Run PACX CLI commands for Power Platform automation – Dataverse, ALM, AI Builder, and governance'
+author: 'Greg.Xrm.Command Contributors'
+
+branding:
+  icon: 'terminal'
+  color: 'blue'
+
+inputs:
+  command:
+    description: 'PACX command and arguments to execute (e.g., "forms list --tenant contoso.onmicrosoft.com")'
+    required: true
+  working-directory:
+    description: 'Working directory for the PACX command'
+    required: false
+    default: '.'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/edithatogo/greg.xrm.command:latest'
+  args:
+    - ${{ inputs.command }}
+  env:
+    MSAL_CLIENT_ID: ${{ inputs.msal-client-id || '' }}
+    MSAL_CLIENT_SECRET: ${{ inputs.msal-client-secret || '' }}
+    TENANT_ID: ${{ inputs.tenant-id || '' }}

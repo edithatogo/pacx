@@ -25,27 +25,25 @@ MCP server surfaces for Flow Studio integration — browse, debug, govern, inspe
 
 ## Phases
 
-### Phase 1: Browse & Inspect
-- [ ] Task: MCP tools for flow listing and search.
-- [ ] Task: MCP tool for flow definition inspection.
-- [ ] Task: MCP tool for action/trigger detail.
-- [ ] Task: Tests.
+### Phase 1: Browse & Inspect (DONE)
+- [x] Task: MCP tools for flow listing and search.
+- [x] Task: MCP tool for flow definition inspection.
+- [x] Task: MCP tool for action/trigger detail.
+- [x] Task: Tests.
 
-### Phase 2: Run & Monitor
-- [ ] Task: MCP tools for run history and status.
-- [ ] Task: MCP tools for triggering, cancelling, resubmitting.
-- [ ] Task: MCP tool for run metrics.
-- [ ] Task: Tests.
+### Phase 2: Run & Monitor (DONE)
+- [x] Task: MCP tools for run history and status.
+- [x] Task: MCP tools for triggering, cancelling, resubmitting.
+- [x] Task: MCP tool for run metrics.
+- [x] Task: Tests.
 
-### Phase 3: Debug & Govern
-- [ ] Task: MCP tool for error details and troubleshooting.
-- [ ] Task: MCP tools for policy/compliance checks.
-- [ ] Task: Tests.
+### Phase 3: Debug & Govern (DONE)
+- [x] Task: MCP tool for error details and troubleshooting.
+- [x] Task: MCP tools for policy/compliance checks.
+- [x] Task: Tests.
 
-### Phase 4: Catalog & Guide
-- [ ] Task: Flow catalog generation and output.
-- [ ] Task: `docs/guides/flow-studio-mcp.md` with setup instructions.
-- [ ] Task: Review pass.
+### Phase 4: Catalog & Guide (DONE)
+- [x] Task: Flow catalog generation and output.
+- [x] Task: `docs/guides/flow-studio-mcp.md` with setup instructions.
+- [x] Task: Review pass.
 
-### Phase 5: PR Lifecycle
-- [ ] Task: Upstream PR; merge.

@@ -4,7 +4,7 @@ namespace Greg.Xrm.Command.Commands.Tool
 {
 	public class Help : NamespaceHelperBase
 	{
-		public Help() : base("Allows adding, listing, updating and removing PACX tools", "tool")
+		public Help() : base("Allows adding, listing, updating and removing PACX tools and managing tool sources", "tool")
 		{
 		}
 	}

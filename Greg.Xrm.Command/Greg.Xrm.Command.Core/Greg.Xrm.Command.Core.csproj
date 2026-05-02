@@ -48,6 +48,7 @@
     <PackageReference Include="System.Reflection.MetadataLoadContext" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
     <PackageReference Include="ModelContextProtocol" />
+    <PackageReference Include="YamlDotNet" />
   </ItemGroup>
 
   <ItemGroup>

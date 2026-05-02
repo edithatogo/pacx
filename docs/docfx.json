@@ -28,6 +28,7 @@
       "default",
       "templates/pacx"
     ],
-    "dest": "_build"
+    "dest": "_build",
+    "enableSearch": true
   }
 }

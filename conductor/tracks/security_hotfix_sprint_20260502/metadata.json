@@ -1,0 +1,14 @@
+{
+  "track_id": "security_hotfix_sprint_20260502",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": null,
+  "note": "P0 security fixes: static AES key, NuGetAudit, action SHA pinning, Dependabot/Renovate, SonarCloud, permissions blocks.",
+  "priority": "Critical",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Fix P0 security issues: static AES key/IV, NuGetAudit suppression, action SHA pinning, Dependabot/Renovate contradiction, SonarCloud placeholders, missing permissions blocks",
+  "dependencies": [],
+  "api_sources": ["NuGet", "GitHub Actions", "SonarCloud"]
+}

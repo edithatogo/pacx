@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+set -e
+
+echo "Running tests before push..."
+dotnet test Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/Greg.Xrm.Command.Core.TestSuite.csproj \
+  --no-build --verbosity minimal --filter "TestCategory!=Integration"
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Fix before pushing."
+  exit 1
+fi

@@ -210,7 +210,7 @@ namespace Greg.Xrm.Command.Services.PowerAutomate
 			var content = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 			if (!response.IsSuccessStatusCode)
 			{
-				throw new InvalidOperationException($"Power Automate API error ({response.StatusCode}): {content}");
+				throw new InvalidOperationException($"Power Automate API error ({response.StatusCode}): {RedactErrorContent(content)}");
 			}
 		}
 
@@ -235,10 +235,27 @@ namespace Greg.Xrm.Command.Services.PowerAutomate
 			var content = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 			if (!response.IsSuccessStatusCode)
 			{
-				throw new InvalidOperationException($"Power Automate API error ({response.StatusCode}): {content}");
+				throw new InvalidOperationException($"Power Automate API error ({response.StatusCode}): {RedactErrorContent(content)}");
 			}
 
 			return JsonDocument.Parse(string.IsNullOrWhiteSpace(content) ? "{}" : content);
+		}
+
+		private static string RedactErrorContent(string content)
+		{
+			try
+			{
+				using var doc = JsonDocument.Parse(content);
+				if (doc.RootElement.TryGetProperty("error", out var error)
+				    && error.TryGetProperty("message", out var message))
+				{
+					return message.GetString() ?? "API error";
+				}
+			}
+			catch
+			{
+			}
+			return content.Length <= 200 ? content : content[..200] + "...";
 		}
 	}
 }

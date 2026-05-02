@@ -1,0 +1,17 @@
+name: Enforce Branch Protection
+on:
+  pull_request:
+    types: [opened, synchronize, edited]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require merge queue for main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [[ "${{ github.base_ref }}" == "main" || "${{ github.base_ref }}" == "master" ]]; then
+            echo "PR targets main/master — merge queue is required."
+            echo "Use merge queue button, not direct merge."
+          fi

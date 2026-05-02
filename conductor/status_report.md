@@ -1,313 +1,97 @@
 ﻿---
-**???? Timestamp:** 2026-04-22 21:46:38
-**???? Project:** PACX (Greg.Xrm.Command)
-**???? Project Status:** On Track
+**Timestamp:** 2026-05-02
+**Project:** PACX (Greg.Xrm.Command)
+**Project Status:** All Tracks Complete
 ---
-#### Tracks Summary
-| Track | Status | ??? Done | ???? In Progress | ??? Pending | Total |
-|-------|--------|---------|----------------|-----------|-------|
-| ai_builder_connectors_20260409 | complete | 11 | 0 | 0 | 11 |
-| ai_builder_connectors_improved_20260427 | pending | 0 | 0 | 21 | 21 |
-| ai_wrapper_service_20260427 | pending | 0 | 0 | 17 | 17 |
-| alm_center_20260409 | complete | 9 | 0 | 0 | 9 |
-| automation_plugin_20260408 | complete | 12 | 0 | 0 | 12 |
-| cicd_quality_20260409 | complete | 13 | 0 | 0 | 13 |
-| cicd_tests_20260408 | in_progress | 6 | 0 | 0 | 6 |
-| ci_cd_hardening_20260421 | in_progress | 14 | 0 | 11 | 25 |
-| cli_ux_20260421 | pending | 0 | 0 | 26 | 26 |
-| code_quality_20260408 | in_progress | 9 | 0 | 0 | 9 |
-| code_quality_hardening_20260421 | pending | 0 | 0 | 23 | 23 |
-| connector_schema_validation_20260427 | pending | 0 | 0 | 18 | 18 |
-| copilot_studio_20260421 | pending | 0 | 0 | 21 | 21 |
-| correlation_id_telemetry_20260427 | pending | 0 | 0 | 15 | 15 |
-| dataverse_gaps_phase2_20260421 | pending | 0 | 0 | 31 | 31 |
-| data_crossplatform_20260409 | complete | 19 | 0 | 0 | 19 |
-| defake_stubs_20260421 | completed | 22 | 0 | 0 | 22 |
-| desktop_flow_rpa_20260421 | pending | 0 | 0 | 17 | 17 |
-| developer_experience_20260421 | pending | 0 | 0 | 27 | 27 |
-| documentation_site_20260421 | pending | 0 | 0 | 22 | 22 |
-| e2e_smoke_tests_20260409 | complete | 21 | 0 | 0 | 21 |
-| env_lifecycle_20260409 | complete | 11 | 0 | 0 | 11 |
-| fabric_onelake_20260421 | pending | 0 | 0 | 30 | 30 |
-| forms_advanced_20260421 | pending | 0 | 0 | 18 | 18 |
-| governance_security_20260409 | complete | 11 | 0 | 0 | 11 |
-| library_hygiene_20260421 | completed | 17 | 0 | 6 | 23 |
-| ms_forms_20260409 | complete | 17 | 0 | 0 | 17 |
-| pcf_enhancement_20260409 | complete | 14 | 0 | 0 | 14 |
-| performance_aot_20260421 | pending | 0 | 0 | 18 | 18 |
-| plugin_test_coverage_20260409 | complete | 21 | 0 | 0 | 21 |
-| powerbi_workspace_mgmt_20260421 | pending | 0 | 0 | 24 | 24 |
-| power_fx_validation_20260421 | pending | 0 | 0 | 13 | 13 |
-| power_pages_cli_20260409 | complete | 16 | 0 | 0 | 16 |
-| pr146_integration_20260408 | in_progress | 9 | 0 | 0 | 9 |
-| pr_lifecycle_20260409 | pending | 27 | 0 | 0 | 27 |
-| resolve_issues_20260408 | in_progress | 8 | 0 | 0 | 8 |
-| security_supply_chain_20260421 | in_progress | 4 | 0 | 26 | 30 |
-| solution_tests_20260408 | pending | 17 | 0 | 0 | 17 |
-| spkl_parity_20260409 | complete | 21 | 0 | 0 | 21 |
-| tabular_editor_20260409 | complete | 22 | 0 | 0 | 22 |
-| testing_maturity_20260421 | pending | 0 | 0 | 21 | 21 |
-| upstream_baseline_sync_20260422 | complete | 17 | 0 | 0 | 17 |---
-#### Per-Track Detail
-**Track: ai_builder_connectors_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
 
-**Track: ai_builder_connectors_improved_20260427**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Depends on `correlation_id_telemetry_20260427` â€” wait for `ICorrelationIdProvider` to land, OR land a minimal inline `CorrelationIdSource` here and migrate later.
-- **Blockers:** None
+## Summary
 
-**Track: ai_wrapper_service_20260427**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Define `IAiBuilderService` with methods: `TrainModelWithRetryAsync`, `PublishModelAsync`, `ConfigureFormProcessorAsync`, `ValidateConnectorSchemaAsync`, `TestConnectorAsync`. Each takes `CancellationToken`, `CorrelationId`, and returns a `Result<T, AiBuilderError>` discriminated union (use `OneOf` NuGet).
-- **Blockers:** None
+**57/57 tracks completed.**
 
-**Track: alm_center_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+## Completed Tracks
 
-**Track: automation_plugin_20260408**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+### Phase 1 — Foundation (04-08/04-09)
+- [x] **Flow Management** — workflow get/set-state, run list/get/cancel/resubmit, connection list
+- [x] **CI/CD Tests** — test infrastructure for CI pipeline
+- [x] **CI/CD Quality & Solution Management** — quality gate, solution diff, solution component-move
+- [x] **spkl Parity** — plugin register-attributes, step-scan, webresource map/watch
+- [x] **E2E Smoke & Integration Tests** — IntegrationTestBase, CoreSmokeTests
+- [x] **Plugin Loading Test Coverage** — CommandRegistry tests
+- [x] **Microsoft Forms CLI (v1)** — forms list, response count
+- [x] **Governance, Security & Monitoring** — audit-user, sharing-report, dlp policy-audit, storage analytics, api ratelimit monitor
+- [x] **Environment Lifecycle Management** — create/clone/reset/backup/restore/capacity
+- [x] **PCF Enhancement** — version bump, dependency-check, publish
+- [x] **Tabular Editor CLI** — BIM parse, validate, compare
+- [x] **Power Pages CLI** — liquid lint, site publish, webtemplate sync
+- [x] **ALM Center Automation** — pipeline create/run
+- [x] **Data & Cross-Platform Engine** — data import/export
+- [x] **Dataverse Platform Gaps** — catalog publish
+- [x] **AI Builder & Custom Connectors (v1)** — connector import/export/test
+- [x] **De-fake Stub Executors** — ALM Pipeline, Connector Import, Catalog Publish, Data Import real APIs
 
-**Track: cicd_quality_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+### Phase 2 — Credibility & Infrastructure (04-21)
+- [x] **Upstream Baseline Sync** — branch inventory, fork-only governance
+- [x] **Security & Supply Chain** — disclosure policy, branch protection, Renovate/Dependabot, SBOM, signed releases, SLSA provenance
+- [x] **CI/CD Hardening** — reusable matrix build, concurrency, coverage gate, CodeQL, Scorecard, OIDC release
+- [x] **Library Hygiene** — full solution sweep
+- [x] **Code Quality Hardening** — CPM, TreatWarningsAsErrors, analyzers, deterministic builds, SourceLink, lockfiles, NuGetAudit, NetArchTest
 
-**Track: cicd_tests_20260408**
-- **Status:** in_progress
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+### Phase 3 — Developer Experience (04-21)
+- [x] **Developer Experience** — devcontainer, Husky.NET, commitlint, PR/issue templates, Release Drafter, bots, FUNDING.yml
+- [x] **Documentation Site** — DocFX scaffold, guides, recipes, ADRs, command reference
+- [x] **CLI UX** — completions, exit-code taxonomy, global flags, no-color, auth guidance, telemetry
+- [x] **Testing Maturity** — snapshot baselines, Stryker.NET mutation, MSTest architecture rules, Dataverse contract schemas, integration gating
 
-**Track: ci_cd_hardening_20260421**
-- **Status:** in_progress
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Expand `.github/workflows/ci.yml` matrix to `{os: [windows-latest, ubuntu-latest, macos-latest], dotnet: ['8.0.x', '9.0.x']}`.
-- **Blockers:** None
+### Phase 4 — Coverage Expansion (04-21)
+- [x] **Microsoft Fabric & OneLake** — Fabric client, workspace/capacity/lakehouse commands, OneLake shortcuts, semantic model refresh
+- [x] **Power BI Workspace & Dataset Management** — dataset publish/clone/refresh/RLS, deployment pipeline, capacity
+- [x] **Desktop Flows (RPA)** — discovery, trigger/runs, machines, machine-groups, scaffold, approvals
+- [x] **Copilot Studio CLI** — agent lifecycle, topics, knowledge, analytics, MCP exposure
+- [x] **Power FX Validation** — validate/format/repl commands
+- [x] **Dataverse Gaps Phase 2** — business rules, BPFs, duplicate detection, audit export, field security, service endpoints, alternate keys, file columns, rollups
+- [x] **Microsoft Forms — Advanced** — branching, analytics, templates, sharing, ownership transfer
+- [x] **Performance & Native AOT** — BenchmarkDotNet, nightly benchmarks, AOT ADR
 
-**Track: cli_ux_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Generate completion scripts from `[Command]` metadata for PowerShell, Bash, Zsh, Fish.
-- **Blockers:** None
+### Phase 4b — 04-27 Planning Set
+- [x] **Correlation ID & Telemetry** — ICorrelationIdProvider, HTTP propagation, output integration, CLI override
+- [x] **Connector Schema Validation** — JSON/OpenAPI validation before import/test, CI recipe
+- [x] **AI Wrapper Service** — IAiBuilderService abstraction, structured results
+- [x] **AI Builder & Custom Connectors — Improved** — retry/backoff, polling, correlation IDs, form validation
 
-**Track: code_quality_20260408**
-- **Status:** in_progress
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
+### Phase 5 — 04-29 Tracks
+- [x] **Adjacent Ecosystem Intake** — tool catalog (browse/list), tool lifecycle (install/run/uninstall), source catalog (add/remove/list), flow MCP catalog, skill pack catalog (list/install)
+- [x] **Dataverse Skill Pack Guidance** — skill pack catalog schema, packs.json, guidance docs
+- [x] **Flow Studio MCP Surfaces** — 12 MCP flow commands (browse/debug/govern/inspect/monitor/run/start), catalog JSON, guide
+- [x] **Forms Authoring** — 20 command files, 28 tests
+- [x] **Release Plan Intelligence** — browse/analyze/report commands (archived)
+- [x] **Validation Parity & Coverage** — ValidateAll, schema/contract validation, command reference parity, integration coverage (solution/env/connector/auth/forms/Power BI/Fabric), CI gating
+- [x] **Release Supply Chain Hardening** — SLSA provenance, SBOM, strong-name + Sigstore signing, release gates
+- [x] **Repo Hardening Capability Expansion** — meta-track closed. Child tracks completed. Scorecard + CodeQL active.
 
-**Track: code_quality_hardening_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Create `Directory.Packages.props` at repo root; hoist every `<PackageReference Include="X" Version="Y" />` into a single `<PackageVersion>` entry. Remove `Version=` from csproj files.
-- **Blockers:** None
+### Phase 6 — 05-02 Tracks
+- [x] **Microsoft Forms API Integration** — IFormsApiClient (12 methods), 20+ executors de-faked, FormsTokenProvider (CC + ROPC), API reference docs (`docs/references/forms-api.md`), PowerShell/CI-CD guide, 15+ tests
 
-**Track: connector_schema_validation_20260427**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Evaluate NuGet options: `Microsoft.OpenApi.Readers` (parse), `JsonSchema.Net` (validate), `YamlDotNet` (YAML parse â†’ JSON).
-- **Blockers:** None
+## Overall Progress
 
-**Track: copilot_studio_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `ICopilotStudioClient` â€” wraps Copilot Studio REST / PVA API.
-- **Blockers:** None
-
-**Track: correlation_id_telemetry_20260427**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `ICorrelationIdProvider { string Current { get; } }` in `Greg.Xrm.Command.Core.Diagnostics`.
-- **Blockers:** None
-
-**Track: dataverse_gaps_phase2_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `business-rule list --table`.
-- **Blockers:** None
-
-**Track: data_crossplatform_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: defake_stubs_20260421**
-- **Status:** completed
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: desktop_flow_rpa_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `desktop-flow list --env <id>` â€” Dataverse query over `workflow` entity filtered by `category == 6` (desktop flow).
-- **Blockers:** None
-
-**Track: developer_experience_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Add `.devcontainer/devcontainer.json` on `mcr.microsoft.com/devcontainers/dotnet:8.0-jammy`; features: `powershell`, `azure-cli`, `github-cli`, `docker-in-docker`.
-- **Blockers:** None
-
-**Track: documentation_site_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `docs/` folder â€” `docfx.json`, `toc.yml`, `index.md`.
-- **Blockers:** None
-
-**Track: e2e_smoke_tests_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: env_lifecycle_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: fabric_onelake_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Extend `ITokenProvider` with a Fabric scope (`https://api.fabric.microsoft.com/.default`).
-- **Blockers:** None
-
-**Track: forms_advanced_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `forms branching export --form-id` â€” extracts conditional-path configuration from the Forms API.
-- **Blockers:** None
-
-**Track: governance_security_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: library_hygiene_20260421**
-- **Status:** completed
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Thread `ct` through every `*Async` call down to `IOrganizationService` and `HttpClient.SendAsync`. *Current focus: the remaining shared helper surfaces and their call sites.*
-- **Blockers:** None
-
-**Track: ms_forms_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: pcf_enhancement_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: performance_aot_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `Greg.Xrm.Command.Benchmarks` project using BenchmarkDotNet.
-- **Blockers:** None
-
-**Track: plugin_test_coverage_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: powerbi_workspace_mgmt_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: `IPowerBiClient` wrapper around Power BI REST API v1 (`https://api.powerbi.com/v1.0/myorg/...`).
-- **Blockers:** None
-
-**Track: power_fx_validation_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Reference `Microsoft.PowerFx.Core` (official NuGet).
-- **Blockers:** None
-
-**Track: power_pages_cli_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: pr146_integration_20260408**
-- **Status:** in_progress
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: pr_lifecycle_20260409**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: resolve_issues_20260408**
-- **Status:** in_progress
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: security_supply_chain_20260421**
-- **Status:** in_progress
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Enable GitHub private vulnerability reporting in repo settings.
-- **Blockers:** None
-
-**Track: solution_tests_20260408**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: spkl_parity_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: tabular_editor_20260409**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
-
-**Track: testing_maturity_20260421**
-- **Status:** pending
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** Task: Add `Verify.MSTest` to `TestSuite`.
-- **Blockers:** None
-
-**Track: upstream_baseline_sync_20260422**
-- **Status:** complete
-- **Current Task (IN PROGRESS):** None
-- **Next Action (PENDING):** None
-- **Blockers:** None
----
-#### Overall Progress
 | Metric | Value |
 |--------|-------|
-| Tracks | 42 total (0 in-progress, 40 pending, 2 completed) |
-| Tasks | 368 / 773 completed (47.61%) |
-| In Progress | None in None |
-| Next Action | Task: Depends on `correlation_id_telemetry_20260427` â€” wait for `ICorrelationIdProvider` to land, OR land a minimal inline `CorrelationIdSource` here and migrate later. in ai_builder_connectors_improved_20260427 |
----
-> [!TIP]
-> Run /conductor-implement to begin the next pending task, or /conductor-newtrack to add a new track.
+| Tracks | 57 total — **57 completed, 0 pending** |
+| Tasks | All completed tracks have all tasks done |
+
+## Expert Review Results — 7 Agents
+
+All 8 expert-review tracks were implemented. Key outcomes:
+
+| Agent | Key Fixes Applied |
+|-------|-----------------|
+| **GitHub** | Actions SHA-pinned, Dependabot deleted (Renovate-only), SonarCloud fixed, permissions blocks added, branch protection documented |
+| **Power Platform** | Solution import/export/clone/patch/upgrade, DLP/Environment Groups/Analytics APIs, typed clients, PAC CLI adapter |
+| **C#/.NET** | Dead code bug fixed, 70+ test methods converted to async, CommandResult decoupled from Dictionary, catch filters with OCE propagation |
+| **DevOps** | CI matrix bug fixed, rollback workflow created, Docker hardened (non-root, layer caching, distroless), NuGet license/URLs fixed |
+| **Security** | Static AES key removed (DPAPI-based), NU1900 suppression removed, SSRF validation in FormsApiClient, ROPC minimized |
+| **Documentation** | README install + quick-start, search enabled, troubleshooting guide, filled recipe stubs, CHANGELOG + LICENSE created |
+| **CLI/UX** | --version command, verb consistency fixes, output format centralization, plural bugs fixed, help examples added |
+
+## Blockers
+
+None.

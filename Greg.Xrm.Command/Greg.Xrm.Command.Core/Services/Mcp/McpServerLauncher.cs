@@ -171,11 +171,13 @@ public static class McpServerHost
 		}
 		catch (TargetInvocationException ex) when (ex.InnerException != null)
 		{
-			return Error(ex.InnerException.Message);
+			Console.Error.WriteLine($"MCP command failed: {ex.InnerException}");
+			return Error($"Command failed: {ex.InnerException.GetType().Name}");
 		}
 		catch (Exception ex)
 		{
-			return Error(ex.Message);
+			Console.Error.WriteLine($"MCP command failed: {ex}");
+			return Error($"Command failed: {ex.GetType().Name}");
 		}
 	}
 
@@ -255,7 +257,8 @@ public static class McpServerHost
 		parts.Add(result.ErrorMessage);
 		if (result.Exception != null)
 		{
-			parts.Add(result.Exception.Message);
+			Console.Error.WriteLine($"MCP command failure detail: {result.Exception}");
+			parts.Add($"Exception: {result.Exception.GetType().Name}");
 		}
 
 		return string.Join(Environment.NewLine + Environment.NewLine, parts.Where(x => !string.IsNullOrWhiteSpace(x)));

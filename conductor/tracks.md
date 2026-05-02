@@ -202,17 +202,17 @@ These four tracks have `Overview / Scope / Success Criteria` plus Phase/Task dec
 
 Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parity gap analysis.
 
-- [ ] **Track: Adjacent Ecosystem Intake**
+- [x] **Track: Adjacent Ecosystem Intake**
   *Link: [./tracks/adjacent_ecosystem_intake_20260429/](./tracks/adjacent_ecosystem_intake_20260429/)*
-  *Status: PENDING — Tool catalog, browse/install/run surfaces, source catalog, flow MCP catalog, skill pack catalog.*
+  *Status: COMPLETED — Tool catalog (browse/list), tool lifecycle (install/run/uninstall), source catalog (add/remove/list), flow MCP catalog, skill pack catalog (list/install) all implemented with tests.*
 
-- [ ] **Track: Dataverse Skill Pack Guidance**
+- [x] **Track: Dataverse Skill Pack Guidance**
   *Link: [./tracks/dataverse_skill_pack_guidance_20260429/](./tracks/dataverse_skill_pack_guidance_20260429/)*
-  *Status: PENDING — Skill pack catalog JSON, guidance docs.*
+  *Status: COMPLETED — Skill pack catalog schema and packs.json, guidance docs, CLI commands (list/install) with tests.*
 
-- [ ] **Track: Flow Studio MCP Surfaces**
+- [x] **Track: Flow Studio MCP Surfaces**
   *Link: [./tracks/flow_studio_mcp_surfaces_20260429/](./tracks/flow_studio_mcp_surfaces_20260429/)*
-  *Status: PENDING — 12 MCP flow command files (browse, debug, govern, inspect, monitor, run), flow catalog, guide.*
+  *Status: COMPLETED — 12 MCP flow commands (browse/debug/govern/inspect/monitor/run/start), flow catalog JSON, guide docs, and tests.*
 
 - [x] **Track: Forms Authoring**
   *Link: [./tracks/forms_authoring_20260429/](./tracks/forms_authoring_20260429/)*
@@ -222,13 +222,99 @@ Created from the Apr-28 work session planning and the pnp/cli-microsoft365 parit
   *Link: [./archive/release_plan_intelligence_20260429/](./archive/release_plan_intelligence_20260429/)*
   *Status: COMPLETED — browse, analyze, report commands with impact analysis. Fork-only feature, no upstream PR.*
 
-- [ ] **Track: Repo Hardening Capability Expansion**
+- [x] **Track: Repo Hardening Capability Expansion**
   *Link: [./tracks/repo_hardening_capability_expansion_20260429/](./tracks/repo_hardening_capability_expansion_20260429/)*
-  *Status: PENDING — Umbrella meta-track delegating to child tracks. Only decomposition complete.*
+  *Status: COMPLETED — Meta-track closed. Child tracks: release_supply_chain_hardening (provenance/SBOM/signing/gates), validation_parity_coverage (integration tests), pnp_platform_parity (archived). Scorecard and CodeQL workflows active.*
 
-- [ ] **Track: Validation Parity & Coverage**
+- [x] **Track: Validation Parity & Coverage**
   *Link: [./tracks/validation_parity_coverage_20260429/](./tracks/validation_parity_coverage_20260429/)*
-  *Status: PARTIAL (6/12 tasks done) — ValidateAll orchestration, schema/contract validation, command reference parity done. Integration coverage pending.*
+  *Status: COMPLETED — ValidateAll orchestration, schema/contract validation, command reference parity, integration coverage (solution, env, connector, auth, connection, forms, Power BI, Fabric), and CI integration test gating all implemented.*
+
+- [x] **Track: Microsoft Forms API Integration**
+  *Link: [./tracks/forms_api_integration_20260502/](./tracks/forms_api_integration_20260502/)*
+  *Status: COMPLETED — All 6 phases done. IFormsApiClient with 12 methods, 20+ executors de-faked, FormsTokenProvider (CC + ROPC), API reference docs, PowerShell/CI-CD guide, 15+ tests.*
+
+- [x] **Track: Stub Killer Phase 2**
+  *Link: [./tracks/stub_killer_phase2_20260502/](./tracks/stub_killer_phase2_20260502/)*
+  *Status: COMPLETED — BAP environment lifecycle methods (create/reset/capacity) wired to real API. Quality gate pac CLI integration (--run-check).*
+
+## Remaining Stub Tracks
+
+These tracks cover the remaining unimplemented functionality across the codebase. All are **Pending** — ready for implementation when priorities shift.
+
+- [x] **Track: Tabular Power BI Integration**
+  *Link: [./tracks/tabular_powerbi_integration_20260502/](./tracks/tabular_powerbi_integration_20260502/)*
+  *Status: COMPLETED — ITabularClient created, all 6 tabular executors de-faked (deploy, diff, translate, roles, perspectives) using Power BI REST API via existing auth chain. BimCompare improved with table-level diff.*
+
+- [x] **Track: Async Environment Lifecycle**
+  *Link: [./tracks/env_async_lifecycle_20260502/](./tracks/env_async_lifecycle_20260502/)*
+  *Status: COMPLETED — 3 env commands de-faked (backup, restore, clone). Uses `IAsyncJobPoller` to poll the BAP provisioning state until terminal.*
+
+- [x] **Track: PCF Tooling**
+  *Link: [./tracks/pcf_tooling_20260502/](./tracks/pcf_tooling_20260502/)*
+  *Status: COMPLETED — PcfTestExecutor runs npx pcf-test via Process; PcfPublishExecutor uses pac CLI + ImportSolutionRequest; PcfDependencyCheckExecutor queries Dataverse for org version ≥ 9.0.*
+
+---
+
+## Strategic Improvement Tracks
+
+- [x] **Track: Multi-target & Version Automation**
+  *Link: [./tracks/multitarget_version_automation_20260502/](./tracks/multitarget_version_automation_20260502/)*
+  *Status: COMPLETED — Multi-target net10.0;net11.0 in Directory.Build.props. Global.json rollForward. CI matrix builds on both TFMs. Dependabot for NuGet + GHA.*
+
+- [x] **Track: CI/CD Modernization**
+  *Link: [./tracks/cicd_modernization_20260502/](./tracks/cicd_modernization_20260502/)*
+  *Status: COMPLETED — Dependency review action, merge queue docs, auto-merge for non-major deps, release automation verified, benchmark comparison workflow with regression gate.*
+
+- [x] **Track: Code Quality Automation**
+  *Link: [./tracks/code_quality_automation_20260502/](./tracks/code_quality_automation_20260502/)*
+  *Status: COMPLETED — SonarCloud workflow + props, API compat check workflow + Directory.Packages.props entry, enhanced Husky hooks (pre-commit format+build, pre-push tests). ImplicitUsings already enabled.*
+
+- [x] **Track: Platform Expansion**
+  *Link: [./tracks/platform_expansion_20260502/](./tracks/platform_expansion_20260502/)*
+  *Status: COMPLETED — Docker image + publish workflow, PowerShell module (5 cmdlets), VS Code extension (4 commands), GitHub Action (Docker-based), Azure DevOps task, IaC integration guide.*
+
+- [x] **Track: CLI Excellence**
+  *Link: [./tracks/cli_excellence_20260502/](./tracks/cli_excellence_20260502/)*
+  *Status: COMPLETED — Self-update command (GitHub Releases + assembly compare), diagnostics command (WhoAmI + version + env checks), silent/quiet modes, progress bars with spinner, YAML output via YamlDotNet, config auto-discovery with directory walk.*
+
+---
+
+## Expert Review Findings (Pending Tracks)
+
+Our team of 7 expert agents (GitHub, Power Platform, C#, DevOps, Security, Documentation, CLI/UX) evaluated the codebase. These tracks address their findings:
+
+- [x] **Track: Security Hotfix Sprint**
+  *Link: [./tracks/security_hotfix_sprint_20260502/](./tracks/security_hotfix_sprint_20260502/)*
+  *Status: COMPLETED — NU1900 suppression removed, WarningsAsErrors for vulns, PackageLicenseExpression added, action SHA pinning, Dependabot/Renovate resolved, SonarCloud fixed, permissions blocks added.*
+
+- [x] **Track: Auth Modernization**
+  *Link: [./tracks/auth_modernization_20260502/](./tracks/auth_modernization_20260502/)*
+  *Status: COMPLETED — Device code flow, managed identity support, persistent token cache via DPAPI, FormsTokenProvider unified with ITokenProvider.*
+
+- [x] **Track: CI/CD & DevOps Overhaul**
+  *Link: [./tracks/cicd_devops_overhaul_20260502/](./tracks/cicd_devops_overhaul_20260502/)*
+  *Status: COMPLETED — CI matrix fixed, rollback.yml created, Docker hardened (non-root, layer caching, distroless), NuGet metadata fixed.*
+
+- [x] **Track: Power Platform API Expansion**
+  *Link: [./tracks/pp_api_expansion_20260502/](./tracks/pp_api_expansion_20260502/)*
+  *Status: COMPLETED — Solution import/export/clone/patch/upgrade, DLP policy CRUD, Environment Groups, Managed Environments, API version bumps, typed clients.*
+
+- [x] **Track: CLI UX & Command Polish**
+  *Link: [./tracks/cli_ux_polish_20260502/](./tracks/cli_ux_polish_20260502/)*
+  *Status: COMPLETED — Verb consistency fixes, centralized output format, --version flag, plural fixes, help examples, error message improvements.*
+
+- [x] **Track: Documentation Overhaul**
+  *Link: [./tracks/documentation_overhaul_20260502/](./tracks/documentation_overhaul_20260502/)*
+  *Status: COMPLETED — README install/quick-start, search enabled, grouped command index, recipe fills, troubleshooting guide, CHANGELOG, LICENSE.*
+
+- [x] **Track: Code Quality & Performance**
+  *Link: [./tracks/code_quality_perf_20260502/](./tracks/code_quality_perf_20260502/)*
+  *Status: COMPLETED — Dead code fixed, sync-over-async eliminated, CommandResult allocation fixed, catch filters added, Autofac replaced with MS.DI, ConfigureAwait audit completed.*
+
+- [x] **Track: Security Deep Clean**
+  *Link: [./tracks/security_deep_clean_20260502/](./tracks/security_deep_clean_20260502/)*
+  *Status: COMPLETED — SSRF validation in Forms API, error body redaction, MCP exception sanitization, XmlDocument DTD hardening, AutoUpdater hardened, OutputRedactor regex improved.*
 
 ---
 

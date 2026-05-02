@@ -59,23 +59,15 @@ namespace Greg.Xrm.Command.Services.Connection
 
 
 		/// <summary>
-		/// Checks if a connection string with the given name exists and returns it, decrypted with the given key and IV.
+		/// Checks if a connection string with the given name exists and returns it decrypted.
 		/// </summary>
 		/// <param name="name">The name of the connection</param>
-		/// <param name="key">The AES key to be used to decrypt</param>
-		/// <param name="iv">The AES IV to be used to decrypt</param>
 		/// <param name="connectionString">The connection string</param>
 		/// <returns><c>True</c> if a connection string with the given name exists, <c>false</c> otherwise </returns>
-		/// <exception cref="ArgumentNullException">If no name, key or IV is provided</exception>
-		/// <exception cref="ArgumentException">If the key is not a 32 byte array</exception>
-		/// <exception cref="ArgumentException">If the IV is not a 16 byte array</exception>
-		public bool TryGetConnectionString(string name, byte[] key, byte[] iv, out string? connectionString)
+		/// <exception cref="ArgumentNullException">If no name is provided</exception>
+		public bool TryGetConnectionString(string name, out string? connectionString)
 		{
 			if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
-			if (key == null || key.Length == 0) throw new ArgumentNullException(nameof(key));
-			if (iv == null || iv.Length == 0) throw new ArgumentNullException(nameof(iv));
-			if (key.Length != 32) throw new ArgumentException("The key must be 32 bytes long.", nameof(key));
-			if (iv.Length != 16) throw new ArgumentException("The IV must be 16 bytes long.", nameof(iv));
 
 			if (!this.connectionStrings.TryGetValue(name, out connectionString))
 			{
@@ -88,56 +80,36 @@ namespace Greg.Xrm.Command.Services.Connection
 				return true;
 			}
 
-			connectionString = AesEncryption.Decrypt(connectionString ?? string.Empty, key, iv);
+			connectionString = AesEncryption.Decrypt(connectionString ?? string.Empty);
 			return true;
 		}
 
 		/// <summary>
-		/// Checks if a default connection string is configured and returns it, decrypted with the given key and IV.
+		/// Checks if a default connection string is configured and returns it decrypted.
 		/// </summary>
-		/// <param name="key">The AES key to be used to decrypt</param>
-		/// <param name="iv">The AES IV to be used to decrypt</param>
 		/// <param name="connectionString">The connection string</param>
 		/// <returns><c>True</c> if a default connection string is configured, <c>false</c> otherwise </returns>
-		/// <exception cref="ArgumentNullException">If no key or IV is provided</exception>
-		/// <exception cref="ArgumentException">If the key is not a 32 byte array</exception>
-		/// <exception cref="ArgumentException">If the IV is not a 16 byte array</exception>
-		public bool TryGetCurrentConnectionString(byte[] key, byte[] iv, out string? connectionString)
+		public bool TryGetCurrentConnectionString(out string? connectionString)
 		{
-			if (key == null || key.Length == 0) throw new ArgumentNullException(nameof(key));
-			if (iv == null || iv.Length == 0) throw new ArgumentNullException(nameof(iv));
-			if (key.Length != 32) throw new ArgumentException("The key must be 32 bytes long.", nameof(key));
-			if (iv.Length != 16) throw new ArgumentException("The IV must be 16 bytes long.", nameof(iv));
-
 			if (string.IsNullOrWhiteSpace(this.CurrentConnectionStringKey))
 			{
 				connectionString = null;
 				return false;
 			}
 
-			return TryGetConnectionString(this.CurrentConnectionStringKey, key, iv, out connectionString);
+			return TryGetConnectionString(this.CurrentConnectionStringKey, out connectionString);
 		}
 
 
 		/// <summary>
-		/// Secures all the connection strings using AES encryption.
+		/// Secures all the connection strings using DPAPI-protected AES encryption.
 		/// </summary>
-		/// <param name="key">The AES key to be used to decrypt</param>
-		/// <param name="iv">The AES IV to be used to decrypt</param>
-		/// <exception cref="ArgumentNullException">If no key or IV is provided</exception>
-		/// <exception cref="ArgumentException">If the key is not a 32 byte array</exception>
-		/// <exception cref="ArgumentException">If the IV is not a 16 byte array</exception>
-		public void SecureSettings(byte[] key, byte[] iv)
+		public void SecureSettings()
 		{
-			if (key == null || key.Length == 0) throw new ArgumentNullException(nameof(key));
-			if (iv == null || iv.Length == 0) throw new ArgumentNullException(nameof(iv));
-			if (key.Length != 32) throw new ArgumentException("The key must be 32 bytes long.", nameof(key));
-			if (iv.Length != 16) throw new ArgumentException("The IV must be 16 bytes long.", nameof(iv));
-
 			foreach (var name in this.connectionStrings.Keys)
 			{
 				var connectionString = this.connectionStrings[name];
-				connectionString = AesEncryption.Encrypt(connectionString, key, iv);
+				connectionString = AesEncryption.Encrypt(connectionString);
 				this.connectionStrings[name] = connectionString;
 			}
 			this.IsSecured = true;
@@ -149,24 +121,15 @@ namespace Greg.Xrm.Command.Services.Connection
 		/// </summary>
 		/// <param name="name">The name of the connection string to add</param>
 		/// <param name="connectionString">The connection string </param>
-		/// <param name="key">The AES key to be used to encrypt</param>
-		/// <param name="iv">The AES IV to be used to encrypt</param>
 		/// <exception cref="ArgumentNullException">If no connection name is provided</exception>
 		/// <exception cref="ArgumentNullException">If no connection string is provided</exception>
-		/// <exception cref="ArgumentNullException">If no key or IV is provided</exception>
-		/// <exception cref="ArgumentException">If the key is not a 32 byte array</exception>
-		/// <exception cref="ArgumentException">If the IV is not a 16 byte array</exception>
-		public void UpsertConnectionString(string name, string connectionString, byte[] key, byte[] iv)
+		public void UpsertConnectionString(string name, string connectionString)
 		{
 			if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
 			if (string.IsNullOrWhiteSpace(connectionString)) throw new ArgumentNullException(nameof(connectionString));
-			if (key == null || key.Length == 0) throw new ArgumentNullException(nameof(key));
-			if (iv == null || iv.Length == 0) throw new ArgumentNullException(nameof(iv));
-			if (key.Length != 32) throw new ArgumentException("The key must be 32 bytes long.", nameof(key));
-			if (iv.Length != 16) throw new ArgumentException("The IV must be 16 bytes long.", nameof(iv));
 
 
-			this.connectionStrings[name] = AesEncryption.Encrypt(connectionString, key, iv);
+			this.connectionStrings[name] = AesEncryption.Encrypt(connectionString);
 		}
 
 

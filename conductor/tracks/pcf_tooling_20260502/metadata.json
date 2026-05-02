@@ -1,0 +1,14 @@
+{
+  "track_id": "pcf_tooling_20260502",
+  "type": "feature",
+  "status": "completed",
+  "phase": 4,
+  "completed_at": "2026-05-02T00:00:00+10:00",
+  "note": "PCF test, publish, and dependency-check all implemented. Test uses npx pcf-test via Process. Publish uses pac CLI + ImportSolutionRequest. Dependency check queries Dataverse via WhoAmI and OrganizationDetail.",
+  "priority": "Low",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Implement real PCF tooling — test harness integration, pac CLI publish, dependency checking via Power Platform Admin API",
+  "dependencies": [],
+  "api_sources": ["PCF test harness", "pac CLI", "Dataverse IOrganizationService"]
+}

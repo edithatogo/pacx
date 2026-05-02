@@ -1,0 +1,14 @@
+{
+  "track_id": "security_deep_clean_20260502",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": null,
+  "note": "FormsApiClient SSRF validation, error response leakage, MCP exception leakage, XmlDocument DTD, AutoUpdater PowerShell injection, OutputRedactor regex.",
+  "priority": "High",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Deep security cleanup: SSRF validation in Forms API, error response leakage, MCP exception exposure, XmlDocument DTD, PowerShell injection risk",
+  "dependencies": [],
+  "api_sources": []
+}

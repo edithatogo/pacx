@@ -1,10 +1,8 @@
-using System;
-
 namespace Greg.Xrm.Command.ArchitectureTests
 {
 	internal static class Program
 	{
-		private static int Main()
+		internal static int RunTests()
 		{
 			var tests = new ArchitectureRulesTests();
 

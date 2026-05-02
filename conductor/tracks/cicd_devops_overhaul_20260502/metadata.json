@@ -1,0 +1,14 @@
+{
+  "track_id": "cicd_devops_overhaul_20260502",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": null,
+  "note": "Fix CI matrix bug, create rollback strategy, harden Docker, fix NuGet metadata, align release SDK versions, optimize CI matrix.",
+  "priority": "Critical",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Fix CI matrix doubling bug, add rollback workflow, harden Docker build, fix NuGet packaging, align SDK versions across CI",
+  "dependencies": ["ci_cd_hardening_20260421"],
+  "api_sources": ["GitHub Actions", "Docker", "NuGet"]
+}

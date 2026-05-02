@@ -1,0 +1,91 @@
+{
+  "tools": [
+    {
+      "id": "pacx-cli",
+      "name": "PACX CLI",
+      "provider": "PACX Team",
+      "category": "core",
+      "kind": "cli",
+      "summary": "The PACX CLI itself — Dataverse and Power Platform management at your fingertips.",
+      "homePage": "https://github.com/60217257/pacx",
+      "capabilities": ["dataverse-crud", "solution-management", "plugin-management", "env-lifecycle"]
+    },
+    {
+      "id": "powershell-pacx",
+      "name": "PACX PowerShell Module",
+      "provider": "PACX Team",
+      "category": "automation",
+      "kind": "module",
+      "summary": "PowerShell module wrapping PACX CLI commands for script-based automation.",
+      "homePage": "https://github.com/60217257/pacx-powershell",
+      "capabilities": ["scripting", "ci-cd", "batch-operations"]
+    },
+    {
+      "id": "flow-studio-mcp",
+      "name": "Flow Studio MCP",
+      "provider": "PACX Team",
+      "category": "mcp",
+      "kind": "server",
+      "summary": "MCP server for Flow Studio integration — browse, debug, govern, inspect, monitor, and run flows.",
+      "homePage": "https://github.com/60217257/pacx-mcp-flow-studio",
+      "capabilities": ["flow-browse", "flow-debug", "flow-govern", "flow-inspect", "flow-monitor", "flow-run"]
+    },
+    {
+      "id": "skill-pack-manager",
+      "name": "Skill Pack Manager",
+      "provider": "PACX Team",
+      "category": "core",
+      "kind": "cli",
+      "summary": "Discover and install reusable skill packs for Dataverse and Power Platform automation.",
+      "capabilities": ["pack-list", "pack-install", "pack-catalog-browse"]
+    },
+    {
+      "id": "copilot-studio-mcp",
+      "name": "Copilot Studio MCP",
+      "provider": "PACX Team",
+      "category": "mcp",
+      "kind": "server",
+      "summary": "MCP server for Copilot Studio agent lifecycle management.",
+      "homePage": "https://github.com/60217257/pacx-mcp-copilot",
+      "capabilities": ["agent-create", "topic-manage", "knowledge-connect", "analytics-export"]
+    },
+    {
+      "id": "fabric-onelake",
+      "name": "Fabric OneLake Tools",
+      "provider": "PACX Team",
+      "category": "analytics",
+      "kind": "cli",
+      "summary": "Microsoft Fabric and OneLake shortcuts, lakehouse management, and semantic model integration.",
+      "capabilities": ["lakehouse-manage", "shortcut-create", "semantic-model-refresh", "dataverse-link"]
+    },
+    {
+      "id": "power-bi-deploy",
+      "name": "Power BI Deployment Tools",
+      "provider": "PACX Team",
+      "category": "analytics",
+      "kind": "cli",
+      "summary": "Power BI workspace, dataset, and deployment pipeline management from the CLI.",
+      "capabilities": ["workspace-create", "dataset-publish", "deployment-pipeline", "capacity-manage", "rls-configure"]
+    },
+    {
+      "id": "m365-cli",
+      "name": "Microsoft 365 CLI Bridge",
+      "provider": "Community",
+      "category": "ecosystem",
+      "kind": "integration",
+      "summary": "Bridge to Microsoft 365 CLI (CLI for Microsoft 365) for managing SharePoint, Teams, and Entra ID.",
+      "homePage": "https://pnp.github.io/cli-microsoft365/",
+      "capabilities": ["sharepoint-manage", "teams-manage", "entra-id-manage", "exchange-manage"]
+    },
+    {
+      "id": "nuget-plugin-registry",
+      "name": "NuGet Plugin Registry",
+      "provider": "PACX Team",
+      "category": "ecosystem",
+      "kind": "registry",
+      "summary": "Registry of NuGet packages that extend PACX with custom plugin commands.",
+      "homePage": "https://www.nuget.org/profiles/pacx",
+      "capabilities": ["plugin-discover", "plugin-install", "plugin-update", "plugin-remove"]
+    }
+  ]
+}

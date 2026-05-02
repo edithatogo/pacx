@@ -34,10 +34,10 @@ namespace Greg.Xrm.Command.Commands.Views.Model
 				}
 
 
-				var xmlDocument1 = new XmlDocument();
+				var xmlDocument1 = new XmlDocument { XmlResolver = null };
 				xmlDocument1.LoadXml(targetView.layoutxml!);
 
-				var xmlDocument2 = new XmlDocument();
+				var xmlDocument2 = new XmlDocument { XmlResolver = null };
 				xmlDocument2.LoadXml(sourceView.layoutxml!);
 
 				var xmlNodeList1 = xmlDocument2.SelectNodes("grid/row/cell");
@@ -82,10 +82,10 @@ namespace Greg.Xrm.Command.Commands.Views.Model
 
 				if (!string.IsNullOrEmpty(targetView.fetchxml))
 				{
-					var xmlDocument3 = new XmlDocument();
+					var xmlDocument3 = new XmlDocument { XmlResolver = null };
 					xmlDocument3.LoadXml(targetView.fetchxml);
 
-					var xmlDocument4 = new XmlDocument();
+					var xmlDocument4 = new XmlDocument { XmlResolver = null };
 					xmlDocument4.LoadXml(sourceView.fetchxml!);
 
 					var xmlNodeList2 = xmlDocument4.SelectNodes("fetch/entity/attribute");

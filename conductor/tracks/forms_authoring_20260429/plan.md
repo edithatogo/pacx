@@ -51,5 +51,3 @@ Full Microsoft Forms authoring capability — create, update, delete, publish, i
 - [ ] Task: Response summary command.
 - [ ] Task: Tests.
 
-### Phase 5: PR Lifecycle
-- [ ] Task: Upstream PR; merge.

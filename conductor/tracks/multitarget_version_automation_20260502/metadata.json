@@ -1,0 +1,14 @@
+{
+  "track_id": "multitarget_version_automation_20260502",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": "2026-05-02T00:00:00+10:00",
+  "note": "Complete. Multi-target net10.0;net11.0. Global.json rollForward. Dependabot configured. CI matrix on both TFMs.",
+  "priority": "High",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "Multi-target .NET 10 + 11 so builds work on stable SDK. Global.json rollForward for automatic SDK updates. Dependabot/Renovate for NuGet + action auto-updates.",
+  "dependencies": ["ci_cd_hardening_20260421"],
+  "api_sources": ["NuGet", "GitHub Dependabot", "Renovate"]
+}

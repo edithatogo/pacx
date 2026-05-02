@@ -1,0 +1,76 @@
+{
+    "id": "a3b9e5c1-8d4f-4a7e-9b2c-6f1d3e8a0c7b",
+    "name": "pacx-run",
+    "friendlyName": "PACX CLI Runner",
+    "description": "Run PACX CLI commands for Power Platform automation – Dataverse, ALM, AI Builder, and governance",
+    "helpMarkDown": "Run any PACX CLI command. See https://github.com/edithatogo/Greg.Xrm.Command for command reference.",
+    "category": "Utility",
+    "author": "Greg.Xrm.Command Contributors",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "PACX: $(command)",
+    "groups": [
+        {
+            "name": "advanced",
+            "displayName": "Advanced",
+            "isExpanded": false
+        }
+    ],
+    "inputs": [
+        {
+            "name": "command",
+            "type": "string",
+            "label": "PACX Command",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "PACX command and arguments (e.g., `forms list --tenant contoso.onmicrosoft.com`)."
+        },
+        {
+            "name": "workingDirectory",
+            "type": "filePath",
+            "label": "Working Directory",
+            "defaultValue": "$(System.DefaultWorkingDirectory)",
+            "required": false,
+            "helpMarkDown": "Working directory for the PACX command.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "msalClientId",
+            "type": "string",
+            "label": "MSAL Client ID",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Azure AD app client ID for authentication.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "msalClientSecret",
+            "type": "string",
+            "label": "MSAL Client Secret",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Azure AD app client secret for authentication.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "tenantId",
+            "type": "string",
+            "label": "Tenant ID",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Azure AD tenant ID or domain.",
+            "groupName": "advanced"
+        }
+    ],
+    "execution": {
+        "Node10": {
+            "target": "index.js"
+        }
+    },
+    "messages": {
+        "CommandFailed": "PACX command exited with code %d: %s"
+    }
+}

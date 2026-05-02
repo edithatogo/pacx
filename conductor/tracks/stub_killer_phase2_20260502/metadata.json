@@ -1,0 +1,14 @@
+{
+  "track_id": "stub_killer_phase2_20260502",
+  "type": "infrastructure",
+  "status": "complete",
+  "phase": 3,
+  "completed_at": "2026-05-02T00:00:00+10:00",
+  "note": "De-faking remaining architecture-level stubs: env lifecycle (BAP API), quality gate (pac CLI). Tabular/Power BI stubs documented as requiring Premium XMLA access.",
+  "priority": "Medium",
+  "created_at": "2026-05-02T00:00:00+10:00",
+  "updated_at": "2026-05-02T00:00:00+10:00",
+  "description": "De-fake remaining architecture-level stubs: environment lifecycle (BAP API), quality gate (pac CLI), tabular BI (documented as Premium-only)",
+  "dependencies": [],
+  "api_sources": ["Power Platform Admin API (BAP)", "pac CLI"]
+}

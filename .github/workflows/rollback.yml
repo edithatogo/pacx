@@ -1,0 +1,86 @@
+name: PACX Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to roll back (e.g., 1.2.3)
+        required: true
+        type: string
+      type:
+        description: What to roll back
+        required: true
+        type: choice
+        options:
+          - nuget
+          - docker
+          - tag
+          - all
+        default: all
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: 11.0.x
+
+      - name: NuGet login
+        if: ${{ inputs.type == 'nuget' || inputs.type == 'all' }}
+        id: nuget_login
+        uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544 # v1
+        with:
+          user: ${{ github.repository_owner }}
+
+      - name: Deprecate NuGet packages
+        if: ${{ inputs.type == 'nuget' || inputs.type == 'all' }}
+        shell: pwsh
+        run: |
+          $version = "${{ inputs.version }}"
+          Write-Host "Deprecating NuGet packages for version $version..."
+          dotnet nuget delete Greg.Xrm.Command $version `
+            --source https://api.nuget.org/v3/index.json `
+            --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" `
+            --non-interactive
+          dotnet nuget delete Greg.Xrm.Command.Interfaces $version `
+            --source https://api.nuget.org/v3/index.json `
+            --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" `
+            --non-interactive
+          Write-Host "NuGet packages deprecated successfully."
+
+      - name: Rollback Docker images
+        if: ${{ inputs.type == 'docker' || inputs.type == 'all' }}
+        shell: pwsh
+        run: |
+          $version = "${{ inputs.version }}"
+          Write-Host "Re-tagging Docker image for version $version..."
+          Write-Host "  docker pull ghcr.io/edithatogo/pacx:$version"
+          Write-Host "  docker tag ghcr.io/edithatogo/pacx:$version ghcr.io/edithatogo/pacx:latest"
+          Write-Host "  docker push ghcr.io/edithatogo/pacx:latest"
+
+      - name: Rollback Git tag
+        if: ${{ inputs.type == 'tag' || inputs.type == 'all' }}
+        shell: pwsh
+        run: |
+          $tag = "v${{ inputs.version }}"
+          Write-Host "Reverting git tag $tag..."
+          Write-Host "Steps to revert to previous release:"
+          Write-Host "  1. git tag -d $tag"
+          Write-Host "  2. git push origin :refs/tags/$tag"
+          Write-Host "  3. Find previous release SHA: git log --oneline --decorate -20"
+          Write-Host "  4. Recreate tag: git tag $tag <previous-release-sha>"
+          Write-Host "  5. git push origin $tag"

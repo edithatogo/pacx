@@ -225,18 +225,97 @@ namespace Greg.Xrm.Command.Commands.Alm
 
 			try
 			{
-				output.WriteLine($"Environment Diff: {command.EnvA} vs {command.EnvB}", ConsoleColor.Cyan);
-				output.WriteLine($"  Scope: {command.Scope}");
+				output.WriteLine("Environment Inventory:", ConsoleColor.Cyan);
 				output.WriteLine();
-				output.WriteLine("Note: Full environment diff requires Power Platform Admin API access.", ConsoleColor.Yellow);
-				output.WriteLine("For now, compare solutions manually using 'pacx solution diff'.");
+
+				if (string.Equals(command.Scope, "all", StringComparison.OrdinalIgnoreCase) ||
+					string.Equals(command.Scope, "solutions", StringComparison.OrdinalIgnoreCase))
+				{
+					await ReportSolutionsAsync(crm, cancellationToken).ConfigureAwait(false);
+				}
+
+				if (string.Equals(command.Scope, "all", StringComparison.OrdinalIgnoreCase) ||
+					string.Equals(command.Scope, "tables", StringComparison.OrdinalIgnoreCase))
+				{
+					await ReportTablesAsync(crm, cancellationToken).ConfigureAwait(false);
+				}
+
+				if (string.Equals(command.Scope, "all", StringComparison.OrdinalIgnoreCase) ||
+					string.Equals(command.Scope, "envvars", StringComparison.OrdinalIgnoreCase))
+				{
+					await ReportEnvVarsAsync(crm, cancellationToken).ConfigureAwait(false);
+				}
+
+				output.WriteLine();
+				output.WriteLine("To compare across environments, run this command on each environment and compare outputs.", ConsoleColor.Yellow);
+				output.WriteLine("  pacx alm env diff --scope all --format json > env1.json");
+				output.WriteLine("  # then switch connection and run:");
+				output.WriteLine("  pacx alm env diff --scope all --format json > env2.json");
 
 				return CommandResult.Success();
 			}
 			catch (FaultException<OrganizationServiceFault> ex)
 			{
-				return CommandResult.Fail($"Env diff error: {ex.Message}", ex);
+				return CommandResult.Fail($"Env inventory error: {ex.Message}", ex);
 			}
+		}
+
+		private async Task ReportSolutionsAsync(IOrganizationServiceAsync2 crm, CancellationToken ct)
+		{
+			var query = new QueryExpression("solution");
+			query.ColumnSet.AddColumns("uniquename", "friendlyname", "version", "ismanaged", "publisherid", "installedon");
+			query.AddOrder("uniquename", OrderType.Ascending);
+			var result = await crm.RetrieveMultipleAsync(query, ct).ConfigureAwait(false);
+
+			output.WriteLine($"Solutions ({result.Entities.Count}):", ConsoleColor.Green);
+			output.WriteTable(
+				result.Entities.Select(e => new
+				{
+					Name = e.GetAttributeValue<string>("uniquename"),
+					Version = e.GetAttributeValue<string>("version"),
+					Managed = e.GetAttributeValue<bool>("ismanaged") ? "M" : "U"
+				}).ToList(),
+				() => ["Name", "Version", "M/U"],
+				i => [i.Name, i.Version, i.Managed]);
+			output.WriteLine();
+		}
+
+		private async Task ReportTablesAsync(IOrganizationServiceAsync2 crm, CancellationToken ct)
+		{
+			var query = new QueryExpression("entity");
+			query.ColumnSet.AddColumns("name", "logicalname", "displayname", "objecttypecode");
+			query.AddOrder("logicalname", OrderType.Ascending);
+			query.TopCount = 50;
+			var result = await crm.RetrieveMultipleAsync(query, ct).ConfigureAwait(false);
+
+			output.WriteLine($"Tables (first 50 of {result.Entities.Count}):", ConsoleColor.Green);
+			output.WriteTable(
+				result.Entities.Select(e => new
+				{
+					Name = e.GetAttributeValue<string>("displayname") ?? e.GetAttributeValue<string>("logicalname"),
+					TypeCode = e.GetAttributeValue<int?>("objecttypecode")?.ToString() ?? "?"
+				}).ToList(),
+				() => ["Name", "TypeCode"],
+				i => [i.Name, i.TypeCode]);
+			output.WriteLine();
+		}
+
+		private async Task ReportEnvVarsAsync(IOrganizationServiceAsync2 crm, CancellationToken ct)
+		{
+			var query = new QueryExpression("environmentvariabledefinition");
+			query.ColumnSet.AddColumns("schemaname", "displayname", "type");
+			query.AddOrder("schemaname", OrderType.Ascending);
+			query.TopCount = 50;
+			var result = await crm.RetrieveMultipleAsync(query, ct).ConfigureAwait(false);
+
+			output.WriteLine($"Environment Variables (first 50 of {result.Entities.Count}):", ConsoleColor.Green);
+			foreach (var ev in result.Entities)
+			{
+				var name = ev.GetAttributeValue<string>("schemaname") ?? "?";
+				var type = ev.GetAttributeValue<string>("type") ?? "?";
+				output.WriteLine($"  {name} ({type})");
+			}
+			output.WriteLine();
 		}
 	}
 

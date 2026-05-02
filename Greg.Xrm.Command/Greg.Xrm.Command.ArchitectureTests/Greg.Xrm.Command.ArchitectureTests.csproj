@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net11.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <RootNamespace>Greg.Xrm.Command.ArchitectureTests</RootNamespace>
@@ -23,15 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Greg.Xrm.Command.Core">
-      <HintPath>..\Greg.Xrm.Command.Core\bin\Debug\net11.0\Greg.Xrm.Command.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Greg.Xrm.Command.Interfaces">
-      <HintPath>..\Greg.Xrm.Command.Interfaces\bin\Debug\net11.0\Greg.Xrm.Command.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Greg.Xrm.Command.Plugin.Automation">
-      <HintPath>..\Greg.Xrm.Command.Plugin.Automation\bin\Debug\net11.0\Greg.Xrm.Command.Plugin.Automation.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Greg.Xrm.Command.Core\Greg.Xrm.Command.Core.csproj">
+      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
+    <ProjectReference Include="..\Greg.Xrm.Command.Interfaces\Greg.Xrm.Command.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

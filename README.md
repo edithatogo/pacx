@@ -1,13 +1,39 @@
 # PacPacx
 
+[![NuGet](https://img.shields.io/nuget/v/Greg.Xrm.Command.svg)](https://www.nuget.org/packages/Greg.Xrm.Command)
 [![CI](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/ci.yml/badge.svg)](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/ci.yml)
 [![Docs](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/docs.yml/badge.svg)](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/docs.yml)
 [![Coverage](https://codecov.io/gh/edithatogo/Greg.Xrm.Command/branch/master/graph/badge.svg)](https://codecov.io/gh/edithatogo/Greg.Xrm.Command)
-[![NuGet](https://img.shields.io/nuget/v/Greg.Xrm.Command.svg)](https://www.nuget.org/packages/Greg.Xrm.Command)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![OpenSSF Scorecard](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/scorecard.yml/badge.svg)](https://github.com/edithatogo/Greg.Xrm.Command/actions/workflows/scorecard.yml)
-![OpenSSF Best Practices](https://img.shields.io/badge/OpenSSF%20Best%20Practices-not%20configured-lightgrey)
 
 PacPacx is a Power Platform automation workspace for the `pacx` CLI, focused on Dataverse, ALM, AI Builder, custom connectors, MCP hosting, and repository workflows. It extends the Microsoft `pac` style of command-line automation with a broader command surface and track-based implementation plans.
+
+## Install
+
+```powershell
+dotnet tool install -g Greg.Xrm.Command
+```
+
+## Quick Start
+
+Authenticate with your Dataverse environment and list available solutions:
+
+```powershell
+pacx auth create --name myenv --url https://myorg.crm.dynamics.com
+pacx solution list --env myenv
+```
+
+Expected output:
+
+```
+┌──────────────────────────────────────────────┬──────────────────────────────┬──────────┐
+│ Unique Name                                  │ Display Name                 │ Version  │
+├──────────────────────────────────────────────┼──────────────────────────────┼──────────┤
+│ SolutionName1                                │ Solution Name 1              │ 1.0.0.0  │
+│ SolutionName2                                │ Solution Name 2              │ 1.0.0.0  │
+└──────────────────────────────────────────────┴──────────────────────────────┴──────────┘
+```
 
 ## Documentation
 
@@ -62,4 +88,4 @@ Do not commit secrets. Use vault-backed credentials for production automation, f
 
 ## License
 
-TBD. Add a `LICENSE` file before publishing packages or releases.
+Licensed under the [MIT License](LICENSE). See the `LICENSE` file for details.

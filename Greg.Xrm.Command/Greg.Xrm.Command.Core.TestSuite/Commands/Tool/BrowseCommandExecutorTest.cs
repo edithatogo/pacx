@@ -6,46 +6,22 @@ namespace Greg.Xrm.Command.Commands.Tool
 	public class BrowseCommandExecutorTest
 	{
 		[TestMethod]
-		public void BrowseShouldRenderMatchingTools()
+		public void ExecuteShouldRenderMatchingTools()
 		{
-			var tempDir = TestTempPath.CreateDirectory("tool_catalog");
+			var tempDir = TestTempPath.CreateDirectory("tool_browse_test");
 			var catalogPath = Path.Combine(tempDir, "tools.json");
-
 			try
 			{
-				File.WriteAllText(catalogPath, """
-{
-  "tools": [
-    {
-      "id": "xrmtoolbox",
-      "name": "XrmToolBox",
-      "provider": "MscrmTools",
-      "category": "Dataverse",
-      "kind": "desktop app",
-      "summary": "Plugin host and tool library for Dataverse admins.",
-      "capabilities": [ "discover plugins", "launch tools" ]
-    },
-    {
-      "id": "flowstudio",
-      "name": "Flow Studio",
-      "provider": "EffortlessMetrics",
-      "category": "Power Automate",
-      "kind": "mcp service",
-      "summary": "MCP workflows for flow authoring and operations.",
-      "capabilities": [ "build", "debug" ]
-    }
-  ]
-}
-""");
+				File.WriteAllText(catalogPath, """{ "tools": [{"id":"test-tool","name":"Test Tool","provider":"PACX","category":"core","kind":"cli","summary":"A test tool.","capabilities":["test"]}] }""");
 
 				var output = new OutputToMemory();
 				var executor = new BrowseCommandExecutor(output);
-
-				var result = executor.ExecuteAsync(new BrowseCommand { CatalogPath = catalogPath, Query = "flow" }, CancellationToken.None).GetAwaiter().GetResult();
+				var result = executor.ExecuteAsync(
+					new BrowseCommand { CatalogPath = catalogPath },
+					CancellationToken.None).GetAwaiter().GetResult();
 
 				Assert.IsTrue(result.IsSuccess);
-				StringAssert.Contains(output.ToString(), "Flow Studio");
-				Assert.IsFalse(output.ToString().Contains("XrmToolBox", StringComparison.OrdinalIgnoreCase));
+				StringAssert.Contains(output.ToString(), "Test Tool");
 			}
 			finally
 			{

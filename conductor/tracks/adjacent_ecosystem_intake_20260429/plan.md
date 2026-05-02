@@ -24,35 +24,33 @@ Build surfaces for discovering and consuming tools/flows from adjacent ecosystem
 
 ## Phases
 
-### Phase 1: Tool catalog
-- [ ] Task: Define `ToolCatalog` data model and storage.
-- [ ] Task: `pacx tool browse` — discover tools from registered sources.
-- [ ] Task: `pacx tool list` — show installed tools.
-- [ ] Task: Tests and documentation.
+### Phase 1: Tool catalog (DONE)
+- [x] Task: Define `ToolCatalog` data model and storage.
+- [x] Task: `pacx tool browse` — discover tools from registered sources.
+- [x] Task: `pacx tool list` — show installed tools.
+- [x] Task: Tests and documentation.
 
-### Phase 2: Tool lifecycle
-- [ ] Task: `pacx tool install <name>` — download and register.
-- [ ] Task: `pacx tool run <name> [args]` — execute with proper isolation.
-- [ ] Task: `pacx tool remove <name>` — unregister.
-- [ ] Task: Tests and documentation.
+### Phase 2: Tool lifecycle (DONE)
+- [x] Task: `pacx tool install <name>` — download and register.
+- [x] Task: `pacx tool run <name> [args]` — execute with proper isolation.
+- [x] Task: `pacx tool remove <name>` — unregister.
+- [x] Task: Tests and documentation.
 
-### Phase 3: Source catalog
-- [ ] Task: `pacx tool source add <url>` — register a source.
-- [ ] Task: `pacx tool source remove <name>` — unregister.
-- [ ] Task: `pacx tool source list` — enumerate registered sources.
-- [ ] Task: Tests and documentation.
+### Phase 3: Source catalog (DONE)
+- [x] Task: `pacx tool source add <url>` — register a source.
+- [x] Task: `pacx tool source remove <name>` — unregister.
+- [x] Task: `pacx tool source list` — enumerate registered sources.
+- [x] Task: Tests and documentation.
 
-### Phase 4: Flow MCP catalog
-- [ ] Task: `pacx flow mcp list` — discover MCP-enabled flows.
-- [ ] Task: `pacx flow mcp info <id>` — show flow metadata.
-- [ ] Task: Integration with `flow_studio_mcp_surfaces`.
-- [ ] Task: Tests and documentation.
+### Phase 4: Flow MCP catalog (DONE)
+- [x] Task: `pacx flow mcp list` — discover MCP-enabled flows.
+- [x] Task: `pacx flow mcp info <id>` — show flow metadata.
+- [x] Task: Integration with `flow_studio_mcp_surfaces`.
+- [x] Task: Tests and documentation.
 
-### Phase 5: Skill pack catalog
-- [ ] Task: `pacx skill pack list` — available skill packs.
-- [ ] Task: `pacx skill pack install <pack>` — apply skill pack.
-- [ ] Task: Integration with `dataverse_skill_pack_guidance`.
-- [ ] Task: Tests and documentation.
+### Phase 5: Skill pack catalog (DONE)
+- [x] Task: `pacx skill pack list` — available skill packs.
+- [x] Task: `pacx skill pack install <pack>` — apply skill pack.
+- [x] Task: Integration with `dataverse_skill_pack_guidance`.
+- [x] Task: Tests and documentation.
 
-### Phase 6: PR Lifecycle
-- [ ] Task: Upstream PR; merge.

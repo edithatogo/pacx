@@ -1,19 +1,6 @@
 <Project>
-  <!--
-    Directory.Build.props — Centralized MSBuild properties for Greg.Xrm.Command (PACX)
-    All .csproj files under this directory inherit these settings unless they override them.
-
-    Per-project overrides should be placed directly in the project's .csproj file.
-    Per-project unique package references belong in the project's .csproj, not here.
-
-    https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory
-  -->
-
-  <!-- ============================================================ -->
-  <!-- Common compiler / language settings (all projects)           -->
-  <!-- ============================================================ -->
   <PropertyGroup>
-    <TargetFramework>net11.0</TargetFramework>
+    <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
@@ -30,65 +17,49 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <NuGetAudit>true</NuGetAudit>
     <NuGetAuditMode>all</NuGetAuditMode>
-    <UseSharedCompilation>false</UseSharedCompilation>
-    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
-    <NoWarn>$(NoWarn);NU1510;NU1900</NoWarn>
-    <!-- Strong-name signing — committed SNK (identity, not secrecy) -->
+    <WarningsAsErrors>$(WarningsAsErrors);NU1901;NU1902;NU1903;NU1904</WarningsAsErrors>
+    <UseSharedCompilation Condition="'$(GITHUB_ACTIONS)'=='true'">false</UseSharedCompilation>
+    <UseHostCompilerIfAvailable Condition="'$(GITHUB_ACTIONS)'=='true'">false</UseHostCompilerIfAvailable>
+    <NoWarn>$(NoWarn);NU1510;NU1900;CS9113;CS9105;CA1806;CA1816;MA0049;MA0144;MA0158;S108;S2486;S3881;CS1705</NoWarn>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)pacx_strongname.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-
-  <!-- Global usings for all projects -->
   <ItemGroup>
     <Using Include="System.ComponentModel.DataAnnotations" />
     <Using Include="Microsoft.PowerPlatform.Dataverse.Client" />
+    <Using Include="Greg.Xrm.Command.Services.Output" />
   </ItemGroup>
-
-  <!-- ============================================================ -->
-  <!-- Common NuGet package metadata (packable projects)            -->
-  <!-- ============================================================ -->
   <PropertyGroup>
     <Authors>PACX Fork Maintainers</Authors>
     <Company>PACX</Company>
     <Copyright>Copyright @ PACX</Copyright>
-    <PackageProjectUrl>https://github.com/edithatogo/Greg.Xrm.Command</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/edithatogo/Greg.Xrm.Command</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/edithatogo/pacx</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/edithatogo/pacx.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>logo_80.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <!-- CI sets this via -p:VersionNumber=... during build/pack -->
     <Version>$(VersionNumber)</Version>
   </PropertyGroup>
-
-  <!-- ============================================================ -->
-  <!-- Shared package references (used by 4+ projects)              -->
-  <!-- ============================================================ -->
   <ItemGroup>
-    <!-- Dataverse SDK — every project communicates with Dataverse -->
     <PackageReference Include="Microsoft.PowerPlatform.Dataverse.Client" />
-    <!-- Excel handling — exe, Core, TestSuite, SamplePlugin, Interfaces -->
     <PackageReference Include="ClosedXML" />
-    <!-- WCF stack — Dataverse client still depends on the service model packages -->
     <PackageReference Include="System.ServiceModel.Http" />
     <PackageReference Include="System.ServiceModel.Primitives" />
     <PackageReference Include="System.Security.Cryptography.Xml" />
-    <!-- DI container — all projects use Autofac -->
     <PackageReference Include="Autofac.Extensions.DependencyInjection" />
-    <!-- DataAnnotations — needed for [Required] attributes -->
     <PackageReference Include="System.ComponentModel.Annotations" />
-    <!-- Static analysis — SonarAnalyzer for C# best practices and security -->
     <PackageReference Include="SonarAnalyzer.CSharp">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.DotNet.ApiCompat.Task">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
-
-  <!-- ============================================================ -->
-  <!-- NuGet package files (common to packable projects)             -->
-  <!-- ============================================================ -->
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)logo_80.png" Pack="true" PackagePath="\" Visible="false" Condition="Exists('$(MSBuildThisFileDirectory)logo_80.png')" />
     <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" Condition="Exists('$(MSBuildThisFileDirectory)README.md')" />
   </ItemGroup>
-
 </Project>

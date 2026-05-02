@@ -55,8 +55,6 @@ Add correlation ID generation at the command-entry layer and propagate it throug
 - [ ] Task: When `cli_ux_20260421` telemetry phase has shipped, emit correlation ID as `trace.id` on OTLP spans. Deferred until that telemetry phase exists.
 - [x] Task: Run local focused verification for completed correlation ID implementation.
 
-### Phase 5: PR Lifecycle
-- [ ] Task: Upstream PR; `/ralph-loop`; merge.
 
 ---
 

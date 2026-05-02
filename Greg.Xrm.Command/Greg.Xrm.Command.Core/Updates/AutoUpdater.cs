@@ -75,14 +75,24 @@ namespace Greg.Xrm.Command.Updates
 			try
 			{
 				output.WriteLine($"{ToolName} update requested");
-				var pid = Environment.ProcessId;
-				var command = $@"Wait-Process -Id {pid} -Timeout {WaitForExit} -ErrorAction SilentlyContinue; dotnet tool update --global {ToolName}";
-				Process.Start(new ProcessStartInfo
+				var startInfo = new ProcessStartInfo
 				{
-					FileName = "powershell.exe",
-					Arguments = $"-NoProfile -NoLogo -NonInteractive -ExecutionPolicy unrestricted -command {command}",
-					UseShellExecute = false
-				});
+					FileName = "cmd.exe",
+					UseShellExecute = false,
+					CreateNoWindow = true
+				};
+				startInfo.ArgumentList.Add("/c");
+				startInfo.ArgumentList.Add("timeout");
+				startInfo.ArgumentList.Add("/t");
+				startInfo.ArgumentList.Add(WaitForExit.ToString());
+				startInfo.ArgumentList.Add("/nobreak");
+				startInfo.ArgumentList.Add("&");
+				startInfo.ArgumentList.Add("dotnet");
+				startInfo.ArgumentList.Add("tool");
+				startInfo.ArgumentList.Add("update");
+				startInfo.ArgumentList.Add("--global");
+				startInfo.ArgumentList.Add(ToolName);
+				Process.Start(startInfo);
 			}
 			catch (Exception ex)
 			{
