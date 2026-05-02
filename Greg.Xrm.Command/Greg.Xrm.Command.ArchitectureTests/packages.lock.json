@@ -709,6 +709,19 @@
           "System.ServiceModel.Primitives": "[10.0.652802, )"
         }
       },
+      "greg.xrm.command.plugin.automation": {
+        "type": "Project",
+        "dependencies": {
+          "Autofac.Extensions.DependencyInjection": "[11.0.0, )",
+          "ClosedXML": "[0.105.0, )",
+          "Greg.Xrm.Command.Interfaces": "[1.0.0, )",
+          "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
+          "System.ComponentModel.Annotations": "[5.0.0, )",
+          "System.Security.Cryptography.Xml": "[10.0.6, )",
+          "System.ServiceModel.Http": "[10.0.652802, )",
+          "System.ServiceModel.Primitives": "[10.0.652802, )"
+        }
+      },
       "Autofac": {
         "type": "CentralTransitive",
         "requested": "[9.1.0, )",
@@ -1546,6 +1559,18 @@
           "ClosedXML": "[0.105.0, )",
           "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
           "System.Security.Cryptography.ProtectedData": "[10.0.6, )",
+          "System.Security.Cryptography.Xml": "[10.0.6, )",
+          "System.ServiceModel.Http": "[10.0.652802, )",
+          "System.ServiceModel.Primitives": "[10.0.652802, )"
+        }
+      },
+      "greg.xrm.command.plugin.automation": {
+        "type": "Project",
+        "dependencies": {
+          "Autofac.Extensions.DependencyInjection": "[11.0.0, )",
+          "ClosedXML": "[0.105.0, )",
+          "Greg.Xrm.Command.Interfaces": "[1.0.0, )",
+          "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
           "System.Security.Cryptography.Xml": "[10.0.6, )",
           "System.ServiceModel.Http": "[10.0.652802, )",
           "System.ServiceModel.Primitives": "[10.0.652802, )"

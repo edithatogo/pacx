@@ -5,8 +5,12 @@ using Greg.Xrm.Command.Services.Output;
 
 namespace Greg.Xrm.Command.Commands.Update
 {
-	public class SelfUpdateCommandExecutor(IOutput output, IHttpClientFactory httpClientFactory) : ICommandExecutor<SelfUpdateCommand>
+	public class SelfUpdateCommandExecutor(
+		IOutput output,
+		IHttpClientFactory httpClientFactory) : ICommandExecutor<SelfUpdateCommand>
 	{
+		private readonly IOutput output = output ?? throw new ArgumentNullException(nameof(output));
+		private readonly IHttpClientFactory httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
 		private const string GitHubApiUrl = "https://api.github.com/repos/edithatogo/Greg.Xrm.Command/releases";
 
 		public async Task<CommandResult> ExecuteAsync(SelfUpdateCommand command, CancellationToken cancellationToken)
@@ -101,7 +105,7 @@ namespace Greg.Xrm.Command.Commands.Update
 			return ParseVersion(tag);
 		}
 
-		private static async Task<CommandResult> DownloadAndInstallAsync(HttpClient client, Version targetVersion, CancellationToken cancellationToken)
+		private async Task<CommandResult> DownloadAndInstallAsync(HttpClient client, Version targetVersion, CancellationToken cancellationToken)
 		{
 			var releaseUrl = $"{GitHubApiUrl}/tags/v{targetVersion}";
 			string json;

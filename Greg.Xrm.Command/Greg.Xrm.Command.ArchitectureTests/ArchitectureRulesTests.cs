@@ -1,7 +1,4 @@
 using System.Reflection;
-using Greg.Xrm.Command.Commands.Explore;
-using Greg.Xrm.Command;
-using Greg.Xrm.Command.Plugin.Automation.Commands.Workflow;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Greg.Xrm.Command.ArchitectureTests
@@ -13,7 +10,7 @@ namespace Greg.Xrm.Command.ArchitectureTests
 		public void CommandsShouldNotReferenceHttpClientDirectly()
 		{
 			var failures = new List<string>();
-			foreach (var type in GetExecutorTypes().Where(type => type.Namespace == "Greg.Xrm.Command.Commands.Explore"))
+			foreach (var type in GetExecutorTypes().Where(type => type.Namespace is not null && type.Namespace.StartsWith("Greg.Xrm.Command.Commands")))
 			{
 				var offending = GetSystemNetHttpDependencies(type).ToArray();
 				if (offending.Any())
@@ -54,11 +51,10 @@ namespace Greg.Xrm.Command.ArchitectureTests
 
 		private static IEnumerable<Type> GetExecutorTypes()
 		{
-			var assemblies = new[]
-			{
-				typeof(ExploreBranchesCommandExecutor).Assembly,
-				typeof(ConnectionListCommandExecutor).Assembly
-			};
+			var assemblyNames = new[] { "Greg.Xrm.Command.Core", "Greg.Xrm.Command.Plugin.Automation" };
+			var assemblies = assemblyNames
+				.Select(name => Assembly.Load(name))
+				.Where(a => a != null);
 
 			return assemblies
 				.SelectMany(assembly => assembly.GetTypes())

@@ -35,21 +35,32 @@ namespace Greg.Xrm.Command.Commands.TenantSettings
 
 		private sealed class RecordingAdminClient(JsonDocument response) : IPowerPlatformAdminClient
 		{
-			public Task<JsonDocument> ListManagementAppsAsync(CancellationToken cancellationToken)
-				=> Task.FromResult(JsonDocument.Parse(response.RootElement.GetRawText()));
-
-			public Task<JsonDocument> GetTenantSettingsAsync(CancellationToken cancellationToken)
-				=> Task.FromResult(JsonDocument.Parse(response.RootElement.GetRawText()));
-
-			public Task SetTenantSettingsAsync(object settings, CancellationToken cancellationToken)
-				=> Task.CompletedTask;
+			public Task<JsonDocument> ListManagementAppsAsync(CancellationToken ct) => Task.FromResult(JsonDocument.Parse(response.RootElement.GetRawText()));
+			public Task<JsonDocument> GetTenantSettingsAsync(CancellationToken ct) => Task.FromResult(JsonDocument.Parse(response.RootElement.GetRawText()));
+			public Task SetTenantSettingsAsync(object settings, CancellationToken ct) => Task.CompletedTask;
+			public Task<JsonDocument> CreateEnvironmentAsync(string n, string t, string r, string c, string l, CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> GetEnvironmentAsync(string id, CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> ListEnvironmentsAsync(CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> ResetEnvironmentAsync(string id, string rt, CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> CopyEnvironmentAsync(string s, string tn, string m, CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> BackupEnvironmentAsync(string id, string l, CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> RestoreEnvironmentAsync(string id, string b, CancellationToken ct) => Task.FromResult(response);
+			public Task<JsonDocument> GetEnvironmentCapacityAsync(string id, CancellationToken ct) => Task.FromResult(response);
 		}
 
 		private sealed class ThrowingAdminClient(Exception exception) : IPowerPlatformAdminClient
 		{
-			public Task<JsonDocument> ListManagementAppsAsync(CancellationToken cancellationToken) => throw exception;
-			public Task<JsonDocument> GetTenantSettingsAsync(CancellationToken cancellationToken) => throw exception;
-			public Task SetTenantSettingsAsync(object settings, CancellationToken cancellationToken) => throw exception;
+			public Task<JsonDocument> ListManagementAppsAsync(CancellationToken ct) => throw exception;
+			public Task<JsonDocument> GetTenantSettingsAsync(CancellationToken ct) => throw exception;
+			public Task SetTenantSettingsAsync(object settings, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> CreateEnvironmentAsync(string n, string t, string r, string c, string l, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> GetEnvironmentAsync(string id, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> ListEnvironmentsAsync(CancellationToken ct) => throw exception;
+			public Task<JsonDocument> ResetEnvironmentAsync(string id, string rt, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> CopyEnvironmentAsync(string s, string tn, string m, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> BackupEnvironmentAsync(string id, string l, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> RestoreEnvironmentAsync(string id, string b, CancellationToken ct) => throw exception;
+			public Task<JsonDocument> GetEnvironmentCapacityAsync(string id, CancellationToken ct) => throw exception;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 using Greg.Xrm.Command.Parsing;
+using Greg.Xrm.Command.Services.Forms;
 using Greg.Xrm.Command.Services.Output;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -21,7 +22,8 @@ namespace Greg.Xrm.Command.Commands.Forms
 		public async Task AnalyticsSummary_ShouldPrintApiPlan()
 		{
 			var output = new OutputToMemory();
-			var executor = new FormsAnalyticsSummaryCommandExecutor(output);
+			var apiMock = new Mock<IFormsApiClient>();
+			var executor = new FormsAnalyticsSummaryCommandExecutor(output, apiMock.Object);
 
 			var result = await executor.ExecuteAsync(new FormsAnalyticsSummaryCommand { FormId = "form-1" }, CancellationToken.None);
 

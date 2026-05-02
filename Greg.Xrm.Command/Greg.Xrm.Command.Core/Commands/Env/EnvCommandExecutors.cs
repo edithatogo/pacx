@@ -1,6 +1,7 @@
 using Greg.Xrm.Command.Services.Connection;
 using Greg.Xrm.Command.Services.Output;
 using Greg.Xrm.Command.Services.PowerPlatformAdmin;
+using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Text.Json;
 using System.Threading;
