@@ -15,8 +15,10 @@ namespace Greg.Xrm.Command.Commands.Settings
 			IOutput output,
 			IOrganizationServiceRepository organizationServiceRepository)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.organizationServiceRepository = organizationServiceRepository ?? throw new ArgumentNullException(nameof(organizationServiceRepository));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(organizationServiceRepository);
+			this.output = output;
+			this.organizationServiceRepository = organizationServiceRepository;
 		}
 		public async Task<CommandResult> ExecuteAsync(SetValueCommand command, CancellationToken cancellationToken)
 		{

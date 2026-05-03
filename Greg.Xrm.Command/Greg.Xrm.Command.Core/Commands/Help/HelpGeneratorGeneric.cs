@@ -41,7 +41,7 @@ namespace Greg.Xrm.Command.Commands.Help
 				output.Write("  ")
 					.Write(node.Verb.PadRight(padding), color);
 
-				var helpText = (node.Help ?? string.Empty).Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+				var helpText = (node.Help ?? string.Empty).Split(['\r', '\n'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
 				if (helpText.Length == 1)
 				{
@@ -81,7 +81,7 @@ namespace Greg.Xrm.Command.Commands.Help
 				output.Write("  ")
 					.Write(command.ExpandedVerbs.PadRight(padding), ConsoleColor.DarkCyan);
 
-				var helpText = (command.HelpText ?? string.Empty).Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+				var helpText = (command.HelpText ?? string.Empty).Split(['\r', '\n'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
 				if (helpText.Length == 1)
 				{

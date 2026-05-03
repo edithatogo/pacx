@@ -16,7 +16,8 @@ namespace Greg.Xrm.Command.Services.Output
 
 		public QuietOutput(IOutput inner)
 		{
-			this.inner = inner ?? throw new ArgumentNullException(nameof(inner));
+			ArgumentNullException.ThrowIfNull(inner);
+			this.inner = inner;
 		}
 
 		public IOutput Write(object? text) => this;

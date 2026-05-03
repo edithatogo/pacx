@@ -200,7 +200,7 @@ namespace Greg.Xrm.Command.Commands.Views.Model
 						}
 						foreach (XmlNode selectNode in xmlDocument3.SelectNodes("fetch/entity/link-entity"))
 						{
-							if (selectNode != null && selectNode.ChildNodes.Count == 0)
+							if (selectNode is { ChildNodes.Count: 0 })
 								xmlDocument3.SelectSingleNode("fetch/entity").RemoveChild(selectNode);
 						}
 					}

@@ -30,7 +30,7 @@ namespace Greg.Xrm.Command.Commands.Package
 					output.WriteLine($"  Description: {package.Manifest.Description}");
 				}
 
-				if (package.Manifest.Metadata is not null && package.Manifest.Metadata.Count > 0)
+				if (package.Manifest.Metadata is { Count: > 0 })
 				{
 					output.WriteLine("  Metadata:");
 					foreach (var kvp in package.Manifest.Metadata.OrderBy(x => x.Key, StringComparer.OrdinalIgnoreCase))
@@ -109,7 +109,7 @@ namespace Greg.Xrm.Command.Commands.Package
 				flags.Add($"publishWorkflows={step.PublishWorkflows.Value}");
 			}
 
-			if (step.Extensions is not null && step.Extensions.Count > 0)
+			if (step.Extensions is { Count: > 0 })
 			{
 				flags.Add($"{step.Extensions.Count} extension(s)");
 			}

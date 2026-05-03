@@ -25,7 +25,7 @@ namespace Greg.Xrm.Command.Commands.Package
 					output.WriteLine($"  Description: {package.Manifest.Description}");
 				}
 
-				if (package.Manifest.Metadata is not null && package.Manifest.Metadata.Count > 0)
+				if (package.Manifest.Metadata is { Count: > 0 })
 				{
 					output.WriteLine("  Metadata:");
 					foreach (var kvp in package.Manifest.Metadata.OrderBy(x => x.Key, StringComparer.OrdinalIgnoreCase))

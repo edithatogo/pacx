@@ -16,15 +16,14 @@ namespace Greg.Xrm.Command.Commands.Diag
 			output.WriteLine("PACX Diagnostics", ConsoleColor.Cyan);
 			output.WriteLine();
 
-			var checks = new List<DiagCheckResult>
-			{
+			DiagCheckResult[] checks = [
 				CheckDotNetRuntime(),
 				CheckPacxVersion(),
 				CheckOsPlatform(),
 				await CheckDataverseConnectivityAsync(cancellationToken),
 				CheckAuthStatus(),
 				CheckEnvironmentVariables()
-			};
+			];
 
 			output.WriteTable(
 				checks,

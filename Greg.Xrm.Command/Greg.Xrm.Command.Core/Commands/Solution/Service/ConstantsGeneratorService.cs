@@ -19,14 +19,13 @@ namespace Greg.Xrm.Command.Commands.Solution.Service
 		{
 			this.output = output;
 		}
-		private static readonly string[] EntityCommonFields = new string[]
-		{
+		private static readonly string[] EntityCommonFields = [
 			"createdby", "createdon", "createdonbehalfby", "importsequencenumber",
 			"modifiedby", "modifiedon", "modifiedonbehalfby", "overriddencreatedon",
 			"ownerid", "owningbusinessunit", "owningteam", "owninguser",
 			"statecode", "statuscode", "timezoneruleversionnumber",
 			"utcconversiontimezonecode", "versionnumber"
-		};
+		];
 
 		public async Task<(int csFiles, int jsFiles)> GenerateAsync(
 			IOrganizationServiceAsync2 crm,

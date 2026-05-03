@@ -30,9 +30,12 @@ namespace Greg.Xrm.Command.Commands.WebResources
 			IWebResourceRepository webResourceRepository,
 			IIconFinder iconFinder)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.organizationServiceRepository = organizationServiceRepository ?? throw new ArgumentNullException(nameof(organizationServiceRepository));
-			this.solutionRepository = solutionRepository ?? throw new ArgumentNullException(nameof(solutionRepository));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(organizationServiceRepository);
+			ArgumentNullException.ThrowIfNull(solutionRepository);
+			this.output = output;
+			this.organizationServiceRepository = organizationServiceRepository;
+			this.solutionRepository = solutionRepository;
 			this.webResourceRepository = webResourceRepository;
 			this.iconFinder = iconFinder;
 		}

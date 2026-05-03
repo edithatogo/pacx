@@ -50,7 +50,7 @@ namespace Greg.Xrm.Command.Commands.Help
 					helpTextString = node.Command.HelpText ?? string.Empty;
 				}
 
-				var helpText = helpTextString.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+				var helpText = helpTextString.Split(['\r', '\n'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
 				if (helpText.Length == 1)
 				{
@@ -72,7 +72,7 @@ namespace Greg.Xrm.Command.Commands.Help
 					}
 				}
 
-				if (node.Command is not null && node.Command.Aliases.Count > 0)
+				if (node.Command is { Aliases.Count: > 0 })
 				{
 					var label = node.Command.Aliases.Count == 1 ? "alias" : "aliases";
 

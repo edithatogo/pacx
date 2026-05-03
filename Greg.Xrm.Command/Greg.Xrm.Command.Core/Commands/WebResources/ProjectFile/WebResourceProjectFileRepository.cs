@@ -95,7 +95,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.ProjectFile
 
 
 
-			var directoryNames = new string[] { "images", "scripts", "pages" };
+			string[] directoryNames = [ "images", "scripts", "pages" ];
 			foreach (var directoryName in directoryNames)
 			{
 				var childFolder2 = folder.GetDirectories().FirstOrDefault(x => x.Name == directoryName);

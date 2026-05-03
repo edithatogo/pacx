@@ -15,8 +15,10 @@ namespace Greg.Xrm.Command.Services.Package
 			IReadOnlyList<string> checksumErrors,
 			Exception? exception = null)
 		{
-			MissingFiles = missingFiles ?? throw new ArgumentNullException(nameof(missingFiles));
-			ChecksumErrors = checksumErrors ?? throw new ArgumentNullException(nameof(checksumErrors));
+			ArgumentNullException.ThrowIfNull(missingFiles);
+			ArgumentNullException.ThrowIfNull(checksumErrors);
+			MissingFiles = missingFiles;
+			ChecksumErrors = checksumErrors;
 			Exception = exception;
 		}
 

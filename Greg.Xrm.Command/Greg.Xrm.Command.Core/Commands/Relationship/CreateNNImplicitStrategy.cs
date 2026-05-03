@@ -15,8 +15,10 @@ namespace Greg.Xrm.Command.Commands.Relationship
 
 		public CreateNNImplicitStrategy(IOutput output, IOrganizationServiceAsync2 crm)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.crm = crm ?? throw new ArgumentNullException(nameof(crm));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(crm);
+			this.output = output;
+			this.crm = crm;
 		}
 
 

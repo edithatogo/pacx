@@ -10,8 +10,10 @@ namespace Greg.Xrm.Command.Commands.History
 
 		public ClearCommandExecutor(IOutput output, IHistoryTracker historyTracker)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.historyTracker = historyTracker ?? throw new ArgumentNullException(nameof(historyTracker));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(historyTracker);
+			this.output = output;
+			this.historyTracker = historyTracker;
 		}
 
 

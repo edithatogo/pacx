@@ -32,7 +32,8 @@ namespace Greg.Xrm.Command.Services.Package
 
 		public PacxPackageReleaseGate(IPacxPackageReleaseVerifier verifier)
 		{
-			_verifier = verifier ?? throw new ArgumentNullException(nameof(verifier));
+			ArgumentNullException.ThrowIfNull(verifier);
+			_verifier = verifier;
 		}
 
 		public PacxPackageReleaseGateResult Evaluate(string releaseDirectory)

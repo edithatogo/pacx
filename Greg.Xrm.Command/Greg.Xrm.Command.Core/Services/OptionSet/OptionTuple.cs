@@ -8,7 +8,7 @@ namespace Greg.Xrm.Command.Services.OptionSet
 
 		public OptionTuple(string text)
 		{
-			var parts = text.Trim().Split("=:".ToCharArray()).Select(x => x.Trim()).ToArray();
+			var parts = text.Trim().Split(['=', ':'], StringSplitOptions.TrimEntries);
 			if (parts.Length == 0)
 				throw new ArgumentException($"The option '{text}' is not valid. It must be in the format 'label:value' or just 'label'.", nameof(text));
 

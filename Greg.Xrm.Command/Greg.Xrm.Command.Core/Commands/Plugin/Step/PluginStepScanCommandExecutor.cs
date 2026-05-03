@@ -19,7 +19,7 @@ namespace Greg.Xrm.Command.Commands.Plugin.Step
 				if (File.Exists(command.Path))
 				{
 					var meta = PluginScanner.ScanAssembly(command.Path);
-					assemblies = meta != null ? new List<PluginAssemblyMetadata> { meta } : Array.Empty<PluginAssemblyMetadata>();
+					assemblies = meta != null ? [ meta ] : Array.Empty<PluginAssemblyMetadata>();
 				}
 				else if (Directory.Exists(command.Path))
 				{

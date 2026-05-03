@@ -106,7 +106,7 @@ namespace Greg.Xrm.Command.Commands.Script.MetadataExtractor
 			var response = await GetAllEntitiesResponseAsync(cancellationToken).ConfigureAwait(false);
 			var e = response.EntityMetadata.FirstOrDefault(x => x.LogicalName == tableName);
 			if (e == null) return null;
-			return Extractor_EntityMetadata.ExtractEntityByName(new List<EntityMetadata>() { e }, tableName, prefixes);
+			return Extractor_EntityMetadata.ExtractEntityByName([ e ], tableName, prefixes);
 		}
 
 		public async Task<List<Extractor_RelationshipMetadata>> GetRelationshipsAsync(List<string> prefixes, List<Extractor_EntityMetadata>? includedEntities = null, CancellationToken cancellationToken = default)

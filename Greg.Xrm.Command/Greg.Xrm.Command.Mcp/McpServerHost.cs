@@ -152,7 +152,7 @@ public static class McpServerHost
 
 		try
 		{
-			var task = (Task<CommandResult>?)method.Invoke(executor, new object[] { commandInstance, cancellationToken });
+			var task = (Task<CommandResult>?)method.Invoke(executor, [ commandInstance, cancellationToken ]);
 			if (task == null)
 			{
 				return Error($"Executor {executorType.FullName} returned no task.");
@@ -225,7 +225,7 @@ public static class McpServerHost
 		if (result.Count > 0)
 		{
 			var padding = result.Max(x => x.Key.Length);
-			var lines = new List<string> { "Result:" };
+			List<string> lines = [ "Result:" ];
 			foreach (var kvp in result)
 			{
 				lines.Add($"  {kvp.Key.PadRight(padding)}: {kvp.Value}");

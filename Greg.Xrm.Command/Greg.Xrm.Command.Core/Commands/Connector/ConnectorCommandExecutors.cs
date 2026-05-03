@@ -279,8 +279,10 @@ namespace Greg.Xrm.Command.Commands.Connector
 
 		public ConnectorValidateCommandExecutor(IOutput output, IConnectorSchemaValidator validator)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.validator = validator ?? throw new ArgumentNullException(nameof(validator));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(validator);
+			this.output = output;
+			this.validator = validator;
 		}
 
 		public async Task<CommandResult> ExecuteAsync(ConnectorValidateCommand command, CancellationToken cancellationToken)

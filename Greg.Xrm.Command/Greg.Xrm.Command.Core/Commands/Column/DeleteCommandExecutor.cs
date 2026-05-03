@@ -66,7 +66,7 @@ namespace Greg.Xrm.Command.Commands.Column
 
 						// now re-check the dependencies to see if everything has been deleted
 						dependencies = await RetrieveDependenciesAsync(crm, command, columnMetadata, cancellationToken).ConfigureAwait(false);
-						if (dependencies is not null && dependencies.Count > 0)
+						if (dependencies is { Count: > 0 })
 						{
 							output.WriteLine($"After dependency pruning, column {command.TableName}.{command.SchemaName} has still {dependencies.Count} dependencies.", ConsoleColor.Yellow);
 

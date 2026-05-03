@@ -185,7 +185,7 @@ namespace Greg.Xrm.Command.Services.Package
 				flags.Add($"publishWorkflows={step.PublishWorkflows.Value}");
 			}
 
-			if (step.Extensions is not null && step.Extensions.Count > 0)
+			if (step.Extensions is { Count: > 0 })
 			{
 				flags.Add($"{step.Extensions.Count} extension(s)");
 			}

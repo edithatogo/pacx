@@ -137,7 +137,8 @@ namespace Greg.Xrm.Command.Model
 
 			public Repository(IOutput output)
 			{
-				this.output = output ?? throw new ArgumentNullException(nameof(output));
+				ArgumentNullException.ThrowIfNull(output);
+			this.output = output;
 			}
 
 

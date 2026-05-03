@@ -13,9 +13,12 @@ namespace Greg.Xrm.Command.Commands.Validate
 	{
 		public CommandReferenceParityResult(IReadOnlyList<string> missingPages, IReadOnlyList<string> extraPages, IReadOnlyList<string> contentIssues, Exception? exception = null)
 		{
-			this.MissingPages = missingPages ?? throw new ArgumentNullException(nameof(missingPages));
-			this.ExtraPages = extraPages ?? throw new ArgumentNullException(nameof(extraPages));
-			this.ContentIssues = contentIssues ?? throw new ArgumentNullException(nameof(contentIssues));
+			ArgumentNullException.ThrowIfNull(missingPages);
+			ArgumentNullException.ThrowIfNull(extraPages);
+			ArgumentNullException.ThrowIfNull(contentIssues);
+			this.MissingPages = missingPages;
+			this.ExtraPages = extraPages;
+			this.ContentIssues = contentIssues;
 			this.Exception = exception;
 		}
 

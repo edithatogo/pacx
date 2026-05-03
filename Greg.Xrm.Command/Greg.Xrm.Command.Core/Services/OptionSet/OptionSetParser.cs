@@ -19,9 +19,7 @@ namespace Greg.Xrm.Command.Services.OptionSet
 				throw new CommandException(CommandException.CommandRequiredArgumentNotProvided, $"The options are required");
 
 
-			var optionArray = optionString.Split(",;|".ToCharArray())
-					.Select(x => x.Trim())
-					.Where(x => !string.IsNullOrWhiteSpace(x))
+			var optionArray = optionString.Split([',', ';', '|'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
 					.Select(x => new OptionTuple(x))
 					.ToArray();
 
@@ -39,8 +37,8 @@ namespace Greg.Xrm.Command.Services.OptionSet
 			string?[] colorsArray;
 			if (colorsString != null)
 			{
-				colorsArray = colorsString.Split(",;|".ToCharArray())
-					.Select(x => x.Trim().ToUpperInvariant())
+				colorsArray = colorsString.Split([',', ';', '|'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+					.Select(x => x.ToUpperInvariant())
 					.ToArray();
 
 				if (colorsArray.Length != optionArray.Length)

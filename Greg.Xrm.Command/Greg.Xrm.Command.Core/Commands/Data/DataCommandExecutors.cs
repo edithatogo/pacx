@@ -112,7 +112,7 @@ namespace Greg.Xrm.Command.Commands.Data
 			var random = command.RandomSeed.HasValue ? new Random(command.RandomSeed.Value) : new Random();
 
 			// For now, generate an empty JSON array as mock data output
-			var mockData = new object[] { };
+			object[] mockData = [];
 			var jsonOutput = Newtonsoft.Json.JsonConvert.SerializeObject(mockData, Newtonsoft.Json.Formatting.Indented);
 			await File.WriteAllTextAsync(command.OutputPath, jsonOutput, cancellationToken).ConfigureAwait(false);
 

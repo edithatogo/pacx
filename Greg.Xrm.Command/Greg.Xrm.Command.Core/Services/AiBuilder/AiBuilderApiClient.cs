@@ -26,9 +26,12 @@ namespace Greg.Xrm.Command.Services.AiBuilder
 
 		public AiBuilderApiClient(ServiceClient serviceClient, ITokenProvider tokenProvider, IHttpClientFactory httpClientFactory)
 		{
-			_serviceClient = serviceClient ?? throw new ArgumentNullException(nameof(serviceClient));
-			_tokenProvider = tokenProvider ?? throw new ArgumentNullException(nameof(tokenProvider));
-			_httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+			ArgumentNullException.ThrowIfNull(serviceClient);
+			ArgumentNullException.ThrowIfNull(tokenProvider);
+			ArgumentNullException.ThrowIfNull(httpClientFactory);
+			_serviceClient = serviceClient;
+			_tokenProvider = tokenProvider;
+			_httpClientFactory = httpClientFactory;
 		}
 
 		private async Task<string> GetBaseUrlAsync(CancellationToken ct)

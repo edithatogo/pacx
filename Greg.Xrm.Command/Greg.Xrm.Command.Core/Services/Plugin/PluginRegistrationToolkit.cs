@@ -68,10 +68,9 @@ namespace Greg.Xrm.Command.Services.Plugin
 			var sdkMessageProcessingStep = CreateSdkMessageProcessingStep(pluginType, sdkMessage, sdkMessageFilter, filteringAttributes, mode, stage, deployment, rank, description, unsecureConfig, secureConfig);
 			this.Trace("Create SdkMessageProcessingStep...COMPLETED");
 
-			var stuffToDelete = new List<EntityReference>
-			{
+			List<EntityReference> stuffToDelete = [
 				sdkMessageProcessingStep.ToEntityReference()
-			};
+			];
 			try
 			{
 				if (sdkMessageFilter != null && withPreImage)

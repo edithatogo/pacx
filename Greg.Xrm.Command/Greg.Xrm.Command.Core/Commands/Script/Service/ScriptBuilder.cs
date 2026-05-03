@@ -69,8 +69,8 @@ namespace Greg.Xrm.Command.Commands.Script.Service
 				var generator = factory.CreateFor(field);
 				generator.GenerateScript(script);
 
-				var lines = script.ToString().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-				foreach (var line in lines.Select(x => x.Trim()))
+				var lines = script.ToString().Split(['\r', '\n'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+				foreach (var line in lines)
 				{
 					if (!line.StartsWith(Hash))
 					{

@@ -108,7 +108,7 @@ namespace Greg.Xrm.Command.Commands.Help
 
 				if (option.HelpText != null)
 				{
-					var helpText = (option.HelpText ?? string.Empty).Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+					var helpText = (option.HelpText ?? string.Empty).Split(['\r', '\n'], StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
 					if (helpText.Length == 1)
 					{

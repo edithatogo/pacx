@@ -11,8 +11,10 @@ namespace Greg.Xrm.Command.Commands.Validate
 	{
 		public CatalogContractValidationResult(IReadOnlyList<string> errors, IReadOnlyList<string> warnings, Exception? exception = null)
 		{
-			Errors = errors ?? throw new ArgumentNullException(nameof(errors));
-			Warnings = warnings ?? throw new ArgumentNullException(nameof(warnings));
+			ArgumentNullException.ThrowIfNull(errors);
+			ArgumentNullException.ThrowIfNull(warnings);
+			Errors = errors;
+			Warnings = warnings;
 			Exception = exception;
 		}
 

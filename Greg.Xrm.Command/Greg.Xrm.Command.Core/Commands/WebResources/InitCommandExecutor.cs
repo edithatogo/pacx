@@ -22,10 +22,13 @@ namespace Greg.Xrm.Command.Commands.WebResources
 			IWebResourceRepository webResourceRepository,
 			IWebResourceProjectFileRepository webResourceProjectFileRepository)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.organizationServiceRepository = organizationServiceRepository ?? throw new ArgumentNullException(nameof(organizationServiceRepository));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(organizationServiceRepository);
+			ArgumentNullException.ThrowIfNull(webResourceRepository);
+			this.output = output;
+			this.organizationServiceRepository = organizationServiceRepository;
 			this.solutionRepository = solutionRepository;
-			this.webResourceRepository = webResourceRepository ?? throw new ArgumentNullException(nameof(webResourceRepository));
+			this.webResourceRepository = webResourceRepository;
 			this.webResourceProjectFileRepository = webResourceProjectFileRepository;
 		}
 

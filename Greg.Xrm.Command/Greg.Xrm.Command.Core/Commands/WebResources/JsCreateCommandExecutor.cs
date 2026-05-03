@@ -20,10 +20,14 @@ namespace Greg.Xrm.Command.Commands.WebResources
 			ISolutionRepository solutionRepository,
 			IJsTemplateManager jsTemplateManager)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.organizationServiceRepository = organizationServiceRepository ?? throw new ArgumentNullException(nameof(organizationServiceRepository));
-			this.solutionRepository = solutionRepository ?? throw new ArgumentNullException(nameof(solutionRepository));
-			this.jsTemplateManager = jsTemplateManager ?? throw new ArgumentNullException(nameof(jsTemplateManager));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(organizationServiceRepository);
+			ArgumentNullException.ThrowIfNull(solutionRepository);
+			ArgumentNullException.ThrowIfNull(jsTemplateManager);
+			this.output = output;
+			this.organizationServiceRepository = organizationServiceRepository;
+			this.solutionRepository = solutionRepository;
+			this.jsTemplateManager = jsTemplateManager;
 		}
 
 		public async Task<CommandResult> ExecuteAsync(JsCreateCommand command, CancellationToken cancellationToken)

@@ -125,7 +125,7 @@ namespace Greg.Xrm.Command.Services.Plugin
 					return PluginAssemblyReadResult.Error($"Cannot find Microsoft.Xrm.Sdk.dll at <{sdkLibrary}>.");
 				}
 
-				var referenceAssemblies = new List<string> { filePath };
+				List<string> referenceAssemblies = [ filePath ];
 				referenceAssemblies.AddRange(Directory.GetFiles(frameworkPath, "*.dll"));
 				referenceAssemblies.Add(sdkLibrary);
 

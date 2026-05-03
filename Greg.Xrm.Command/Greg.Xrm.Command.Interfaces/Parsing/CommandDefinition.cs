@@ -174,10 +174,10 @@ namespace Greg.Xrm.Command.Parsing
 
 		public bool TryMatch(CommandDefinition other, out string matchedAlias)
 		{
-			var thisVerbs = new List<string> { this.ExpandedVerbs };
+			List<string> thisVerbs = [ this.ExpandedVerbs ];
 			thisVerbs.AddRange(this.Aliases.Select(x => x.ExpandedVerbs));
 
-			var otherVerbs = new List<string> { other.ExpandedVerbs };
+			List<string> otherVerbs = [ other.ExpandedVerbs ];
 			otherVerbs.AddRange(other.Aliases.Select(x => x.ExpandedVerbs));
 
 

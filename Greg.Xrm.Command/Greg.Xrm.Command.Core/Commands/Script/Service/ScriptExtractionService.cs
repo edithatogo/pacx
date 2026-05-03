@@ -17,7 +17,7 @@ namespace Greg.Xrm.Command.Commands.Script.Service
 
 		public async Task<CommandResult> ExtractAllAsync(ScriptAllCommand command, CancellationToken cancellationToken)
 		{
-			var prefixes = command.CustomPrefixes?.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList() ?? new List<string>();
+			var prefixes = command.CustomPrefixes?.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>();
 			var outputDir = string.IsNullOrWhiteSpace(command.OutputDir) ? Environment.CurrentDirectory : command.OutputDir;
 			var exportStateFields = command.WithStateFieldsDefinition;
 			var pacxScriptName = command.PacxScriptName;
@@ -37,12 +37,12 @@ namespace Greg.Xrm.Command.Commands.Script.Service
 
 		public async Task<CommandResult> ExtractSolutionAsync(ScriptSolutionCommand command, CancellationToken cancellationToken)
 		{
-			var prefixes = command.CustomPrefixes?.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList() ?? new List<string>();
+			var prefixes = command.CustomPrefixes?.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>();
 			var outputDir = string.IsNullOrWhiteSpace(command.OutputDir) ? Environment.CurrentDirectory : command.OutputDir;
 			var exportStateFields = command.WithStateFieldsDefinition;
 			var pacxScriptName = command.PacxScriptName;
 			var stateFieldsDefinitionName = command.StateFieldsDefinitionName;
-			var solutionNames = command.SolutionNames?.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList() ?? new List<string>();
+			var solutionNames = command.SolutionNames?.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>();
 			if (solutionNames.Count == 0)
 			{
 				output.WriteLine("No solution names provided.", ConsoleColor.Red);
@@ -71,7 +71,7 @@ namespace Greg.Xrm.Command.Commands.Script.Service
 
 		public async Task<CommandResult> ExtractTableAsync(ScriptTableCommand command, CancellationToken cancellationToken)
 		{
-			var prefixes = command.CustomPrefixes?.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList() ?? [];
+			var prefixes = command.CustomPrefixes?.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList() ?? [];
 			var outputDir = string.IsNullOrWhiteSpace(command.OutputDir) ? Environment.CurrentDirectory : command.OutputDir;
 			var exportStateFields = command.WithStateFieldsDefinition;
 			var pacxScriptName = command.PacxScriptName;
@@ -92,7 +92,7 @@ namespace Greg.Xrm.Command.Commands.Script.Service
 				stateFieldsDefinitionName,
 				exportStateFields,
 				cancellationToken,
-				new List<Extractor_EntityMetadata> { entity }
+				[ entity ]
 			).RunAsync(cancellationToken).ConfigureAwait(false);
 		}
 	}

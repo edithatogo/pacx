@@ -9,7 +9,8 @@ namespace Greg.Xrm.Command.Services.Graphs
 	{
 		public DirectedNode(T content)
 		{
-			Content = content ?? throw new ArgumentNullException(nameof(content));
+			ArgumentNullException.ThrowIfNull(content);
+			Content = content;
 		}
 
 		/// <summary>
@@ -70,7 +71,7 @@ namespace Greg.Xrm.Command.Services.Graphs
 
 		public override bool Equals(object? obj)
 		{
-			if (obj == null) return false;
+			if (obj is null) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj is not DirectedNode<T> other) return false;
 			return Content.Key.Equals(other.Content.Key);

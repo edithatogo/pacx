@@ -13,8 +13,10 @@ namespace Greg.Xrm.Command.Commands.Connector
 	{
 		public ConnectorSchemaValidationResult(IReadOnlyList<string> errors, IReadOnlyList<string> warnings, Exception? exception = null)
 		{
-			this.Errors = errors ?? throw new ArgumentNullException(nameof(errors));
-			this.Warnings = warnings ?? throw new ArgumentNullException(nameof(warnings));
+			ArgumentNullException.ThrowIfNull(errors);
+			ArgumentNullException.ThrowIfNull(warnings);
+			this.Errors = errors;
+			this.Warnings = warnings;
 			this.Exception = exception;
 		}
 

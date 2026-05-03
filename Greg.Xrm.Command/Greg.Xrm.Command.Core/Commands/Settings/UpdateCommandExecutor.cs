@@ -18,8 +18,10 @@ namespace Greg.Xrm.Command.Commands.Settings
 			ISettingDefinitionRepository settingDefinitionRepository
 			)
 		{
-			this.output = output ?? throw new ArgumentNullException(nameof(output));
-			this.organizationServiceRepository = organizationServiceRepository ?? throw new ArgumentNullException(nameof(organizationServiceRepository));
+			ArgumentNullException.ThrowIfNull(output);
+			ArgumentNullException.ThrowIfNull(organizationServiceRepository);
+			this.output = output;
+			this.organizationServiceRepository = organizationServiceRepository;
 			this.settingDefinitionRepository = settingDefinitionRepository;
 		}
 

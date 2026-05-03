@@ -22,8 +22,10 @@ namespace Greg.Xrm.Command.Services.Graphs
 		/// <exception cref="ArgumentNullException">If one of the from or to node is null</exception>
 		public DirectedArc(DirectedNode<T> from, DirectedNode<T> to, IReadOnlyDictionary<string, object>? additionalInfo)
 		{
-			From = from ?? throw new ArgumentNullException(nameof(from));
-			To = to ?? throw new ArgumentNullException(nameof(to));
+			ArgumentNullException.ThrowIfNull(from);
+			ArgumentNullException.ThrowIfNull(to);
+			From = from;
+			To = to;
 			this.additionalInfo = additionalInfo != null ? new Dictionary<string, object>(additionalInfo) : new();
 		}
 
@@ -101,7 +103,7 @@ namespace Greg.Xrm.Command.Services.Graphs
 
 		public override bool Equals(object? obj)
 		{
-			if (obj == null) return false;
+			if (obj is null) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj is not DirectedArc<T> other) return false;
 			return From.Equals(other.From) && To.Equals(other.To);

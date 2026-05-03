@@ -9,13 +9,14 @@ on:
     - cron: "23 3 * * 1"
   workflow_dispatch:
 
-permissions:
-  contents: read
-  security-events: write
-  id-token: write
+permissions: read-all
 
 jobs:
   scorecard:
+    permissions:
+      contents: read
+      security-events: write
+      id-token: write
     runs-on: ubuntu-latest
 
     steps:
