@@ -116,23 +116,23 @@ namespace Greg.Xrm.Command.Commands.Connector
 		{
 			return """
 			{
-			  "openapi": "3.0.1",
-			  "info": {
-obj"title": "Sample Connector",
-obj"version": "1.0.0"
-			  },
-			  "paths": {
-obj"/items": {
+				"openapi": "3.0.1",
+				"info": {
+"title": "Sample Connector",
+"version": "1.0.0"
+				},
+				"paths": {
+"/items": {
 			      "get": {
-obj"operationId": "ListItems",
-obj"responses": {
+"operationId": "ListItems",
+"responses": {
 			          "200": {
-obj"description": "OK"
+"description": "OK"
 			          }
-obj}
+}
 			      }
-obj}
-			  }
+}
+				}
 			}
 			""";
 		}

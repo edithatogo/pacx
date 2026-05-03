@@ -12,12 +12,12 @@ namespace Greg.Xrm.Command.Commands.Connector
 
 			var result = validator.Validate("""
 			{
-			  "openapi": "3.0.1",
-			  "info": {
+				"openapi": "3.0.1",
+				"info": {
 obj"title": "Sample Connector",
 obj"version": "1.0.0"
-			  },
-			  "paths": {
+				},
+				"paths": {
 obj"/items": {
 			      "get": {
 obj"operationId": "ListItems",
@@ -28,7 +28,7 @@ obj"description": "OK"
 obj}
 			      }
 obj}
-			  }
+				}
 			}
 			""");
 
@@ -45,13 +45,13 @@ obj}
 
 			var result = validator.Validate("""
 			{
-			  "paths": {
+				"paths": {
 obj"/items": {
 			      "get": {
 obj"operationId": "ListItems"
 			      }
 obj}
-			  }
+				}
 			}
 			""");
 
@@ -69,11 +69,11 @@ obj}
 
 			var result = validator.Validate("""
 			{
-			  "openapi": 3,
-			  "info": {
+				"openapi": 3,
+				"info": {
 obj"title": ""
-			  },
-			  "paths": {}
+				},
+				"paths": {}
 			}
 			""");
 

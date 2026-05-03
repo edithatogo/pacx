@@ -15,11 +15,11 @@ namespace Greg.Xrm.Command.Commands.Connector
 				var path = "/items/" + i.ToString(System.Globalization.CultureInfo.InvariantCulture);
 				var json = $$"""
 				{
-				  "openapi": "3.0.1",
-				  "info": {
+					"openapi": "3.0.1",
+					"info": {
 obj"title": "Generated connector {{i}}"
-				  },
-				  "paths": {
+					},
+					"paths": {
 obj"{{path}}": {
 				      "get": {
 obj"operationId": "getItem{{i}}",
@@ -30,7 +30,7 @@ obj"description": "OK"
 obj}
 				      }
 obj}
-				  }
+					}
 				}
 				""";
 
