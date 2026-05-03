@@ -14,20 +14,20 @@ namespace Greg.Xrm.Command.Commands.Connector
 			{
 			  "openapi": "3.0.1",
 			  "info": {
-			    "title": "Sample Connector",
-			    "version": "1.0.0"
+obj"title": "Sample Connector",
+obj"version": "1.0.0"
 			  },
 			  "paths": {
-			    "/items": {
+obj"/items": {
 			      "get": {
-			        "operationId": "ListItems",
-			        "responses": {
+obj"operationId": "ListItems",
+obj"responses": {
 			          "200": {
-			            "description": "OK"
+obj"description": "OK"
 			          }
-			        }
+obj}
 			      }
-			    }
+obj}
 			  }
 			}
 			""");
@@ -46,11 +46,11 @@ namespace Greg.Xrm.Command.Commands.Connector
 			var result = validator.Validate("""
 			{
 			  "paths": {
-			    "/items": {
+obj"/items": {
 			      "get": {
-			        "operationId": "ListItems"
+obj"operationId": "ListItems"
 			      }
-			    }
+obj}
 			  }
 			}
 			""");
@@ -71,7 +71,7 @@ namespace Greg.Xrm.Command.Commands.Connector
 			{
 			  "openapi": 3,
 			  "info": {
-			    "title": ""
+obj"title": ""
 			  },
 			  "paths": {}
 			}
@@ -98,3 +98,4 @@ namespace Greg.Xrm.Command.Commands.Connector
 		}
 	}
 }
+

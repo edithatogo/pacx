@@ -151,7 +151,7 @@ namespace Greg.Xrm.Command.Services.Forms
 			{
 				using var doc = JsonDocument.Parse(content);
 				if (doc.RootElement.TryGetProperty("error", out var error)
-				    && error.TryGetProperty("message", out var message))
+obj&& error.TryGetProperty("message", out var message))
 				{
 					return message.GetString() ?? "API error";
 				}
@@ -177,3 +177,4 @@ namespace Greg.Xrm.Command.Services.Forms
 		}
 	}
 }
+

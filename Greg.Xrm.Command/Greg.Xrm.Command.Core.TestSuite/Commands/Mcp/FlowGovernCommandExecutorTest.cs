@@ -15,24 +15,24 @@ namespace Greg.Xrm.Command.Commands.Mcp
 			{
 				File.WriteAllText(catalogPath, """
 {
-  "flows": [
+obj"flows": [
 	{
-      "name": "Flow Studio Govern",
-      "provider": "Flow Studio",
-      "category": "Governance",
-      "kind": "mcp tool",
-      "summary": "Review approvals and environment controls.",
-      "operations": [ "govern", "approve", "audit" ]
+obj"name": "Flow Studio Govern",
+obj"provider": "Flow Studio",
+obj"category": "Governance",
+obj"kind": "mcp tool",
+obj"summary": "Review approvals and environment controls.",
+obj"operations": [ "govern", "approve", "audit" ]
 	},
 	{
-      "name": "Flow Studio Authoring",
-      "provider": "Flow Studio",
-      "category": "Authoring",
-      "kind": "mcp tool",
-      "summary": "Packaged authoring operations for composing flow assets and commands.",
-      "operations": [ "compose", "package", "preview" ]
+obj"name": "Flow Studio Authoring",
+obj"provider": "Flow Studio",
+obj"category": "Authoring",
+obj"kind": "mcp tool",
+obj"summary": "Packaged authoring operations for composing flow assets and commands.",
+obj"operations": [ "compose", "package", "preview" ]
 	}
-  ]
+obj]
 }
 """);
 
@@ -51,3 +51,4 @@ namespace Greg.Xrm.Command.Commands.Mcp
 		}
 	}
 }
+

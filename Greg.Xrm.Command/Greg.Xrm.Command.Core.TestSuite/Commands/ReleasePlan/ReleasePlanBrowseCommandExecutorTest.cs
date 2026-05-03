@@ -15,22 +15,22 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 			{
 				File.WriteAllText(catalogPath, """
 {
-  "families": [
+obj"families": [
 	{
-      "id": "power-platform",
-      "name": "Power Platform",
-      "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
-      "category": "Power Platform",
-      "summary": "Core platform capabilities."
+obj"id": "power-platform",
+obj"name": "Power Platform",
+obj"url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
+obj"category": "Power Platform",
+obj"summary": "Core platform capabilities."
 	},
 	{
-      "id": "power-bi",
-      "name": "Power BI",
-      "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
-      "category": "Power BI",
-      "summary": "Analytics and reporting."
+obj"id": "power-bi",
+obj"name": "Power BI",
+obj"url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
+obj"category": "Power BI",
+obj"summary": "Analytics and reporting."
 	}
-  ]
+obj]
 }
 """);
 
@@ -63,22 +63,22 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 			{
 				File.WriteAllText(catalogPath, """
 {
-  "families": [
+obj"families": [
 	{
-      "id": "power-platform",
-      "name": "Power Platform",
-      "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
-      "category": "Power Platform",
-      "summary": "Core platform capabilities."
+obj"id": "power-platform",
+obj"name": "Power Platform",
+obj"url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
+obj"category": "Power Platform",
+obj"summary": "Core platform capabilities."
 	},
 	{
-      "id": "power-bi",
-      "name": "Power BI",
-      "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
-      "category": "Power BI",
-      "summary": "Analytics and reporting."
+obj"id": "power-bi",
+obj"name": "Power BI",
+obj"url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
+obj"category": "Power BI",
+obj"summary": "Analytics and reporting."
 	}
-  ]
+obj]
 }
 """);
 
@@ -110,15 +110,15 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 			{
 				File.WriteAllText(catalogPath, """
 {
-  "families": [
+obj"families": [
 	{
-      "id": "power-platform",
-      "name": "Power Platform",
-      "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
-      "category": "Power Platform",
-      "summary": "Core platform capabilities."
+obj"id": "power-platform",
+obj"name": "Power Platform",
+obj"url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
+obj"category": "Power Platform",
+obj"summary": "Core platform capabilities."
 	}
-  ]
+obj]
 }
 """);
 
@@ -150,22 +150,22 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 			{
 				File.WriteAllText(catalogPath, """
 {
-  "families": [
+obj"families": [
 	{
-      "id": "power-platform",
-      "name": "Power Platform",
-      "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
-      "category": "Power Platform",
-      "summary": "Core platform capabilities."
+obj"id": "power-platform",
+obj"name": "Power Platform",
+obj"url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
+obj"category": "Power Platform",
+obj"summary": "Core platform capabilities."
 	},
 	{
-      "id": "power-bi",
-      "name": "Power BI",
-      "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
-      "category": "Power BI",
-      "summary": "Analytics and reporting."
+obj"id": "power-bi",
+obj"name": "Power BI",
+obj"url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
+obj"category": "Power BI",
+obj"summary": "Analytics and reporting."
 	}
-  ]
+obj]
 }
 """);
 
@@ -189,3 +189,4 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 		}
 	}
 }
+

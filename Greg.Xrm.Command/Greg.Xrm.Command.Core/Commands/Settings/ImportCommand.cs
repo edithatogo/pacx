@@ -23,7 +23,7 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-  {
+obj{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""displayname"": ""In-app notifications"",
 	""description"": ""Enables the app to poll for new in-app notifications and display those notifications as a toast or within the notification center."",
@@ -36,12 +36,12 @@ namespace Greg.Xrm.Command.Commands.Settings
 	""defaultvalue"": ""false"",
 	""environmentvalue"": ""false"",
 	""appvalues"": {
-      ""Dataverse Accelerator App"": ""true"",
-      ""Package Management View"": ""true"",
-      ""My Custom App"": ""true""
+obj""Dataverse Accelerator App"": ""true"",
+obj""Package Management View"": ""true"",
+obj""My Custom App"": ""true""
 	}
-  },
-  ...
+obj},
+obj...
 ]
 ");
 			writer.WriteCodeBlockEnd();
@@ -60,26 +60,26 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-  {
+obj{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""defaultvalue"": ""false"",
 	""environmentvalue"": ""false"",
 	""appvalues"": {
-      ""Dataverse Accelerator App"": ""true"",
-      ""Package Management View"": ""true"",
-      ""My Custom App"": ""true""
+obj""Dataverse Accelerator App"": ""true"",
+obj""Package Management View"": ""true"",
+obj""My Custom App"": ""true""
 	}
-  }
+obj}
 ]
 ");
 			writer.WriteCodeBlockEnd();
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-  {
+obj{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""environmentvalue"": ""true""
-  }
+obj}
 ]
 ");
 			writer.WriteCodeBlockEnd();
@@ -87,12 +87,12 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-  {
+obj{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""appvalues"": {
-      ""My Custom App"": ""false""
+obj""My Custom App"": ""false""
 	}
-  }
+obj}
 ]
 ");
 			writer.WriteCodeBlockEnd();
@@ -113,3 +113,4 @@ namespace Greg.Xrm.Command.Commands.Settings
 		}
 	}
 }
+

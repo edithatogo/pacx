@@ -17,19 +17,19 @@ namespace Greg.Xrm.Command.Commands.Connector
 				{
 				  "openapi": "3.0.1",
 				  "info": {
-				    "title": "Generated connector {{i}}"
+obj"title": "Generated connector {{i}}"
 				  },
 				  "paths": {
-				    "{{path}}": {
+obj"{{path}}": {
 				      "get": {
-				        "operationId": "getItem{{i}}",
-				        "responses": {
+obj"operationId": "getItem{{i}}",
+obj"responses": {
 				          "200": {
-				            "description": "OK"
+obj"description": "OK"
 				          }
-				        }
+obj}
 				      }
-				    }
+obj}
 				  }
 				}
 				""";
@@ -41,3 +41,4 @@ namespace Greg.Xrm.Command.Commands.Connector
 		}
 	}
 }
+

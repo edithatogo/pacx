@@ -15,24 +15,24 @@ namespace Greg.Xrm.Command.Commands.Mcp
 			{
 				File.WriteAllText(catalogPath, """
 {
-  "flows": [
+obj"flows": [
 	{
-      "name": "Flow Studio Watcher",
-      "provider": "Flow Studio",
-      "category": "Monitor",
-      "kind": "mcp tool",
-      "summary": "Observe active flow runs.",
-      "operations": [ "watch runs", "monitor alerts" ]
+obj"name": "Flow Studio Watcher",
+obj"provider": "Flow Studio",
+obj"category": "Monitor",
+obj"kind": "mcp tool",
+obj"summary": "Observe active flow runs.",
+obj"operations": [ "watch runs", "monitor alerts" ]
 	},
 	{
-      "name": "Flow Studio Debug",
-      "provider": "Flow Studio",
-      "category": "Debug",
-      "kind": "mcp tool",
-      "summary": "Inspect flow runs and failures.",
-      "operations": [ "debug", "inspect run history" ]
+obj"name": "Flow Studio Debug",
+obj"provider": "Flow Studio",
+obj"category": "Debug",
+obj"kind": "mcp tool",
+obj"summary": "Inspect flow runs and failures.",
+obj"operations": [ "debug", "inspect run history" ]
 	}
-  ]
+obj]
 }
 """);
 
@@ -51,3 +51,4 @@ namespace Greg.Xrm.Command.Commands.Mcp
 		}
 	}
 }
+

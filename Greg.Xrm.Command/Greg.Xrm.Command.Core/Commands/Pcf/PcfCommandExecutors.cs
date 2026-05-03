@@ -205,7 +205,7 @@ namespace Greg.Xrm.Command.Commands.Pcf
 
 			var parts = versionStr.Split('.');
 			if (parts.Length < 3 || !int.TryParse(parts[0], out var major) ||
-			    !int.TryParse(parts[1], out var minor) || !int.TryParse(parts[2], out var patch))
+obj!int.TryParse(parts[1], out var minor) || !int.TryParse(parts[2], out var patch))
 			{
 				return CommandResult.Fail($"Invalid version format: '{versionStr}'. Expected 'major.minor.patch'.");
 			}
@@ -309,3 +309,4 @@ namespace Greg.Xrm.Command.Commands.Pcf
 		}
 	}
 }
+
