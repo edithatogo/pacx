@@ -1,0 +1,14 @@
+{
+  "track_id": "sota_dotnet_modernization_20260502",
+  "type": "infrastructure",
+  "status": "in_progress",
+  "phase": 1,
+  "completed_at": null,
+  "note": "Applying .NET 10/11 SOTA features: Lock, TimeProvider, SearchValues, collection expressions, source generators, UTF-8 strings, primary constructors, field keyword.",
+  "priority": "Medium",
+  "created_at": "2026-05-03T00:00:00+10:00",
+  "updated_at": "2026-05-03T00:00:00+10:00",
+  "description": "Modernize codebase with .NET 10/11 state-of-the-art features: Lock, TimeProvider, SearchValues, collection expressions, source generators, UTF-8 strings",
+  "dependencies": [],
+  "api_sources": [".NET 10", ".NET 11 preview"]
+}
