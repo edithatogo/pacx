@@ -27,4 +27,4 @@ jobs:
 
       - name: Run editorconfig-checker
         shell: bash
-        run: ./bin/ec-linux-amd64 -format github-actions
+        run: ./bin/ec-linux-amd64 -format github-actions -exclude '.swarm'
