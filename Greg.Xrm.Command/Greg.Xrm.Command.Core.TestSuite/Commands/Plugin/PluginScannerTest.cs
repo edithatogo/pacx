@@ -20,11 +20,11 @@ namespace Greg.Xrm.Command.Commands.Plugin
 		}
 
 		[TestMethod]
-        public void ScanAssembly_WithInvalidPath_ShouldNotThrow()
-        {
-            // Should handle non-existent files gracefully
-            Assert.IsNull(PluginScanner.ScanAssembly("C:\\nonexistent\\plugin.dll"));
-        }
+		public void ScanAssembly_WithInvalidPath_ShouldNotThrow()
+		{
+			// Should handle non-existent files gracefully
+			Assert.IsNull(PluginScanner.ScanAssembly("C:\\nonexistent\\plugin.dll"));
+		}
 
 		[TestMethod]
 		public void ScanDirectory_WithNonExistentDirectory_ShouldReturnEmpty()

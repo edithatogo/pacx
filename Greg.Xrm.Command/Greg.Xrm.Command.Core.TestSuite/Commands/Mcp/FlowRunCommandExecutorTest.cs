@@ -16,7 +16,7 @@ namespace Greg.Xrm.Command.Commands.Mcp
 				File.WriteAllText(catalogPath, """
 {
   "flows": [
-    {
+	{
       "name": "Flow Studio Authoring",
       "provider": "Flow Studio",
       "category": "Authoring",
@@ -24,7 +24,7 @@ namespace Greg.Xrm.Command.Commands.Mcp
       "summary": "Packaged authoring operations for composing flow assets and commands.",
       "homePage": "https://flowstudio.app/welcome/about",
       "operations": [ "compose", "package", "preview" ]
-    }
+	}
   ]
 }
 """);

@@ -16,7 +16,7 @@ namespace Greg.Xrm.Command.Commands.Mcp
 				File.WriteAllText(catalogPath, """
 {
   "flows": [
-    {
+	{
       "name": "Flow Studio Debug",
       "provider": "Flow Studio",
       "category": "Debug",
@@ -24,7 +24,7 @@ namespace Greg.Xrm.Command.Commands.Mcp
       "summary": "Inspect flow runs and failures.",
       "homePage": "https://mcp.flowstudio.app/",
       "operations": [ "debug", "inspect run history" ]
-    }
+	}
   ]
 }
 """);

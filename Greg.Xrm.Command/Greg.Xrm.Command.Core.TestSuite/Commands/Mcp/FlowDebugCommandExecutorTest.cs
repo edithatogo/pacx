@@ -16,22 +16,22 @@ namespace Greg.Xrm.Command.Commands.Mcp
 				File.WriteAllText(catalogPath, """
 {
   "flows": [
-    {
+	{
       "name": "Flow Studio Debug",
       "provider": "Flow Studio",
       "category": "Debug",
       "kind": "mcp tool",
       "summary": "Inspect flow runs and failures.",
       "operations": [ "debug", "inspect run history", "trace failure" ]
-    },
-    {
+	},
+	{
       "name": "Flow Studio Govern",
       "provider": "Flow Studio",
       "category": "Governance",
       "kind": "mcp tool",
       "summary": "Review approvals and environment controls.",
       "operations": [ "govern", "audit" ]
-    }
+	}
   ]
 }
 """);

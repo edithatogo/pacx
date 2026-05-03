@@ -24,70 +24,70 @@ namespace Greg.Xrm.Command.Benchmark;
 [RankColumn]
 public static class ContainerBuildBenchmarks
 {
-    /// <summary>
-    /// Measures the time to build the Autofac container with all services registered
-    /// (mirrors the actual Program.cs registration pattern)
-    /// </summary>
-    [Benchmark(Description = "Autofac Container Build (Full)")]
-    public static IContainer BuildAutofacContainerFull()
-    {
-        var serviceCollection = new ServiceCollection();
-        
-        // Register services exactly as in Program.cs
-        serviceCollection.AddSingleton<IStorage>(new Storage());
-        serviceCollection.AddSingleton<ICommandLineArguments>(new CommandLineArguments(Array.Empty<string>()));
-        serviceCollection.AddSingleton<ICommandRegistry, CommandRegistry>();
-        serviceCollection.AddSingleton<ICommandParser, CommandParser>();
-        serviceCollection.RegisterCommandExecutors(typeof(CommandAttribute).Assembly);
-        serviceCollection.AddTransient<ICommandExecutorFactory, CommandExecutorFactory>();
-        serviceCollection.AddTransient<IPluralizationFactory, PluralizationFactory>();
-        serviceCollection.AddTransient<ISettingsRepository, SettingsRepository>();
-        serviceCollection.AddTransient<IPacxProjectRepository, PacxProjectRepository>();
-        serviceCollection.AddSingleton<IOrganizationServiceRepository, OrganizationServiceRepository>();
-        serviceCollection.AddSingleton<IOutput, OutputToMemory>();
-        serviceCollection.AddTransient<IHistoryTracker, HistoryTracker>();
-        serviceCollection.AddTransient<Bootstrapper>();
+	/// <summary>
+	/// Measures the time to build the Autofac container with all services registered
+	/// (mirrors the actual Program.cs registration pattern)
+	/// </summary>
+	[Benchmark(Description = "Autofac Container Build (Full)")]
+	public static IContainer BuildAutofacContainerFull()
+	{
+		var serviceCollection = new ServiceCollection();
+		
+		// Register services exactly as in Program.cs
+		serviceCollection.AddSingleton<IStorage>(new Storage());
+		serviceCollection.AddSingleton<ICommandLineArguments>(new CommandLineArguments(Array.Empty<string>()));
+		serviceCollection.AddSingleton<ICommandRegistry, CommandRegistry>();
+		serviceCollection.AddSingleton<ICommandParser, CommandParser>();
+		serviceCollection.RegisterCommandExecutors(typeof(CommandAttribute).Assembly);
+		serviceCollection.AddTransient<ICommandExecutorFactory, CommandExecutorFactory>();
+		serviceCollection.AddTransient<IPluralizationFactory, PluralizationFactory>();
+		serviceCollection.AddTransient<ISettingsRepository, SettingsRepository>();
+		serviceCollection.AddTransient<IPacxProjectRepository, PacxProjectRepository>();
+		serviceCollection.AddSingleton<IOrganizationServiceRepository, OrganizationServiceRepository>();
+		serviceCollection.AddSingleton<IOutput, OutputToMemory>();
+		serviceCollection.AddTransient<IHistoryTracker, HistoryTracker>();
+		serviceCollection.AddTransient<Bootstrapper>();
 
-        serviceCollection.AddAutofac();
-        serviceCollection.AddLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddDebug();
-        });
+		serviceCollection.AddAutofac();
+		serviceCollection.AddLogging(logging =>
+		{
+			logging.ClearProviders();
+			logging.AddDebug();
+		});
 
-        var containerBuilder = new ContainerBuilder();
-        containerBuilder.Populate(serviceCollection);
+		var containerBuilder = new ContainerBuilder();
+		containerBuilder.Populate(serviceCollection);
 
-        var container = containerBuilder.Build();
-        return container;
-    }
+		var container = containerBuilder.Build();
+		return container;
+	}
 
-    /// <summary>
-    /// Measures the time to build only the ServiceCollection (without Autofac)
-    /// </summary>
-    [Benchmark(Description = "ServiceCollection Build Only")]
-    public static ServiceProvider BuildServiceCollectionOnly()
-    {
-        var serviceCollection = new ServiceCollection();
-        
-        serviceCollection.AddSingleton<IStorage>(new Storage());
-        serviceCollection.AddSingleton<ICommandLineArguments>(new CommandLineArguments(Array.Empty<string>()));
-        serviceCollection.AddSingleton<ICommandRegistry, CommandRegistry>();
-        serviceCollection.AddSingleton<ICommandParser, CommandParser>();
-        serviceCollection.RegisterCommandExecutors(typeof(CommandAttribute).Assembly);
-        serviceCollection.AddTransient<IPluralizationFactory, PluralizationFactory>();
-        serviceCollection.AddTransient<ISettingsRepository, SettingsRepository>();
-        serviceCollection.AddTransient<IPacxProjectRepository, PacxProjectRepository>();
-        serviceCollection.AddSingleton<IOrganizationServiceRepository, OrganizationServiceRepository>();
-        serviceCollection.AddSingleton<IOutput, OutputToMemory>();
-        serviceCollection.AddTransient<IHistoryTracker, HistoryTracker>();
+	/// <summary>
+	/// Measures the time to build only the ServiceCollection (without Autofac)
+	/// </summary>
+	[Benchmark(Description = "ServiceCollection Build Only")]
+	public static ServiceProvider BuildServiceCollectionOnly()
+	{
+		var serviceCollection = new ServiceCollection();
+		
+		serviceCollection.AddSingleton<IStorage>(new Storage());
+		serviceCollection.AddSingleton<ICommandLineArguments>(new CommandLineArguments(Array.Empty<string>()));
+		serviceCollection.AddSingleton<ICommandRegistry, CommandRegistry>();
+		serviceCollection.AddSingleton<ICommandParser, CommandParser>();
+		serviceCollection.RegisterCommandExecutors(typeof(CommandAttribute).Assembly);
+		serviceCollection.AddTransient<IPluralizationFactory, PluralizationFactory>();
+		serviceCollection.AddTransient<ISettingsRepository, SettingsRepository>();
+		serviceCollection.AddTransient<IPacxProjectRepository, PacxProjectRepository>();
+		serviceCollection.AddSingleton<IOrganizationServiceRepository, OrganizationServiceRepository>();
+		serviceCollection.AddSingleton<IOutput, OutputToMemory>();
+		serviceCollection.AddTransient<IHistoryTracker, HistoryTracker>();
 
-        serviceCollection.AddLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddDebug();
-        });
+		serviceCollection.AddLogging(logging =>
+		{
+			logging.ClearProviders();
+			logging.AddDebug();
+		});
 
-        return serviceCollection.BuildServiceProvider();
-    }
+		return serviceCollection.BuildServiceProvider();
+	}
 }

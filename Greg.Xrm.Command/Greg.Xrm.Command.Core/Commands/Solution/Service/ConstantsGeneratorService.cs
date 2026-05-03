@@ -256,7 +256,7 @@ namespace Greg.Xrm.Command.Commands.Solution.Service
 		}
 
 		private static AttributeMetadataManager GetAttributeElementFromMetadata(
-            AttributeMetadata attribute,
+			AttributeMetadata attribute,
 			string? entityLogicalName)
 		{
 			var label = attribute.DisplayName.LocalizedLabels.FirstOrDefault()?.Label;

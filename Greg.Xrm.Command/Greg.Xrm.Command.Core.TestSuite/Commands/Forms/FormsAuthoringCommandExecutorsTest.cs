@@ -187,13 +187,13 @@ namespace Greg.Xrm.Command.Commands.Forms
   "createdAt": "2026-04-28T00:00:00+00:00",
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [
-    {
+	{
       "id": "question_1",
       "type": "text",
       "text": "Original question",
       "required": false,
       "options": []
-    }
+	}
   ],
   "sections": []
 }
@@ -296,12 +296,12 @@ namespace Greg.Xrm.Command.Commands.Forms
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [],
   "sections": [
-    {
+	{
       "id": "section_1",
       "title": "Original section",
       "description": "Original description",
       "order": 2
-    }
+	}
   ]
 }
 """);
@@ -343,11 +343,11 @@ namespace Greg.Xrm.Command.Commands.Forms
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [],
   "sections": [
-    {
+	{
       "id": "section_1",
       "title": "Section 1",
       "order": 1
-    }
+	}
   ]
 }
 """);
@@ -387,11 +387,11 @@ namespace Greg.Xrm.Command.Commands.Forms
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [],
   "sections": [
-    {
+	{
       "id": "section_1",
       "title": "Section 1",
       "order": 1
-    }
+	}
   ]
 }
 """);
@@ -431,21 +431,21 @@ namespace Greg.Xrm.Command.Commands.Forms
   "createdAt": "2026-04-28T00:00:00+00:00",
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [
-    {
+	{
       "id": "question_1",
       "type": "text",
       "text": "Question 1",
       "required": false,
       "options": []
-    }
+	}
   ],
   "sections": [
-    {
+	{
       "id": "section_1",
       "title": "Section 1",
       "description": "Intro",
       "order": 1
-    }
+	}
   ]
 }
 """);
@@ -483,13 +483,13 @@ namespace Greg.Xrm.Command.Commands.Forms
   "createdAt": "2026-04-28T00:00:00+00:00",
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [
-    {
+	{
       "id": "question_1",
       "type": "choice",
       "text": "Pick one",
       "required": true,
       "options": ["A", "B"]
-    }
+	}
   ],
   "sections": []
 }
@@ -529,12 +529,12 @@ namespace Greg.Xrm.Command.Commands.Forms
   "updatedAt": "2026-04-28T00:00:00+00:00",
   "questions": [],
   "sections": [
-    {
+	{
       "id": "section_1",
       "title": "Section 1",
       "description": "Intro",
       "order": 1
-    }
+	}
   ]
 }
 """);

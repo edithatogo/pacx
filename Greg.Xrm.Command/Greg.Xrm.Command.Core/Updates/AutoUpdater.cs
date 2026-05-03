@@ -30,7 +30,7 @@ namespace Greg.Xrm.Command.Updates
 			if (!isEnabled) return false;
 			
 			try
-            {
+			{
 				cancellationToken.ThrowIfCancellationRequested();
 				var nugetUrl = $"https://api.nuget.org/v3-flatcontainer/{ToolName.ToLowerInvariant()}/index.json";
 
@@ -52,8 +52,8 @@ namespace Greg.Xrm.Command.Updates
 					this.UpdateRequired = false;
 				}
 			}
-            catch(Exception ex)
-            {
+			catch(Exception ex)
+			{
 				log.LogError(ex, "Error while checking for updates: {Message}", ex.Message);
 				this.UpdateRequired = false;
 			}

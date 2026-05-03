@@ -54,9 +54,9 @@ namespace Greg.Xrm.Command.Commands.UnifiedRouting.Repository
 			// Add columns to presence.Columns
 			presenceJoin.Columns.AddColumns(msdyn_presence.msdyn_presencestatustext, msdyn_presence.msdyn_basepresencestatus);
 
-            var capacityProfileJoin = query.AddLink(nameof(msdyn_capacityprofile), msdyn_capacityprofile.msdyn_capacityprofileid, msdyn_capacityprofile.msdyn_capacityprofileid, JoinOperator.LeftOuter);
-            capacityProfileJoin.EntityAlias = nameof(msdyn_capacityprofile);
-            capacityProfileJoin.Columns.AddColumns(msdyn_capacityprofile.msdyn_name);
+			var capacityProfileJoin = query.AddLink(nameof(msdyn_capacityprofile), msdyn_capacityprofile.msdyn_capacityprofileid, msdyn_capacityprofile.msdyn_capacityprofileid, JoinOperator.LeftOuter);
+			capacityProfileJoin.EntityAlias = nameof(msdyn_capacityprofile);
+			capacityProfileJoin.Columns.AddColumns(msdyn_capacityprofile.msdyn_name);
 
 			return (await crm.RetrieveMultipleAsync(query, cancellationToken).ConfigureAwait(false)).Entities;
 		}
@@ -100,9 +100,9 @@ namespace Greg.Xrm.Command.Commands.UnifiedRouting.Repository
 			// Add columns to presence.Columns
 			presenceJoin.Columns.AddColumns(msdyn_presence.msdyn_presencestatustext, msdyn_presence.msdyn_basepresencestatus);
 
-            var capacityProfileJoin = query.AddLink(nameof(msdyn_capacityprofile), msdyn_capacityprofile.msdyn_capacityprofileid, msdyn_capacityprofile.msdyn_capacityprofileid, JoinOperator.LeftOuter);
-            capacityProfileJoin.EntityAlias = nameof(msdyn_capacityprofile);
-            capacityProfileJoin.Columns.AddColumns(msdyn_capacityprofile.msdyn_name);
+			var capacityProfileJoin = query.AddLink(nameof(msdyn_capacityprofile), msdyn_capacityprofile.msdyn_capacityprofileid, msdyn_capacityprofile.msdyn_capacityprofileid, JoinOperator.LeftOuter);
+			capacityProfileJoin.EntityAlias = nameof(msdyn_capacityprofile);
+			capacityProfileJoin.Columns.AddColumns(msdyn_capacityprofile.msdyn_name);
 
 			return (await crm.RetrieveMultipleAsync(query, cancellationToken).ConfigureAwait(false)).Entities.FirstOrDefault();
 		}

@@ -206,8 +206,8 @@ namespace Greg.Xrm.Command.Services.Pluralization
 
 		private static readonly Dictionary<string, string> IrregularNouns = new(StringComparer.OrdinalIgnoreCase)
 	{
-        // Truly irregular plurals (don't follow standard rules)
-        {"uomo", "uomini"},
+		// Truly irregular plurals (don't follow standard rules)
+		{"uomo", "uomini"},
 		{"dio", "dei"},
 		{"bue", "buoi"},
 		{"uovo", "uova"},
@@ -219,7 +219,7 @@ namespace Greg.Xrm.Command.Services.Pluralization
 		{"centinaio", "centinaia"},
 		{"migliaio", "migliaia"},
 		{"riso", "risa"}, // laughter
-        {"eco", "echi"},
+		{"eco", "echi"},
 		
 		// Invariant words (don't change)
 		{"re", "re"},
@@ -233,9 +233,9 @@ namespace Greg.Xrm.Command.Services.Pluralization
 		{"radio", "radio"},
 		{"cinema", "cinema"},
 		{"euro", "euro"},
-        
-        // Greek-origin words ending in -ma → -mi (irregular pattern)
-        {"programma", "programmi"},
+		
+		// Greek-origin words ending in -ma → -mi (irregular pattern)
+		{"programma", "programmi"},
 		{"problema", "problemi"},
 		{"sistema", "sistemi"},
 		{"clima", "climi"},
@@ -250,9 +250,9 @@ namespace Greg.Xrm.Command.Services.Pluralization
 		{"teorema", "teoremi"},
 		{"poema", "poemi"},
 		{"dramma", "drammi"},
-        
-        // Words ending in -i (invariant - already plural or don't change)
-        {"analisi", "analisi"},
+		
+		// Words ending in -i (invariant - already plural or don't change)
+		{"analisi", "analisi"},
 		{"crisi", "crisi"},
 		{"tesi", "tesi"},
 		{"sintesi", "sintesi"},

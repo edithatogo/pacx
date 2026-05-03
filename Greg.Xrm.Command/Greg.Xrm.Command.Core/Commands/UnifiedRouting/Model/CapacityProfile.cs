@@ -8,8 +8,8 @@ namespace Greg.Xrm.Command.Commands.UnifiedRouting.Model
 {
 	#pragma warning disable IDE1006 // Naming Styles
 	public static class msdyn_capacityprofile
-    {
-        public static string msdyn_capacityprofileid => "msdyn_capacityprofileid";
-        public static string msdyn_name => "msdyn_name";
-    }
+	{
+		public static string msdyn_capacityprofileid => "msdyn_capacityprofileid";
+		public static string msdyn_name => "msdyn_name";
+	}
 }

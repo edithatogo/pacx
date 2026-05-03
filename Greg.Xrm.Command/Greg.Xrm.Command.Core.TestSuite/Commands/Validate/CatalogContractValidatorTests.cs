@@ -19,7 +19,7 @@ namespace Greg.Xrm.Command.Commands.Validate
 				File.WriteAllText(Path.Combine(root, "conductor", "tool-catalog", "tools.json"), """
 {
   "tools": [
-    {
+	{
       "id": "xrmtoolbox",
       "name": "XrmToolBox",
       "provider": "MscrmTools",
@@ -27,52 +27,52 @@ namespace Greg.Xrm.Command.Commands.Validate
       "kind": "desktop app",
       "summary": "Plugin host and tool library for Dataverse admins.",
       "capabilities": [ "discover plugins" ]
-    }
+	}
   ]
 }
 """);
 				File.WriteAllText(Path.Combine(root, "conductor", "source-catalog", "sources.json"), """
 {
   "sources": [
-    {
+	{
       "name": "NuGet",
       "provider": "Microsoft",
       "category": "Packages",
       "kind": "feed",
       "summary": "Primary feed for .NET and PACX ecosystem packages.",
       "packages": [ "Microsoft.PowerApps.CLI" ]
-    }
+	}
   ]
 }
 """);
 				File.WriteAllText(Path.Combine(root, "conductor", "skill-pack-catalog", "skill-packs.json"), """
 {
   "skillPacks": [
-    {
+	{
       "id": "dataverse-skill-pack",
       "title": "Dataverse Skill Pack",
       "summary": "Reusable Dataverse operator guidance.",
       "docs": {
-        "guide": "docs/guides/dataverse-skill-pack.md",
-        "recipe": "docs/recipes/dataverse-skill-pack.md"
+		"guide": "docs/guides/dataverse-skill-pack.md",
+		"recipe": "docs/recipes/dataverse-skill-pack.md"
       },
       "commands": [ "pacx validate all" ],
       "consumers": [ "docs" ]
-    }
+	}
   ]
 }
 """);
 				File.WriteAllText(Path.Combine(root, "conductor", "flow-mcp-catalog", "flows.json"), """
 {
   "flows": [
-    {
+	{
       "name": "Flow Studio Debug",
       "provider": "Flow Studio",
       "category": "Debug",
       "kind": "mcp tool",
       "summary": "Inspect flow runs and failures.",
       "operations": [ "debug" ]
-    }
+	}
   ]
 }
 """);

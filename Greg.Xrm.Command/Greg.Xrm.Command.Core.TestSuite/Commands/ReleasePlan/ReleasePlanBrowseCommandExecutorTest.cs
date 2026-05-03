@@ -16,20 +16,20 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 				File.WriteAllText(catalogPath, """
 {
   "families": [
-    {
+	{
       "id": "power-platform",
       "name": "Power Platform",
       "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
       "category": "Power Platform",
       "summary": "Core platform capabilities."
-    },
-    {
+	},
+	{
       "id": "power-bi",
       "name": "Power BI",
       "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
       "category": "Power BI",
       "summary": "Analytics and reporting."
-    }
+	}
   ]
 }
 """);
@@ -64,20 +64,20 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 				File.WriteAllText(catalogPath, """
 {
   "families": [
-    {
+	{
       "id": "power-platform",
       "name": "Power Platform",
       "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
       "category": "Power Platform",
       "summary": "Core platform capabilities."
-    },
-    {
+	},
+	{
       "id": "power-bi",
       "name": "Power BI",
       "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
       "category": "Power BI",
       "summary": "Analytics and reporting."
-    }
+	}
   ]
 }
 """);
@@ -111,13 +111,13 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 				File.WriteAllText(catalogPath, """
 {
   "families": [
-    {
+	{
       "id": "power-platform",
       "name": "Power Platform",
       "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
       "category": "Power Platform",
       "summary": "Core platform capabilities."
-    }
+	}
   ]
 }
 """);
@@ -151,20 +151,20 @@ namespace Greg.Xrm.Command.Commands.ReleasePlan
 				File.WriteAllText(catalogPath, """
 {
   "families": [
-    {
+	{
       "id": "power-platform",
       "name": "Power Platform",
       "url": "https://learn.microsoft.com/en-us/power-platform/release-plan/",
       "category": "Power Platform",
       "summary": "Core platform capabilities."
-    },
-    {
+	},
+	{
       "id": "power-bi",
       "name": "Power BI",
       "url": "https://learn.microsoft.com/en-us/power-bi/release-plan/",
       "category": "Power BI",
       "summary": "Analytics and reporting."
-    }
+	}
   ]
 }
 """);

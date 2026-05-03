@@ -24,22 +24,22 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteLine(@"
 [
   {
-    ""uniquename"": ""AllowNotificationsEarlyAccess"",
-    ""displayname"": ""In-app notifications"",
-    ""description"": ""Enables the app to poll for new in-app notifications and display those notifications as a toast or within the notification center."",
-    ""datatype"": ""Boolean"",
-    ""isoverridable"": true,
-    ""overridablelevel"": ""App And Organization"",
-    ""isvisible"": true,
-    ""releaselevel"": ""GA"",
-    ""informationurl"": ""https://docs.microsoft.com/powerapps/developer/model-driven-apps/clientapi/send-in-app-notifications"",
-    ""defaultvalue"": ""false"",
-    ""environmentvalue"": ""false"",
-    ""appvalues"": {
+	""uniquename"": ""AllowNotificationsEarlyAccess"",
+	""displayname"": ""In-app notifications"",
+	""description"": ""Enables the app to poll for new in-app notifications and display those notifications as a toast or within the notification center."",
+	""datatype"": ""Boolean"",
+	""isoverridable"": true,
+	""overridablelevel"": ""App And Organization"",
+	""isvisible"": true,
+	""releaselevel"": ""GA"",
+	""informationurl"": ""https://docs.microsoft.com/powerapps/developer/model-driven-apps/clientapi/send-in-app-notifications"",
+	""defaultvalue"": ""false"",
+	""environmentvalue"": ""false"",
+	""appvalues"": {
       ""Dataverse Accelerator App"": ""true"",
       ""Package Management View"": ""true"",
       ""My Custom App"": ""true""
-    }
+	}
   },
   ...
 ]
@@ -61,14 +61,14 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteLine(@"
 [
   {
-    ""uniquename"": ""AllowNotificationsEarlyAccess"",
-    ""defaultvalue"": ""false"",
-    ""environmentvalue"": ""false"",
-    ""appvalues"": {
+	""uniquename"": ""AllowNotificationsEarlyAccess"",
+	""defaultvalue"": ""false"",
+	""environmentvalue"": ""false"",
+	""appvalues"": {
       ""Dataverse Accelerator App"": ""true"",
       ""Package Management View"": ""true"",
       ""My Custom App"": ""true""
-    }
+	}
   }
 ]
 ");
@@ -77,8 +77,8 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteLine(@"
 [
   {
-    ""uniquename"": ""AllowNotificationsEarlyAccess"",
-    ""environmentvalue"": ""true""
+	""uniquename"": ""AllowNotificationsEarlyAccess"",
+	""environmentvalue"": ""true""
   }
 ]
 ");
@@ -88,10 +88,10 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteLine(@"
 [
   {
-    ""uniquename"": ""AllowNotificationsEarlyAccess"",
-    ""appvalues"": {
+	""uniquename"": ""AllowNotificationsEarlyAccess"",
+	""appvalues"": {
       ""My Custom App"": ""false""
-    }
+	}
   }
 ]
 ");
