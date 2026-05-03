@@ -16,7 +16,7 @@ namespace Greg.Xrm.Command.Commands.Package
 				File.WriteAllText(catalogPath, """
 {
   "sources": [
-    {
+	{
       "name": "NuGet",
       "provider": "Microsoft",
       "category": "Packages",
@@ -25,8 +25,8 @@ namespace Greg.Xrm.Command.Commands.Package
       "homePage": "https://www.nuget.org/",
       "packages": [ "Microsoft.PowerPlatform.Dataverse.Client", "Microsoft.PowerApps.CLI" ],
       "capabilities": [ "browse packages", "inspect prerelease versions" ]
-    },
-    {
+	},
+	{
       "name": "PowerShell Gallery",
       "provider": "Microsoft",
       "category": "Packages",
@@ -35,7 +35,7 @@ namespace Greg.Xrm.Command.Commands.Package
       "homePage": "https://www.powershellgallery.com/packages",
       "packages": [ "PowerFlowCore", "Microsoft.PowerPlatform.PowerAutomate.Desktop.Actions.SDK" ],
       "capabilities": [ "browse modules", "inspect release metadata" ]
-    }
+	}
   ]
 }
 """);
