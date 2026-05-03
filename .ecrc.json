@@ -1,3 +1,3 @@
 {
-  "excludes": [".swarm", "Connector*Tests.cs", "CoreSmokeTests.cs", "DataverseGapsSmokeTests.cs", "IntegrationTestBase.cs"]
+  "excludes": [".swarm", "**/Connector/Connector*"]
 }
