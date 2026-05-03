@@ -2,3 +2,7 @@ docs/_build/
 *.received.*
 .dotnet/
 .dotnet-cli/
+
+# Temp / worktree directories
+tmp/
+_worktrees/
