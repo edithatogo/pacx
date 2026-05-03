@@ -18,62 +18,62 @@ namespace Greg.Xrm.Command.Commands.Validate
 
 				File.WriteAllText(Path.Combine(root, "conductor", "tool-catalog", "tools.json"), """
 {
-obj"tools": [
+"tools": [
 	{
-obj"id": "xrmtoolbox",
-obj"name": "XrmToolBox",
-obj"provider": "MscrmTools",
-obj"category": "Dataverse",
-obj"kind": "desktop app",
-obj"summary": "Plugin host and tool library for Dataverse admins.",
-obj"capabilities": [ "discover plugins" ]
+"id": "xrmtoolbox",
+"name": "XrmToolBox",
+"provider": "MscrmTools",
+"category": "Dataverse",
+"kind": "desktop app",
+"summary": "Plugin host and tool library for Dataverse admins.",
+"capabilities": [ "discover plugins" ]
 	}
-obj]
+]
 }
 """);
 				File.WriteAllText(Path.Combine(root, "conductor", "source-catalog", "sources.json"), """
 {
-obj"sources": [
+"sources": [
 	{
-obj"name": "NuGet",
-obj"provider": "Microsoft",
-obj"category": "Packages",
-obj"kind": "feed",
-obj"summary": "Primary feed for .NET and PACX ecosystem packages.",
-obj"packages": [ "Microsoft.PowerApps.CLI" ]
+"name": "NuGet",
+"provider": "Microsoft",
+"category": "Packages",
+"kind": "feed",
+"summary": "Primary feed for .NET and PACX ecosystem packages.",
+"packages": [ "Microsoft.PowerApps.CLI" ]
 	}
-obj]
+]
 }
 """);
 				File.WriteAllText(Path.Combine(root, "conductor", "skill-pack-catalog", "skill-packs.json"), """
 {
-obj"skillPacks": [
+"skillPacks": [
 	{
-obj"id": "dataverse-skill-pack",
-obj"title": "Dataverse Skill Pack",
-obj"summary": "Reusable Dataverse operator guidance.",
-obj"docs": {
+"id": "dataverse-skill-pack",
+"title": "Dataverse Skill Pack",
+"summary": "Reusable Dataverse operator guidance.",
+"docs": {
 		"guide": "docs/guides/dataverse-skill-pack.md",
 		"recipe": "docs/recipes/dataverse-skill-pack.md"
-obj},
-obj"commands": [ "pacx validate all" ],
-obj"consumers": [ "docs" ]
+},
+"commands": [ "pacx validate all" ],
+"consumers": [ "docs" ]
 	}
-obj]
+]
 }
 """);
 				File.WriteAllText(Path.Combine(root, "conductor", "flow-mcp-catalog", "flows.json"), """
 {
-obj"flows": [
+"flows": [
 	{
-obj"name": "Flow Studio Debug",
-obj"provider": "Flow Studio",
-obj"category": "Debug",
-obj"kind": "mcp tool",
-obj"summary": "Inspect flow runs and failures.",
-obj"operations": [ "debug" ]
+"name": "Flow Studio Debug",
+"provider": "Flow Studio",
+"category": "Debug",
+"kind": "mcp tool",
+"summary": "Inspect flow runs and failures.",
+"operations": [ "debug" ]
 	}
-obj]
+]
 }
 """);
 
@@ -112,4 +112,5 @@ obj]
 		}
 	}
 }
+
 

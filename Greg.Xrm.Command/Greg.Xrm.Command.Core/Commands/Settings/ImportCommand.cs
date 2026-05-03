@@ -23,7 +23,7 @@ namespace Greg.Xrm.Command.Commands.Settings
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-obj{
+{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""displayname"": ""In-app notifications"",
 	""description"": ""Enables the app to poll for new in-app notifications and display those notifications as a toast or within the notification center."",
@@ -36,12 +36,12 @@ obj{
 	""defaultvalue"": ""false"",
 	""environmentvalue"": ""false"",
 	""appvalues"": {
-obj""Dataverse Accelerator App"": ""true"",
-obj""Package Management View"": ""true"",
-obj""My Custom App"": ""true""
+""Dataverse Accelerator App"": ""true"",
+""Package Management View"": ""true"",
+""My Custom App"": ""true""
 	}
-obj},
-obj...
+},
+...
 ]
 ");
 			writer.WriteCodeBlockEnd();
@@ -60,26 +60,26 @@ obj...
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-obj{
+{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""defaultvalue"": ""false"",
 	""environmentvalue"": ""false"",
 	""appvalues"": {
-obj""Dataverse Accelerator App"": ""true"",
-obj""Package Management View"": ""true"",
-obj""My Custom App"": ""true""
+""Dataverse Accelerator App"": ""true"",
+""Package Management View"": ""true"",
+""My Custom App"": ""true""
 	}
-obj}
+}
 ]
 ");
 			writer.WriteCodeBlockEnd();
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-obj{
+{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""environmentvalue"": ""true""
-obj}
+}
 ]
 ");
 			writer.WriteCodeBlockEnd();
@@ -87,12 +87,12 @@ obj}
 			writer.WriteCodeBlockStart("json");
 			writer.WriteLine(@"
 [
-obj{
+{
 	""uniquename"": ""AllowNotificationsEarlyAccess"",
 	""appvalues"": {
-obj""My Custom App"": ""false""
+""My Custom App"": ""false""
 	}
-obj}
+}
 ]
 ");
 			writer.WriteCodeBlockEnd();
@@ -113,4 +113,5 @@ obj}
 		}
 	}
 }
+
 

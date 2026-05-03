@@ -45,14 +45,14 @@ namespace Greg.Xrm.Command.Commands.Forms
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			File.WriteAllText(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"description": "Customer feedback",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": []
+"id": "form_123",
+"title": "Quarterly survey",
+"description": "Customer feedback",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": []
 }
 """);
 
@@ -112,13 +112,13 @@ obj"sections": []
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			File.WriteAllText(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": []
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": []
 }
 """);
 
@@ -181,21 +181,21 @@ obj"sections": []
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [
 	{
-obj"id": "question_1",
-obj"type": "text",
-obj"text": "Original question",
-obj"required": false,
-obj"options": []
+"id": "question_1",
+"type": "text",
+"text": "Original question",
+"required": false,
+"options": []
 	}
-obj],
-obj"sections": []
+],
+"sections": []
 }
 """);
 
@@ -289,20 +289,20 @@ obj"sections": []
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": [
 	{
-obj"id": "section_1",
-obj"title": "Original section",
-obj"description": "Original description",
-obj"order": 2
+"id": "section_1",
+"title": "Original section",
+"description": "Original description",
+"order": 2
 	}
-obj]
+]
 }
 """);
 
@@ -336,19 +336,19 @@ obj]
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": [
 	{
-obj"id": "section_1",
-obj"title": "Section 1",
-obj"order": 1
+"id": "section_1",
+"title": "Section 1",
+"order": 1
 	}
-obj]
+]
 }
 """);
 
@@ -380,19 +380,19 @@ obj]
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": [
 	{
-obj"id": "section_1",
-obj"title": "Section 1",
-obj"order": 1
+"id": "section_1",
+"title": "Section 1",
+"order": 1
 	}
-obj]
+]
 }
 """);
 
@@ -425,28 +425,28 @@ obj]
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": true,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": true,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [
 	{
-obj"id": "question_1",
-obj"type": "text",
-obj"text": "Question 1",
-obj"required": false,
-obj"options": []
+"id": "question_1",
+"type": "text",
+"text": "Question 1",
+"required": false,
+"options": []
 	}
-obj],
-obj"sections": [
+],
+"sections": [
 	{
-obj"id": "section_1",
-obj"title": "Section 1",
-obj"description": "Intro",
-obj"order": 1
+"id": "section_1",
+"title": "Section 1",
+"description": "Intro",
+"order": 1
 	}
-obj]
+]
 }
 """);
 
@@ -477,21 +477,21 @@ obj]
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [
 	{
-obj"id": "question_1",
-obj"type": "choice",
-obj"text": "Pick one",
-obj"required": true,
-obj"options": ["A", "B"]
+"id": "question_1",
+"type": "choice",
+"text": "Pick one",
+"required": true,
+"options": ["A", "B"]
 	}
-obj],
-obj"sections": []
+],
+"sections": []
 }
 """);
 
@@ -522,20 +522,20 @@ obj"sections": []
 			var manifestPath = Path.Combine(tempDir, "forms.json");
 			WriteManifest(manifestPath, """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": [
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": [
 	{
-obj"id": "section_1",
-obj"title": "Section 1",
-obj"description": "Intro",
-obj"order": 1
+"id": "section_1",
+"title": "Section 1",
+"description": "Intro",
+"order": 1
 	}
-obj]
+]
 }
 """);
 
@@ -562,16 +562,17 @@ obj]
 		{
 			File.WriteAllText(path, content ?? """
 {
-obj"id": "form_123",
-obj"title": "Quarterly survey",
-obj"published": false,
-obj"createdAt": "2026-04-28T00:00:00+00:00",
-obj"updatedAt": "2026-04-28T00:00:00+00:00",
-obj"questions": [],
-obj"sections": []
+"id": "form_123",
+"title": "Quarterly survey",
+"published": false,
+"createdAt": "2026-04-28T00:00:00+00:00",
+"updatedAt": "2026-04-28T00:00:00+00:00",
+"questions": [],
+"sections": []
 }
 """);
 		}
 	}
 }
+
 

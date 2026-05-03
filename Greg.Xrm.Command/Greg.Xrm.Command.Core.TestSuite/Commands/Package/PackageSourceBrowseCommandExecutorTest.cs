@@ -15,28 +15,28 @@ namespace Greg.Xrm.Command.Commands.Package
 			{
 				File.WriteAllText(catalogPath, """
 {
-obj"sources": [
+"sources": [
 	{
-obj"name": "NuGet",
-obj"provider": "Microsoft",
-obj"category": "Packages",
-obj"kind": "feed",
-obj"summary": "Primary feed for .NET and PACX ecosystem packages.",
-obj"homePage": "https://www.nuget.org/",
-obj"packages": [ "Microsoft.PowerPlatform.Dataverse.Client", "Microsoft.PowerApps.CLI" ],
-obj"capabilities": [ "browse packages", "inspect prerelease versions" ]
+"name": "NuGet",
+"provider": "Microsoft",
+"category": "Packages",
+"kind": "feed",
+"summary": "Primary feed for .NET and PACX ecosystem packages.",
+"homePage": "https://www.nuget.org/",
+"packages": [ "Microsoft.PowerPlatform.Dataverse.Client", "Microsoft.PowerApps.CLI" ],
+"capabilities": [ "browse packages", "inspect prerelease versions" ]
 	},
 	{
-obj"name": "PowerShell Gallery",
-obj"provider": "Microsoft",
-obj"category": "Packages",
-obj"kind": "feed",
-obj"summary": "PowerShell module discovery for operator workflows.",
-obj"homePage": "https://www.powershellgallery.com/packages",
-obj"packages": [ "PowerFlowCore", "Microsoft.PowerPlatform.PowerAutomate.Desktop.Actions.SDK" ],
-obj"capabilities": [ "browse modules", "inspect release metadata" ]
+"name": "PowerShell Gallery",
+"provider": "Microsoft",
+"category": "Packages",
+"kind": "feed",
+"summary": "PowerShell module discovery for operator workflows.",
+"homePage": "https://www.powershellgallery.com/packages",
+"packages": [ "PowerFlowCore", "Microsoft.PowerPlatform.PowerAutomate.Desktop.Actions.SDK" ],
+"capabilities": [ "browse modules", "inspect release metadata" ]
 	}
-obj]
+]
 }
 """);
 
@@ -56,4 +56,5 @@ obj]
 		}
 	}
 }
+
 

@@ -140,38 +140,38 @@ pacx plugin step register --class Account_OnPreCreate_ValidateFields --message C
 			writer.WriteParagraph("**Complete registration** with all common options:");
 			writer.WriteCodeBlock(@"# Register a plugin step with full configuration
 pacx plugin step register \
-obj--class Neronotte.MyProject.Plugins.Account_OnPreCreate_ValidateFields \
-obj--message Update \
-obj--table account \
-obj--stage PreOperation \
-obj--mode Sync \
-obj--order 10 \
-obj--filteringAttributes ""name,accountnumber"" \
-obj--description ""Validates account fields before update"" \
-obj--unsecureConfig ""validateEmptyFields=true"" \
-obj--solution MyCustomSolution", "powershell");
+--class Neronotte.MyProject.Plugins.Account_OnPreCreate_ValidateFields \
+--message Update \
+--table account \
+--stage PreOperation \
+--mode Sync \
+--order 10 \
+--filteringAttributes ""name,accountnumber"" \
+--description ""Validates account fields before update"" \
+--unsecureConfig ""validateEmptyFields=true"" \
+--solution MyCustomSolution", "powershell");
 			writer.WriteLine();
 
 			writer.WriteParagraph("**Registration with images** (using automatic naming):");
 			writer.WriteCodeBlock(@"# Register with Pre and Post images - names will be auto-generated as account_pre and account_post
 pacx plugin step register \
-obj--class Account_OnUpdate_TrackChanges \
-obj--message Update \
-obj--table account \
-obj--preImage \
-obj--postImage", "powershell");
+--class Account_OnUpdate_TrackChanges \
+--message Update \
+--table account \
+--preImage \
+--postImage", "powershell");
 			writer.WriteLine();
 
 			writer.WriteParagraph("**Registration with custom image names:**");
 			writer.WriteCodeBlock(@"# Register with Pre and Post images using custom names
 pacx plugin step register \
-obj--class Account_OnUpdate_TrackChanges \
-obj--message Update \
-obj--table account \
-obj--preImage \
-obj--preImageName ""account_before"" \
-obj--postImage \
-obj--postImageName ""account_after""", "powershell");
+--class Account_OnUpdate_TrackChanges \
+--message Update \
+--table account \
+--preImage \
+--preImageName ""account_before"" \
+--postImage \
+--postImageName ""account_after""", "powershell");
 			writer.WriteLine();
 
 			writer.WriteParagraph("**Global message registration** (no table specified):");
@@ -192,4 +192,5 @@ pacx plugin step register --class GlobalRecalculate_Handler --message Recalculat
 
 
 }
+
 

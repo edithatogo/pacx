@@ -6,6 +6,7 @@
     <IsTestProject>true</IsTestProject>
     <RootNamespace>Greg.Xrm.Command</RootNamespace>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS8999</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -15,17 +15,17 @@ namespace Greg.Xrm.Command.Commands.Mcp
 			{
 				File.WriteAllText(catalogPath, """
 {
-obj"flows": [
+"flows": [
 	{
-obj"name": "Flow Studio Debug",
-obj"provider": "Flow Studio",
-obj"category": "Debug",
-obj"kind": "mcp tool",
-obj"summary": "Inspect flow runs and failures.",
-obj"homePage": "https://mcp.flowstudio.app/",
-obj"operations": [ "debug", "inspect run history" ]
+"name": "Flow Studio Debug",
+"provider": "Flow Studio",
+"category": "Debug",
+"kind": "mcp tool",
+"summary": "Inspect flow runs and failures.",
+"homePage": "https://mcp.flowstudio.app/",
+"operations": [ "debug", "inspect run history" ]
 	}
-obj]
+]
 }
 """);
 
@@ -44,4 +44,5 @@ obj]
 		}
 	}
 }
+
 

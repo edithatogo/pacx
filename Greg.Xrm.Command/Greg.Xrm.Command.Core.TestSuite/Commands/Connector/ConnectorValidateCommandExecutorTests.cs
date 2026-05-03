@@ -17,20 +17,20 @@ namespace Greg.Xrm.Command.Commands.Connector
 			{
 			  "openapi": "3.0.1",
 			  "info": {
-obj"title": "Sample Connector",
-obj"version": "1.0.0"
+			"title": "Sample Connector",
+			"version": "1.0.0"
 			  },
 			  "paths": {
-obj"/items": {
+			"/items": {
 			      "get": {
-obj"operationId": "ListItems",
-obj"responses": {
+			"operationId": "ListItems",
+			"responses": {
 			          "200": {
-obj"description": "OK"
+			"description": "OK"
 			          }
-obj}
+			}
 			      }
-obj}
+			}
 			  }
 			}
 			""");
@@ -60,11 +60,11 @@ obj}
 			var path = CreateTempConnectorFile("""
 			{
 			  "paths": {
-obj"/items": {
+			"/items": {
 			      "get": {
-obj"operationId": "ListItems"
+			"operationId": "ListItems"
 			      }
-obj}
+			}
 			  }
 			}
 			""");
@@ -96,11 +96,11 @@ obj}
 			var path = CreateTempConnectorFile("""
 			{
 			  "paths": {
-obj"/items": {
+			"/items": {
 			      "get": {
-obj"operationId": "ListItems"
+			"operationId": "ListItems"
 			      }
-obj}
+			}
 			  }
 			}
 			""");
@@ -156,21 +156,21 @@ obj}
 			{
 			  "openapi": "3.0.1",
 			  "info": {
-obj"title": "Sample Connector"
+			"title": "Sample Connector"
 			  },
 			  "paths": {
-obj"/items": {
+			"/items": {
 			      "get": {
-obj"operationId": "ListItems"
+			"operationId": "ListItems"
 			      }
-obj}
+			}
 			  }
 			}
 			""");
 			var schemaPath = CreateTempConnectorFile("""
 			{
 			  "required": [
-obj"x-ms-connector-metadata"
+			"x-ms-connector-metadata"
 			  ]
 			}
 			""");

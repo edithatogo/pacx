@@ -16,21 +16,21 @@ namespace Greg.Xrm.Command.Commands.Connector
 				var json = $$"""
 				{
 					"openapi": "3.0.1",
-					"info": {
-obj"title": "Generated connector {{i}}"
-					},
-					"paths": {
-obj"{{path}}": {
-				      "get": {
-obj"operationId": "getItem{{i}}",
-obj"responses": {
-				          "200": {
-obj"description": "OK"
-				          }
-obj}
-				      }
-obj}
+				"info": {
+					"title": "Generated connector {{i}}"
+				},
+				"paths": {
+					"{{path}}": {
+						"get": {
+							"operationId": "getItem{{i}}",
+							"responses": {
+								"200": {
+									"description": "OK"
+								}
+							}
+						}
 					}
+				}
 				}
 				""";
 
