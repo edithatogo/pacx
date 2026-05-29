@@ -26,7 +26,15 @@ namespace Greg.Xrm.Command.Commands.Forms
 
 				output.WriteLine($"Created online form: {onlineForm.Id}", ConsoleColor.Green);
 
-				// 2. Create the Questions
+				// 2. Create the Sections
+				foreach (var section in document.Sections)
+				{
+					output.WriteLine($"  Adding section: '{section.Title}'...");
+					await formsApiClient.CreateQuestionAsync(
+						tenantId, ownerId, ownerType, onlineForm.Id, section.Title, "Page", false, null, cancellationToken);
+				}
+
+				// 3. Create the Questions
 				foreach (var question in document.Questions)
 				{
 					output.WriteLine($"  Adding question: '{question.Text}' ({question.Type})...");
