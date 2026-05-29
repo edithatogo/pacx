@@ -16,6 +16,8 @@ namespace Greg.Xrm.Command.Services.Forms
 		Task<IReadOnlyList<FormsForm>> ListTemplatesAsync(string tenantId, CancellationToken ct);
 		Task CreateTemplateAsync(string tenantId, string formId, string scope, CancellationToken ct);
 		Task ShareTemplateAsync(string tenantId, string templateId, string groupId, CancellationToken ct);
+		Task<FormsForm> CreateFormAsync(string tenantId, string ownerId, string ownerType, string title, string? description, CancellationToken ct);
+		Task CreateQuestionAsync(string tenantId, string ownerId, string ownerType, string formId, string text, string type, bool required, IEnumerable<string>? options, CancellationToken ct);
 	}
 
 	public sealed class FormsForm

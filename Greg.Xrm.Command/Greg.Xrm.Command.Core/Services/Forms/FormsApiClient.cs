@@ -96,6 +96,32 @@ namespace Greg.Xrm.Command.Services.Forms
 			await PostAsync($"{FormsApiBase}/{ValidateAndEscape(tenantId, TenantIdPattern, nameof(tenantId))}/templates('{ValidateAndEscape(templateId, null, nameof(templateId))}')/shares", payload, ct);
 		}
 
+		public async Task<FormsForm> CreateFormAsync(string tenantId, string ownerId, string ownerType, string title, string? description, CancellationToken ct)
+		{
+			var ctx = OwnerContext(ownerType);
+			var payload = new { title, description };
+			var json = await PostAndReturnAsync($"{FormsApiBase}/{ValidateAndEscape(tenantId, TenantIdPattern, nameof(tenantId))}/{ctx}/{ValidateAndEscape(ownerId, null, nameof(ownerId))}/light/forms", payload, ct);
+			return JsonSerializer.Deserialize<FormsForm>(json, JsonOptions)
+				?? throw new InvalidOperationException("Failed to deserialize created form.");
+		}
+
+		public async Task CreateQuestionAsync(string tenantId, string ownerId, string ownerType, string formId, string text, string type, bool required, IEnumerable<string>? options, CancellationToken ct)
+		{
+			var ctx = OwnerContext(ownerType);
+			var payload = new { title = text, type, required, options = options?.Select(o => new { displayText = o }) };
+			await PostAsync($"{FormsApiBase}/{ValidateAndEscape(tenantId, TenantIdPattern, nameof(tenantId))}/{ctx}/{ValidateAndEscape(ownerId, null, nameof(ownerId))}/light/forms('{ValidateAndEscape(formId, FormIdPattern, nameof(formId))}')/questions", payload, ct);
+		}
+
+		private async Task<string> PostAndReturnAsync(string url, object payload, CancellationToken ct)
+		{
+			var request = new HttpRequestMessage(HttpMethod.Post, url)
+			{
+				Content = new StringContent(JsonSerializer.Serialize(payload, PrettyOptions), System.Text.Encoding.UTF8, "application/json")
+			};
+			await AttachTokenAsync(request, ct);
+			return await SendAsync(request, ct);
+		}
+
 		private async Task<string> GetAsync(string url, CancellationToken ct)
 		{
 			var request = new HttpRequestMessage(HttpMethod.Get, url);
