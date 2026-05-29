@@ -10,10 +10,10 @@
     <!-- Binder ships a netstandard2.0 support warning even though the project consumes the net10.0 runtime asset. -->
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="Spectre.Console" />
