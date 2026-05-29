@@ -352,11 +352,6 @@
           "Microsoft.Extensions.FileProviders.Physical": "10.0.6"
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "10.0.6",
-        "contentHash": "w+dX4SIr1X9yegX2yX2dU1XtP4JAUVNdvOG/Evn+H+ndn96YzfIPX52FALXChrRNWFR9l77FQyg1mB7WQo6iOA=="
-      },
       "Microsoft.Extensions.Diagnostics": {
         "type": "Transitive",
         "resolved": "10.0.6",
@@ -768,6 +763,7 @@
           "CsvHelper": "[33.1.0, )",
           "Greg.Xrm.Command.Interfaces": "[1.0.0, )",
           "McMaster.NETCore.Plugins": "[2.0.0, )",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.6, )",
           "Microsoft.Extensions.Hosting": "[10.0.6, )",
           "Microsoft.Extensions.Logging.Console": "[10.0.6, )",
           "Microsoft.Identity.Client": "[4.66.1, )",
@@ -792,6 +788,7 @@
         "dependencies": {
           "Autofac.Extensions.DependencyInjection": "[11.0.0, )",
           "ClosedXML": "[0.105.0, )",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.6, )",
           "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
           "System.ComponentModel.Annotations": "[5.0.0, )",
           "System.Security.Cryptography.ProtectedData": "[10.0.6, )",
@@ -839,6 +836,12 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.6"
         }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.6, )",
+        "resolved": "10.0.6",
+        "contentHash": "w+dX4SIr1X9yegX2yX2dU1XtP4JAUVNdvOG/Evn+H+ndn96YzfIPX52FALXChrRNWFR9l77FQyg1mB7WQo6iOA=="
       },
       "Microsoft.Extensions.Hosting": {
         "type": "CentralTransitive",
@@ -1331,11 +1334,6 @@
           "Microsoft.Extensions.FileProviders.Physical": "10.0.6"
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "10.0.6",
-        "contentHash": "w+dX4SIr1X9yegX2yX2dU1XtP4JAUVNdvOG/Evn+H+ndn96YzfIPX52FALXChrRNWFR9l77FQyg1mB7WQo6iOA=="
-      },
       "Microsoft.Extensions.Diagnostics": {
         "type": "Transitive",
         "resolved": "10.0.6",
@@ -1742,6 +1740,7 @@
           "CsvHelper": "[33.1.0, )",
           "Greg.Xrm.Command.Interfaces": "[1.0.0, )",
           "McMaster.NETCore.Plugins": "[2.0.0, )",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.6, )",
           "Microsoft.Extensions.Hosting": "[10.0.6, )",
           "Microsoft.Extensions.Logging.Console": "[10.0.6, )",
           "Microsoft.Identity.Client": "[4.66.1, )",
@@ -1765,6 +1764,7 @@
         "dependencies": {
           "Autofac.Extensions.DependencyInjection": "[11.0.0, )",
           "ClosedXML": "[0.105.0, )",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.6, )",
           "Microsoft.PowerPlatform.Dataverse.Client": "[1.2.10, )",
           "System.Security.Cryptography.ProtectedData": "[10.0.6, )",
           "System.Security.Cryptography.Xml": "[10.0.6, )",
@@ -1810,6 +1810,12 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.6"
         }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.6, )",
+        "resolved": "10.0.6",
+        "contentHash": "w+dX4SIr1X9yegX2yX2dU1XtP4JAUVNdvOG/Evn+H+ndn96YzfIPX52FALXChrRNWFR9l77FQyg1mB7WQo6iOA=="
       },
       "Microsoft.Extensions.Hosting": {
         "type": "CentralTransitive",

@@ -28,6 +28,7 @@
     </PackageReference>
     <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="Verify.MSTest" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
   </ItemGroup>
 
   <ItemGroup>
