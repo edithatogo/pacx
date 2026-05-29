@@ -1,5 +1,6 @@
 using Greg.Xrm.Command.Services.Output;
 using Microsoft.Identity.Client;
+using Microsoft.Identity.Client.Broker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,7 @@ namespace Greg.Xrm.Command.Services.Connection
 
 			var app = PublicClientApplicationBuilder.Create(clientId)
 				.WithAuthority(new Uri(authority))
+				.WithBroker(new BrokerOptions(BrokerOptions.OperatingSystems.Windows))
 				.WithRedirectUri("http://localhost")
 				.Build();
 
