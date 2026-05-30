@@ -21,3 +21,4 @@ pacx tool install
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Tool/InstallCommand.cs`
+

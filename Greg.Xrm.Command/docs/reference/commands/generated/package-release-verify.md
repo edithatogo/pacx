@@ -4,12 +4,11 @@ Verify a staged PACX release folder.
 
 ## Usage
 
-```bash
-pacx package release verify --path <path>
+```powershell
+pacx package release verify
 ```
 
-## Options
+## Source
 
-| Name | Alias | Type | Required | Description |
-| --- | --- | --- | --- | --- |
-| `--path` | p | string | True | Path to the staged release folder. |
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Package/PackageReleaseVerifyCommand.cs`
+

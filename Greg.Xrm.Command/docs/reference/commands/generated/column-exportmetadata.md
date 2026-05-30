@@ -18,3 +18,4 @@ pacx column exportMetadata
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/ExportMetadataCommand.cs`
+

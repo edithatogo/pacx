@@ -5,7 +5,7 @@ Run or open a flow entry from the PACX flow catalog.
 ## Usage
 
 ```powershell
-pacx mcp flow run --name <name>
+pacx mcp flow run
 ```
 
 ## Options
@@ -15,3 +15,8 @@ pacx mcp flow run --name <name>
 | `--catalog` | c | string | False | Path to the flow MCP catalog JSON file. |
 | `--name` | n | string | True | Flow entry id or name. |
 | `--open` | o | bool | False | Open the flow's homepage if one is available. |
+
+## Source
+
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Mcp/FlowRunCommand.cs`
+

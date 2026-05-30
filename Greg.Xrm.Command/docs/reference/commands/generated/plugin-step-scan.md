@@ -19,3 +19,4 @@ pacx plugin step-scan
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/Step/PluginStepScanCommand.cs`
+

@@ -11,3 +11,4 @@ pacx optionset get
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/OptionSet/GetCommand.cs`
+

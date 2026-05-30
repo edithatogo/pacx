@@ -11,3 +11,4 @@ pacx project info
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Projects/InfoProjectCommand.cs`
+

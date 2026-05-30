@@ -23,3 +23,4 @@ pacx plugin register-attributes
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/Registration/PluginRegisterAttributesCommand.cs`
+

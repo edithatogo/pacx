@@ -19,3 +19,4 @@ pacx ribbon get
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Ribbon/GetRibbonCommand.cs`
+

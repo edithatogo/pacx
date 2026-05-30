@@ -18,3 +18,4 @@ pacx webresources js setTemplate
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/WebResources/JsSetTemplateCommand.cs`
+

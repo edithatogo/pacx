@@ -20,3 +20,4 @@ pacx auth create
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Auth/CreateCommand.cs`
+

@@ -21,3 +21,4 @@ pacx solution diff
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/SolutionDiffCommand.cs`
+

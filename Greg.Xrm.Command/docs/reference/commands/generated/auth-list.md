@@ -11,3 +11,4 @@ pacx auth list
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Auth/ListCommand.cs`
+

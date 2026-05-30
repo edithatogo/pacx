@@ -17,3 +17,4 @@ pacx plugin push
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/PushCommand.cs`
+

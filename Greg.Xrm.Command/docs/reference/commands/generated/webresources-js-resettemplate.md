@@ -17,3 +17,4 @@ pacx webresources js resetTemplate
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/WebResources/JsResetTemplateCommand.cs`
+

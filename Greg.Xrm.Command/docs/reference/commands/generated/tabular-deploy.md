@@ -21,3 +21,4 @@ pacx tabular deploy
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Tabular/TabularCommands.cs`
+

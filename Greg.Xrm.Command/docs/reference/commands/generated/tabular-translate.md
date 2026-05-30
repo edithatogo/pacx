@@ -22,3 +22,4 @@ pacx tabular translate
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Tabular/TabularAdvancedCommands.cs`
+

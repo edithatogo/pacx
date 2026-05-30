@@ -22,3 +22,4 @@ pacx solution create
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/CreateCommand.cs`
+

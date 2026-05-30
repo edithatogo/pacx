@@ -17,3 +17,4 @@ pacx column getDependencies
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/GetDependenciesCommand.cs`
+

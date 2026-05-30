@@ -20,3 +20,4 @@ pacx solution component moveAll
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ComponentMoveAllCommand.cs`
+

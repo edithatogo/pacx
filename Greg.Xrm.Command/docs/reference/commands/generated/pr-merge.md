@@ -23,3 +23,4 @@ pacx pr merge
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Pr/PrMergeCommand.cs`
+

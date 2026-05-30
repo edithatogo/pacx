@@ -4,14 +4,18 @@ Run or open a tool from the PACX tool catalog.
 
 ## Usage
 
-```bash
-pacx tool run --name <name>
+```powershell
+pacx tool run
 ```
 
 ## Options
 
-| Name | Alias | Type | Required | Description |
+| Option | Short | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| `--catalog` | c | string | True | Path to the tool catalog JSON file. |
-| `--name` | n | string | True | Tool id or name. |
+| `--catalog` | c | string | False | Path to the tool catalog JSON file. |
 | `--open` | o | bool | False | Open the tool's homepage if one is available. |
+
+## Source
+
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Tool/RunCommand.cs`
+

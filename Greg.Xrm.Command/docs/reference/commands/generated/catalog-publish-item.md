@@ -21,3 +21,4 @@ pacx catalog publish-item
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Catalog/CatalogPublishCommand.cs`
+

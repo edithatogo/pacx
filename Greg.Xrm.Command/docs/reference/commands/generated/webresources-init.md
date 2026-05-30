@@ -19,3 +19,4 @@ pacx webresources init
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/WebResources/InitCommand.cs`
+

@@ -17,3 +17,4 @@ pacx solution component types  solution component types.
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ComponentTypesCommand.cs`
+

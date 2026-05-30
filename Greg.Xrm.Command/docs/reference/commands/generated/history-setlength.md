@@ -11,3 +11,4 @@ pacx history setLength
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/History/SetLengthCommand.cs`
+

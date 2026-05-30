@@ -21,3 +21,4 @@ pacx webresource map
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/WebResources/WebResourceMapCommand.cs`
+

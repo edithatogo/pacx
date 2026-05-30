@@ -32,3 +32,4 @@ pacx plugin step register
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/Step/RegisterCommand.cs`
+

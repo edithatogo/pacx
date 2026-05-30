@@ -19,3 +19,4 @@ pacx forms clean  the content of the main form of a given table
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Forms/CleanCommand.cs`
+

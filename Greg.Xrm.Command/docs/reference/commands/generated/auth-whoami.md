@@ -11,3 +11,4 @@ pacx auth whoami
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Auth/PingCommand.cs`
+

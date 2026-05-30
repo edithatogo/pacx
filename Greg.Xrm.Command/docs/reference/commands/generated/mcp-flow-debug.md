@@ -14,3 +14,8 @@ pacx mcp flow debug
 | --- | --- | --- | --- | --- |
 | `--catalog` | c | string | False | Path to the flow MCP catalog JSON file. |
 | `--query` | q | string? | False | Filter by name, provider, kind, summary, or operation. |
+
+## Source
+
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Mcp/FlowDebugCommand.cs`
+

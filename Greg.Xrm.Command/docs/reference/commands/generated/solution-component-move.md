@@ -22,3 +22,4 @@ pacx solution component-move
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/SolutionComponentMoveCommand.cs`
+

@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Redefining FormsPushCommand without base inheritance to prevent duplicate option aliases",
+  "updatedAt": "2026-05-29T11:21:04.292158200Z"
+}

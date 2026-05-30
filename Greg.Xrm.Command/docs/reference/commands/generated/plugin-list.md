@@ -18,3 +18,4 @@ pacx plugin list
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/ListCommand.cs`
+

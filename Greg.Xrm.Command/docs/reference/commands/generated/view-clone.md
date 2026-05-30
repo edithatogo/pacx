@@ -21,3 +21,4 @@ pacx view clone
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Views/CloneCommand.cs`
+

@@ -20,3 +20,4 @@ pacx column add double
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/Create/CreateDoubleCommand.cs`
+

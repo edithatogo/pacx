@@ -20,3 +20,4 @@ pacx solution list
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ListCommand.cs`
+

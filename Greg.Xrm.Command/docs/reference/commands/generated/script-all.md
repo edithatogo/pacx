@@ -20,3 +20,4 @@ pacx script all
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Script/ScriptAllCommand.cs`
+

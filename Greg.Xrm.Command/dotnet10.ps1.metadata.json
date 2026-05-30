@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Create dotnet10.ps1 to invoke the stable .NET 10.0.202 SDK with correct environment variable overrides",
+  "updatedAt": "2026-05-29T06:55:07.039196Z"
+}

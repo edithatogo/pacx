@@ -42,3 +42,4 @@ pacx column create
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/CreateCommand.cs`
+

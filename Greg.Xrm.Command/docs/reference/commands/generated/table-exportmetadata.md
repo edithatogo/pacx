@@ -20,3 +20,4 @@ pacx table exportMetadata
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Table/ExportMetadata/ExportMetadataCommand.cs`
+

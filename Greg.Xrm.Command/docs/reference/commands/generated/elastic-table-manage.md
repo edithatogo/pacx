@@ -21,3 +21,4 @@ pacx elastic-table manage
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/ElasticTable/ElasticTableManageCommand.cs`
+

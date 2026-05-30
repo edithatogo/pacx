@@ -19,3 +19,4 @@ pacx solution component add
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ComponentAddCommand.cs`
+

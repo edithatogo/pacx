@@ -19,3 +19,4 @@ pacx column add memo
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/Create/CreateMemoCommand.cs`
+

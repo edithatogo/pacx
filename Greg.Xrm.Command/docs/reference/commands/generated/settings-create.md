@@ -23,3 +23,4 @@ pacx settings create
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Settings/CreateCommand.cs`
+

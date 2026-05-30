@@ -37,3 +37,4 @@ pacx table create
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Table/CreateCommand.cs`
+

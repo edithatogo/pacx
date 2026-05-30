@@ -21,3 +21,4 @@ pacx plugin step enable
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/Step/EnableCommand.cs`
+

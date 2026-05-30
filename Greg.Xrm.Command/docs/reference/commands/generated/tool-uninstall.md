@@ -11,3 +11,4 @@ pacx tool uninstall
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Tool/UninstallCommand.cs`
+

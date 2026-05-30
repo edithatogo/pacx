@@ -11,3 +11,4 @@ pacx plugin get-framework-path
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/GetFrameworkPathCommand.cs`
+

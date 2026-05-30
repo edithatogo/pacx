@@ -11,3 +11,4 @@ pacx column add optionset
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/Create/CreatePicklistCommand.cs`
+

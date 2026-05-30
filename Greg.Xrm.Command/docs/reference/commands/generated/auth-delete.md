@@ -11,3 +11,4 @@ pacx auth delete
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Auth/DeleteCommand.cs`
+

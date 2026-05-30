@@ -11,3 +11,4 @@ pacx solution component getDependencies
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ComponentGetDependenciesCommand.cs`
+

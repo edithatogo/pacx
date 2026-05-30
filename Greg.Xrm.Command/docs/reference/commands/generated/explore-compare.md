@@ -20,3 +20,4 @@ pacx explore compare
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Explore/ExploreCommands.cs`
+

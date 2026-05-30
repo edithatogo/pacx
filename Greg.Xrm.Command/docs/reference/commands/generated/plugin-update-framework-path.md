@@ -11,3 +11,4 @@ pacx plugin update-framework-path
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/UpdateFrameworkPathCommand.cs`
+

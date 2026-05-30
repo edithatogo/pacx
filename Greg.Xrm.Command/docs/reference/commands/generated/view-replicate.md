@@ -18,3 +18,4 @@ pacx view replicate
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Views/ReplicateCommand.cs`
+

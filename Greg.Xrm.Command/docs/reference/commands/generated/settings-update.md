@@ -21,3 +21,4 @@ pacx settings update
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Settings/UpdateCommand.cs`
+

@@ -11,3 +11,4 @@ pacx completions fish
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Completions/CompletionsCommand.cs`
+

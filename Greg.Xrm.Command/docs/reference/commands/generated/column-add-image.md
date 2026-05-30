@@ -18,3 +18,4 @@ pacx column add image
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/Create/CreateImageCommand.cs`
+

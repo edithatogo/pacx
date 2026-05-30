@@ -19,3 +19,4 @@ pacx explore branches
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Explore/ExploreCommands.cs`
+

@@ -19,3 +19,4 @@ pacx column add string
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/Create/CreateStringCommand.cs`
+

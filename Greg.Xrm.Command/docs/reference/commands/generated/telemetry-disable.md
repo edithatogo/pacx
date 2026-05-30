@@ -11,3 +11,4 @@ pacx telemetry disable
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Telemetry/TelemetryCommands.cs`
+

@@ -11,3 +11,4 @@ pacx publish all
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Publish/PublishAllCommand.cs`
+

@@ -19,3 +19,4 @@ pacx key create
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Key/CreateCommand.cs`
+

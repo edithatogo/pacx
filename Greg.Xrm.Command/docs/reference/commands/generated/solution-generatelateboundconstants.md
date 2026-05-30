@@ -24,3 +24,4 @@ pacx solution generateLateBoundConstants
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/GenerateLateBoundConstantsCommand.cs`
+

@@ -21,3 +21,4 @@ pacx virtual-table scaffold
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/VirtualTable/VirtualTableScaffoldCommand.cs`
+

@@ -18,3 +18,4 @@ pacx solution getPublisherList
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/GetPublisherListCommand.cs`
+

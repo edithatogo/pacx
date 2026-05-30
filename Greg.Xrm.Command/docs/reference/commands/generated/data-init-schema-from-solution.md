@@ -22,3 +22,4 @@ pacx data init-schema-from-solution
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Data/DataCommands.cs`
+

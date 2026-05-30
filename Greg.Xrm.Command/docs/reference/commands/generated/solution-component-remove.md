@@ -17,3 +17,4 @@ pacx solution component remove
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Solution/ComponentRemoveCommand.cs`
+

@@ -18,3 +18,4 @@ pacx package release
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Package/PackageCommands.cs`
+

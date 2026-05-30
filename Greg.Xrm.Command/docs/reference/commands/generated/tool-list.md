@@ -11,3 +11,4 @@ pacx tool list
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Tool/ListCommand.cs`
+

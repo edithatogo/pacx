@@ -5,7 +5,7 @@ Inspect a Flow Studio-style flow entry.
 ## Usage
 
 ```powershell
-pacx mcp flow inspect --name <name>
+pacx mcp flow inspect
 ```
 
 ## Options
@@ -14,3 +14,8 @@ pacx mcp flow inspect --name <name>
 | --- | --- | --- | --- | --- |
 | `--catalog` | c | string | False | Path to the flow MCP catalog JSON file. |
 | `--name` | n | string | True | Flow entry id or name. |
+
+## Source
+
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Mcp/FlowInspectCommand.cs`
+

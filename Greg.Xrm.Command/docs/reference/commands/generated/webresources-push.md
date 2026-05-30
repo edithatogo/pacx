@@ -22,3 +22,4 @@ pacx webresources push
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/WebResources/PushCommand.cs`
+

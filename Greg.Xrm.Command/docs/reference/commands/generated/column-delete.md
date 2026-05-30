@@ -17,3 +17,4 @@ pacx column delete
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Column/DeleteCommand.cs`
+

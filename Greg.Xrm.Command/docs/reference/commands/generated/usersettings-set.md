@@ -17,3 +17,4 @@ pacx usersettings set
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/UserSettings/SetCommand.cs`
+

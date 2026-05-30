@@ -18,3 +18,4 @@ pacx settings set
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Settings/SetValueCommand.cs`
+

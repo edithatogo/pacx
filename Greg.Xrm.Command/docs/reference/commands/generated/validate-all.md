@@ -1,6 +1,6 @@
 # validate all
 
-Validate the generated command reference, command-page content, and catalog contracts against the live command registry.
+Validate the generated command reference and catalog contracts against the live command registry.
 
 ## Usage
 
@@ -17,4 +17,5 @@ pacx validate all
 
 ## Source
 
-`Greg.Xrm.Command.Core/Commands/Validate/ValidateAllCommand.cs`
+`Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Validate/ValidateAllCommand.cs`
+

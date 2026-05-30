@@ -11,3 +11,4 @@ pacx org info
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Org/InfoCommand.cs`
+

@@ -11,3 +11,4 @@ pacx table delete
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Table/DeleteCommand.cs`
+

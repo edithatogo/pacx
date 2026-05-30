@@ -18,3 +18,4 @@ pacx ai model list
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/AiBuilder/AiModelListCommand.cs`
+

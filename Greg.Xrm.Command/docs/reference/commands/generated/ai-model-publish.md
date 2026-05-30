@@ -18,3 +18,4 @@ pacx ai model publish
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/AiBuilder/AiModelPublishCommand.cs`
+

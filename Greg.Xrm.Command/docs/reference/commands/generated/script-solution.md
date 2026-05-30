@@ -20,3 +20,4 @@ pacx script solution
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Script/ScriptSolutionCommand.cs`
+

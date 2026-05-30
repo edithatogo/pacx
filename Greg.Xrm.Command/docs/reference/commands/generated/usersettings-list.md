@@ -17,3 +17,4 @@ pacx usersettings list
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/UserSettings/ListCommand.cs`
+

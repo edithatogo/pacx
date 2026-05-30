@@ -18,3 +18,4 @@ pacx project init
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Projects/InitProjectCommand.cs`
+

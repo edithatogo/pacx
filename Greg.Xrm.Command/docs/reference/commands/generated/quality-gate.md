@@ -16,7 +16,10 @@ pacx quality gate
 | `--fail-on` | High | string | False | Minimum severity to fail: Error, High, Medium, Low. |
 | `--format` | f | string | False | Output format: table, json. |
 | `--solution` | s | string? | False | Run solution check on this solution before gating. |
+| `--run-check` | r | bool | False | Run pac solution check before evaluating results. |
+| `--pac-path` | pac | string | False | Path to the pac CLI executable. |
 
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/QualityGate/QualityGateCommand.cs`
+

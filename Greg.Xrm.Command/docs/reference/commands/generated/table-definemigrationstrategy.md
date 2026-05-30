@@ -20,3 +20,4 @@ pacx table defineMigrationStrategy
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Table/TableDefineMigrationStrategyCommand.cs`
+

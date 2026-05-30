@@ -19,3 +19,4 @@ pacx plugin type unregister
 ## Source
 
 `Greg.Xrm.Command/Greg.Xrm.Command.Core/Commands/Plugin/Type/UnregisterCommand.cs`
+
