@@ -27,8 +27,12 @@ on:
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
+permissions:
+  contents: read
+
 jobs:
   build:
+    name: Build, test, format and coverage gate
     runs-on: ${{ inputs.os }}
 
     steps:
@@ -55,22 +59,32 @@ jobs:
             global.json
 
       - name: Restore dependencies
-        run: dotnet restore ${{ inputs.solution_path }}
+        shell: pwsh
+        env:
+          SOLUTION_PATH: ${{ inputs.solution_path }}
+        run: dotnet restore $env:SOLUTION_PATH
 
       - name: Build
-        run: dotnet build ${{ inputs.solution_path }} --configuration Release --no-restore
+        shell: pwsh
+        env:
+          SOLUTION_PATH: ${{ inputs.solution_path }}
+        run: dotnet build $env:SOLUTION_PATH --configuration Release --no-restore
 
       - name: Test
         shell: pwsh
+        env:
+          SOLUTION_PATH: ${{ inputs.solution_path }}
+          COLLECT_COVERAGE: ${{ inputs.collect_coverage }}
+          RUNNER_OS_NAME: ${{ inputs.os }}
         run: |
           $testArgs = @(
-            "${{ inputs.solution_path }}",
+            $env:SOLUTION_PATH,
             "--configuration", "Release",
             "--no-build",
             "--verbosity", "normal"
           )
 
-          if (${{ inputs.collect_coverage }} -and "${{ inputs.os }}" -eq "windows-latest") {
+          if (($env:COLLECT_COVERAGE -eq 'true') -and ($env:RUNNER_OS_NAME -eq 'windows-latest')) {
             $coverageRoot = Join-Path $env:RUNNER_TEMP "coverage-results"
             $testArgs += "--collect"
             $testArgs += "XPlat Code Coverage"
@@ -110,4 +124,7 @@ jobs:
           path: ${{ runner.temp }}/coverage-artifact/coverage.cobertura.xml
 
       - name: Lint
-        run: dotnet format ${{ inputs.solution_path }} --verify-no-changes
+        shell: pwsh
+        env:
+          SOLUTION_PATH: ${{ inputs.solution_path }}
+        run: dotnet format $env:SOLUTION_PATH --verify-no-changes
