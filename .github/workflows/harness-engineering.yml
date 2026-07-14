@@ -39,6 +39,9 @@ jobs:
       - name: Validate upstream relationship
         shell: pwsh
         run: ./scripts/Test-UpstreamSync.ps1 -Fetch
+      - name: Compare upstream capabilities
+        shell: pwsh
+        run: ./scripts/Compare-UpstreamCapabilities.ps1 -OutputPath "$env:RUNNER_TEMP\pacx-upstream-capability-report.json"
       - name: Check whitespace
         shell: bash
         run: git diff --check
@@ -53,6 +56,13 @@ jobs:
           if-no-files-found: error
           retention-days: 14
           path: zizmor.sarif
+      - name: Upload upstream capability report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: upstream-capability-report
+          if-no-files-found: error
+          retention-days: 14
+          path: ${{ runner.temp }}/pacx-upstream-capability-report.json
 
   build-test-analyze:
     name: Build, test and analyze
