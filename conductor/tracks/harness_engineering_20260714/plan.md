@@ -6,7 +6,7 @@
 - [x] Add build, locked restore, test, coverage, format, and vulnerable-package gates.
 - [x] Add scheduled Zizmor SARIF evidence collection.
 - [x] Remediate high-risk trust boundaries in auto-merge, welcome, branch protection, reusable build, rollback, stale maintenance, and Scorecard (commit `058165b`).
-- [~] Remediate residual Zizmor findings in benchmark, release, dependency, and legacy integration surfaces.
+- [x] Remediate residual high-severity Zizmor findings in benchmark, release, dependency, documentation, container, and integration workflows (commit `e03f597`).
 - [ ] Port bearer-auth changes onto an upstream-related baseline after an explicit architecture decision.
 - [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (Protocol in workflow.md)
 
