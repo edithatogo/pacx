@@ -101,3 +101,14 @@ pacx custom-api delete -n "new_MyAction"
 
 - Deleting a Custom API also deletes all its input/output parameters
 - This operation cannot be undone
+
+## custom-api describe
+
+Describe a Custom API and list its request parameters and response properties.
+
+```bash
+pacx custom-api describe --name "new_MyAction"
+pacx custom-api describe -n "new_MyAction"
+```
+
+The command is read-only and reports the API type, bound entity, parameter names, Dataverse type codes, required/optional status, and descriptions.
