@@ -5,15 +5,17 @@ on:
     types: [published]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   build-and-push:
+    name: Build and publish container image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Required to publish to GHCR.
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3

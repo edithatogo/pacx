@@ -29,7 +29,8 @@ on:
         type: boolean
         default: false
 
-permissions: read-all
+permissions:
+  contents: read
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
@@ -58,6 +59,7 @@ jobs:
         with:
           fetch-depth: 0
           submodules: false
+          persist-credentials: false
 
       - name: Download coverage artifact
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
@@ -168,18 +170,23 @@ jobs:
       - name: Derive release version
         id: version
         shell: pwsh
+        env:
+          TAG_NAME_INPUT: ${{ inputs.tag_name }}
+          EVENT_NAME: ${{ github.event_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
-          $tagName = "${{ inputs.tag_name }}"
+          $tagName = $env:TAG_NAME_INPUT
           if ([string]::IsNullOrWhiteSpace($tagName)) {
-            if ("${{ github.event_name }}" -eq "workflow_call") {
+            if ($env:EVENT_NAME -eq "workflow_call") {
               throw "workflow_call requires tag_name when dry_run is not explicitly provided."
             }
 
-            if ("${{ github.ref_type }}" -ne "tag") {
+            if ($env:REF_TYPE -ne "tag") {
               throw "workflow_dispatch requires tag_name when the workflow is not triggered by a tag push."
             }
 
-            $tagName = $env:GITHUB_REF_NAME
+            $tagName = $env:REF_NAME
           }
 
           $version = $tagName.TrimStart('v')

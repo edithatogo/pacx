@@ -67,8 +67,10 @@ jobs:
       - name: Prepare package source
         id: prepare_source
         shell: pwsh
+        env:
+          PACKAGE_PATH_INPUT: ${{ inputs.package_path }}
         run: |
-          $packagePath = "${{ inputs.package_path }}"
+          $packagePath = $env:PACKAGE_PATH_INPUT
           $isRepoReleaseBundle = [string]::Equals($packagePath, "conductor/release-package", [System.StringComparison]::OrdinalIgnoreCase)
 
           if ($isRepoReleaseBundle) {
@@ -87,10 +89,13 @@ jobs:
 
       - name: Derive release version
         shell: pwsh
+        env:
+          TAG_NAME_INPUT: ${{ inputs.tag_name }}
+          PACKAGE_SOURCE: ${{ steps.prepare_source.outputs.package_source }}
         run: |
-          $version = "${{ inputs.tag_name }}"
+          $version = $env:TAG_NAME_INPUT
           if ([string]::IsNullOrWhiteSpace($version)) {
-            $manifest = Get-Content -LiteralPath "${{ steps.prepare_source.outputs.package_source }}/pacx.package.json" -Raw | ConvertFrom-Json
+            $manifest = Get-Content -LiteralPath (Join-Path $env:PACKAGE_SOURCE "pacx.package.json") -Raw | ConvertFrom-Json
             $version = $manifest.version
           }
 
@@ -100,6 +105,13 @@ jobs:
       - name: Stamp release metadata
         if: steps.prepare_source.outputs.is_repo_release_bundle == 'True'
         shell: pwsh
+        env:
+          PACKAGE_SOURCE: ${{ steps.prepare_source.outputs.package_source }}
+          TAG_NAME_INPUT: ${{ inputs.tag_name }}
+          COMMIT_SHA: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
         run: |
           $releaseMetadata = [ordered]@{
             tool = "PACX"
@@ -107,30 +119,35 @@ jobs:
             version = $env:RELEASE_VERSION
             purpose = "staged release bundle"
             source = "repository"
-            tagName = "${{ inputs.tag_name }}"
-            commitSha = "${{ github.sha }}"
-            repository = "${{ github.repository }}"
-            runId = "${{ github.run_id }}"
-            runNumber = "${{ github.run_number }}"
+            tagName = $env:TAG_NAME_INPUT
+            commitSha = $env:COMMIT_SHA
+            repository = $env:REPOSITORY
+            runId = $env:RUN_ID
+            runNumber = $env:RUN_NUMBER
             generatedAtUtc = (Get-Date).ToUniversalTime().ToString("o")
           }
 
-          $releaseMetadata | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath "${{ steps.prepare_source.outputs.package_source }}/data/release.json" -Encoding utf8
+          $releaseMetadata | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $env:PACKAGE_SOURCE "data/release.json") -Encoding utf8
 
       - name: Stage package release
         shell: pwsh
+        env:
+          PACKAGE_SOURCE: ${{ steps.prepare_source.outputs.package_source }}
+          DESTINATION: ${{ inputs.destination }}
         run: |
           dotnet run --project Greg.Xrm.Command/Greg.Xrm.Command.csproj -- package release `
-            -p "${{ steps.prepare_source.outputs.package_source }}" `
-            -d "${{ inputs.destination }}" `
+            -p "$env:PACKAGE_SOURCE" `
+            -d "$env:DESTINATION" `
             --version "$env:RELEASE_VERSION" `
             --force
 
       - name: Resolve staged release directory
         id: resolve_release
         shell: pwsh
+        env:
+          DESTINATION: ${{ inputs.destination }}
         run: |
-          $releaseRoot = Resolve-Path -LiteralPath "${{ inputs.destination }}"
+          $releaseRoot = Resolve-Path -LiteralPath $env:DESTINATION
           $releaseDir = Get-ChildItem -LiteralPath $releaseRoot -Directory | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
           if (-not $releaseDir) {
             throw "No staged release directory was created under $releaseRoot."

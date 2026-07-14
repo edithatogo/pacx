@@ -12,23 +12,24 @@ on:
       - "docs/**"
       - ".github/workflows/docs.yml"
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: docs-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
+    name: Build documentation
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write # Required to upload the Pages artifact.
+      id-token: write # Required by GitHub Pages deployment.
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
         with:
           fetch-depth: 0
           submodules: false
+          persist-credentials: false
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
           dotnet-version: 11.0.100-preview.3.26207.106
@@ -48,6 +49,9 @@ jobs:
     if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write # Required to deploy GitHub Pages.
+      id-token: write # Required by GitHub Pages deployment.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

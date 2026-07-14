@@ -7,13 +7,13 @@ on:
       - master
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: read
-
 jobs:
   update_release_draft:
+    name: Update draft release notes
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to update the draft release.
+      pull-requests: read # Required to collect merged PR metadata.
     steps:
       - name: Update draft release notes
         uses: release-drafter/release-drafter@a6a982fee9675c45c1765e9fa5308f7d6c3ecbd4 # v7.2.0
