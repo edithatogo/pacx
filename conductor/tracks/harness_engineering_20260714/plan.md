@@ -7,7 +7,8 @@
 - [x] Add scheduled Zizmor SARIF evidence collection.
 - [x] Remediate high-risk trust boundaries in auto-merge, welcome, branch protection, reusable build, rollback, stale maintenance, and Scorecard (commit `058165b`).
 - [x] Remediate residual high-severity Zizmor findings in benchmark, release, dependency, documentation, container, and integration workflows (commit `e03f597`).
-- [ ] Port bearer-auth changes onto an upstream-related baseline after an explicit architecture decision.
+- [x] Decide and document the upstream integration boundary: retain PACX as the bearer-auth baseline and use upstream for evidence-only comparison while histories remain structurally divergent (ADR 0006).
+- [ ] Port an individually selected upstream capability through a reviewed, tested commit after a bounded capability comparison.
 - [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (Protocol in workflow.md)
 
 Checkpoint: local harness passed; upstream comparison reports structural divergence with no common ancestor.
