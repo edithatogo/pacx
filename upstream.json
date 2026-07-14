@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "canonical": {
+    "repository": "https://github.com/neronotte/Greg.Xrm.Command.git",
+    "branch": "master"
+  },
+  "fork": {
+    "repository": "https://github.com/edithatogo/pacx.git",
+    "bearerAuthBranch": "codex/pacx-bearer-auth-20260714"
+  },
+  "integration": {
+    "mode": "detect-and-prepare",
+    "policy": "Do not force-merge structurally divergent histories; generate evidence and require an explicit porting decision.",
+    "schedule": "weekly",
+    "requiredChecks": [
+      "upstream remote URL matches canonical repository",
+      "upstream branch is fetched and recorded",
+      "common ancestry is checked before merge or rebase",
+      "bearer-auth changes remain covered by focused tests"
+    ]
+  }
+}

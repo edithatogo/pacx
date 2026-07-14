@@ -92,6 +92,10 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
 
 ## In-Progress Tracks
 
+- [~] **Track: PACX Maximal Harness Engineering**
+  *Link: [./tracks/harness_engineering_20260714/](./tracks/harness_engineering_20260714/)*
+  *Status: IMPLEMENTED BASELINE — immutable action pins, repository harness, locked dependency gates, Zizmor evidence, and upstream structural-divergence detection are active; legacy workflow findings and bearer-auth porting remain open.*
+
 - [x] **Track: Explore Branches**
   *Link: [./tracks/archive/explore_branches_20260408/](./tracks/archive/explore_branches_20260408/)*
   *Status: COMPLETED — archived branch exploration was previously blocked by missing SDK; .NET 11 SDK is installed and the test-suite build now passes.*

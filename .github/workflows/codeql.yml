@@ -35,4 +35,4 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@865f5f5c36632f18690a3d569fa0a764f2da0c3e # v3
       - name: Fail on blocking code-scanning alerts
-        uses: edithatogo/.github/.github/actions/code-scanning-gate@main
+        uses: edithatogo/.github/.github/actions/code-scanning-gate@90b399a731a17b792352d0c049834a22dbd32523 # main

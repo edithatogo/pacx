@@ -1,0 +1,84 @@
+name: Harness Engineering
+
+on:
+  pull_request:
+  push:
+    branches: [master, main]
+  schedule:
+    - cron: '41 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: harness-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+  NUGET_XMLDOC_MODE: skip
+
+jobs:
+  repository-controls:
+    name: Repository controls
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup PowerShell
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: 11.0.100-preview.3.26207.106
+      - name: Validate harness and action pins
+        shell: pwsh
+        run: ./scripts/Test-Harness.ps1
+      - name: Validate upstream relationship
+        shell: pwsh
+        run: ./scripts/Test-UpstreamSync.ps1 -Fetch
+      - name: Check whitespace
+        shell: bash
+        run: git diff --check
+      - name: Install pinned workflow auditor
+        run: python -m pip install --disable-pip-version-check zizmor==1.26.1
+      - name: Audit workflow security
+        run: zizmor --pedantic --format sarif --no-exit-codes .github/workflows > zizmor.sarif
+      - name: Upload workflow audit
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: zizmor-sarif
+          if-no-files-found: error
+          retention-days: 14
+          path: zizmor.sarif
+
+  build-test-analyze:
+    name: Build, test and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Setup .NET
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: 11.0.100-preview.3.26207.106
+          cache: true
+          cache-dependency-path: |
+            global.json
+            Directory.Packages.props
+            Greg.Xrm.Command/**/*.csproj
+            **/packages.lock.json
+      - name: Restore locked dependencies
+        run: dotnet restore Greg.Xrm.Command/Greg.Xrm.Command.sln --locked-mode
+      - name: Build
+        run: dotnet build Greg.Xrm.Command/Greg.Xrm.Command.sln --configuration Release --no-restore
+      - name: Test with coverage
+        run: dotnet test Greg.Xrm.Command/Greg.Xrm.Command.sln --configuration Release --no-build --collect "XPlat Code Coverage"
+      - name: Format gate
+        run: dotnet format Greg.Xrm.Command/Greg.Xrm.Command.sln --verify-no-changes --no-restore
+      - name: Vulnerable package gate
+        run: dotnet list Greg.Xrm.Command/Greg.Xrm.Command.sln package --vulnerable --include-transitive

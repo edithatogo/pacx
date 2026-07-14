@@ -261,7 +261,7 @@ jobs:
           "hashes=$hashes" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
 
       - name: Sign release assets with Sigstore
-        uses: sigstore/gh-action-sigstore-python@v3.3.0
+        uses: sigstore/gh-action-sigstore-python@04cffa1d795717b140764e8b640de88853c92acc # v3.3.0
         with:
           inputs: |
             ${{ steps.package_files.outputs.cli_package }}
@@ -329,7 +329,7 @@ jobs:
       actions: read
       contents: write
       id-token: write
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.10.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@c747fe7769adf3656dc7d588b161cb614d7abfee # v1.10.0
     with:
       base64-subjects: ${{ needs.publish.outputs.hashes }}
       upload-assets: true
