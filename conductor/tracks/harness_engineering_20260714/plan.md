@@ -9,6 +9,7 @@
 - [x] Remediate residual high-severity Zizmor findings in benchmark, release, dependency, documentation, container, and integration workflows (commit `e03f597`).
 - [x] Decide and document the upstream integration boundary: retain PACX as the bearer-auth baseline and use upstream for evidence-only comparison while histories remain structurally divergent (ADR 0006).
 - [ ] Port an individually selected upstream capability through a reviewed, tested commit after a bounded capability comparison.
-- [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (Protocol in workflow.md)
+- [x] Add the Conductor verification protocol and manual evidence checklist (`workflow.md`, `docs/verification/pacx-harness-manual-verification.md`).
+- [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (record run URLs and outcomes).
 
 Checkpoint: local harness passed; upstream comparison reports structural divergence with no common ancestor.
