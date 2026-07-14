@@ -50,7 +50,7 @@ namespace Greg.Xrm.Command.Services.Connection
 			if (parts.TryGetValue("TenantId", out var tid)) tenantId = tid;
 
 			var authority = $"https://login.microsoftonline.com/{tenantId}";
-			var scopes = new[] { $"{resource.TrimEnd('/')}/.default" };
+			var scopes = BuildScopes(resource);
 
 			var app = ConfidentialClientApplicationBuilder.Create(clientId)
 				.WithClientSecret(clientSecret)
@@ -79,11 +79,10 @@ namespace Greg.Xrm.Command.Services.Connection
 			if (parts.TryGetValue("TenantId", out var tid)) tenantId = tid;
 
 			var authority = $"https://login.microsoftonline.com/{tenantId}";
-			var scopes = new[] { $"{resource.TrimEnd('/')}/.default" };
+			var scopes = BuildScopes(resource);
 
 			var app = PublicClientApplicationBuilder.Create(clientId)
 				.WithAuthority(new Uri(authority))
-				.WithBroker(new BrokerOptions(BrokerOptions.OperatingSystems.Windows))
 				.WithRedirectUri("http://localhost")
 				.Build();
 
@@ -98,10 +97,36 @@ namespace Greg.Xrm.Command.Services.Connection
 			}
 			catch (MsalUiRequiredException)
 			{
-				// If silent fails, we might need to prompt, but in a CLI it's better to fail 
-				// or use the device code flow if enabled.
-				output.WriteLine("Authentication required for the requested resource. Please re-authenticate using 'auth create'.", ConsoleColor.Yellow);
-				return null;
+				// Device-code acquisition uses the standard bearer-token flow and
+				// avoids WAM/broker token protection for management-plane APIs that
+				// advertise Bearer and MSAuth1.0 but reject PoP.
+				try
+				{
+					var deviceCode = await app.AcquireTokenWithDeviceCode(scopes, deviceCodeResult =>
+					{
+						output.WriteLine(deviceCodeResult.Message, ConsoleColor.Yellow);
+						return Task.CompletedTask;
+					}).ExecuteAsync(cancellationToken).ConfigureAwait(false);
+					return deviceCode.AccessToken;
+				}
+				catch (Exception deviceCodeException)
+				{
+					output.WriteLine($"Device-code authentication unavailable: {deviceCodeException.Message}", ConsoleColor.Yellow);
+				}
+
+				// Keep a browser fallback for hosts where device code is disabled.
+				try
+				{
+					var interactive = await app.AcquireTokenInteractive(scopes)
+						.WithPrompt(Prompt.SelectAccount)
+						.ExecuteAsync(cancellationToken).ConfigureAwait(false);
+					return interactive.AccessToken;
+				}
+				catch (Exception interactiveException)
+				{
+					output.WriteLine($"Interactive authentication required for the requested resource: {interactiveException.Message}", ConsoleColor.Yellow);
+					return null;
+				}
 			}
 			catch (Exception ex)
 			{
@@ -109,5 +134,8 @@ namespace Greg.Xrm.Command.Services.Connection
 				return null;
 			}
 		}
+
+		internal static string[] BuildScopes(string resource)
+			=> new[] { $"{resource.TrimEnd('/')}/.default" };
 	}
 }
