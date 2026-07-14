@@ -5,7 +5,8 @@
 - [x] Add scheduled upstream comparison with explicit structural-divergence detection.
 - [x] Add build, locked restore, test, coverage, format, and vulnerable-package gates.
 - [x] Add scheduled Zizmor SARIF evidence collection.
-- [~] Remediate the pre-existing Zizmor findings in legacy release, auto-merge, and reusable-workflow surfaces.
+- [x] Remediate high-risk trust boundaries in auto-merge, welcome, branch protection, reusable build, rollback, stale maintenance, and Scorecard (commit `058165b`).
+- [~] Remediate residual Zizmor findings in benchmark, release, dependency, and legacy integration surfaces.
 - [ ] Port bearer-auth changes onto an upstream-related baseline after an explicit architecture decision.
 - [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (Protocol in workflow.md)
 
