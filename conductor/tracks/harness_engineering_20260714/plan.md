@@ -16,4 +16,4 @@
 - [x] Reconcile pre-existing full-suite failures in source and fixtures: architecture-test assembly resolution, SBOM archive/manifest hashes, release-plan cache isolation, and command-reference parity fixture.
 - [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (record run URLs and outcomes).
 
-Checkpoint: local harness passed; upstream comparison reports structural divergence with no common ancestor.
+Checkpoint: local static harness checks pass (`actionlint`; Zizmor high-severity scan clean). Upstream comparison reports structural divergence with no common ancestor. Full .NET execution and hosted workflow evidence remain pending.
