@@ -8,7 +8,7 @@
 - [x] Remediate high-risk trust boundaries in auto-merge, welcome, branch protection, reusable build, rollback, stale maintenance, and Scorecard (commit `058165b`).
 - [x] Remediate residual high-severity Zizmor findings in benchmark, release, dependency, documentation, container, and integration workflows (commit `e03f597`).
 - [x] Decide and document the upstream integration boundary: retain PACX as the bearer-auth baseline and use upstream for evidence-only comparison while histories remain structurally divergent (ADR 0006).
-- [ ] Port an individually selected upstream capability through a reviewed, tested commit after a bounded capability comparison.
+- [x] Port an individually selected upstream capability through a bounded comparison: read-only `custom-api describe` (commit `531e1da`) with tests and documentation.
 - [x] Add the Conductor verification protocol and manual evidence checklist (`workflow.md`, `docs/verification/pacx-harness-manual-verification.md`).
 - [x] Add normalized upstream capability inventory and CI artifact reporting (`scripts/Compare-UpstreamCapabilities.ps1`).
 - [x] Port a bounded Custom API capability independently: add read-only `custom-api describe` with request/response metadata tests and documentation.
