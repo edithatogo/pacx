@@ -23,11 +23,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Greg.Xrm.Command.Core\Greg.Xrm.Command.Core.csproj">
-      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
     </ProjectReference>
     <ProjectReference Include="..\Greg.Xrm.Command.Interfaces\Greg.Xrm.Command.Interfaces.csproj" />
     <ProjectReference Include="..\Greg.Xrm.Command.Plugin.Automation\Greg.Xrm.Command.Plugin.Automation.csproj">
-      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
     </ProjectReference>
   </ItemGroup>
 

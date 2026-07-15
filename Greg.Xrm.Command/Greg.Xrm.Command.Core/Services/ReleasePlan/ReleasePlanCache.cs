@@ -8,12 +8,14 @@ namespace Greg.Xrm.Command.Services.ReleasePlan
 	/// </summary>
 	public class ReleasePlanCache : IReleasePlanCache
 	{
+		private readonly string? cacheFilePath;
+
 		private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
 		{
 			WriteIndented = true
 		};
 
-		private static string CacheFilePath
+		private static string DefaultCacheFilePath
 		{
 			get
 			{
@@ -25,6 +27,13 @@ namespace Greg.Xrm.Command.Services.ReleasePlan
 				return Path.Combine(dir, "snapshot.json");
 			}
 		}
+
+		public ReleasePlanCache(string? cacheFilePath = null)
+		{
+			this.cacheFilePath = cacheFilePath;
+		}
+
+		private string CacheFilePath => this.cacheFilePath ?? DefaultCacheFilePath;
 
 		public async Task<ReleasePlanSnapshot?> GetAsync(CancellationToken cancellationToken)
 		{
@@ -49,6 +58,11 @@ namespace Greg.Xrm.Command.Services.ReleasePlan
 		public Task SetAsync(ReleasePlanSnapshot snapshot, CancellationToken cancellationToken)
 		{
 			var path = CacheFilePath;
+			var directory = Path.GetDirectoryName(path);
+			if (!string.IsNullOrEmpty(directory))
+			{
+				Directory.CreateDirectory(directory);
+			}
 			var json = JsonSerializer.Serialize(snapshot, JsonOptions);
 			return File.WriteAllTextAsync(path, json, cancellationToken);
 		}

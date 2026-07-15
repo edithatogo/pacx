@@ -5,24 +5,22 @@ namespace Greg.Xrm.Command.TestSuite.Services.ReleasePlan
 	[TestClass]
 	public class ReleasePlanCacheTests
 	{
+		private readonly string cacheFilePath = Path.Combine(Path.GetTempPath(), "pacx-release-plan-tests", Guid.NewGuid().ToString("N"), "snapshot.json");
+
 		[TestMethod]
 		public async Task CacheShouldReturnNullWhenNoData()
 		{
-			// Use a unique temp path for the cache
-			var cache = new ReleasePlanCache();
+			var cache = new ReleasePlanCache(this.cacheFilePath);
 
 			var result = await cache.GetAsync(CancellationToken.None);
 
-			// No cache file exists initially in the default path
-			// The cache file is at %LOCALAPPDATA%/PACX/release-plan-cache/snapshot.json
-			// which won't exist in CI — so this should return null
 			Assert.IsNull(result, "Expected null when no cache exists.");
 		}
 
 		[TestMethod]
 		public async Task CacheShouldRoundTripSnapshot()
 		{
-			var cache = new ReleasePlanCache();
+			var cache = new ReleasePlanCache(this.cacheFilePath);
 
 			var snapshot = new ReleasePlanSnapshot
 			{
@@ -45,7 +43,7 @@ namespace Greg.Xrm.Command.TestSuite.Services.ReleasePlan
 		[TestMethod]
 		public async Task GetAgeShouldReturnCorrectAge()
 		{
-			var cache = new ReleasePlanCache();
+			var cache = new ReleasePlanCache(this.cacheFilePath);
 
 			// Write a snapshot with a known time
 			var snapshot = new ReleasePlanSnapshot
@@ -67,14 +65,9 @@ namespace Greg.Xrm.Command.TestSuite.Services.ReleasePlan
 		public void Cleanup()
 		{
 			// Clean up test cache file
-			var cacheDir = Path.Combine(
-				Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-				"PACX",
-				"release-plan-cache");
-			var cacheFile = Path.Combine(cacheDir, "snapshot.json");
-			if (File.Exists(cacheFile))
+			if (File.Exists(this.cacheFilePath))
 			{
-				File.Delete(cacheFile);
+				File.Delete(this.cacheFilePath);
 			}
 		}
 	}
