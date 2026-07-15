@@ -50,7 +50,7 @@ namespace Greg.Xrm.Command.Commands.Validate
 			File.WriteAllText(Path.Combine(tempRoot, "auth-list.md"), """
 # auth list
 
-Lists all the authentication profiles stored on this computer
+List all the authentication profiles stored on this computer
 
 ## Usage
 

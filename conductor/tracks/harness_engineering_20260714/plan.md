@@ -13,7 +13,7 @@
 - [x] Add normalized upstream capability inventory and CI artifact reporting (`scripts/Compare-UpstreamCapabilities.ps1`).
 - [x] Port a bounded Custom API capability independently: add read-only `custom-api describe` with request/response metadata tests and documentation.
 - [x] Validate the bounded capability on both target frameworks: 2/2 focused tests passed on .NET 10 and .NET 11.
-- [~] Reconcile pre-existing full-suite failures: architecture-test assembly resolution, SBOM fixture hashes, release-plan cache cleanup, and command-reference parity.
+- [x] Reconcile pre-existing full-suite failures in source and fixtures: architecture-test assembly resolution, SBOM archive/manifest hashes, release-plan cache isolation, and command-reference parity fixture.
 - [ ] Conductor - User Manual Verification 'PACX maximal harness engineering' (record run URLs and outcomes).
 
 Checkpoint: local harness passed; upstream comparison reports structural divergence with no common ancestor.
