@@ -1,6 +1,6 @@
 # PACX Harness Manual Verification
 
-Verify the pushed branch `codex/harness-engineering-20260714` in GitHub. This checklist is intentionally read-only except for creating a disposable pull request or using workflow dispatch where stated.
+After `codex/harness-engineering-20260714` is pushed, verify that branch in GitHub. Until publication succeeds, this checklist remains pending and must not be represented as hosted evidence. It is intentionally read-only except for creating a disposable pull request or using workflow dispatch where stated.
 
 ## Evidence checklist
 

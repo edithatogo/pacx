@@ -94,7 +94,7 @@ These tracks were previously marked `VERIFIED` but contain executors that print 
 
 - [~] **Track: PACX Maximal Harness Engineering**
   *Link: [./tracks/harness_engineering_20260714/](./tracks/harness_engineering_20260714/)*
-  *Status: IMPLEMENTED BASELINE — immutable action pins, repository harness, locked dependency gates, Zizmor evidence, and upstream structural-divergence detection are active; legacy workflow findings and bearer-auth porting remain open.*
+  *Status: IMPLEMENTED BASELINE — immutable action pins, repository harness, locked dependency gates, clean high-severity Zizmor evidence, upstream structural-divergence detection, and bounded Custom API capability port are active; hosted workflow verification and publication remain open.*
 
 - [x] **Track: Explore Branches**
   *Link: [./tracks/archive/explore_branches_20260408/](./tracks/archive/explore_branches_20260408/)*
