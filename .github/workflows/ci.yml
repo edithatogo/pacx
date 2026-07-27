@@ -111,9 +111,9 @@ jobs:
                 continue
               }
 
-              $error = Test-ConventionalCommit -Message $subject -AllowedScopes $allowedScopes
-              if ($error) {
-                $messages.Add("Commit '$subject': $error")
+              $validationError = Test-ConventionalCommit -Message $subject -AllowedScopes $allowedScopes
+              if ($validationError) {
+                $messages.Add("Commit '$subject': $validationError")
               }
             }
           }
@@ -130,9 +130,9 @@ jobs:
                 continue
               }
 
-              $error = Test-ConventionalCommit -Message $subject -AllowedScopes $allowedScopes
-              if ($error) {
-                $messages.Add("Commit '$subject': $error")
+              $validationError = Test-ConventionalCommit -Message $subject -AllowedScopes $allowedScopes
+              if ($validationError) {
+                $messages.Add("Commit '$subject': $validationError")
               }
             }
           }
