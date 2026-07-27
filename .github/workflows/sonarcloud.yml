@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: dotnet build Greg.Xrm.Command/Greg.Xrm.Command.sln --no-restore
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@0e6c95efcf1dc0be59ac7e6cb34ff4a21d19f9b5 # v3.1.1
+        uses: SonarSource/sonarcloud-github-action@ffc3010689be73b8e5ae0c57ce35968afd7909e8 # v5.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
