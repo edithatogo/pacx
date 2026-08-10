@@ -24,6 +24,7 @@
         "test",
         "tests",
         "tool",
+        "validate",
         "view",
         "workflow"
       ]

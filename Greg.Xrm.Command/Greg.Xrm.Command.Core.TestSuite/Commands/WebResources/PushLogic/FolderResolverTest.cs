@@ -74,17 +74,16 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			Utils.CreateFolder(root, "greg_\\script");
 			Utils.CreateFolder(root, "greg_\\src");
 
-			var currentFolderName = root[(root.LastIndexOf(Path.DirectorySeparatorChar) + 1)..];
-
 			try
 			{
-				var currentFolder = Path.Combine(currentFolderName, "greg_", "script");
+				var currentFolder = Path.GetRelativePath(Environment.CurrentDirectory, Path.Combine(root, "greg_", "script"));
+				var expectedFolder = Path.GetFullPath(currentFolder);
 
 				var result = this.resolver.ResolveFrom(currentFolder, "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
-				Assert.AreEqual(Path.Combine(Environment.CurrentDirectory, currentFolder), result.RequestedPath);
+				Assert.AreEqual(expectedFolder, result.RequestedPath);
 				Assert.AreEqual(root, result.ProjectRootPath);
 			}
 			finally
