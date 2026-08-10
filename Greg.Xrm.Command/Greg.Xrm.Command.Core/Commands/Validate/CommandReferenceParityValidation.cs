@@ -221,6 +221,10 @@ namespace Greg.Xrm.Command.Commands.Validate
 				{
 					continue;
 				}
+				if (values[0].Equals("Option", StringComparison.OrdinalIgnoreCase))
+				{
+					continue;
+				}
 
 				rows.Add(new OptionRow(
 					CleanCell(values[0]),
