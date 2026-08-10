@@ -63,7 +63,18 @@ jobs:
         run: dotnet restore ${{ inputs.solution_path }} -p:TargetFramework=${{ inputs.target_framework }}
 
       - name: Build
-        run: dotnet build ${{ inputs.solution_path }} --configuration Release --framework ${{ inputs.target_framework }} --no-restore
+        shell: pwsh
+        run: |
+          $buildArgs = @(
+            "${{ inputs.solution_path }}",
+            "--configuration", "Release",
+            "--framework", "${{ inputs.target_framework }}",
+            "--no-restore"
+          )
+          if (${{ inputs.collect_coverage }}) {
+            $buildArgs += "-p:DebugType=portable"
+          }
+          dotnet build @buildArgs
 
       - name: Test
         shell: pwsh
