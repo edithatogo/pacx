@@ -2,7 +2,7 @@
 <RunSettings>
   <DataCollectionRunSettings>
     <DataCollectors>
-      <DataCollector friendlyName="XPlat code coverage" uri="datacollector://Microsoft/CodeCoverage/2.0" assemblyQualifiedName="Microsoft.CodeAnalysis.CSharp.CodeCoverage.CoverageCollector, Microsoft.CodeAnalysis.CSharp.CodeCoverage, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
           <Format>cobertura</Format>
           <Include>[Greg.Xrm.Command.Core]*</Include>
