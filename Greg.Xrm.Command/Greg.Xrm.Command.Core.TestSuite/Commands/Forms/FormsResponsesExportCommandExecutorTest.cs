@@ -14,11 +14,13 @@ namespace Greg.Xrm.Command.Commands.Forms
 			try
 			{
 				var apiMock = new Mock<IFormsApiClient>();
-				apiMock.Setup(a => a.GetResponsesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
+				apiMock.Setup(a => a.GetResponsesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 100, 0, It.IsAny<CancellationToken>()))
 					.ReturnsAsync(new List<FormsResponse>
 					{
 						new() { Id = 1, SubmittedAt = new DateTime(2026, 1, 1), Answers = "{\"q1\":\"Yes\"}" }
 					});
+				apiMock.Setup(a => a.GetResponsesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 100, 1, It.IsAny<CancellationToken>()))
+					.ReturnsAsync(new List<FormsResponse>());
 
 				var output = new OutputToMemory();
 				var executor = new FormsResponsesExportCommandExecutor(output, apiMock.Object);
