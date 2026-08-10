@@ -29,9 +29,6 @@
     <PackageReference Include="Moq" />
     <PackageReference Include="MSTest.TestAdapter" />
     <PackageReference Include="MSTest.TestFramework" />
-    <PackageReference Include="coverlet.MTP">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="Verify.MSTest" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
