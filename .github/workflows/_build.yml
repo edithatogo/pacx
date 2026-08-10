@@ -84,6 +84,31 @@ jobs:
             Write-Host "Testing $testProject"
             $projectName = [System.IO.Path]::GetFileNameWithoutExtension($testProject)
             $resultsRoot = Join-Path $env:RUNNER_TEMP "test-results/$projectName"
+
+            if ($projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
+              $testAssembly = "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Core.TestSuite.dll"
+              $mtpArgs = @(
+                "--results-directory", $resultsRoot,
+                "--hangdump",
+                "--hangdump-timeout", "3m",
+                "--hangdump-type", "Mini"
+              )
+
+              if (${{ inputs.collect_coverage }}) {
+                $mtpArgs += "--coverage"
+                $mtpArgs += "--coverage-output"
+                $mtpArgs += (Join-Path $resultsRoot "coverage.cobertura.xml")
+                $mtpArgs += "--coverage-output-format"
+                $mtpArgs += "cobertura"
+              }
+
+              dotnet exec $testAssembly @mtpArgs
+              if ($LASTEXITCODE -ne 0) {
+                exit $LASTEXITCODE
+              }
+              continue
+            }
+
             $testArgs = @(
               $testProject,
               "--configuration", "Release",
@@ -91,33 +116,16 @@ jobs:
               "--verbosity", "normal",
               "--results-directory", $resultsRoot
             )
-
-            if ($projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
-              $testArgs += "--hangdump"
-              $testArgs += "--hangdump-timeout"
-              $testArgs += "3m"
-              $testArgs += "--hangdump-type"
-              $testArgs += "Mini"
-            } else {
-              $testArgs += "--blame-hang"
-              $testArgs += "--blame-hang-timeout"
-              $testArgs += "3m"
-              $testArgs += "--blame-hang-dump-type"
-              $testArgs += "mini"
-            }
+            $testArgs += "--blame-hang"
+            $testArgs += "--blame-hang-timeout"
+            $testArgs += "3m"
+            $testArgs += "--blame-hang-dump-type"
+            $testArgs += "mini"
 
             if ($projectName -ne "Greg.Xrm.Command.Mcp.Tests") {
               $testArgs += "--no-build"
             } else {
               $testArgs += "-p:TargetFrameworks=net10.0"
-            }
-
-            if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
-              $testArgs += "--coverage"
-              $testArgs += "--coverage-output"
-              $testArgs += (Join-Path $resultsRoot "coverage.cobertura.xml")
-              $testArgs += "--coverage-output-format"
-              $testArgs += "cobertura"
             }
 
             dotnet test @testArgs
