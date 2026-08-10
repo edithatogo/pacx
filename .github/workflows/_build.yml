@@ -145,8 +145,17 @@ jobs:
             (Join-Path $env:RUNNER_TEMP "test-results"),
             $env:GITHUB_WORKSPACE
           )
-          $coverageFile = Get-ChildItem -Path $coverageRoots -Recurse -Filter "*cobertura*.xml" -ErrorAction SilentlyContinue |
+          $coverageFile = Get-ChildItem -Path $coverageRoots -Recurse -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -match 'coverage|cobertura' } |
             Sort-Object LastWriteTimeUtc -Descending |
+            Where-Object {
+              try {
+                [xml]$document = Get-Content -LiteralPath $_.FullName -Raw
+                $document.DocumentElement.Name -eq "coverage"
+              } catch {
+                $false
+              }
+            } |
             Select-Object -First 1
           if (-not $coverageFile) {
             throw "No Cobertura coverage file was produced by the core test suite."
