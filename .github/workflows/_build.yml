@@ -102,10 +102,12 @@ jobs:
             }
 
             if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
-              $testArgs += "--collect"
-              $testArgs += "XPlat Code Coverage"
-              $testArgs += "--settings"
-              $testArgs += "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/CodeCoverage.runsettings"
+              $testArgs += "-p:CollectCoverage=true"
+              $testArgs += "-p:CoverletOutput=$(Join-Path $resultsRoot 'coverage')"
+              $testArgs += "-p:CoverletOutputFormat=cobertura"
+              $testArgs += '-p:Include=[Greg.Xrm.Command.Core]*,[Greg.Xrm.Command.Interfaces]*'
+              $testArgs += '-p:Exclude=[Greg.Xrm.Command.Core.TestSuite]*'
+              $testArgs += "-p:SkipAutoProps=true"
             }
 
             dotnet test @testArgs
