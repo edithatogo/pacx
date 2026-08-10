@@ -6,8 +6,9 @@
     <IsTestProject>true</IsTestProject>
     <RootNamespace>Greg.Xrm.Command</RootNamespace>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <OutputType>Exe</OutputType>
     <NoWarn>$(NoWarn);CS8999</NoWarn>
   </PropertyGroup>
 
