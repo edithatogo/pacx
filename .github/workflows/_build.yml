@@ -67,32 +67,48 @@ jobs:
 
       - name: Test
         shell: pwsh
+        timeout-minutes: 20
         run: |
-          $testArgs = @(
-            "${{ inputs.solution_path }}",
-            "--configuration", "Release",
-            "--framework", "${{ inputs.target_framework }}",
-            "--no-build",
-            "--verbosity", "normal"
+          $testProjects = @(
+            "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/Greg.Xrm.Command.Core.TestSuite.csproj",
+            "Greg.Xrm.Command/Greg.Xrm.Command.ArchitectureTests/Greg.Xrm.Command.ArchitectureTests.csproj",
+            "Greg.Xrm.Command/Greg.Xrm.Command.Mcp.Tests/Greg.Xrm.Command.Mcp.Tests.csproj"
           )
 
-          if (${{ inputs.collect_coverage }}) {
-            $coverageRoot = Join-Path $env:RUNNER_TEMP "coverage-results"
-            $testArgs += "--collect"
-            $testArgs += "XPlat Code Coverage"
-            $testArgs += "--settings"
-            $testArgs += "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/CodeCoverage.runsettings"
-            $testArgs += "--results-directory"
-            $testArgs += $coverageRoot
-          }
+          foreach ($testProject in $testProjects) {
+            Write-Host "Testing $testProject"
+            $projectName = [System.IO.Path]::GetFileNameWithoutExtension($testProject)
+            $resultsRoot = Join-Path $env:RUNNER_TEMP "test-results/$projectName"
+            $testArgs = @(
+              $testProject,
+              "--configuration", "Release",
+              "--framework", "${{ inputs.target_framework }}",
+              "--no-build",
+              "--verbosity", "normal",
+              "--results-directory", $resultsRoot,
+              "--blame-hang",
+              "--blame-hang-timeout", "3m",
+              "--blame-hang-dump-type", "mini"
+            )
 
-          dotnet test @testArgs
+            if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
+              $testArgs += "--collect"
+              $testArgs += "XPlat Code Coverage"
+              $testArgs += "--settings"
+              $testArgs += "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/CodeCoverage.runsettings"
+            }
+
+            dotnet test @testArgs
+            if ($LASTEXITCODE -ne 0) {
+              exit $LASTEXITCODE
+            }
+          }
 
       - name: Stage coverage artifact
         if: ${{ inputs.collect_coverage }}
         shell: pwsh
         run: |
-          $coverageRoot = Join-Path $env:RUNNER_TEMP "coverage-results"
+          $coverageRoot = Join-Path $env:RUNNER_TEMP "test-results/Greg.Xrm.Command.Core.TestSuite"
           $coverageFile = Get-ChildItem -Path $coverageRoot -Recurse -Filter coverage.cobertura.xml | Select-Object -First 1
           if (-not $coverageFile) {
             throw "No coverage.cobertura.xml file was produced under $coverageRoot."
