@@ -71,9 +71,14 @@ jobs:
         run: |
           $testProjects = @(
             "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/Greg.Xrm.Command.Core.TestSuite.csproj",
-            "Greg.Xrm.Command/Greg.Xrm.Command.ArchitectureTests/Greg.Xrm.Command.ArchitectureTests.csproj",
-            "Greg.Xrm.Command/Greg.Xrm.Command.Mcp.Tests/Greg.Xrm.Command.Mcp.Tests.csproj"
+            "Greg.Xrm.Command/Greg.Xrm.Command.ArchitectureTests/Greg.Xrm.Command.ArchitectureTests.csproj"
           )
+
+          # The MCP host and its test SDK target net10.0; the net11.0 matrix leg
+          # still validates the shared core and architecture assemblies.
+          if ("${{ inputs.target_framework }}" -eq "net10.0") {
+            $testProjects += "Greg.Xrm.Command/Greg.Xrm.Command.Mcp.Tests/Greg.Xrm.Command.Mcp.Tests.csproj"
+          }
 
           foreach ($testProject in $testProjects) {
             Write-Host "Testing $testProject"
