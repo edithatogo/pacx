@@ -102,16 +102,10 @@ jobs:
             }
 
             if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
-              $testArgs += "--coverlet"
-              $testArgs += "--coverlet-output-format"
-              $testArgs += "cobertura"
-              $testArgs += "--coverlet-include"
-              $testArgs += "[Greg.Xrm.Command.Core]*"
-              $testArgs += "--coverlet-include"
-              $testArgs += "[Greg.Xrm.Command.Interfaces]*"
-              $testArgs += "--coverlet-exclude"
-              $testArgs += "[Greg.Xrm.Command.Core.TestSuite]*"
-              $testArgs += "--coverlet-skip-auto-props"
+              $testArgs += "--collect"
+              $testArgs += "XPlat Code Coverage"
+              $testArgs += "--settings"
+              $testArgs += "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/CodeCoverage.runsettings"
             }
 
             dotnet test @testArgs
