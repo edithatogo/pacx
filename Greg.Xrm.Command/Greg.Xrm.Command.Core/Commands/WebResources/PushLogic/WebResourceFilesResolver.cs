@@ -111,7 +111,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			var directory = new DirectoryInfo(currentDirectory);
 			while (directory != null)
 			{
-				if (directory.GetFiles("*.wr.pacx").Length != 0)
+				if (File.Exists(Path.Combine(directory.FullName, ".wr.pacx")))
 				{
 					return directory.FullName;
 				}
