@@ -124,10 +124,17 @@ jobs:
         if: ${{ inputs.collect_coverage }}
         shell: pwsh
         run: |
-          $coverageRoot = Join-Path $env:RUNNER_TEMP "test-results/Greg.Xrm.Command.Core.TestSuite"
-          $coverageFile = Get-ChildItem -Path $coverageRoot -Recurse -Filter coverage.cobertura.xml | Select-Object -First 1
+          # Microsoft Testing Platform extensions may write under the project
+          # TestResults directory even when dotnet test receives --results-directory.
+          $coverageRoots = @(
+            (Join-Path $env:RUNNER_TEMP "test-results/Greg.Xrm.Command.Core.TestSuite"),
+            (Join-Path $env:GITHUB_WORKSPACE "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite")
+          )
+          $coverageFile = Get-ChildItem -Path $coverageRoots -Recurse -Filter "coverage.cobertura*.xml" -ErrorAction SilentlyContinue |
+            Sort-Object LastWriteTimeUtc -Descending |
+            Select-Object -First 1
           if (-not $coverageFile) {
-            throw "No coverage.cobertura.xml file was produced under $coverageRoot."
+            throw "No Cobertura coverage file was produced by the core test suite."
           }
 
           $artifactRoot = Join-Path $env:RUNNER_TEMP "coverage-artifact"
