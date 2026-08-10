@@ -6,6 +6,7 @@
     <IsTestProject>true</IsTestProject>
     <RootNamespace>Greg.Xrm.Command</RootNamespace>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TestingPlatformDotnetTestSupport>false</TestingPlatformDotnetTestSupport>
     <NoWarn>$(NoWarn);CS8999</NoWarn>
   </PropertyGroup>
 
@@ -22,7 +23,7 @@
     <PackageReference Include="Moq" />
     <PackageReference Include="MSTest.TestAdapter" />
     <PackageReference Include="MSTest.TestFramework" />
-    <PackageReference Include="coverlet.MTP">
+    <PackageReference Include="coverlet.collector">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
