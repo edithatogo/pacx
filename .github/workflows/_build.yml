@@ -86,6 +86,7 @@ jobs:
             $resultsRoot = Join-Path $env:RUNNER_TEMP "test-results/$projectName"
 
             if ($projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
+              New-Item -ItemType Directory -Path $resultsRoot -Force | Out-Null
               $testAssembly = "Greg.Xrm.Command/Greg.Xrm.Command.Core.TestSuite/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Core.TestSuite.dll"
               $mtpArgs = @(
                 "--results-directory", $resultsRoot,
