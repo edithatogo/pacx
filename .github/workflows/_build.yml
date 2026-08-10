@@ -193,26 +193,13 @@ jobs:
         if: ${{ inputs.collect_coverage }}
         shell: pwsh
         run: |
-          # Microsoft Testing Platform extensions may write under the project
-          # TestResults directory even when dotnet test receives --results-directory.
-          $coverageRoots = @(
-            (Join-Path $env:RUNNER_TEMP "test-results"),
-            $env:GITHUB_WORKSPACE
-          )
-          $coverageFile = Get-ChildItem -Path $coverageRoots -Recurse -File -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -match 'coverage|cobertura' } |
-            Sort-Object LastWriteTimeUtc -Descending |
-            Where-Object {
-              try {
-                [xml]$document = Get-Content -LiteralPath $_.FullName -Raw
-                $document.DocumentElement.Name -eq "coverage"
-              } catch {
-                $false
-              }
-            } |
-            Select-Object -First 1
-          if (-not $coverageFile) {
-            throw "No Cobertura coverage file was produced by the core test suite."
+          $coverageFile = Join-Path $env:RUNNER_TEMP "test-results/Greg.Xrm.Command.Core.TestSuite/coverage.cobertura.xml"
+          if (-not (Test-Path -LiteralPath $coverageFile)) {
+            throw "The validated core coverage report is missing: $coverageFile"
+          }
+          [xml]$coverageDocument = Get-Content -LiteralPath $coverageFile -Raw
+          if ($coverageDocument.DocumentElement.Name -ne "coverage") {
+            throw "The staged coverage output is not a Cobertura report."
           }
 
           $artifactRoot = Join-Path $env:RUNNER_TEMP "coverage-artifact"
@@ -221,7 +208,7 @@ jobs:
           }
 
           New-Item -ItemType Directory -Path $artifactRoot | Out-Null
-          Copy-Item -LiteralPath $coverageFile.FullName -Destination (Join-Path $artifactRoot "coverage.cobertura.xml") -Force
+          Copy-Item -LiteralPath $coverageFile -Destination (Join-Path $artifactRoot "coverage.cobertura.xml") -Force
 
       - name: Upload coverage artifact
         if: ${{ inputs.collect_coverage }}
