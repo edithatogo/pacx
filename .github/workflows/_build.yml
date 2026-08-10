@@ -18,8 +18,13 @@ on:
         required: false
         type: string
         default: 11.0.100-preview.3.26207.106
+      target_framework:
+        description: Target framework built by the selected SDK
+        required: false
+        type: string
+        default: net11.0
       collect_coverage:
-        description: Collect Cobertura coverage from the Windows matrix leg
+        description: Collect and upload Cobertura coverage from this matrix leg
         required: false
         type: boolean
         default: false
@@ -55,10 +60,10 @@ jobs:
             global.json
 
       - name: Restore dependencies
-        run: dotnet restore ${{ inputs.solution_path }}
+        run: dotnet restore ${{ inputs.solution_path }} -p:TargetFramework=${{ inputs.target_framework }}
 
       - name: Build
-        run: dotnet build ${{ inputs.solution_path }} --configuration Release --no-restore
+        run: dotnet build ${{ inputs.solution_path }} --configuration Release --framework ${{ inputs.target_framework }} --no-restore
 
       - name: Test
         shell: pwsh
@@ -66,11 +71,12 @@ jobs:
           $testArgs = @(
             "${{ inputs.solution_path }}",
             "--configuration", "Release",
+            "--framework", "${{ inputs.target_framework }}",
             "--no-build",
             "--verbosity", "normal"
           )
 
-          if (${{ inputs.collect_coverage }} -and "${{ inputs.os }}" -eq "windows-latest") {
+          if (${{ inputs.collect_coverage }}) {
             $coverageRoot = Join-Path $env:RUNNER_TEMP "coverage-results"
             $testArgs += "--collect"
             $testArgs += "XPlat Code Coverage"
@@ -83,7 +89,7 @@ jobs:
           dotnet test @testArgs
 
       - name: Stage coverage artifact
-        if: ${{ inputs.collect_coverage && inputs.os == 'windows-latest' }}
+        if: ${{ inputs.collect_coverage }}
         shell: pwsh
         run: |
           $coverageRoot = Join-Path $env:RUNNER_TEMP "coverage-results"
@@ -101,7 +107,7 @@ jobs:
           Copy-Item -LiteralPath $coverageFile.FullName -Destination (Join-Path $artifactRoot "coverage.cobertura.xml") -Force
 
       - name: Upload coverage artifact
-        if: ${{ inputs.collect_coverage && inputs.os == 'windows-latest' }}
+        if: ${{ inputs.collect_coverage }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: coverage-cobertura
