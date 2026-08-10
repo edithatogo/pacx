@@ -155,6 +155,9 @@ jobs:
                 if ($coverageDocument.DocumentElement.Name -ne "coverage") {
                   throw "Coverage output is not a Cobertura report."
                 }
+                $artifactRoot = Join-Path $env:GITHUB_WORKSPACE ".coverage-artifact"
+                New-Item -ItemType Directory -Path $artifactRoot -Force | Out-Null
+                Copy-Item -LiteralPath $coverageOutput -Destination (Join-Path $artifactRoot "coverage.cobertura.xml") -Force
               } else {
                 dotnet exec $testAssembly @mtpArgs
               }
@@ -189,27 +192,6 @@ jobs:
             }
           }
 
-      - name: Stage coverage artifact
-        if: ${{ inputs.collect_coverage }}
-        shell: pwsh
-        run: |
-          $coverageFile = Join-Path $env:RUNNER_TEMP "test-results/Greg.Xrm.Command.Core.TestSuite/coverage.cobertura.xml"
-          if (-not (Test-Path -LiteralPath $coverageFile)) {
-            throw "The validated core coverage report is missing: $coverageFile"
-          }
-          [xml]$coverageDocument = Get-Content -LiteralPath $coverageFile -Raw
-          if ($coverageDocument.DocumentElement.Name -ne "coverage") {
-            throw "The staged coverage output is not a Cobertura report."
-          }
-
-          $artifactRoot = Join-Path $env:RUNNER_TEMP "coverage-artifact"
-          if (Test-Path -LiteralPath $artifactRoot) {
-            Remove-Item -LiteralPath $artifactRoot -Recurse -Force
-          }
-
-          New-Item -ItemType Directory -Path $artifactRoot | Out-Null
-          Copy-Item -LiteralPath $coverageFile -Destination (Join-Path $artifactRoot "coverage.cobertura.xml") -Force
-
       - name: Upload coverage artifact
         if: ${{ inputs.collect_coverage }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -217,7 +199,7 @@ jobs:
           name: coverage-cobertura
           if-no-files-found: error
           retention-days: 7
-          path: ${{ runner.temp }}/coverage-artifact/coverage.cobertura.xml
+          path: .coverage-artifact/coverage.cobertura.xml
 
       - name: Lint
         run: dotnet format ${{ inputs.solution_path }} --verify-no-changes
