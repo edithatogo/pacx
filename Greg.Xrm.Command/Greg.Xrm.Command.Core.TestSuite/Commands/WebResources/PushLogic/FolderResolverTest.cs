@@ -68,14 +68,18 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 		[TestMethod]
 		public void Resolve_WithRelativePath_ShouldReturnFolder()
 		{
-			var root = Utils.CreateLocalTempFolder();
+			var originalDirectory = Environment.CurrentDirectory;
+			var testDirectory = TestTempPath.CreateDirectory("folder_resolver_relative");
+			var root = Path.Combine(testDirectory, "project");
+			Directory.CreateDirectory(root);
 			Utils.CreateFile(root, ".wr.pacx", string.Empty);
-			Utils.CreateFolder(root, "greg_\\images");
-			Utils.CreateFolder(root, "greg_\\script");
-			Utils.CreateFolder(root, "greg_\\src");
+			Utils.CreateFolder(root, Path.Combine("greg_", "images"));
+			Utils.CreateFolder(root, Path.Combine("greg_", "script"));
+			Utils.CreateFolder(root, Path.Combine("greg_", "src"));
 
 			try
 			{
+				Environment.CurrentDirectory = testDirectory;
 				var currentFolder = Path.GetRelativePath(Environment.CurrentDirectory, Path.Combine(root, "greg_", "script"));
 				var expectedFolder = Path.GetFullPath(currentFolder);
 
@@ -88,7 +92,8 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			}
 			finally
 			{
-				Utils.DeleteFolder(root);
+				Environment.CurrentDirectory = originalDirectory;
+				Directory.Delete(testDirectory, recursive: true);
 			}
 		}
 
