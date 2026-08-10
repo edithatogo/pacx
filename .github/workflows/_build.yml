@@ -115,8 +115,8 @@ jobs:
                 $coverageTool = Join-Path $env:RUNNER_TEMP "dotnet-tools/dotnet-coverage"
                 $coverageData = Join-Path $resultsRoot "coverage.coverage"
                 $coverageOutput = Join-Path $resultsRoot "coverage.cobertura.xml"
-                $coreAssembly = "Greg.Xrm.Command/Greg.Xrm.Command.Core/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Core.dll"
-                $interfacesAssembly = "Greg.Xrm.Command/Greg.Xrm.Command.Interfaces/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Interfaces.dll"
+                $coreAssembly = (Resolve-Path -LiteralPath "Greg.Xrm.Command/Greg.Xrm.Command.Core/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Core.dll").Path
+                $interfacesAssembly = (Resolve-Path -LiteralPath "Greg.Xrm.Command/Greg.Xrm.Command.Interfaces/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Interfaces.dll").Path
                 & $coverageTool collect --include-files $coreAssembly --include-files $interfacesAssembly --output $coverageData dotnet exec $testAssembly @mtpArgs
                 if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $coverageData)) {
                   & $coverageTool merge $coverageData --output $coverageOutput --output-format cobertura
