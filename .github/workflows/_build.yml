@@ -89,11 +89,22 @@ jobs:
               "--configuration", "Release",
               "--framework", "${{ inputs.target_framework }}",
               "--verbosity", "normal",
-              "--results-directory", $resultsRoot,
-              "--blame-hang",
-              "--blame-hang-timeout", "3m",
-              "--blame-hang-dump-type", "mini"
+              "--results-directory", $resultsRoot
             )
+
+            if ($projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
+              $testArgs += "--hangdump"
+              $testArgs += "--hangdump-timeout"
+              $testArgs += "3m"
+              $testArgs += "--hangdump-type"
+              $testArgs += "Mini"
+            } else {
+              $testArgs += "--blame-hang"
+              $testArgs += "--blame-hang-timeout"
+              $testArgs += "3m"
+              $testArgs += "--blame-hang-dump-type"
+              $testArgs += "mini"
+            }
 
             if ($projectName -ne "Greg.Xrm.Command.Mcp.Tests") {
               $testArgs += "--no-build"
@@ -102,8 +113,11 @@ jobs:
             }
 
             if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
-              $testArgs += "--collect"
-              $testArgs += "Code Coverage;Format=Cobertura"
+              $testArgs += "--coverage"
+              $testArgs += "--coverage-output"
+              $testArgs += (Join-Path $resultsRoot "coverage.cobertura.xml")
+              $testArgs += "--coverage-output-format"
+              $testArgs += "cobertura"
             }
 
             dotnet test @testArgs
