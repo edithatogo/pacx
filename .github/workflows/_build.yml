@@ -97,6 +97,8 @@ jobs:
 
             if ($projectName -ne "Greg.Xrm.Command.Mcp.Tests") {
               $testArgs += "--no-build"
+            } else {
+              $testArgs += "-p:TargetFrameworks=net10.0"
             }
 
             if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
