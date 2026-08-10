@@ -9,6 +9,9 @@
     <EnableMSTestRunner>true</EnableMSTestRunner>
     <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <OutputType>Exe</OutputType>
+    <!-- This project follows the rapidly evolving MTP extension graph; its
+         legacy lock file predates the native coverage and hang-dump packages. -->
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
     <NoWarn>$(NoWarn);CS8999</NoWarn>
   </PropertyGroup>
 
