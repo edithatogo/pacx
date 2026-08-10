@@ -77,7 +77,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 
 			try
 			{
-				var currentFolder = currentFolderName + "\\greg_\\script";
+				var currentFolder = Path.Combine(currentFolderName, "greg_", "script");
 
 				var result = this.resolver.ResolveFrom(currentFolder, "greg");
 
@@ -138,7 +138,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			{
 				Environment.CurrentDirectory = Path.Combine(root, "greg_\\script");
 
-				var result = this.resolver.ResolveFrom("$\\pages", "greg");
+				var result = this.resolver.ResolveFrom("$" + Path.DirectorySeparatorChar + "pages", "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);

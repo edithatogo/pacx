@@ -144,34 +144,34 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 		public void Resolve_complex01()
 		{
 			var root = Utils.CreateLocalTempFolder();
-			Utils.CreateFile(root, "greg_\\excel\\page.xlsx");
-			Utils.CreateFile(root, "greg_\\pages\\index.html");
-			Utils.CreateFile(root, "greg_\\pages\\index.css");
-			Utils.CreateFile(root, "greg_\\pages\\index.js");
-			Utils.CreateFile(root, "greg_\\pages\\index.docx");
-			Utils.CreateFile(root, "greg_\\scripts\\account.js");
-			Utils.CreateFile(root, "greg_\\scripts\\page.docx");
+			Utils.CreateFile(root, Path.Combine("greg_", "excel", "page.xlsx"));
+			Utils.CreateFile(root, Path.Combine("greg_", "pages", "index.html"));
+			Utils.CreateFile(root, Path.Combine("greg_", "pages", "index.css"));
+			Utils.CreateFile(root, Path.Combine("greg_", "pages", "index.js"));
+			Utils.CreateFile(root, Path.Combine("greg_", "pages", "index.docx"));
+			Utils.CreateFile(root, Path.Combine("greg_", "scripts", "account.js"));
+			Utils.CreateFile(root, Path.Combine("greg_", "scripts", "page.docx"));
 			Utils.CreateFile(root, "greg_account.js");
 			Utils.CreateFile(root, "account.js");
 
 
 			try
 			{
-				var folders = new WebResourceFolders(root, Path.Combine(root, "greg_\\pages"), "greg");
+				var folders = new WebResourceFolders(root, Path.Combine(root, "greg_", "pages"), "greg");
 				var files = resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(3, files.Count);
 
 				var file = files[0];
-				Assert.AreEqual(Path.Combine(root, "greg_\\pages\\index.css"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "pages", "index.css"), file.LocalPath);
 				Assert.AreEqual("greg_\\pages\\index.css".Replace("\\", "/"), file.RemotePath);
 
 				file = files[1];
-				Assert.AreEqual(Path.Combine(root, "greg_\\pages\\index.html"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "pages", "index.html"), file.LocalPath);
 				Assert.AreEqual("greg_\\pages\\index.html".Replace("\\", "/"), file.RemotePath);
 
 				file = files[2];
-				Assert.AreEqual(Path.Combine(root, "greg_\\pages\\index.js"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "pages", "index.js"), file.LocalPath);
 				Assert.AreEqual("greg_\\pages\\index.js".Replace("\\", "/"), file.RemotePath);
 			}
 			finally
@@ -289,35 +289,35 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 		public void Resolve_complex05()
 		{
 			var root = Utils.CreateLocalTempFolder();
-			Utils.CreateFile(root, "greg_\\folder1\\subfolder\\subfolder\\index.html");
-			Utils.CreateFile(root, "greg_\\folder2\\index.html");
-			Utils.CreateFile(root, "greg_\\folder2\\subfolder\\subfolder\\index.html");
-			Utils.CreateFile(root, "greg_\\folder3\\index.html");
+			Utils.CreateFile(root, Path.Combine("greg_", "folder1", "subfolder", "subfolder", "index.html"));
+			Utils.CreateFile(root, Path.Combine("greg_", "folder2", "index.html"));
+			Utils.CreateFile(root, Path.Combine("greg_", "folder2", "subfolder", "subfolder", "index.html"));
+			Utils.CreateFile(root, Path.Combine("greg_", "folder3", "index.html"));
 			Utils.CreateFile(root, "greg_page.html");
 			Utils.CreateFile(root, "greg_page.js");
 
 
 			try
 			{
-				var folders = new WebResourceFolders(root, Path.Combine(root, "**\\*.html"), "greg");
+				var folders = new WebResourceFolders(root, Path.Combine(root, "**", "*.html"), "greg");
 				var files = resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(5, files.Count);
 
 				var file = files[0];
-				Assert.AreEqual(Path.Combine(root, "greg_\\folder1\\subfolder\\subfolder\\index.html"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "folder1", "subfolder", "subfolder", "index.html"), file.LocalPath);
 				Assert.AreEqual("greg_\\folder1\\subfolder\\subfolder\\index.html".Replace("\\", "/"), file.RemotePath);
 
 				file = files[1];
-				Assert.AreEqual(Path.Combine(root, "greg_\\folder2\\index.html"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "folder2", "index.html"), file.LocalPath);
 				Assert.AreEqual("greg_\\folder2\\index.html".Replace("\\", "/"), file.RemotePath);
 
 				file = files[2];
-				Assert.AreEqual(Path.Combine(root, "greg_\\folder2\\subfolder\\subfolder\\index.html"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "folder2", "subfolder", "subfolder", "index.html"), file.LocalPath);
 				Assert.AreEqual("greg_\\folder2\\subfolder\\subfolder\\index.html".Replace("\\", "/"), file.RemotePath);
 
 				file = files[3];
-				Assert.AreEqual(Path.Combine(root, "greg_\\folder3\\index.html"), file.LocalPath);
+				Assert.AreEqual(Path.Combine(root, "greg_", "folder3", "index.html"), file.LocalPath);
 				Assert.AreEqual("greg_\\folder3\\index.html".Replace("\\", "/"), file.RemotePath);
 
 				file = files[4];
