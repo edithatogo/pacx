@@ -95,9 +95,7 @@ jobs:
               "--blame-hang-dump-type", "mini"
             )
 
-            if ($projectName -eq "Greg.Xrm.Command.Mcp.Tests") {
-              $testArgs += "--no-restore"
-            } else {
+            if ($projectName -ne "Greg.Xrm.Command.Mcp.Tests") {
               $testArgs += "--no-build"
             }
 
