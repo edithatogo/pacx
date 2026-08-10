@@ -59,11 +59,6 @@ jobs:
             **/packages.lock.json
             global.json
 
-      - name: Install coverage tool
-        if: ${{ inputs.collect_coverage }}
-        shell: pwsh
-        run: dotnet tool install --tool-path (Join-Path $env:RUNNER_TEMP "dotnet-tools") dotnet-coverage --version 18.9.0
-
       - name: Restore dependencies
         run: dotnet restore ${{ inputs.solution_path }} -p:TargetFramework=${{ inputs.target_framework }}
 
@@ -107,12 +102,11 @@ jobs:
             }
 
             if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
-              $coverageTool = Join-Path $env:RUNNER_TEMP "dotnet-tools/dotnet-coverage"
-              $coverageOutput = Join-Path $resultsRoot "coverage.cobertura.xml"
-              & $coverageTool collect --output $coverageOutput --output-format cobertura --log-level Info dotnet test @testArgs
-            } else {
-              dotnet test @testArgs
+              $testArgs += "--collect"
+              $testArgs += "Code Coverage;Format=Cobertura"
             }
+
+            dotnet test @testArgs
             if ($LASTEXITCODE -ne 0) {
               exit $LASTEXITCODE
             }
