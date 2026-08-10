@@ -113,12 +113,12 @@ jobs:
 
               if (${{ inputs.collect_coverage }}) {
                 $coverageTool = Join-Path $env:RUNNER_TEMP "dotnet-tools/dotnet-coverage"
-                $coverageData = Join-Path $resultsRoot "coverage.coverage"
                 $coverageOutput = Join-Path $resultsRoot "coverage.cobertura.xml"
                 $coverageLog = Join-Path $resultsRoot "dotnet-coverage.log"
                 $coverageSession = [guid]::NewGuid().ToString()
-                $coreAssembly = (Resolve-Path -LiteralPath "Greg.Xrm.Command/Greg.Xrm.Command.Core/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Core.dll").Path
-                $interfacesAssembly = (Resolve-Path -LiteralPath "Greg.Xrm.Command/Greg.Xrm.Command.Interfaces/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Interfaces.dll").Path
+                $testOutput = Split-Path -Parent (Resolve-Path -LiteralPath $testAssembly).Path
+                $coreAssembly = (Resolve-Path -LiteralPath (Join-Path $testOutput "Greg.Xrm.Command.Core.dll")).Path
+                $interfacesAssembly = (Resolve-Path -LiteralPath (Join-Path $testOutput "Greg.Xrm.Command.Interfaces.dll")).Path
                 foreach ($coverageAssembly in @($coreAssembly, $interfacesAssembly)) {
                   & $coverageTool instrument --session-id $coverageSession $coverageAssembly
                   if ($LASTEXITCODE -ne 0) {
@@ -126,7 +126,7 @@ jobs:
                   }
                 }
 
-                & $coverageTool collect --session-id $coverageSession --server-mode --background --output $coverageData --log-file $coverageLog --log-level Verbose
+                & $coverageTool collect --session-id $coverageSession --server-mode --background --output $coverageOutput --output-format cobertura --log-file $coverageLog --log-level Verbose
                 if ($LASTEXITCODE -ne 0) {
                   throw "Failed to start coverage session $coverageSession."
                 }
@@ -145,15 +145,15 @@ jobs:
                 if ($testExitCode -ne 0) {
                   exit $testExitCode
                 }
-                if (-not (Test-Path -LiteralPath $coverageData)) {
+                if (-not (Test-Path -LiteralPath $coverageOutput)) {
                   if (Test-Path -LiteralPath $coverageLog) {
                     Get-Content -LiteralPath $coverageLog
                   }
-                  throw "Coverage session completed without producing $coverageData."
+                  throw "Coverage session completed without producing $coverageOutput."
                 }
-                & $coverageTool merge $coverageData --output $coverageOutput --output-format cobertura
-                if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $coverageOutput)) {
-                  throw "Failed to convert native coverage data to Cobertura."
+                [xml]$coverageDocument = Get-Content -LiteralPath $coverageOutput -Raw
+                if ($coverageDocument.DocumentElement.Name -ne "coverage") {
+                  throw "Coverage output is not a Cobertura report."
                 }
               } else {
                 dotnet exec $testAssembly @mtpArgs
