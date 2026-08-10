@@ -88,13 +88,18 @@ jobs:
               $testProject,
               "--configuration", "Release",
               "--framework", "${{ inputs.target_framework }}",
-              "--no-build",
               "--verbosity", "normal",
               "--results-directory", $resultsRoot,
               "--blame-hang",
               "--blame-hang-timeout", "3m",
               "--blame-hang-dump-type", "mini"
             )
+
+            if ($projectName -eq "Greg.Xrm.Command.Mcp.Tests") {
+              $testArgs += "--no-restore"
+            } else {
+              $testArgs += "--no-build"
+            }
 
             if (${{ inputs.collect_coverage }} -and $projectName -eq "Greg.Xrm.Command.Core.TestSuite") {
               $testArgs += "--collect"
