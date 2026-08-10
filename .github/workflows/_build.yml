@@ -59,6 +59,11 @@ jobs:
             **/packages.lock.json
             global.json
 
+      - name: Install coverage tool
+        if: ${{ inputs.collect_coverage }}
+        shell: pwsh
+        run: dotnet tool install --tool-path (Join-Path $env:RUNNER_TEMP "dotnet-tools") dotnet-coverage --version 18.9.0
+
       - name: Restore dependencies
         run: dotnet restore ${{ inputs.solution_path }} -p:TargetFramework=${{ inputs.target_framework }}
 
@@ -107,19 +112,14 @@ jobs:
               )
 
               if (${{ inputs.collect_coverage }}) {
-                $mtpArgs += "--coverlet"
-                $mtpArgs += "--coverlet-output-format"
-                $mtpArgs += "cobertura"
-                $mtpArgs += "--coverlet-include"
-                $mtpArgs += "[Greg.Xrm.Command.Core]*"
-                $mtpArgs += "--coverlet-include"
-                $mtpArgs += "[Greg.Xrm.Command.Interfaces]*"
-                $mtpArgs += "--coverlet-exclude"
-                $mtpArgs += "[Greg.Xrm.Command.Core.TestSuite]*"
-                $mtpArgs += "--coverlet-skip-auto-props"
+                $coverageTool = Join-Path $env:RUNNER_TEMP "dotnet-tools/dotnet-coverage"
+                $coverageOutput = Join-Path $resultsRoot "coverage.cobertura.xml"
+                $coreAssembly = "Greg.Xrm.Command/Greg.Xrm.Command.Core/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Core.dll"
+                $interfacesAssembly = "Greg.Xrm.Command/Greg.Xrm.Command.Interfaces/bin/Release/${{ inputs.target_framework }}/Greg.Xrm.Command.Interfaces.dll"
+                & $coverageTool collect --include-files $coreAssembly --include-files $interfacesAssembly --output $coverageOutput --output-format cobertura dotnet exec $testAssembly @mtpArgs
+              } else {
+                dotnet exec $testAssembly @mtpArgs
               }
-
-              dotnet exec $testAssembly @mtpArgs
               if ($LASTEXITCODE -ne 0) {
                 exit $LASTEXITCODE
               }
