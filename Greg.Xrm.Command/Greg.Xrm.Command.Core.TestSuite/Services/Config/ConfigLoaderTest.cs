@@ -3,6 +3,7 @@ using Greg.Xrm.Command.TestSuite;
 namespace Greg.Xrm.Command.Services.Config
 {
 	[TestClass]
+	[DoNotParallelize]
 	public class ConfigLoaderTest
 	{
 		[TestMethod]
