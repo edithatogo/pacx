@@ -65,7 +65,7 @@ namespace Greg.Xrm.Command.Services.Package
 				var sbomPath = Path.Combine(releaseDirectory, "sbom.json");
 				var releaseNotesPath = Path.Combine(releaseDirectory, "RELEASE_NOTES.md");
 				WriteProvenance(provenancePath, package.Manifest, effectiveVersion, packagePath, releaseManifestPath, published.ArchiveSha256);
-				WriteSbom(sbomPath, package.Manifest, effectiveVersion, packagePath);
+				WriteSbom(sbomPath, package.Manifest, effectiveVersion, packagePath, releaseManifestPath);
 				WriteReleaseNotes(releaseNotesPath, package.Manifest, effectiveVersion, packagePath, published.ArchiveSha256);
 				var checksumsPath = Path.Combine(releaseDirectory, "checksums.txt");
 				WriteChecksums(checksumsPath, packagePath, releaseManifestPath, provenancePath, sbomPath, releaseNotesPath);
@@ -148,7 +148,7 @@ namespace Greg.Xrm.Command.Services.Package
 			File.WriteAllText(provenancePath, JsonSerializer.Serialize(provenance, SerializerOptions));
 		}
 
-		private static void WriteSbom(string sbomPath, PacxPackageManifest manifest, string version, string packagePath)
+		private static void WriteSbom(string sbomPath, PacxPackageManifest manifest, string version, string packagePath, string releaseManifestPath)
 		{
 			var sbom = new PacxPackageReleaseSbom
 			{
@@ -157,18 +157,18 @@ namespace Greg.Xrm.Command.Services.Package
 				PackageKind = manifest.Kind,
 				PackagePath = Path.GetFileName(packagePath),
 				GeneratedAtUtc = DateTimeOffset.UtcNow,
-				Components = BuildSbomComponents(manifest, packagePath)
+				Components = BuildSbomComponents(manifest, packagePath, releaseManifestPath)
 			};
 
 			File.WriteAllText(sbomPath, JsonSerializer.Serialize(sbom, SerializerOptions));
 		}
 
-		private static List<PacxPackageSbomComponent> BuildSbomComponents(PacxPackageManifest manifest, string packagePath)
+		private static List<PacxPackageSbomComponent> BuildSbomComponents(PacxPackageManifest manifest, string packagePath, string releaseManifestPath)
 		{
 			var components = new List<PacxPackageSbomComponent>
 			{
-				new() { Type = "archive", Path = Path.GetFileName(packagePath) },
-				new() { Type = "manifest", Path = PacxPackageManifest.FileName }
+				new() { Type = "archive", Path = Path.GetFileName(packagePath), Hash = ComputeSha256(packagePath) },
+				new() { Type = "manifest", Path = Path.GetFileName(releaseManifestPath), Hash = ComputeSha256(releaseManifestPath) }
 			};
 
 			foreach (var artifact in manifest.Artifacts)
