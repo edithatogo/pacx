@@ -93,8 +93,12 @@ internal sealed class McpHostProcess : IAsyncDisposable
 	{
 		_hostDllPath = ResolveHostDllPath();
 		var dotnetRoot = Environment.GetEnvironmentVariable("DOTNET_ROOT");
-		_dotnetExePath = !string.IsNullOrWhiteSpace(dotnetRoot)
-			? Path.Combine(dotnetRoot, "dotnet.exe")
+		var dotnetExecutable = OperatingSystem.IsWindows() ? "dotnet.exe" : "dotnet";
+		var rootedDotnetPath = !string.IsNullOrWhiteSpace(dotnetRoot)
+			? Path.Combine(dotnetRoot, dotnetExecutable)
+			: null;
+		_dotnetExePath = rootedDotnetPath is not null && File.Exists(rootedDotnetPath)
+			? rootedDotnetPath
 			: "dotnet";
 
 		var startInfo = new ProcessStartInfo
