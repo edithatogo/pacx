@@ -107,11 +107,16 @@ jobs:
               )
 
               if (${{ inputs.collect_coverage }}) {
-                $mtpArgs += "--coverage"
-                $mtpArgs += "--coverage-output"
-                $mtpArgs += (Join-Path $resultsRoot "coverage.cobertura.xml")
-                $mtpArgs += "--coverage-output-format"
+                $mtpArgs += "--coverlet"
+                $mtpArgs += "--coverlet-output-format"
                 $mtpArgs += "cobertura"
+                $mtpArgs += "--coverlet-include"
+                $mtpArgs += "[Greg.Xrm.Command.Core]*"
+                $mtpArgs += "--coverlet-include"
+                $mtpArgs += "[Greg.Xrm.Command.Interfaces]*"
+                $mtpArgs += "--coverlet-exclude"
+                $mtpArgs += "[Greg.Xrm.Command.Core.TestSuite]*"
+                $mtpArgs += "--coverlet-skip-auto-props"
               }
 
               dotnet exec $testAssembly @mtpArgs
