@@ -11,6 +11,8 @@ permissions:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
         with:
@@ -24,10 +26,12 @@ jobs:
         run: dotnet restore Greg.Xrm.Command/Greg.Xrm.Command.sln -p:TargetFramework=net10.0
       - name: Build
         run: dotnet build Greg.Xrm.Command/Greg.Xrm.Command.sln --framework net10.0 --no-restore
+      - name: Report unavailable SonarCloud integration
+        if: ${{ env.SONAR_TOKEN == '' }}
+        run: echo "::notice::SonarCloud analysis is disabled because SONAR_TOKEN is not configured."
       - name: SonarCloud Scan
+        if: ${{ env.SONAR_TOKEN != '' }}
         uses: SonarSource/sonarcloud-github-action@ffc3010689be73b8e5ae0c57ce35968afd7909e8 # v5.0.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.organization=edithatogo
