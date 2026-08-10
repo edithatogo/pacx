@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
+        with:
+          fetch-depth: 0
 
       - name: Download editorconfig-checker
         shell: bash
@@ -27,4 +29,21 @@ jobs:
 
       - name: Run editorconfig-checker
         shell: bash
-        run: ./bin/ec-linux-amd64 -format github-actions -exclude '.swarm'
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "workflow_dispatch" || -z "$BASE_SHA" || "$BASE_SHA" =~ ^0+$ ]]; then
+            mapfile -t files < <(git ls-files)
+          else
+            mapfile -t files < <(git diff --name-only --diff-filter=ACMR "$BASE_SHA" "$HEAD_SHA")
+          fi
+
+          if (( ${#files[@]} == 0 )); then
+            echo "No changed files require EditorConfig validation."
+            exit 0
+          fi
+
+          ./bin/ec-linux-amd64 -format github-actions -exclude '.swarm' "${files[@]}"

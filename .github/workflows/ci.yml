@@ -31,9 +31,9 @@ jobs:
         shell: pwsh
         run: |
           if ("${{ github.event_name }}" -eq "pull_request") {
-            $matrix = '{"os":["ubuntu-latest"],"dotnet_version":["10.0.x","11.0.100-preview.3.26207.106"]}'
+            $matrix = '{"include":[{"os":"ubuntu-latest","dotnet_version":"10.0.x","target_framework":"net10.0","collect_coverage":true},{"os":"ubuntu-latest","dotnet_version":"11.0.100-preview.3.26207.106","target_framework":"net11.0","collect_coverage":false}]}'
           } else {
-            $matrix = '{"os":["windows-latest","ubuntu-latest","macos-latest"],"dotnet_version":["10.0.x","11.0.100-preview.3.26207.106"]}'
+            $matrix = '{"include":[{"os":"windows-latest","dotnet_version":"10.0.x","target_framework":"net10.0","collect_coverage":true},{"os":"ubuntu-latest","dotnet_version":"10.0.x","target_framework":"net10.0","collect_coverage":false},{"os":"macos-latest","dotnet_version":"10.0.x","target_framework":"net10.0","collect_coverage":false},{"os":"windows-latest","dotnet_version":"11.0.100-preview.3.26207.106","target_framework":"net11.0","collect_coverage":false},{"os":"ubuntu-latest","dotnet_version":"11.0.100-preview.3.26207.106","target_framework":"net11.0","collect_coverage":false},{"os":"macos-latest","dotnet_version":"11.0.100-preview.3.26207.106","target_framework":"net11.0","collect_coverage":false}]}'
           }
           "matrix=$matrix" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
 
@@ -47,7 +47,8 @@ jobs:
       solution_path: Greg.Xrm.Command/Greg.Xrm.Command.sln
       os: ${{ matrix.os }}
       dotnet_version: ${{ matrix.dotnet_version }}
-      collect_coverage: true
+      target_framework: ${{ matrix.target_framework }}
+      collect_coverage: ${{ matrix.collect_coverage }}
 
   commit_messages:
     runs-on: ubuntu-latest
