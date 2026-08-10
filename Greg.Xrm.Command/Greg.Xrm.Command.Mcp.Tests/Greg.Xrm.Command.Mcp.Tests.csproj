@@ -17,4 +17,13 @@
     <ProjectReference Include="..\Greg.Xrm.Command.Mcp\Greg.Xrm.Command.Mcp.csproj" />
   </ItemGroup>
 
+  <Target Name="CopyTestHostRuntimeConfig" AfterTargets="Build">
+    <Copy
+      SourceFiles="$(TargetDir)$(AssemblyName).runtimeconfig.json"
+      DestinationFiles="$(TargetDir)testhost.runtimeconfig.json"
+      SkipUnchangedFiles="true"
+      Condition="Exists('$(TargetDir)$(AssemblyName).runtimeconfig.json')" />
+    <Delete Files="$(TargetDir)testhost.exe;$(TargetDir)testhost.x86.exe" />
+  </Target>
+
 </Project>
