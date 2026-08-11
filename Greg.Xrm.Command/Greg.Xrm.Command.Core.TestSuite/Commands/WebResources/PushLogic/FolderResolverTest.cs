@@ -1,19 +1,17 @@
-﻿using Microsoft.Xrm.Sdk;
-
-namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
+﻿namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 {
 	[TestClass]
 	[DoNotParallelize]
 	public class FolderResolverTest
 	{
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-		private FolderResolver resolver;
+		private FolderResolver _resolver;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
 		[TestInitialize]
 		public void Initialize()
 		{
-			this.resolver = new FolderResolver();
+			_resolver = new FolderResolver();
 		}
 
 
@@ -21,20 +19,20 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 		[TestMethod]
 		public void Resolve_WithoutPublisher_ShouldThrowArgumentNullException()
 		{
-			Assert.Throws<ArgumentNullException>(() => this.resolver.ResolveFrom(null, string.Empty));
+			Assert.Throws<ArgumentNullException>(() => _resolver.ResolveFrom(null, string.Empty));
 		}
 
 		[TestMethod]
 		public void Resolve_WithFullyQualifiedPath_WithoutProjectRoot_ShouldThrowArgumentNullException()
 		{
 			var path = @"c:\temp\folder";
-			Assert.Throws<ArgumentException>(() => this.resolver.ResolveFrom(path, "greg"));
+			Assert.Throws<ArgumentException>(() => _resolver.ResolveFrom(path, "greg"));
 		}
 
 		[TestMethod]
 		public void Resolve_WithDefaultPath_WithoutProjectRoot_ShouldThrowArgumentNullException()
 		{
-			Assert.Throws<ArgumentException>(() => this.resolver.ResolveFrom(null, "greg"));
+			Assert.Throws<ArgumentException>(() => _resolver.ResolveFrom(null, "greg"));
 		}
 
 
@@ -51,7 +49,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			{
 				var currentFolder = Path.Combine(root, "greg_\\script");
 
-				var result = this.resolver.ResolveFrom(currentFolder, "greg");
+				var result = _resolver.ResolveFrom(currentFolder, "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
@@ -83,7 +81,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 				var currentFolder = Path.GetRelativePath(Environment.CurrentDirectory, Path.Combine(root, "greg_", "script"));
 				var expectedFolder = Path.GetFullPath(currentFolder);
 
-				var result = this.resolver.ResolveFrom(currentFolder, "greg");
+				var result = _resolver.ResolveFrom(currentFolder, "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
@@ -114,7 +112,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			{
 				Environment.CurrentDirectory = Path.Combine(root, "greg_\\script");
 
-				var result = this.resolver.ResolveFrom("$", "greg");
+				var result = _resolver.ResolveFrom("$", "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
@@ -143,7 +141,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			{
 				Environment.CurrentDirectory = Path.Combine(root, "greg_\\script");
 
-				var result = this.resolver.ResolveFrom("$" + Path.DirectorySeparatorChar + "pages", "greg");
+				var result = _resolver.ResolveFrom("$" + Path.DirectorySeparatorChar + "pages", "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
@@ -170,7 +168,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			try
 			{
 				var folder = Path.Combine(root, "greg_\\**\\*.txt");
-				var result = this.resolver.ResolveFrom(folder, "greg");
+				var result = _resolver.ResolveFrom(folder, "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
@@ -196,7 +194,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			try
 			{
 				var folder = Path.Combine(root, "**\\script\\*.txt");
-				var result = this.resolver.ResolveFrom(folder, "greg");
+				var result = _resolver.ResolveFrom(folder, "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);
@@ -222,7 +220,7 @@ namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 			try
 			{
 				var folder = Path.Combine(root, "**");
-				var result = this.resolver.ResolveFrom(folder, "greg");
+				var result = _resolver.ResolveFrom(folder, "greg");
 
 				Assert.IsNotNull(result);
 				Assert.AreEqual("greg", result.PublisherPrefix);

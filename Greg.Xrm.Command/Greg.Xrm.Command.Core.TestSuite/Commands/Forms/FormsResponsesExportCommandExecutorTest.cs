@@ -1,5 +1,4 @@
 ﻿using Greg.Xrm.Command.Services.Forms;
-using Greg.Xrm.Command.Services.Output;
 
 namespace Greg.Xrm.Command.Commands.Forms
 {
@@ -17,7 +16,7 @@ namespace Greg.Xrm.Command.Commands.Forms
 				apiMock.Setup(a => a.GetResponsesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 100, 0, It.IsAny<CancellationToken>()))
 					.ReturnsAsync(new List<FormsResponse>
 					{
-						new() { Id = 1, SubmittedAt = new DateTime(2026, 1, 1), Answers = "{\"q1\":\"Yes\"}" }
+						new() { Id = 1, SubmittedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc), Answers = "{\"q1\":\"Yes\"}" }
 					});
 				apiMock.Setup(a => a.GetResponsesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 100, 1, It.IsAny<CancellationToken>()))
 					.ReturnsAsync(new List<FormsResponse>());

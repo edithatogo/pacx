@@ -4,13 +4,13 @@
 	public class WebResourcesFileResolverTest
 	{
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-		private WebResourceFilesResolver resolver;
+		private WebResourceFilesResolver _resolver;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
 		[TestInitialize]
 		public void Initialize()
 		{
-			this.resolver = new WebResourceFilesResolver();
+			_resolver = new WebResourceFilesResolver();
 		}
 
 
@@ -20,7 +20,7 @@
 			Assert.Throws<ArgumentNullException>(() =>
 			{
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-				resolver.ResolveFiles(null);
+				_resolver.ResolveFiles(null);
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 			});
 		}
@@ -38,7 +38,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, root, "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(1, files.Count);
 
@@ -66,7 +66,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, root, "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(2, files.Count);
 
@@ -97,7 +97,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, root, "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(1, files.Count);
 
@@ -124,7 +124,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, root, "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(1, files.Count);
 
@@ -158,7 +158,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, Path.Combine(root, "greg_", "pages"), "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(3, files.Count);
 
@@ -197,7 +197,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, Path.Combine(root, "greg_\\pages\\*.html"), "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(2, files.Count);
 
@@ -227,7 +227,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, Path.Combine(root, "greg_\\**\\*.html"), "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(2, files.Count);
 
@@ -259,7 +259,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, Path.Combine(root, "greg_\\**\\*.html"), "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(4, files.Count);
 
@@ -300,7 +300,7 @@
 			try
 			{
 				var folders = new WebResourceFolders(root, Path.Combine(root, "**", "*.html"), "greg");
-				var files = resolver.ResolveFiles(folders);
+				var files = _resolver.ResolveFiles(folders);
 				Assert.IsNotNull(files);
 				Assert.AreEqual(5, files.Count);
 
