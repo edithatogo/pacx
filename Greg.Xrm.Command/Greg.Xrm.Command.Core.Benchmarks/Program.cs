@@ -11,7 +11,7 @@ namespace Greg.Xrm.Command.Benchmarks
 	/// Benchmark suite for PACX hot paths: command parsing and output formatting.
 	/// Run with: dotnet run --configuration Release --project Greg.Xrm.Command.Core.Benchmarks
 	/// </summary>
-	public class Program
+	public static class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -23,17 +23,15 @@ namespace Greg.Xrm.Command.Benchmarks
 	public class CommandLineParserBenchmarks
 	{
 		private CommandParser? _parser;
-		private CommandRegistry? _registry;
-
 		[GlobalSetup]
 		public void Setup()
 		{
 			var log = NullLogger<CommandRegistry>.Instance;
 			var output = new OutputToMemory();
 			var storage = new Storage();
-			_registry = new CommandRegistry(log, output, storage);
-			_registry.InitializeFromAssembly(typeof(ListCommand).Assembly);
-			_parser = new CommandParser(new OutputToMemory(), _registry);
+			var registry = new CommandRegistry(log, output, storage);
+			registry.InitializeFromAssembly(typeof(ListCommand).Assembly);
+			_parser = new CommandParser(new OutputToMemory(), registry);
 		}
 
 		[Benchmark]
