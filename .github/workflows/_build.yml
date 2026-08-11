@@ -76,7 +76,7 @@ jobs:
             "--framework", "${{ inputs.target_framework }}",
             "--no-restore"
           )
-          if (${{ inputs.collect_coverage }}) {
+          if ("${{ inputs.collect_coverage }}" -eq "true") {
             $buildArgs += "-p:DebugType=portable"
           }
           dotnet build @buildArgs
@@ -111,7 +111,7 @@ jobs:
                 "--hangdump-type", "Mini"
               )
 
-              if (${{ inputs.collect_coverage }}) {
+              if ("${{ inputs.collect_coverage }}" -eq "true") {
                 $coverageTool = Join-Path $env:RUNNER_TEMP "dotnet-tools/dotnet-coverage"
                 $coverageOutput = Join-Path $resultsRoot "coverage.cobertura.xml"
                 $coverageLog = Join-Path $resultsRoot "dotnet-coverage.log"
