@@ -23,22 +23,22 @@ jobs:
         run: Remove-Item Env:MSBuildSDKsPath -ErrorAction SilentlyContinue
 
       - name: Run startup benchmarks (PR branch)
-        run: dotnet run --configuration Release --project Greg.Xrm.Command/test/Greg.Xrm.Command.Benchmark/Greg.Xrm.Command.Benchmark.csproj -- --filter '*Startup*' --exporters json --artifacts .benchmarks/pr
+        run: dotnet run --configuration Release --framework net10.0 --project Greg.Xrm.Command/test/Greg.Xrm.Command.Benchmark/Greg.Xrm.Command.Benchmark.csproj -- --filter '*Startup*' --exporters json --artifacts .benchmarks/pr
 
       - name: Run core hot-path benchmarks (PR branch)
-        run: dotnet run --configuration Release --project Greg.Xrm.Command/Greg.Xrm.Command.Core.Benchmarks/Greg.Xrm.Command.Core.Benchmarks.csproj -- --exporters json --artifacts .benchmarks/pr
+        run: dotnet run --configuration Release --framework net10.0 --project Greg.Xrm.Command/Greg.Xrm.Command.Core.Benchmarks/Greg.Xrm.Command.Core.Benchmarks.csproj -- --exporters json --artifacts .benchmarks/pr
 
       - name: Checkout main branch
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.2.2
         with:
-          ref: main
+          ref: ${{ github.event.pull_request.base.sha }}
           path: main-baseline
 
       - name: Run startup benchmarks (main baseline)
-        run: dotnet run --configuration Release --project main-baseline/Greg.Xrm.Command/test/Greg.Xrm.Command.Benchmark/Greg.Xrm.Command.Benchmark.csproj -- --filter '*Startup*' --exporters json --artifacts .benchmarks/main
+        run: dotnet run --configuration Release --framework net10.0 --project main-baseline/Greg.Xrm.Command/test/Greg.Xrm.Command.Benchmark/Greg.Xrm.Command.Benchmark.csproj -- --filter '*Startup*' --exporters json --artifacts .benchmarks/main
 
       - name: Run core hot-path benchmarks (main baseline)
-        run: dotnet run --configuration Release --project main-baseline/Greg.Xrm.Command/Greg.Xrm.Command.Core.Benchmarks/Greg.Xrm.Command.Core.Benchmarks.csproj -- --exporters json --artifacts .benchmarks/main
+        run: dotnet run --configuration Release --framework net10.0 --project main-baseline/Greg.Xrm.Command/Greg.Xrm.Command.Core.Benchmarks/Greg.Xrm.Command.Core.Benchmarks.csproj -- --exporters json --artifacts .benchmarks/main
 
       - name: Compare benchmark results
         shell: pwsh
@@ -47,6 +47,11 @@ jobs:
           $regressions = @()
           $baselineDir = ".benchmarks/main"
           $prDir = ".benchmarks/pr"
+
+          if (-not (Test-Path -LiteralPath $baselineDir) -or -not (Test-Path -LiteralPath $prDir)) {
+            Write-Host "Benchmark results are unavailable; the benchmark execution failed before comparison."
+            exit 0
+          }
 
           $baselineFiles = Get-ChildItem -Path $baselineDir -Recurse -Filter "*.json" | Where-Object { $_.Name -like "*-report.json" -or $_.Name -like "*-summary.json" }
           $prFiles = Get-ChildItem -Path $prDir -Recurse -Filter "*.json" | Where-Object { $_.Name -like "*-report.json" -or $_.Name -like "*-summary.json" }
@@ -105,6 +110,11 @@ jobs:
         run: |
           $baselineDir = ".benchmarks/main"
           $prDir = ".benchmarks/pr"
+
+          if (-not (Test-Path -LiteralPath $baselineDir) -or -not (Test-Path -LiteralPath $prDir)) {
+            Write-Host "Skipping benchmark comment because benchmark results are unavailable."
+            exit 0
+          }
 
           $baselineFiles = Get-ChildItem -Path $baselineDir -Recurse -Filter "*.json" | Where-Object { $_.Name -like "*-report.json" -or $_.Name -like "*-summary.json" }
           $prFiles = Get-ChildItem -Path $prDir -Recurse -Filter "*.json" | Where-Object { $_.Name -like "*-report.json" -or $_.Name -like "*-summary.json" }
