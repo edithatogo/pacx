@@ -35,4 +35,8 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@865f5f5c36632f18690a3d569fa0a764f2da0c3e # v3
       - name: Fail on blocking code-scanning alerts
+        # Scorecard publishes separate SARIF findings on push. Keep this gate at
+        # the protected PR boundary so it evaluates the CodeQL result for the
+        # candidate commit without conflating findings from other tools.
+        if: github.event_name == 'pull_request'
         uses: edithatogo/.github/.github/actions/code-scanning-gate@main
