@@ -155,7 +155,7 @@ jobs:
                 if ($coverageDocument.DocumentElement.Name -ne "coverage") {
                   throw "Coverage output is not a Cobertura report."
                 }
-                $artifactRoot = Join-Path $env:GITHUB_WORKSPACE ".coverage-artifact"
+                $artifactRoot = Join-Path $env:GITHUB_WORKSPACE "coverage-artifact"
                 New-Item -ItemType Directory -Path $artifactRoot -Force | Out-Null
                 Copy-Item -LiteralPath $coverageOutput -Destination (Join-Path $artifactRoot "coverage.cobertura.xml") -Force
               } else {
@@ -199,7 +199,7 @@ jobs:
           name: coverage-cobertura
           if-no-files-found: error
           retention-days: 7
-          path: .coverage-artifact/coverage.cobertura.xml
+          path: coverage-artifact/coverage.cobertura.xml
 
       - name: Lint
         run: dotnet format ${{ inputs.solution_path }} --verify-no-changes
