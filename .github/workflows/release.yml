@@ -66,19 +66,22 @@ jobs:
           path: coverage
 
       - name: Summarize coverage
-        uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # v1.3.0
-        with:
-          filename: coverage/coverage.cobertura.xml
-          badge: true
-          fail_below_min: true
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: both
+        shell: pwsh
+        run: |
+          [xml]$coverage = Get-Content -LiteralPath "coverage/coverage.cobertura.xml" -Raw
+          $lineRate = [double]::Parse($coverage.coverage.'line-rate', [System.Globalization.CultureInfo]::InvariantCulture) * 100
+          $branchRate = [double]::Parse($coverage.coverage.'branch-rate', [System.Globalization.CultureInfo]::InvariantCulture) * 100
+          @(
+            "## Coverage summary",
+            "",
+            "| Metric | Coverage |",
+            "| --- | ---: |",
+            "| Lines | $([math]::Round($lineRate, 2))% |",
+            "| Branches | $([math]::Round($branchRate, 2))% |"
+          ) | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@75cd11691c0faa626561e295848008c8a7dddffe # v5
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
           files: coverage/coverage.cobertura.xml
           use_oidc: true
@@ -98,11 +101,19 @@ jobs:
           }
 
           $minimum = [double]$Matches[1]
+          if ($thresholdContent -notmatch 'minimum_branch_coverage:\s*(\d+(?:\.\d+)?)') {
+            throw "Unable to parse minimum_branch_coverage from $thresholdFile."
+          }
+          $minimumBranch = [double]$Matches[1]
           [xml]$coverage = Get-Content -LiteralPath "coverage/coverage.cobertura.xml" -Raw
           $lineRate = [double]::Parse($coverage.coverage.'line-rate', [System.Globalization.CultureInfo]::InvariantCulture) * 100
+          $branchRate = [double]::Parse($coverage.coverage.'branch-rate', [System.Globalization.CultureInfo]::InvariantCulture) * 100
 
           if ($lineRate -lt $minimum) {
             throw "Line coverage $([math]::Round($lineRate, 2))% is below the required threshold of $minimum%."
+          }
+          if ($branchRate -lt $minimumBranch) {
+            throw "Branch coverage $([math]::Round($branchRate, 2))% is below the required threshold of $minimumBranch%."
           }
 
   release_gate:
