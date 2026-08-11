@@ -228,4 +228,16 @@ jobs:
 
           Write-Host "Linting $($changedFiles.Count) changed C# files."
           $formatArgs = @("${{ inputs.solution_path }}", "--verify-no-changes", "--include") + $changedFiles
-          dotnet format @formatArgs
+          $env:TargetFramework = "${{ inputs.target_framework }}"
+          $nestedGlobal = Join-Path (Split-Path -Parent "${{ inputs.solution_path }}") "global.json"
+          $globalBackup = Join-Path $env:RUNNER_TEMP "lint-global.json"
+          Copy-Item -LiteralPath $nestedGlobal -Destination $globalBackup -Force
+          $formatExitCode = 0
+          try {
+            Copy-Item -LiteralPath "global.json" -Destination $nestedGlobal -Force
+            dotnet format @formatArgs --no-restore
+            $formatExitCode = $LASTEXITCODE
+          } finally {
+            Copy-Item -LiteralPath $globalBackup -Destination $nestedGlobal -Force
+          }
+          exit $formatExitCode

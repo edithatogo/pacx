@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -113,11 +113,10 @@ namespace Greg.Xrm.Command.Commands.Plugin
 			var runtimeDir = Path.GetDirectoryName(typeof(object).Assembly.Location);
 			if (runtimeDir == null) return null;
 
-			assemblies.Add(typeof(object).Assembly.Location);
-			assemblies.Add(typeof(Attribute).Assembly.Location);
-			assemblies.Add(Path.Combine(runtimeDir, "System.Runtime.dll"));
-			assemblies.Add(Path.Combine(runtimeDir, "System.Collections.dll"));
-			assemblies.Add(Path.Combine(runtimeDir, "System.Private.CoreLib.dll"));
+			foreach (var runtimeAssembly in Directory.GetFiles(runtimeDir, "*.dll"))
+			{
+				assemblies.Add(runtimeAssembly);
+			}
 
 			// Scan plugin directory for dependent DLLs
 			var pluginDir = Path.GetDirectoryName(dllPath);
