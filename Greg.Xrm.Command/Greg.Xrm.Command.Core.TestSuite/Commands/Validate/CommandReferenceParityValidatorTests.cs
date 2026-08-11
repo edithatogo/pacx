@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using Greg.Xrm.Command.Parsing;
-using Moq;
+﻿using Greg.Xrm.Command.Parsing;
 
 namespace Greg.Xrm.Command.Commands.Validate
 {

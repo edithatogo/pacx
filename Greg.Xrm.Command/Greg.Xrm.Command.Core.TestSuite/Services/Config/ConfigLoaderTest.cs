@@ -1,6 +1,4 @@
-﻿using Greg.Xrm.Command.TestSuite;
-
-namespace Greg.Xrm.Command.Services.Config
+﻿namespace Greg.Xrm.Command.Services.Config
 {
 	[TestClass]
 	[DoNotParallelize]

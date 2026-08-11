@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Greg.Xrm.Command.ArchitectureTests
 {
@@ -8,7 +7,7 @@ namespace Greg.Xrm.Command.ArchitectureTests
 	{
 		// Existing dependencies are recorded explicitly so these rules prevent new
 		// coupling while the legacy executors are migrated behind service interfaces.
-		private static readonly HashSet<string> LegacyHttpClientExecutors = new(StringComparer.Ordinal)
+		private static readonly HashSet<string> _legacyHttpClientExecutors = new(StringComparer.Ordinal)
 		{
 			"Greg.Xrm.Command.Commands.Update.SelfUpdateCommandExecutor",
 			"Greg.Xrm.Command.Commands.Connector.ConnectorTestCommandExecutor",
@@ -16,7 +15,7 @@ namespace Greg.Xrm.Command.ArchitectureTests
 			"Greg.Xrm.Command.Commands.Alm.AlmPipelineRunCommandExecutor"
 		};
 
-		private static readonly HashSet<string> LegacyExecutorDependencies = new(StringComparer.Ordinal)
+		private static readonly HashSet<string> _legacyExecutorDependencies = new(StringComparer.Ordinal)
 		{
 			"Greg.Xrm.Command.Commands.Completions.CompletionsPwshCommandExecutor depends on Greg.Xrm.Command.Commands.Completions.CompletionsCommandExecutor",
 			"Greg.Xrm.Command.Commands.Completions.CompletionsBashCommandExecutor depends on Greg.Xrm.Command.Commands.Completions.CompletionsCommandExecutor",
@@ -29,10 +28,10 @@ namespace Greg.Xrm.Command.ArchitectureTests
 		public void CommandsShouldNotReferenceHttpClientDirectly()
 		{
 			var failures = new List<string>();
-			foreach (var type in GetExecutorTypes().Where(type => type.Namespace is not null && type.Namespace.StartsWith("Greg.Xrm.Command.Commands")))
+			foreach (var type in GetExecutorTypes().Where(type => type.Namespace is not null && type.Namespace.StartsWith("Greg.Xrm.Command.Commands", StringComparison.Ordinal)))
 			{
 				var offending = GetSystemNetHttpDependencies(type).ToArray();
-				if (offending.Any() && !LegacyHttpClientExecutors.Contains(type.FullName ?? type.Name))
+				if (offending.Any() && !_legacyHttpClientExecutors.Contains(type.FullName ?? type.Name))
 				{
 					Console.WriteLine($"{type.FullName}: {string.Join(", ", offending.Select(t => t.FullName ?? t.Name))}");
 					failures.Add(type.FullName ?? type.Name);
@@ -52,7 +51,7 @@ namespace Greg.Xrm.Command.ArchitectureTests
 				.SelectMany(executorType => GetDirectDependencies(executorType)
 					.Where(dependency => dependency != executorType && executorTypeSet.Contains(dependency))
 					.Select(dependency => $"{executorType.FullName} depends on {dependency.FullName}"))
-				.Where(violation => !LegacyExecutorDependencies.Contains(violation))
+				.Where(violation => !_legacyExecutorDependencies.Contains(violation))
 				.ToArray();
 
 			Ensure(!violations.Any(), string.Join(Environment.NewLine, violations));
