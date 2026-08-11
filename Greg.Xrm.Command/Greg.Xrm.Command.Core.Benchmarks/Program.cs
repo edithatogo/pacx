@@ -1,6 +1,7 @@
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Greg.Xrm.Command.Commands.Auth;
+using Greg.Xrm.Command.Parsing;
 using Greg.Xrm.Command.Services;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -14,7 +15,7 @@ namespace Greg.Xrm.Command.Benchmarks
 	{
 		public static void Main(string[] args)
 		{
-			var summary = BenchmarkRunner.Run<CommandLineParserBenchmarks>();
+			BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
 		}
 	}
 
@@ -38,25 +39,25 @@ namespace Greg.Xrm.Command.Benchmarks
 		[Benchmark]
 		public void ParseSimpleCommand()
 		{
-			_!.Parse("auth", "list");
+			_parser!.Parse("auth", "list");
 		}
 
 		[Benchmark]
 		public void ParseCommandWithOptions()
 		{
-			_!.Parse("auth", "create", "--name", "test", "--url", "https://test.crm.dynamics.com");
+			_parser!.Parse("auth", "create", "--name", "test", "--url", "https://test.crm.dynamics.com");
 		}
 
 		[Benchmark]
 		public void ParseInvalidCommand()
 		{
-			_!.Parse("nonexistent", "command", "with", "many", "args");
+			_parser!.Parse("nonexistent", "command", "with", "many", "args");
 		}
 
 		[Benchmark]
 		public void ParseWithSpecialCharacters()
 		{
-			_!.Parse("auth", "create", "--name", "test&special|chars", "--url", "https://test.crm.dynamics.com?param=value");
+			_parser!.Parse("auth", "create", "--name", "test&special|chars", "--url", "https://test.crm.dynamics.com?param=value");
 		}
 	}
 
