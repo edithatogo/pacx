@@ -31,14 +31,14 @@ namespace Greg.Xrm.Command.ArchitectureTests
 			foreach (var type in GetExecutorTypes().Where(type => type.Namespace is not null && type.Namespace.StartsWith("Greg.Xrm.Command.Commands", StringComparison.Ordinal)))
 			{
 				var offending = GetSystemNetHttpDependencies(type).ToArray();
-				if (offending.Any() && !_legacyHttpClientExecutors.Contains(type.FullName ?? type.Name))
+				if (offending.Length > 0 && !_legacyHttpClientExecutors.Contains(type.FullName ?? type.Name))
 				{
 					Console.WriteLine($"{type.FullName}: {string.Join(", ", offending.Select(t => t.FullName ?? t.Name))}");
 					failures.Add(type.FullName ?? type.Name);
 				}
 			}
 
-			Ensure(!failures.Any(), string.Join(Environment.NewLine, failures));
+			Ensure(failures.Count == 0, string.Join(Environment.NewLine, failures));
 		}
 
 		[TestMethod]
@@ -54,7 +54,7 @@ namespace Greg.Xrm.Command.ArchitectureTests
 				.Where(violation => !_legacyExecutorDependencies.Contains(violation))
 				.ToArray();
 
-			Ensure(!violations.Any(), string.Join(Environment.NewLine, violations));
+			Ensure(violations.Length == 0, string.Join(Environment.NewLine, violations));
 		}
 
 		[TestMethod]
@@ -65,7 +65,7 @@ namespace Greg.Xrm.Command.ArchitectureTests
 				.Select(type => type.FullName)
 				.ToArray();
 
-			Ensure(!failures.Any(), string.Join(Environment.NewLine, failures));
+			Ensure(failures.Length == 0, string.Join(Environment.NewLine, failures));
 		}
 
 		private static IEnumerable<Type> GetExecutorTypes()
