@@ -9,6 +9,7 @@
       [
         "alm",
         "auth",
+        "benchmark",
         "ci",
         "column",
         "dataverse",
