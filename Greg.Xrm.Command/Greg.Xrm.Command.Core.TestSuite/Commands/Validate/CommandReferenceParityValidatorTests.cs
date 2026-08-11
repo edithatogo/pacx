@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Greg.Xrm.Command.Parsing;
 using Moq;
 

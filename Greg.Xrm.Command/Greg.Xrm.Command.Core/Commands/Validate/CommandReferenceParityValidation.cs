@@ -1,5 +1,4 @@
-using System.Reflection;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Greg.Xrm.Command.Parsing;
 
 namespace Greg.Xrm.Command.Commands.Validate
@@ -35,8 +34,8 @@ namespace Greg.Xrm.Command.Commands.Validate
 
 	public sealed class CommandReferenceParityValidator : ICommandReferenceParityValidator
 	{
-		private static readonly Regex MarkdownLinkRegex = new(@"\[[^\]]+\]\((?<path>[^)]+?\.md)\)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-		private static readonly Regex HeadingRegex = new(@"^#\s+(?<heading>.+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex _markdownLinkRegex = new(@"\[[^\]]+\]\((?<path>[^)]+?\.md)\)", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+		private static readonly Regex _headingRegex = new(@"^#\s+(?<heading>.+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		public CommandReferenceParityResult Validate(ICommandRegistry registry, string docsIndexPath)
 		{
@@ -51,7 +50,7 @@ namespace Greg.Xrm.Command.Commands.Validate
 					.ToHashSet(StringComparer.OrdinalIgnoreCase);
 
 				var docsText = File.ReadAllText(docsIndexPath);
-				var actualPages = MarkdownLinkRegex
+				var actualPages = _markdownLinkRegex
 					.Matches(docsText)
 					.Select(match => NormalizeRelativePath(match.Groups["path"].Value))
 					.Where(path => !string.Equals(path, "index.md", StringComparison.OrdinalIgnoreCase))
@@ -95,7 +94,7 @@ namespace Greg.Xrm.Command.Commands.Validate
 			}
 
 			var expectedHeading = $"# {command.ExpandedVerbs.ToLowerInvariant()}";
-			if (!HeadingRegex.IsMatch(lines[0]) || !string.Equals(lines[0].Trim(), expectedHeading, StringComparison.OrdinalIgnoreCase))
+			if (!_headingRegex.IsMatch(lines[0]) || !string.Equals(lines[0].Trim(), expectedHeading, StringComparison.OrdinalIgnoreCase))
 			{
 				issues.Add($"{Path.GetFileName(pagePath)} heading should be '{expectedHeading}'.");
 			}
@@ -329,7 +328,7 @@ namespace Greg.Xrm.Command.Commands.Validate
 				var line = rawLine.Trim();
 				if (!sawHeading)
 				{
-					if (HeadingRegex.IsMatch(line))
+					if (_headingRegex.IsMatch(line))
 					{
 						sawHeading = true;
 					}

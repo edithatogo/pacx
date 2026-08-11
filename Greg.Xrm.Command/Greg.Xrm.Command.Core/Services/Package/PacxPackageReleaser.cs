@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 
 namespace Greg.Xrm.Command.Services.Package
@@ -8,7 +8,7 @@ namespace Greg.Xrm.Command.Services.Package
 		IPacxPackagePublisher packagePublisher
 	) : IPacxPackageReleaser
 	{
-		private static readonly JsonSerializerOptions SerializerOptions = new()
+		private static readonly JsonSerializerOptions _serializerOptions = new()
 		{
 			WriteIndented = true
 		};
@@ -145,7 +145,7 @@ namespace Greg.Xrm.Command.Services.Package
 				GeneratedAtUtc = DateTimeOffset.UtcNow
 			};
 
-			File.WriteAllText(provenancePath, JsonSerializer.Serialize(provenance, SerializerOptions));
+			File.WriteAllText(provenancePath, JsonSerializer.Serialize(provenance, _serializerOptions));
 		}
 
 		private static void WriteSbom(string sbomPath, PacxPackageManifest manifest, string version, string packagePath, string releaseManifestPath)
@@ -160,7 +160,7 @@ namespace Greg.Xrm.Command.Services.Package
 				Components = BuildSbomComponents(manifest, packagePath, releaseManifestPath)
 			};
 
-			File.WriteAllText(sbomPath, JsonSerializer.Serialize(sbom, SerializerOptions));
+			File.WriteAllText(sbomPath, JsonSerializer.Serialize(sbom, _serializerOptions));
 		}
 
 		private static List<PacxPackageSbomComponent> BuildSbomComponents(PacxPackageManifest manifest, string packagePath, string releaseManifestPath)

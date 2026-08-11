@@ -1,6 +1,4 @@
-using System.Text;
-using Greg.Xrm.Command.Model;
-using Microsoft.Crm.Sdk.Messages;
+﻿using Greg.Xrm.Command.Model;
 
 namespace Greg.Xrm.Command.Commands.WebResources.PushLogic
 {

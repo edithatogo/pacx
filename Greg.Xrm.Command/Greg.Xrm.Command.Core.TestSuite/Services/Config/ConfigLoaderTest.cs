@@ -1,4 +1,4 @@
-using Greg.Xrm.Command.TestSuite;
+﻿using Greg.Xrm.Command.TestSuite;
 
 namespace Greg.Xrm.Command.Services.Config
 {
