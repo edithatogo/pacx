@@ -202,4 +202,29 @@ jobs:
           path: coverage-artifact/coverage.cobertura.xml
 
       - name: Lint
-        run: dotnet format ${{ inputs.solution_path }} --verify-no-changes
+        shell: pwsh
+        run: |
+          $eventName = "${{ github.event_name }}"
+          if ($eventName -eq "pull_request") {
+            $baseSha = "${{ github.event.pull_request.base.sha }}"
+            $headSha = "${{ github.event.pull_request.head.sha }}"
+          } elseif ($eventName -eq "push") {
+            $baseSha = "${{ github.event.before }}"
+            $headSha = "${{ github.sha }}"
+          } else {
+            $baseSha = "HEAD^"
+            $headSha = "HEAD"
+          }
+
+          $changedFiles = @(git diff --name-only --diff-filter=ACMR $baseSha $headSha -- ':(glob)Greg.Xrm.Command/**/*.cs')
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+          if ($changedFiles.Count -eq 0) {
+            Write-Host "No changed C# files to lint."
+            exit 0
+          }
+
+          Write-Host "Linting $($changedFiles.Count) changed C# files."
+          $formatArgs = @("${{ inputs.solution_path }}", "--verify-no-changes", "--include") + $changedFiles
+          dotnet format @formatArgs
